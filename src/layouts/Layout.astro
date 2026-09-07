@@ -1,0 +1,139 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/inter';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const site = 'https://tonylin.is-a.dev';
+---
+<!doctype html>
+<!-- Design inspired by https://benji.org -->
+<!-- Victini buddy art: fanart via Pinterest (tired/hopeful/happy pins), backgrounds removed locally. Pokémon © Nintendo/Creatures Inc./GAME FREAK. Personal non-commercial use. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="wrap">
+      <slot />
+    </div>
+    <button id="buddy" aria-label="Victini says hi">
+      <img id="buddyimg" src="/victini-hopeful.png" alt="" width="112" height="112" />
+      <span class="buddytip" id="buddytip" aria-hidden="true">Victory!</span>
+    </button>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      (() => {
+        const els = document.querySelectorAll('[data-reveal]');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach((el) => el.classList.add('in'));
+        } else {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((en, i) => {
+              if (en.isIntersecting) {
+                en.target.style.transitionDelay = Math.min(i * 60, 180) + 'ms';
+                en.target.classList.add('in');
+                io.unobserve(en.target);
+              }
+            });
+          }, { threshold: 0.1 });
+          els.forEach((el) => io.observe(el));
+        }
+      })();
+      document.querySelectorAll('[data-expand]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const body = document.getElementById(btn.getAttribute('aria-controls') || '');
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          body?.classList.toggle('open', !open);
+        });
+      });
+      (() => {
+        const buddy = document.getElementById('buddy');
+        const img = document.getElementById('buddyimg');
+        const tip = document.getElementById('buddytip');
+        if (!buddy || !img) return;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const fine = window.matchMedia('(pointer: fine)').matches;
+        const IDLE = '/victini-hopeful.png';
+        const moods = { hopeful: '/victini-hopeful.png', happy: '/victini-happy.png', tired: '/victini-tired.png' };
+        const lines = ['Victory!', 'V for Victory!', '494'];
+        let line = 0;
+        let duckTimer = 0;
+        const show = (mood) => {
+          img.src = mood ? moods[mood] : IDLE;
+          buddy.dataset.state = mood || 'idle';
+        };
+        const hop = () => {
+          buddy.classList.remove('hop');
+          void buddy.offsetWidth;
+          buddy.classList.add('hop');
+        };
+        if (!reduce && fine) {
+          let raf = 0;
+          let tx = 0;
+          window.addEventListener('mousemove', (e) => {
+            const r = buddy.getBoundingClientRect();
+            const dx = e.clientX - (r.left + r.width / 2);
+            tx = Math.max(-8, Math.min(8, dx / 60));
+            if (!raf) raf = requestAnimationFrame(() => {
+              buddy.style.setProperty('--tilt', tx.toFixed(2) + 'deg');
+              raf = 0;
+            });
+          }, { passive: true });
+          let lastY = window.scrollY;
+          let lastT = performance.now();
+          window.addEventListener('scroll', () => {
+            const now = performance.now();
+            const v = Math.abs(window.scrollY - lastY) / Math.max(1, now - lastT);
+            lastY = window.scrollY;
+            lastT = now;
+            if (v > 0.35 && buddy.dataset.state !== 'tired') {
+              show('tired');
+              buddy.classList.add('duck');
+            }
+            window.clearTimeout(duckTimer);
+            duckTimer = window.setTimeout(() => {
+              buddy.classList.remove('duck');
+              if (buddy.dataset.state === 'tired') show(null);
+            }, 700);
+          }, { passive: true });
+          window.setInterval(() => {
+            if (document.hidden || buddy.dataset.state !== 'idle') return;
+            hop();
+          }, 14000);
+        }
+        buddy.addEventListener('click', () => {
+          show('happy');
+          hop();
+          if (tip) {
+            tip.textContent = lines[line % lines.length];
+            line += 1;
+          }
+          window.setTimeout(() => { if (buddy.dataset.state === 'happy') show(null); }, 1400);
+        });
+      })();
+      const copyBtn = document.getElementById('copy-email');
+      copyBtn?.addEventListener('click', async () => {
+        const email = copyBtn.getAttribute('data-email') || '';
+        try {
+          await navigator.clipboard.writeText(email);
+          copyBtn.textContent = 'copied';
+          setTimeout(() => (copyBtn.textContent = '(copy)'), 1200);
+        } catch {}
+      });
+    </script>
+  </body>
+</html>

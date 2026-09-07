@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { profile, bio, experience, projects } from '../content';
+
+const title = 'Tony Lin';
+const description = 'Tony Lin. UVA CS student working on AI evals and agents. From Northern Virginia.';
+const updated = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const years = [...new Set(projects.map((p) => p.dates))].sort().reverse();
+---
+<Layout title={title} description={description}>
+  <header class="top" data-reveal>
+    <h1>{profile.name}</h1>
+    <time>Updated {updated}, {profile.school}</time>
+  </header>
+
+  <article data-reveal>
+    {bio.map((p) => <p>{p}</p>)}
+    <p>
+      In my free time I'm <img class="hobbylogo" src="/logos/valorant.svg" alt="Valorant" width="14" height="14" loading="lazy" /> hardstuck <img class="hobbylogo" src="/logos/diamond3.png" alt="Diamond 3" width="14" height="14" loading="lazy" /> Diamond 3, <img class="hobbylogo" src="/logos/chessdotcom.svg" alt="Chess" width="14" height="14" loading="lazy" /> playing chess, and rewatching Apothecary Diaries.
+    </p>
+    <p>{profile.now}</p>
+  </article>
+
+  <section class="block" data-reveal>
+    <h3>Experience</h3>
+    <ul class="rows">
+      {experience.map((e) => (
+        <li>
+          <div class="static-row">
+            <div>
+              <h2>{e.role} · {e.org}</h2>
+              <p>{e.detail}</p>
+            </div>
+            <span class="rowmeta">{e.dates}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="block" data-reveal>
+    <h3>Projects</h3>
+    <ul class="yeargroup">
+      {years.map((year) => (
+        <li>
+          <div class="yearhead"><span>{year}</span></div>
+          <ul class="rows">
+            {projects.map((p, i) => p.dates === year && (
+              <li>
+                <button class="rowhead" data-expand aria-expanded="false" aria-controls={'proj-' + i} data-thumb={p.thumb}>
+                  <h2>{p.name}</h2>
+                  <span class="rowright"><span class="plus" aria-hidden="true">+</span></span>
+                </button>
+                <div class="rowbody" id={'proj-' + i}>
+                  <div>
+                    <p>{p.blurb}</p>
+                    {p.url && <p><a class="basic" href={p.url} target="_blank" rel="noreferrer">{p.linkLabel || 'Live site ↗'}</a></p>}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="block" data-reveal>
+    <h3>Contact</h3>
+    <p>
+      <a class="basic" href={'mailto:' + profile.email}>{profile.email}</a>
+      <button id="copy-email" class="basic copybtn" data-email={profile.email}>(copy)</button>
+    </p>
+    <p>
+      Find me on <a class="basic" href={profile.github} target="_blank" rel="noreferrer">GitHub</a> · <a class="basic" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · <a class="basic" href={profile.resumePath}>Resume</a>.
+    </p>
+  </section>
+
+  <img id="thumbpeek" alt="" aria-hidden="true" />
+  <script is:inline>
+    (() => {
+      const peek = document.getElementById('thumbpeek');
+      if (!peek) return;
+      const ok = window.matchMedia('(pointer: fine)').matches
+        && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        && window.innerWidth > 720;
+      if (!ok) return;
+      let raf = 0;
+      let x = 0;
+      let y = 0;
+      const place = () => {
+        raf = 0;
+        peek.style.transform = 'translate(' + (x + 24) + 'px,' + (y - 90) + 'px)';
+      };
+      window.addEventListener('mousemove', (e) => {
+        x = e.clientX;
+        y = e.clientY;
+        if (!raf && peek.dataset.on === '1') raf = requestAnimationFrame(place);
+      }, { passive: true });
+      document.querySelectorAll('.rowhead[data-thumb]').forEach((btn) => {
+        btn.addEventListener('mouseenter', () => {
+          peek.src = btn.getAttribute('data-thumb') || '';
+          peek.dataset.on = '1';
+          place();
+          peek.classList.add('show');
+        });
+        btn.addEventListener('mouseleave', () => {
+          peek.dataset.on = '';
+          peek.classList.remove('show');
+        });
+      });
+    })();
+  </script>
+</Layout>
