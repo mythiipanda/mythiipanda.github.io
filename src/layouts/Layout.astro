@@ -26,9 +26,18 @@ const site = 'https://tonylin.is-a.dev';
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
+    <nav id="pillnav" aria-label="Sections">
+      <img class="navavatar" src="/victini-hopeful.png" alt="" width="40" height="40" />
+      <span class="navlinks">
+        <a href="/#experience">Experience</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#contact">Contact</a>
+      </span>
+    </nav>
     <div class="wrap">
       <slot />
     </div>
+    <div id="toast" role="status" aria-live="polite"></div>
     <button id="buddy" aria-label="Victini says hi">
       <img id="buddyimg" src="/victini-hopeful.png" alt="" width="112" height="112" />
       <span class="buddytip" id="buddytip" aria-hidden="true">Victory!</span>
@@ -139,14 +148,32 @@ const site = 'https://tonylin.is-a.dev';
         });
       })();
       const copyBtn = document.getElementById('copy-email');
+      const toast = document.getElementById('toast');
+      let toastTimer = 0;
+      const showToast = (msg) => {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('show');
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => toast.classList.remove('show'), 1400);
+      };
       copyBtn?.addEventListener('click', async () => {
         const email = copyBtn.getAttribute('data-email') || '';
         try {
           await navigator.clipboard.writeText(email);
-          copyBtn.textContent = 'copied';
-          setTimeout(() => (copyBtn.textContent = '(copy)'), 1200);
+          showToast('Copied');
         } catch {}
       });
+      (() => {
+        const nav = document.getElementById('pillnav');
+        if (!nav) return;
+        let lastY = window.scrollY;
+        window.addEventListener('scroll', () => {
+          const y = window.scrollY;
+          nav.classList.toggle('compact', y > 160 && y > lastY);
+          lastY = y;
+        }, { passive: true });
+      })();
     </script>
   </body>
 </html>
