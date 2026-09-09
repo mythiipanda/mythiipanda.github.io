@@ -55,12 +55,12 @@ body {
 }
 
 @keyframes slide {
-  from { opacity: 0; transform: translateY(8vh); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: none; }
 }
 
 html.js .hero {
-  animation: slide 1s var(--ease-hero) backwards;
+  animation: slide 0.8s var(--ease-hero) backwards;
 }
 
 html.js .hero-2 { animation-delay: 0.2s; }
@@ -382,17 +382,23 @@ button.rowhead:hover h2 { text-decoration: underline; }
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   white-space: nowrap;
   overflow: hidden;
-  animation: expand-nav 1s cubic-bezier(0.4, 0, 0.2, 1) backwards;
-  transition: max-width var(--dur-spring) var(--ease-spring), padding var(--dur-spring) var(--ease-spring);
+  animation: nav-in 0.7s var(--ease-hero) backwards;
+  transition: padding 200ms ease, background-color 200ms ease;
 }
 
-@keyframes expand-nav {
-  from { max-width: 76px; }
-  to { max-width: min(480px, calc(100vw - 24px)); }
+@keyframes nav-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* drop the expensive backdrop blur while scrolling for buttery scroll */
+#pillnav.scrolling {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: rgba(255, 255, 255, 0.92);
 }
 
 #pillnav.compact {
-  max-width: 76px;
   padding: 8px;
 }
 
@@ -412,12 +418,13 @@ button.rowhead:hover h2 { text-decoration: underline; }
   max-width: 320px;
   overflow: hidden;
   opacity: 1;
-  transition: max-width var(--dur-spring) var(--ease-spring), opacity 250ms ease;
+  transition: max-width 200ms ease, opacity 180ms ease;
 }
 
 #pillnav.compact .navlinks {
   max-width: 0;
   opacity: 0;
+  pointer-events: none;
 }
 
 .navlinks a {
