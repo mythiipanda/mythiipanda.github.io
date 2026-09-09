@@ -2,8 +2,8 @@
   --ink: #111;
   --gray: rgba(0, 0, 0, 0.4);
   --soft: #333;
-  --line: rgba(0, 0, 0, 0.05);
-  --bg: #ffffff;
+  --line: #eceae4;
+  --bg: #fdfdfc;
   --link: #3e9fff;
   --max: 720px;
   /* benji.org motion tokens */
@@ -50,7 +50,7 @@ body {
 
 .wrap {
   max-width: var(--max);
-  margin: 160px auto 140px;
+  margin: 120px auto 100px;
   padding: 0 24px;
 }
 
@@ -78,16 +78,14 @@ html.js [data-reveal].in {
 }
 
 header.top {
-  padding-bottom: 16px;
+  padding-bottom: 8px;
 }
 
 header.top h1 {
-  font-size: 48px;
-  line-height: 1.2;
+  font-size: 17px;
+  line-height: 24px;
   margin: 0;
   font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--ink);
 }
 
 header.top time {
@@ -99,10 +97,9 @@ header.top time {
 
 article > p {
   margin: 0;
-  padding-top: 12px;
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--soft);
+  padding-top: 10px;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
 a.basic {
@@ -126,7 +123,7 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-section.block { margin-top: 100px; scroll-margin-top: 96px; }
+section.block { margin-top: 80px; scroll-margin-top: 96px; }
 
 section.block > h3 {
   font-size: 14px;
