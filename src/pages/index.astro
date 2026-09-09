@@ -90,25 +90,39 @@ const years = [...new Set(projects.map((p) => p.dates))].sort().reverse();
       let y = 0;
       const place = () => {
         raf = 0;
-        peek.style.transform = 'translate(' + (x + 24) + 'px,' + (y - 90) + 'px)';
+        const s = peek.dataset.on === '1' ? 1 : 0.96;
+        peek.style.transform = 'translate(' + (x + 24) + 'px,' + (y - 90) + 'px) scale(' + s + ')';
       };
       window.addEventListener('mousemove', (e) => {
         x = e.clientX;
         y = e.clientY;
         if (!raf && peek.dataset.on === '1') raf = requestAnimationFrame(place);
       }, { passive: true });
+      const thumbs = [];
       document.querySelectorAll('.rowhead[data-thumb]').forEach((btn) => {
+        const src = btn.getAttribute('data-thumb');
+        if (src) thumbs.push(src);
+        let showTimer;
         btn.addEventListener('mouseenter', () => {
-          peek.src = btn.getAttribute('data-thumb') || '';
-          peek.dataset.on = '1';
-          place();
-          peek.classList.add('show');
+          clearTimeout(showTimer);
+          showTimer = setTimeout(() => {
+            peek.src = src || '';
+            peek.dataset.on = '1';
+            place();
+            peek.classList.add('show');
+          }, 100);
         });
         btn.addEventListener('mouseleave', () => {
+          clearTimeout(showTimer);
           peek.dataset.on = '';
+          place();
           peek.classList.remove('show');
         });
       });
+      // preload thumbnails on idle so the peek never pops in late
+      const preload = () => thumbs.forEach((src) => { const im = new Image(); im.src = src; });
+      if ('requestIdleCallback' in window) window.requestIdleCallback(preload);
+      else window.setTimeout(preload, 1500);
     })();
   </script>
 </Layout>
