@@ -52,12 +52,25 @@ const site = 'https://tonylin.is-a.dev';
           els.forEach((el) => io.observe(el));
         }
       })();
-      document.querySelectorAll('[data-expand]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const body = document.getElementById(btn.getAttribute('aria-controls') || '');
-          const open = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', String(!open));
-          body?.classList.toggle('open', !open);
+      const expandBtns = [...document.querySelectorAll('[data-expand]')];
+      const toggleRow = (btn) => {
+        const body = document.getElementById(btn.getAttribute('aria-controls') || '');
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        body?.classList.toggle('open', !open);
+      };
+      expandBtns.forEach((btn, i) => {
+        btn.addEventListener('click', () => toggleRow(btn));
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            expandBtns[i + 1]?.focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            expandBtns[i - 1]?.focus();
+          } else if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+            toggleRow(btn);
+          }
         });
       });
       (() => {
