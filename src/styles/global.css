@@ -50,7 +50,7 @@ body {
 
 .wrap {
   max-width: var(--max);
-  margin: 120px auto 100px;
+  margin: 96px auto 80px;
   padding: 0 24px;
 }
 
@@ -123,7 +123,7 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-section.block { margin-top: 80px; scroll-margin-top: 96px; }
+section.block { margin-top: 56px; scroll-margin-top: 96px; }
 
 section.block > h3 {
   font-size: 14px;
