@@ -168,10 +168,14 @@ const site = 'https://tonylin.is-a.dev';
         const nav = document.getElementById('pillnav');
         if (!nav) return;
         let lastY = window.scrollY;
+        let scrollTimer = 0;
         window.addEventListener('scroll', () => {
           const y = window.scrollY;
           nav.classList.toggle('compact', y > 160 && y > lastY);
           lastY = y;
+          nav.classList.add('scrolling');
+          window.clearTimeout(scrollTimer);
+          scrollTimer = window.setTimeout(() => nav.classList.remove('scrolling'), 160);
         }, { passive: true });
       })();
     </script>
