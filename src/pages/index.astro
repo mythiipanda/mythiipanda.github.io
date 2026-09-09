@@ -8,12 +8,12 @@ const updated = new Date().toLocaleDateString('en-US', { month: 'short', day: 'n
 const years = [...new Set(projects.map((p) => p.dates))].sort().reverse();
 ---
 <Layout title={title} description={description}>
-  <header class="top" data-reveal>
+  <header class="top hero hero-1">
     <h1>{profile.name}</h1>
     <time>Updated {updated}, {profile.school}</time>
   </header>
 
-  <article data-reveal>
+  <article class="hero hero-2">
     {bio.map((p) => <p>{p}</p>)}
     <p>
       In my free time I'm <img class="hobbylogo" src="/logos/valorant.svg" alt="Valorant" width="14" height="14" loading="lazy" /> hardstuck <img class="hobbylogo" src="/logos/diamond3.png" alt="Diamond 3" width="14" height="14" loading="lazy" /> Diamond 3, <img class="hobbylogo" src="/logos/chessdotcom.svg" alt="Chess" width="14" height="14" loading="lazy" /> playing chess, and rewatching Apothecary Diaries.
@@ -21,7 +21,7 @@ const years = [...new Set(projects.map((p) => p.dates))].sort().reverse();
     <p>{profile.now}</p>
   </article>
 
-  <section class="block" data-reveal>
+  <section class="block hero hero-3" id="experience">
     <h3>Experience</h3>
     <ul class="rows">
       {experience.map((e) => (
@@ -38,7 +38,7 @@ const years = [...new Set(projects.map((p) => p.dates))].sort().reverse();
     </ul>
   </section>
 
-  <section class="block" data-reveal>
+  <section class="block" id="projects" data-reveal>
     <h3>Projects</h3>
     <ul class="yeargroup">
       {years.map((year) => (
@@ -65,7 +65,7 @@ const years = [...new Set(projects.map((p) => p.dates))].sort().reverse();
     </ul>
   </section>
 
-  <section class="block" data-reveal>
+  <section class="block" id="contact" data-reveal>
     <h3>Contact</h3>
     <p>
       <a class="basic" href={'mailto:' + profile.email}>{profile.email}</a>
@@ -90,8 +90,7 @@ const years = [...new Set(projects.map((p) => p.dates))].sort().reverse();
       let y = 0;
       const place = () => {
         raf = 0;
-        const s = peek.dataset.on === '1' ? 1 : 0.96;
-        peek.style.transform = 'translate(' + (x + 24) + 'px,' + (y - 90) + 'px) scale(' + s + ')';
+        peek.style.transform = 'translate(' + (x + 24) + 'px,' + (y - 90) + 'px)';
       };
       window.addEventListener('mousemove', (e) => {
         x = e.clientX;
