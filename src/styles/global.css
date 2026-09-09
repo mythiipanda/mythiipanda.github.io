@@ -50,7 +50,7 @@ body {
 
 .wrap {
   max-width: var(--max);
-  margin: 96px auto 80px;
+  margin: 64px auto 56px;
   padding: 0 24px;
 }
 
@@ -78,7 +78,7 @@ html.js [data-reveal].in {
 }
 
 header.top {
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 header.top h1 {
@@ -97,7 +97,7 @@ header.top time {
 
 article > p {
   margin: 0;
-  padding-top: 10px;
+  padding-top: 8px;
   font-size: 15px;
   line-height: 1.7;
 }
@@ -123,7 +123,7 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-section.block { margin-top: 56px; scroll-margin-top: 96px; }
+section.block { margin-top: 36px; scroll-margin-top: 96px; }
 
 section.block > h3 {
   font-size: 14px;
@@ -131,12 +131,12 @@ section.block > h3 {
   font-weight: 400;
   color: var(--gray);
   margin: 0;
-  padding-bottom: 6px;
+  padding-bottom: 4px;
 }
 
 section.block > p {
   margin: 0;
-  padding-top: 8px;
+  padding-top: 6px;
 }
 
 .yeargroup {
@@ -156,7 +156,7 @@ section.block > p {
 }
 
 .yearhead {
-  padding: 6px 0;
+  padding: 4px 0;
   font-size: 14px;
   color: var(--gray);
   font-variant-numeric: tabular-nums;
@@ -186,7 +186,7 @@ ul.rows > li:first-child {
   justify-content: space-between;
   align-items: baseline;
   gap: 16px;
-  padding: 6px 0;
+  padding: 4px 0;
   background: none;
   border: 0;
   font: inherit;
@@ -241,18 +241,18 @@ button.rowhead:hover h2 { text-decoration: underline; }
 
 .rowbody p {
   margin: 0;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
   font-size: 14px;
   color: var(--soft);
 }
 
-.rowbody p:last-child { padding-bottom: 12px; }
+.rowbody p:last-child { padding-bottom: 10px; }
 
 .static-row {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  padding: 6px 0;
+  padding: 4px 0;
 }
 
 .static-row h2 {
@@ -269,7 +269,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
 }
 
 .static-row .rowmeta {
-  padding-top: 8px;
+  padding-top: 4px;
   text-align: right;
 }
 
@@ -485,7 +485,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
 }
 
 @media (max-width: 560px) {
-  .wrap { margin: 96px auto 96px; padding: 0 20px; }
+  .wrap { margin: 64px auto 64px; padding: 0 20px; }
   header.top h1 { font-size: 40px; }
   #pillnav { padding: 6px 16px 6px 6px; }
   #pillnav.compact { padding: 6px; }
