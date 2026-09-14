@@ -6,14 +6,12 @@
   --bg: #fdfdfc;
   --link: #3e9fff;
   --max: 720px;
-  /* benji.org motion tokens */
-  --dur-snappy: 220ms;
-  --ease-snappy: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  /* unified motion: quiet ease-outs, no bounce */
+  --dur-snappy: 200ms;
+  --ease-snappy: cubic-bezier(0.3, 1, 0.4, 1);
   --dur-smooth: 300ms;
   --ease-smooth: cubic-bezier(0.19, 1, 0.22, 1);
-  /* butter motion tokens: dejan hero ease + bruno spring overshoot */
-  --dur-spring: 450ms;
-  --ease-spring: cubic-bezier(0.4, 1.6, 0.65, 1);
+  --dur-rise: 500ms;
   --ease-hero: cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 
@@ -54,22 +52,22 @@ body {
   padding: 0 24px;
 }
 
-@keyframes slide {
-  from { opacity: 0; transform: translateY(24px); }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
 }
 
 html.js .hero {
-  animation: slide 0.8s var(--ease-hero) backwards;
+  animation: rise var(--dur-rise) var(--ease-hero) backwards;
 }
 
-html.js .hero-2 { animation-delay: 0.2s; }
-html.js .hero-3 { animation-delay: 0.4s; }
+html.js .hero-2 { animation-delay: 0.08s; }
+html.js .hero-3 { animation-delay: 0.16s; }
 
 html.js [data-reveal] {
   opacity: 0;
-  transform: translateY(6px);
-  transition: opacity var(--dur-smooth) var(--ease-smooth), transform var(--dur-smooth) var(--ease-smooth);
+  transform: translateY(12px);
+  transition: opacity var(--dur-rise) var(--ease-hero), transform var(--dur-rise) var(--ease-hero);
 }
 
 html.js [data-reveal].in {
@@ -221,7 +219,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
   font-size: 14px;
   color: #c9c9c9;
   font-weight: 400;
-  transition: transform var(--dur-spring) var(--ease-spring);
+  transition: transform var(--dur-snappy) var(--ease-snappy);
   display: inline-block;
 }
 
@@ -232,7 +230,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
 .rowbody {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--dur-spring) var(--ease-spring);
+  transition: grid-template-rows var(--dur-smooth) var(--ease-smooth);
 }
 
 .rowbody.open { grid-template-rows: 1fr; }
@@ -299,7 +297,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
   opacity: 0;
   scale: 0.96;
   transition: opacity var(--dur-snappy) var(--ease-snappy),
-    scale var(--dur-spring) var(--ease-spring),
+    scale var(--dur-snappy) var(--ease-snappy),
     transform var(--dur-snappy) var(--ease-snappy);
   pointer-events: none;
   z-index: 30;
@@ -326,7 +324,6 @@ button.rowhead:hover h2 { text-decoration: underline; }
   width: 56px;
   height: 56px;
   opacity: 0.92;
-  animation: breathe 3.4s ease-in-out infinite;
 }
 
 #buddy.duck {
@@ -347,18 +344,13 @@ button.rowhead:hover h2 { text-decoration: underline; }
 
 #buddy.hop .buddytip { opacity: 1; }
 
-#buddy.hop img { animation: hop 0.5s var(--ease-spring); }
+#buddy.hop img { animation: hop 0.5s var(--ease-snappy); }
 
 @keyframes hop {
   0% { transform: translateY(0) scale(1, 1); }
   30% { transform: translateY(2px) scale(1.08, 0.92); }
   55% { transform: translateY(-14px) scale(0.96, 1.06); }
   100% { transform: translateY(0) scale(1, 1); }
-}
-
-@keyframes breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.045); }
 }
 
 /* floating glass pill nav */
@@ -382,12 +374,12 @@ button.rowhead:hover h2 { text-decoration: underline; }
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   white-space: nowrap;
   overflow: hidden;
-  animation: nav-in 0.7s var(--ease-hero) backwards;
+  animation: nav-in var(--dur-rise) var(--ease-hero) backwards;
   transition: padding 200ms ease, background-color 200ms ease;
 }
 
 @keyframes nav-in {
-  from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
@@ -457,7 +449,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
   opacity: 0;
   pointer-events: none;
   z-index: 60;
-  transition: opacity 300ms ease, transform var(--dur-spring) var(--ease-spring);
+  transition: opacity var(--dur-smooth) var(--ease-smooth), transform var(--dur-smooth) var(--ease-hero);
 }
 
 #toast.show {

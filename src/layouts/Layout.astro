@@ -52,7 +52,7 @@ const site = 'https://tonylin.is-a.dev';
           const io = new IntersectionObserver((entries) => {
             entries.forEach((en, i) => {
               if (en.isIntersecting) {
-                en.target.style.transitionDelay = Math.min(i * 60, 180) + 'ms';
+                en.target.style.transitionDelay = Math.min(i * 80, 240) + 'ms';
                 en.target.classList.add('in');
                 io.unobserve(en.target);
               }
