@@ -27,7 +27,7 @@ const site = 'https://tonylin.is-a.dev';
   </head>
   <body>
     <nav id="pillnav" aria-label="Sections">
-      <img class="navavatar" src="/victini-hopeful.png" alt="" width="40" height="40" />
+      <a class="navhome" href="#top" aria-label="Back to top"><img class="navavatar" src="/victini-hopeful.png" alt="" width="40" height="40" /></a>
       <span class="navlinks">
         <a href="/#experience">Experience</a>
         <a href="/#projects">Projects</a>
@@ -167,16 +167,18 @@ const site = 'https://tonylin.is-a.dev';
       (() => {
         const nav = document.getElementById('pillnav');
         if (!nav) return;
-        let lastY = window.scrollY;
         let scrollTimer = 0;
-        window.addEventListener('scroll', () => {
-          const y = window.scrollY;
-          nav.classList.toggle('compact', y > 160 && y > lastY);
-          lastY = y;
+        // position-based (not direction-based): deterministic on mobile Safari,
+        // where scroll events pause during momentum and the URL bar fires
+        // spurious events that corrupt direction tracking
+        const update = () => {
+          nav.classList.toggle('compact', window.scrollY > 160);
           nav.classList.add('scrolling');
           window.clearTimeout(scrollTimer);
           scrollTimer = window.setTimeout(() => nav.classList.remove('scrolling'), 160);
-        }, { passive: true });
+        };
+        window.addEventListener('scroll', update, { passive: true });
+        update();
       })();
     </script>
   </body>

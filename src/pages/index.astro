@@ -8,7 +8,7 @@ const updated = new Date().toLocaleDateString('en-US', { month: 'short', day: 'n
 const years = [...new Set(projects.map((p) => p.dates))].sort().reverse();
 ---
 <Layout title={title} description={description}>
-  <header class="top hero hero-1">
+  <header class="top hero hero-1" id="top">
     <h1>{profile.name}</h1>
     <time>Updated {updated}, {profile.school}</time>
   </header>

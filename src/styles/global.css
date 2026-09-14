@@ -356,7 +356,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
 /* floating glass pill nav */
 #pillnav {
   position: fixed;
-  top: 1vh;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
@@ -375,7 +375,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
   white-space: nowrap;
   overflow: hidden;
   animation: nav-in var(--dur-rise) var(--ease-hero) backwards;
-  transition: padding 200ms ease, background-color 200ms ease;
+  transition: padding var(--dur-snappy) var(--ease-snappy), background-color var(--dur-snappy) var(--ease-snappy);
 }
 
 @keyframes nav-in {
@@ -403,6 +403,17 @@ button.rowhead:hover h2 { text-decoration: underline; }
   display: block;
 }
 
+.navhome {
+  display: flex;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.navhome:focus-visible {
+  outline: none;
+  background: rgba(0, 0, 0, 0.06);
+}
+
 .navlinks {
   display: flex;
   align-items: center;
@@ -410,7 +421,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
   max-width: 320px;
   overflow: hidden;
   opacity: 1;
-  transition: max-width 200ms ease, opacity 180ms ease;
+  transition: max-width var(--dur-snappy) var(--ease-snappy), opacity var(--dur-snappy) var(--ease-snappy);
 }
 
 #pillnav.compact .navlinks {
@@ -432,6 +443,16 @@ button.rowhead:hover h2 { text-decoration: underline; }
 .navlinks a:hover {
   color: #111;
   background: rgba(0, 0, 0, 0.04);
+}
+
+/* pill has overflow:hidden, so use a bg highlight instead of a clipped outline */
+.navlinks a:focus-visible {
+  outline: none;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* copy-email toast */
@@ -482,6 +503,7 @@ button.rowhead:hover h2 { text-decoration: underline; }
   #pillnav { padding: 6px 16px 6px 6px; }
   #pillnav.compact { padding: 6px; }
   .navlinks a { padding: 8px 10px; }
+  .rowhead { padding: 8px 0; }
   .static-row { flex-direction: column; gap: 0; }
   .static-row .rowmeta { text-align: left; padding-top: 0; }
   .yeargroup > li { grid-template-columns: 1fr; }
