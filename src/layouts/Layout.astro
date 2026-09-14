@@ -180,29 +180,6 @@ const site = 'https://tonylin.is-a.dev';
         window.addEventListener('scroll', update, { passive: true });
         update();
       })();
-      (() => {
-        // scrollspy: highlight the pill link for the section in view
-        const links = [...document.querySelectorAll('#pillnav .navlinks a')];
-        if (!links.length || !('IntersectionObserver' in window)) return;
-        const idOf = (a) => (a.getAttribute('href') || '').split('#')[1];
-        const setActive = (id) => {
-          links.forEach((a) => {
-            const on = idOf(a) === id;
-            a.classList.toggle('active', on);
-            if (on) a.setAttribute('aria-current', 'true');
-            else a.removeAttribute('aria-current');
-          });
-        };
-        const spy = new IntersectionObserver((entries) => {
-          entries.forEach((en) => {
-            if (en.isIntersecting) setActive(en.target.id);
-          });
-        }, { rootMargin: '-40% 0px -55% 0px' });
-        ['experience', 'projects', 'contact'].forEach((id) => {
-          const el = document.getElementById(id);
-          if (el) spy.observe(el);
-        });
-      })();
     </script>
   </body>
 </html>

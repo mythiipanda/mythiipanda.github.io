@@ -445,11 +445,6 @@ button.rowhead:hover h2 { text-decoration: underline; }
   background: rgba(0, 0, 0, 0.04);
 }
 
-.navlinks a.active {
-  color: #111;
-  background: rgba(0, 0, 0, 0.07);
-}
-
 /* pill has overflow:hidden, so use a bg highlight instead of a clipped outline */
 .navlinks a:focus-visible {
   outline: none;
