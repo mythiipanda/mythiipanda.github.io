@@ -477,8 +477,8 @@ button.rowhead:hover h2 { text-decoration: underline; }
 }
 
 @media (max-width: 560px) {
-  .wrap { margin: 64px auto 64px; padding: 0 20px; }
-  header.top h1 { font-size: 40px; }
+  .wrap { margin: 84px auto 64px; padding: 0 20px; }
+  header.top h1 { font-size: 40px; line-height: 1.15; }
   #pillnav { padding: 6px 16px 6px 6px; }
   #pillnav.compact { padding: 6px; }
   .navlinks a { padding: 8px 10px; }
