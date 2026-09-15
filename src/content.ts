@@ -52,6 +52,12 @@ export const experience: Experience[] = [
 
 export const projects: Project[] = [
   {
+    name: 'valops',
+    url: 'https://mythiipanda.github.io/valops/',
+    dates: '2026',
+    blurb: 'Modeling Valorant Champions Shanghai.',
+  },
+  {
     name: 'TDILEARNED',
     url: 'https://til-seven.vercel.app/',
     dates: '2026',
