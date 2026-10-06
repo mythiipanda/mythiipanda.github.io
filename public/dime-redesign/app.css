@@ -57,8 +57,12 @@
   --dur-1: 120ms;
   --dur-2: 200ms;
 
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.35), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  /* v10: flat workbench — shadows only for floating layers.
+     surfaces meet with 1px dividers, not cards. */
   --shadow-pop: 0 2px 4px rgb(0 0 0 / 0.4), 0 16px 40px -8px rgb(0 0 0 / 0.6);
+
+  /* status bar */
+  --status-h: 30px;
 }
 
 @media (prefers-reduced-motion: reduce) {
