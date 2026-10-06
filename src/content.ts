@@ -72,13 +72,6 @@ export const projects: Project[] = [
     blurb: 'Built an AI agent for NBA analytics.',
   },
   {
-    name: 'Dime redesign',
-    url: '/dime-redesign/',
-    linkLabel: 'Live mockup ↗',
-    dates: '2026',
-    blurb: 'Interactive dashboard redesign concept for Dime.',
-  },
-  {
     name: 'Snaek’s Value List',
     url: 'https://snaekvaluelist.netlify.app/',
     dates: '2026',
