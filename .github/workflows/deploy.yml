@@ -24,8 +24,8 @@ jobs:
       - run: npm ci --prefix apps/dime-landing
       - run: npm run build --prefix apps/dime-landing
         env:
-          BASE_PATH: /dime-landing
-      - run: cp -r apps/dime-landing/out dist/dime-landing
+          BASE_PATH: /dime-site
+      - run: cp -r apps/dime-landing/out dist/dime-site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
