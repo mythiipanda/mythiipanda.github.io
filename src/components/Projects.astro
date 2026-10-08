@@ -1,7 +1,6 @@
 ---
 import { projects as all } from "../content";
 import { url } from "../lib/url";
-// Same ordering as the original page: newest year first, source order within a year.
 const projects = [...all].sort((a, b) => Number(b.dates) - Number(a.dates));
 ---
 <section class="in" style="--i:3" aria-labelledby="h-proj">

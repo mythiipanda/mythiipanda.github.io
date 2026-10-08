@@ -1,8 +1,6 @@
-// Client behavior for /portfolio-v2. Everything is gated on pointer and motion preferences.
 const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
 const calm = matchMedia("(prefers-reduced-motion:reduce)").matches;
 
-// Project thumbnail that follows the cursor (fine pointers only)
 const peek = document.getElementById("peek") as HTMLImageElement | null;
 if (peek && fine && !calm) {
   let x = 0, y = 0, tx = 0, ty = 0, raf = 0, on = false;
@@ -25,7 +23,6 @@ if (peek && fine && !calm) {
   });
 }
 
-// Victini: happy face on hover, tilts a few degrees toward the cursor, hops on click
 const vic = document.getElementById("vic");
 if (vic) {
   if (fine && !calm) {
@@ -48,7 +45,6 @@ if (vic) {
   });
 }
 
-// Email: the address is a mailto link; "(copy)" copies it and shows a toast (same as the original site)
 const copyBtn = document.getElementById("copy-email");
 const toast = document.getElementById("toast");
 let toastTimer: ReturnType<typeof setTimeout>;

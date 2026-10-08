@@ -1,7 +1,0 @@
-node_modules/
-dist/
-.astro/
-.DS_Store
-# design notes and agent files stay out of GitHub
-design.md
-AGENTS.md

@@ -1,6 +1,10 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+
+const base = process.env.BASE_PATH || "/";
 
 export default defineConfig({
-  site: 'https://tonylin.is-a.dev',
-  output: 'static',
+  site: "https://mythiipanda.github.io",
+  base,
+  output: "static",
+  trailingSlash: "always",
 });
