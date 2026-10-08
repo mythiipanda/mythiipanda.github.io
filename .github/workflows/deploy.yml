@@ -21,6 +21,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - run: npm ci --prefix apps/dime-landing
+      - run: npm run build --prefix apps/dime-landing
+        env:
+          BASE_PATH: /dime-landing
+      - run: cp -r apps/dime-landing/out dist/dime-landing
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

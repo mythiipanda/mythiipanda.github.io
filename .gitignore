@@ -4,3 +4,7 @@ dist/
 .DS_Store
 design.md
 AGENTS.md
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
