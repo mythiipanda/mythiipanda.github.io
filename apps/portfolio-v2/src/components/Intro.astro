@@ -1,0 +1,11 @@
+---
+import { bio, profile } from "../content";
+import { url } from "../lib/url";
+---
+<div class="intro in" style="--i:1">
+  {bio.map((p) => <p>{p}</p>)}
+  <p>
+    In my free time I'm <img class="hl" src={url("/logos/valorant.svg")} alt="Valorant" width="14" height="14" /> hardstuck <img class="hl" src={url("/logos/ascendant1.png")} alt="Ascendant 1" width="14" height="14" /> Ascendant 1, <img class="hl" src={url("/logos/chessdotcom.svg")} alt="Chess" width="14" height="14" /> playing chess, and rewatching Apothecary Diaries.
+  </p>
+  <p>{profile.now}</p>
+</div>

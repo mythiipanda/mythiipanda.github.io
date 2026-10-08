@@ -15,7 +15,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: withastro/action@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm ci --prefix apps/portfolio-v2
+      - run: npm run build --prefix apps/portfolio-v2
+        env:
+          BASE_PATH: /portfolio-v2
+      - run: cp -r apps/portfolio-v2/dist dist/portfolio-v2
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   deploy:
     needs: build

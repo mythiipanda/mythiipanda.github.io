@@ -1,0 +1,96 @@
+:root{
+  color-scheme:light dark;
+  --page:#fff;--ink:#161616;--soft:#8a8a8a;--line:#e6e6e6;--hit:#161616;
+  --out:cubic-bezier(.23,1,.32,1);
+  --v:#e4572e;
+  --col:420px;
+  /* tokens: motion */
+  --t-press:90ms;--t-hover:160ms;--t-move:220ms;--t-enter:450ms;--t-stagger:50ms;
+  /* tokens: space and shape */
+  --s-1:6px;--s-2:10px;--s-3:14px;--s-4:24px;--s-5:40px;--row-y:9px;--radius:4px;
+  --press-sm:.96;--press-lg:.99;--shift:4px;--dim:.38;
+}
+@media (prefers-color-scheme:dark){:root{--page:#0e0e0e;--ink:#ededed;--soft:#777;--line:#242424;--hit:#ededed}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font:400 15px/1.4 "Geist Variable",Geist,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+::selection{background:var(--ink);color:var(--page)}
+main{width:var(--col);max-width:calc(100% - 48px);margin:0 auto;padding:clamp(48px,14vh,128px) 0 96px;display:flex;flex-direction:column;gap:var(--s-5)}
+h1,h2,p,ul{margin:0;padding:0;font:inherit}
+p{text-wrap:pretty}
+ul{list-style:none}
+.soft{color:var(--soft)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.intro{display:flex;flex-direction:column;gap:var(--s-3)}
+.tight{display:flex;flex-direction:column;gap:1px}
+
+/* links: underline is a transform, not background-size (GPU only) */
+a{color:inherit;text-decoration:none}
+a.u{position:relative;display:inline-block}
+a.u::before{content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;background:var(--line)}
+a.u::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform var(--t-move) var(--out)}
+a:focus-visible,button:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:2px}
+a:focus-visible.u::after{transform:none}
+@media (hover:hover) and (pointer:fine){a.u:hover::after{transform:none}}
+/* press: fast in, slower out */
+a,button.copy{transition:transform var(--t-move) var(--out)}
+a.row:active{transform:scale(var(--press-lg));transition-duration:var(--t-press)}
+a.u:active,button.copy:active{transform:scale(var(--press-sm));transition-duration:var(--t-press)}
+
+/* sections */
+section{display:flex;flex-direction:column;gap:var(--s-2)}
+h2{color:var(--soft);font-weight:400}
+.rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:var(--s-4);padding:var(--row-y) 0;border-top:1px solid var(--line);transition:opacity var(--t-hover) var(--out)}
+.row .name,.row .what{overflow-wrap:anywhere}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row .meta{color:var(--soft);font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .what{color:var(--soft)}
+.row .what,.row .name{grid-column:1}
+.row .meta{grid-column:2;grid-row:1}
+/* focus list: hovered row stays, the rest recede */
+@media (hover:hover) and (pointer:fine){
+  .rows:has(.row:hover) .row:not(:hover){opacity:var(--dim)}
+  a.row:hover .name{transform:translateX(var(--shift))}
+  a.row:hover .arrow{opacity:1;transform:none}
+}
+a.row .name{display:inline-block;transition:transform var(--t-move) var(--out)}
+a.row .arrow{display:inline-block;margin-left:6px;opacity:0;transform:translate(-4px,2px);transition:opacity var(--t-hover) var(--out),transform var(--t-move) var(--out)}
+a.row:focus-visible .arrow{opacity:1;transform:none}
+
+.contact{display:flex;flex-direction:column;gap:2px}
+button.copy{all:unset;cursor:pointer;color:var(--soft);overflow-wrap:anywhere;transition:color var(--t-hover) var(--out),transform var(--t-move) var(--out)}
+button.copy:hover{color:var(--ink)}
+button.copy:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:2px}
+
+
+/* victini: real art above the name, not a floating widget */
+#vic{all:unset;cursor:pointer;display:block;position:relative;width:44px;height:56px;margin-bottom:var(--s-2);rotate:var(--tilt,0deg);transition:rotate var(--t-move) var(--out),translate var(--t-move) var(--out),transform var(--t-move) var(--out)}
+#vic:focus-visible{outline:1.5px solid var(--ink);outline-offset:5px;border-radius:var(--radius)}
+#vic:active{transform:scale(var(--press-sm));transition-duration:var(--t-press)}
+#vic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+#vic .v-b{opacity:0}
+#vic.happy .v-a{opacity:0}
+#vic.happy .v-b{opacity:1}
+#vic.hop{translate:0 -5px}
+
+/* project preview that follows the cursor */
+#peek{position:fixed;left:0;top:0;width:220px;aspect-ratio:16/10;object-fit:cover;border:1px solid var(--line);pointer-events:none;z-index:5;clip-path:inset(50% 50% 50% 50%);transition:clip-path var(--t-move) var(--out);will-change:transform}
+#peek.on{clip-path:inset(0)}
+
+/* load: short blur-rise, staggered */
+@keyframes in{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.in{animation:in var(--t-enter) var(--out) backwards;animation-delay:calc(var(--i,0) * var(--t-stagger))}
+
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  .in{animation:fade var(--t-move) linear backwards;animation-delay:calc(var(--i,0) * var(--t-stagger))}
+  a.row .name,a.row:hover .name,a.row:active,a.u:active,button.copy:active{transform:none}
+  a.row .arrow,a.row:hover .arrow{transform:none}
+  a.u::after{transition:none}
+  #vic{transition:none}
+  #vic.hop{translate:none}
+  #toast{transform:translate(-50%,0)}
+  #vic:active{transform:none}
+}
+@media (max-width:480px){.row{column-gap:16px}}

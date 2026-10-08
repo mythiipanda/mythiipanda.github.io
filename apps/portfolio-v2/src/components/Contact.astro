@@ -1,0 +1,14 @@
+---
+import { profile } from "../content";
+import { url } from "../lib/url";
+---
+<section class="contact in" style="--i:4" aria-labelledby="h-con">
+  <h2 id="h-con">Contact</h2>
+  <p>
+    <a class="u" href={"mailto:" + profile.email}>{profile.email}</a>
+    <button class="copy" id="copy-email" type="button" data-email={profile.email}>(copy)</button>
+  </p>
+  <p>
+    Find me on <a class="u" href={profile.github} target="_blank" rel="noreferrer">GitHub</a> · <a class="u" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · <a class="u" href={url(profile.resumePath)}>Resume</a>.
+  </p>
+</section>

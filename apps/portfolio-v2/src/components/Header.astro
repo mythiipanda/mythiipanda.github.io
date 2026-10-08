@@ -1,0 +1,11 @@
+---
+import Victini from "./Victini.astro";
+import { profile } from "../content";
+// Build-time date, same as the original page.
+const updated = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+---
+<header class="in tight" style="--i:0">
+  <Victini />
+  <h1>{profile.name}</h1>
+  <p class="soft"><time>Updated {updated}, {profile.school}</time></p>
+</header>

@@ -1,0 +1,15 @@
+---
+import { experience } from "../content";
+---
+<section class="in" style="--i:2" aria-labelledby="h-exp">
+  <h2 id="h-exp">Experience</h2>
+  <ul class="rows">
+    {experience.map((e) => (
+      <li class="row">
+        <span class="name">{e.role} · {e.org}</span>
+        <span class="meta">{e.dates}</span>
+        <span class="what">{e.detail}</span>
+      </li>
+    ))}
+  </ul>
+</section>
