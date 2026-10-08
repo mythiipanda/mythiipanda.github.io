@@ -159,6 +159,8 @@ export default function ChatEmbed({
                 series={scenario.chart.series}
                 height={scenario.chart.height}
                 footnote={scenario.chart.footnote}
+                kind={scenario.chart.kind}
+                labels={scenario.chart.labels}
               />
             </ArtifactShell>
           </div>

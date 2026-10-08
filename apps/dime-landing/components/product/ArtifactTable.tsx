@@ -51,11 +51,12 @@ export default function ArtifactTable<T extends (string | number)[]>({
     renderCell ? renderCell(row, i) : String(row[i]);
 
   return (
-    <table className="w-full text-[13px]">
+    <div className="overflow-x-auto shadow-[inset_-1px_0_0_var(--line)]">
+    <table className="w-full min-w-[480px] text-[13px]">
       <thead className="sticky top-0 z-10 bg-surface">
         <tr className="border-b border-line">
           {columns.map((c, i) => (
-            <th key={c.key} className={`p-0 text-[13px] font-medium ${i === 0 ? "pl-4" : "pl-3"} ${i === columns.length - 1 ? "pr-4" : "pr-3"}`}>
+            <th key={c.key} className={`p-0 text-[13px] font-medium ${i === 0 ? "min-w-[8rem] pl-4" : "pl-3"} ${i === columns.length - 1 ? "pr-4" : "pr-3"}`}>
               <button
                 type="button"
                 onClick={() => toggle(i)}
@@ -76,7 +77,7 @@ export default function ArtifactTable<T extends (string | number)[]>({
             {columns.map((c, i) => (
               <td
                 key={c.key}
-                className={`${i === 0 ? "pl-4" : "pl-3"} ${i === columns.length - 1 ? "pr-4" : "pr-3"} ${
+                className={`${i === 0 ? "min-w-[8rem] whitespace-nowrap pl-4" : "pl-3"} ${i === columns.length - 1 ? "pr-4" : "pr-3"} ${
                   c.numeric ? "text-right font-mono tabular-nums" : ""
                 }`}
               >
@@ -87,5 +88,6 @@ export default function ArtifactTable<T extends (string | number)[]>({
         ))}
       </tbody>
     </table>
+    </div>
   );
 }

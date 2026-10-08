@@ -14,6 +14,8 @@ export type ReplayChartProps = {
   series: ChartSeries[];
   height: number;
   footnote: string;
+  kind?: "line" | "bars";
+  labels?: string[];
 };
 
 export type ReplaySample = {
@@ -192,6 +194,8 @@ const lineups: ReplayConversation = {
     ],
     height: 180,
     footnote: "Sample data. Net rating per 100 possessions.",
+    kind: "bars",
+    labels: ["Unit A", "Unit B", "Unit C", "Unit D"],
   },
   sample: {
     isSample: true,
