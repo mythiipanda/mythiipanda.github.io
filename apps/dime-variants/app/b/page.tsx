@@ -18,7 +18,7 @@ const lines = [
 
 function Sheet({ id, label, children }: { id?: string; label: string; children: ReactNode }) {
   return (
-    <section id={id} className="mx-auto mt-6 w-full max-w-[1200px] rounded-[16px] border border-line p-6 md:min-h-[720px] md:p-12">
+    <section id={id} className="mx-auto mt-6 w-full max-w-[1200px] rounded-[16px] border border-line p-6 md:min-h-[480px] md:p-12">
       <div className="mb-8 font-mono text-[12px] text-ink-3">{label}</div>
       {children}
     </section>
@@ -30,7 +30,7 @@ export default function B() {
     <Page v="b">
       <DockNav />
       <main className="px-3 pb-24 pt-3 md:px-6 md:pt-6">
-        <section className="relative mx-auto flex w-full max-w-[1200px] flex-col justify-between overflow-hidden rounded-[16px] border border-line p-6 md:min-h-[720px] md:p-12">
+        <section className="relative mx-auto flex w-full max-w-[1200px] flex-col justify-between overflow-hidden rounded-[16px] border border-line p-6 md:min-h-[600px] md:p-12">
           <div className="absolute right-6 top-6 md:right-12 md:top-12"><DimeMark size={56} /></div>
           <h1 className="mt-16 text-[19px] leading-[28px] md:mt-24 md:text-[48px] md:leading-[56px]">
             {lines.map(([t, off], i) => (

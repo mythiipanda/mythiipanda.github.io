@@ -38,7 +38,7 @@ export default function E() {
         <div className="mt-6 space-y-10">
           {shown.map((it) => (
             <article key={it.id}>
-              <div className="h-[440px] overflow-hidden rounded-[12px] bg-field shadow-[0_0_0_1px_var(--line)] md:h-[520px]">{it.node}</div>
+              <div className="max-h-[520px] min-h-[300px] overflow-hidden rounded-[12px] bg-field shadow-[0_0_0_1px_var(--line)]">{it.node}</div>
               <div className="mt-3 flex items-center justify-between text-[13px]"><span className="text-ink">{it.name}</span><span className="rounded-full px-2.5 py-1 font-mono text-[11px] text-ink-3 shadow-[0_0_0_1px_var(--line)]">{it.tag} / sample</span></div>
             </article>
           ))}
