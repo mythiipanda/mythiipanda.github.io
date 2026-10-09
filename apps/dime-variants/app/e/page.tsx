@@ -18,7 +18,7 @@ export default function E() {
   return (
     <Page v="e">
       <div className="mx-auto max-w-[1320px] border-x border-line">
-        <header className={`grid grid-cols-[1fr_auto] md:grid-cols-[240px_1fr_auto_auto] ${cell}`}>
+        <header className={`grid grid-cols-[1fr_auto_auto] md:grid-cols-[240px_1fr_auto_auto] ${cell}`}>
           <a href="#top" aria-label="dime home" className="flex h-14 items-center border-r border-line px-5"><Logo /></a>
           <nav className="hidden items-center gap-8 px-6 font-mono text-[12px] text-ink-2 md:flex">
             <a href="#warehouse" className="hover:text-ink">warehouse</a><a href="#skills" className="hover:text-ink">features</a><a href="#self-host" className="hover:text-ink">setup</a>
