@@ -4,7 +4,6 @@ import DataTable from "@/components/dime/DataTable";
 import AutoChart from "@/components/dime/AutoChart";
 import GlideMenu from "@/components/primitives/GlideMenu";
 import { skillDocs } from "@/lib/dime/skills";
-import ThreadRail from "@/components/dime/ThreadRail";
 import ToolChips from "@/components/primitives/ToolChips";
 import { CMark } from "@/components/v/CMark";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
@@ -408,9 +407,9 @@ function RailLabel({ children }: { children: ReactNode }) {
   return <div className="mx-2 mb-1 flex h-7 items-center px-2 text-[12.5px] font-medium text-ink-3">{children}</div>;
 }
 
-function LegacyRail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
+function LegacyRail({ tab, setTab, dime }: { tab: Tab; setTab: (t: Tab) => void; dime?: boolean }) {
   return (
-    <aside className="hidden w-[224px] shrink-0 flex-col border-r border-line bg-field pb-2 lg:flex">
+    <aside data-sidebar={dime ? "frozen" : undefined} className={`hidden w-[224px] shrink-0 flex-col bg-field pb-2 lg:flex ${dime ? "" : "border-r border-line"}`}>
       <div className="mb-2.5 flex h-10 items-center justify-between pl-4 pr-3.5">
         <span className="flex items-center gap-2 text-[14px] font-semibold"><CMark size={16} /><span>dime<span className="text-[var(--cobalt-tx)]">.</span></span></span>
         <SidebarSimple size={18} className="text-ink-3" />
@@ -441,28 +440,11 @@ function LegacyRail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
           ))}
         </RailGroup>
       </div>
-      <div className="mx-2 mt-auto border-t border-line pt-3">
+      <div className="mx-2 mt-auto pt-3">
         <div className="flex h-8 items-center gap-2 px-2 font-mono text-[12px] text-ink-2">
           <GitBranch size={16} className="text-ink-3" />main
         </div>
       </div>
-    </aside>
-  );
-}
-
-const threadSeed = [
-  { id: "true-shooting", title: "Best true shooting 2025-26", hours: 0.2, turns: 2 },
-  { id: "bench", title: "Thunder bench minutes", hours: 3, turns: 3 },
-  { id: "onoff", title: "Luka on/off splits", hours: 30, turns: 4 },
-  { id: "mvp", title: "MVP ladder, week 2", hours: 52, turns: 2 },
-  { id: "slate", title: "Tonight's slate", hours: 150, turns: 1 },
-];
-
-function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
-  const threads = threadSeed.map((t) => ({ id: t.id, title: t.title, turns: t.turns, updated: new Date(Date.now() - t.hours * 3600000).toISOString() }));
-  return (
-    <aside data-sidebar="frozen" className="hidden w-[232px] shrink-0 lg:block">
-      <ThreadRail threads={threads} active="true-shooting" onSelect={() => setTab("chat")} onNew={() => setTab("chat")} onHomeClick={() => setTab("chat")} onSearch={() => setTab("warehouse")} />
     </aside>
   );
 }
@@ -521,7 +503,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
   return (
     <DimeCtx.Provider value={dime}>
     <div data-dime={dime ? "" : undefined} className="flex h-full min-h-0 w-full bg-canvas text-ink">
-      {!bare && (dime ? <Rail tab={tab} setTab={setTab} /> : <LegacyRail tab={tab} setTab={setTab} />)}
+      {!bare && <LegacyRail tab={tab} setTab={setTab} dime={dime} />}
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-12 shrink-0 items-center justify-between gap-3 border-b border-line px-3 md:px-4">
           {forced === undefined ? <div className="flex min-w-0 items-center gap-1 overflow-x-auto">

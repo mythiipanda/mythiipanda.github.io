@@ -396,7 +396,6 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 @media (hover: none) { [data-v="c"] .dime-table tbody tr:hover { background: transparent; } }
 [data-dime] .quiet-tools .table-tools { display: none !important; }
 [data-v="c"], [data-v="c"] [data-dime] { --ink-3: #626B7D; --color-ash-gray: #626B7D; }
-[data-v="c"] [data-sidebar] { --ink-3: oklch(0.695 0.009 264.505); --color-ash-gray: oklch(0.695 0.009 264.505); }
 [data-v="c"] { --float-sm: 0 1px 2px rgba(20,18,12,0.05), 0 4px 14px -4px rgba(20,18,12,0.10); --float-md: 0 1px 2px rgba(20,18,12,0.05), 0 10px 28px -10px rgba(20,18,12,0.16); --float-lg: 0 2px 4px rgba(20,18,12,0.04), 0 24px 60px -24px rgba(20,18,12,0.22); }
 [data-v="c"] [class*="shadow-[0_0_0_1px_var(--line"]:not([data-sidebar] *) { box-shadow: var(--float-sm) !important; }
 [data-v="c"] [class*="rounded-[16px]"][class*="shadow-[0_0_0_1px_var(--line-strong)]"] { box-shadow: var(--float-lg) !important; }
@@ -406,3 +405,4 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-v="c"] [data-dime] .chat-composer { border: none !important; box-shadow: var(--float-lg) !important; }
 [data-v="c"] [data-dime] .chat-composer:focus-within { box-shadow: var(--float-lg), 0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent) !important; }
 [data-v="c"] [data-dime] [class*="border-line"]:not([data-sidebar] *) { border-color: transparent !important; }
+[data-v="c"] [data-sidebar] [data-row][class*="bg-hover-2"] { background: var(--color-pure-white, #fff); box-shadow: var(--float-sm); }
