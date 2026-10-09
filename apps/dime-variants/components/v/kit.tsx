@@ -119,3 +119,29 @@ export function DockNav() {
     </nav>
   );
 }
+
+export function CenterNav({ max = "max-w-[1320px]" }: { max?: string }) {
+  return (
+    <header className="absolute inset-x-0 top-0 z-30">
+      <nav className={`mx-auto grid h-16 w-full ${max} grid-cols-[1fr_auto_1fr] items-center px-5 md:px-6`}>
+        <div className="hidden gap-6 text-[14px] text-ink-2 md:flex">
+          {links.map((l) => (<a key={l.label} href={l.href} className="transition-colors hover:text-ink">{l.label}</a>))}
+        </div>
+        <a href="#top" aria-label="dime home" className="col-start-2 justify-self-center"><Logo /></a>
+        <div className="col-start-3 flex items-center justify-self-end gap-1"><ThemeToggle /><ButtonLink href={REPO} variant="ink" size="pill">Star on GitHub</ButtonLink></div>
+      </nav>
+    </header>
+  );
+}
+
+export function RunNav({ label }: { label: string }) {
+  return (
+    <header className="border-b-[3px] border-[var(--cobalt)]">
+      <nav className="mx-auto flex h-14 w-full max-w-[1200px] items-center justify-between px-5 md:px-6">
+        <a href="#top" aria-label="dime home"><Logo /></a>
+        <span className="hidden font-mono text-[12px] text-ink-3 md:block">{label}</span>
+        <div className="flex items-center gap-1"><ThemeToggle /><ButtonLink href={REPO} variant="ink" size="pill">Star on GitHub</ButtonLink></div>
+      </nav>
+    </header>
+  );
+}

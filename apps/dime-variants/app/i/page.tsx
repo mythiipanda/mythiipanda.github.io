@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BarNav, Cta, FaqList, Foot, Frame, Page, SetupRows } from "@/components/v/kit";
+import { Cta, FaqList, Foot, Frame, Page, SetupRows } from "@/components/v/kit";
 import Workbench, { type Tab } from "@/components/workbench/Workbench";
-import { copy } from "@/lib/copy";
+import { copy, REPO } from "@/lib/copy";
+import { ThemeToggle } from "@/components/landing/Nav";
+import { Logo, ButtonLink } from "@/components/landing/ui";
 import { hero } from "@/lib/variants";
 
 const steps: { tab: Tab; title: string; text: string }[] = [
@@ -25,7 +27,17 @@ export default function I() {
   }, []);
   return (
     <Page v="i">
-      <BarNav />
+      <header className="sticky top-0 z-30 border-b border-line bg-canvas/95 backdrop-blur">
+        <nav className="mx-auto flex h-14 max-w-[1200px] items-center justify-between gap-4 px-5 md:px-6">
+          <a href="#top" aria-label="dime home"><Logo /></a>
+          <ol className="hidden items-center gap-1 md:flex">
+            {steps.map((s, n) => (
+              <li key={s.title}><a href="#notebooks" className={`flex h-8 items-center gap-2 rounded-full px-3 text-[13px] transition-colors ${active === n ? "bg-hover-2 text-ink" : "text-ink-3 hover:text-ink"}`}><span className="font-mono text-[11px]">0{n + 1}</span>{s.title}</a></li>
+            ))}
+          </ol>
+          <div className="flex items-center gap-1"><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill">Star on GitHub</ButtonLink></div>
+        </nav>
+      </header>
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="pt-14 md:pt-20">
           <h1 className="max-w-[820px] text-[40px] leading-[44px] md:text-[68px] md:leading-[70px]">{hero.i.h1}</h1>

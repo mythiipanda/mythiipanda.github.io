@@ -1,17 +1,18 @@
 import { SkillRows } from "@/components/v/features";
-import { BarNav, Cta, Foot, Page } from "@/components/v/kit";
+import { Cta, Foot, Page } from "@/components/v/kit";
 import { Sql } from "@/components/workbench/Primitives";
 import { commits } from "@/components/workbench/data";
 import { HostSection, Questions } from "@/components/landing/Sections";
 import { copy } from "@/lib/copy";
+import { ThemeToggle } from "@/components/landing/Nav";
+import { Logo } from "@/components/landing/ui";
 import { hero } from "@/lib/variants";
 
 export default function F() {
   return (
     <Page v="f">
-      <BarNav />
       <main className="mx-auto grid max-w-[1200px] gap-10 px-5 pt-14 md:px-6 md:pt-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-        <aside className="lg:sticky lg:top-24 lg:self-start">
+        <aside className="lg:sticky lg:top-8 lg:self-start"><div className="mb-14 flex items-center justify-between"><a href="#top" aria-label="dime home"><Logo /></a><ThemeToggle /></div>
           <h1 className="text-[40px] leading-[44px] md:text-[56px] md:leading-[58px]">{hero.f.h1}</h1>
           <p className="mt-6 max-w-[420px] text-[17px] leading-[27px] text-ink-2">{hero.f.sub}</p>
           <div className="mt-8"><Cta /></div>

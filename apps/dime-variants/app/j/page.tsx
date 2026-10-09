@@ -3,7 +3,7 @@
 import { hero } from "@/lib/variants";
 import { useEffect, useState } from "react";
 import { CommitRows, SkillRows } from "@/components/v/features";
-import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
+import { RunNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { NumberFlow } from "@/components/ui/number-flow";
 import { Notebook } from "@/components/workbench/Workbench";
 import { copy } from "@/lib/copy";
@@ -20,7 +20,7 @@ export default function J() {
   useEffect(() => { const t = setTimeout(() => setOn(true), 400); return () => clearTimeout(t); }, []);
   return (
     <Page v="j">
-      <BarNav />
+      <RunNav label="sample run / wing-efficiency / 2025" />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="pt-14 md:pt-20">
           <h1 className="max-w-[820px] text-[38px] leading-[42px] md:text-[56px] md:leading-[58px]">{hero.j.h1}</h1>
