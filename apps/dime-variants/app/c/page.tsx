@@ -43,8 +43,8 @@ export default function C() {
             <div className="h-[560px] overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] md:h-[680px] lg:rounded-r-none"><Workbench bare initialTab="notebook" /></div>
           </div>
         </section>
-        <section id="product" className="mx-auto max-w-[1320px] px-5 py-24 text-center md:px-6">
-          <h2 className="mx-auto max-w-[760px] text-[40px] leading-[48px] md:text-[56px] md:leading-[67px]">Every question reruns next <span className="text-[var(--cobalt-tx)]">season</span></h2>
+        <section id="product" className="mx-auto max-w-[1320px] px-5 py-20 text-center md:px-6">
+          <h2 className="mx-auto max-w-[760px] text-[34px] leading-[40px] md:text-[48px] md:leading-[54px]">Every question reruns next <span className="text-[var(--cobalt-tx)]">season</span></h2>
           
           <div className="mx-auto mt-10 flex justify-center gap-2">
             {tabs.map((x) => (
@@ -53,23 +53,24 @@ export default function C() {
           </div>
           <div className="mx-auto mt-8 max-w-[1000px] overflow-hidden rounded-[14px] bg-field text-left shadow-[0_0_0_1px_var(--line-strong)]">
             <div className="flex h-10 items-center border-b border-line px-5 font-mono text-[12px] text-ink-3">{t.file}</div>
-            <pre className="min-h-[260px] overflow-x-auto p-6 font-mono text-[13.5px] leading-[24px] text-ink-2 md:p-8">{t.code.join("\n")}</pre>
+            <pre className="min-h-[200px] overflow-x-auto p-5 font-mono text-[13px] leading-[22px] text-ink-2 md:p-6">{t.code.join("\n")}</pre>
           </div>
           <p className="mx-auto mt-4 max-w-[1000px] text-left text-[13px] text-ink-3">Sample files.</p>
         </section>
-        <section id="models" className="mx-auto max-w-[1320px] px-5 py-24 md:px-6">
-          <h2 className="max-w-[640px] text-[40px] leading-[48px] md:text-[56px] md:leading-[67px]">Bring your own model</h2>
+        <section id="models" className="mx-auto max-w-[1320px] px-5 py-20 md:px-6">
+          <h2 className="max-w-[640px] text-[34px] leading-[40px] md:text-[48px] md:leading-[54px]">Bring your own model</h2>
           
-          <div className="mt-12 grid gap-4 md:grid-cols-[1.3fr_1fr]">
-            <div className="rounded-[14px] bg-field p-8 shadow-[0_0_0_1px_var(--line)]">
+          <div className="mt-10 grid gap-4 md:grid-cols-[1.3fr_1fr]">
+            <div className="rounded-[14px] bg-field p-6 shadow-[0_0_0_1px_var(--line)]">
               <div className="font-mono text-[12px] text-ink-3">endpoint</div>
-              <p className="mt-4 text-[22px] leading-[30px] md:text-[28px] md:leading-[36px]">Hosted or local.</p>
+              <p className="mt-3 text-[20px] leading-[28px]">Hosted models today. Local planned.</p>
+              <p className="mt-3 max-w-[360px] text-[14px] leading-[22px] text-ink-2">Gemini by default, NVIDIA NIM behind the same interface. Any OpenAI-compatible endpoint is planned.</p>
               
             </div>
-            <div className="rounded-[14px] bg-field p-8 shadow-[0_0_0_1px_var(--line)]">
+            <div className="rounded-[14px] bg-field p-6 shadow-[0_0_0_1px_var(--line)]">
               <div className="font-mono text-[12px] text-ink-3">metrics registry, sample</div>
-              <pre className="mt-4 overflow-x-auto font-mono text-[13.5px] leading-[24px] text-ink-2">{"ts_pct:\n  formula: pts / (2 * (fga + 0.44 * fta))"}</pre>
-              <p className="mt-6 text-[14px] leading-[22px] text-ink-2">A metric registry. Planned.</p>
+              <pre className="mt-3 overflow-x-auto font-mono text-[13px] leading-[22px] text-ink-2">{"ts_pct:\n  formula: pts / (2 * (fga + 0.44 * fta))"}</pre>
+              <p className="mt-4 text-[13px] leading-[20px] text-ink-2">A metric registry. Planned.</p>
             </div>
           </div>
         </section>

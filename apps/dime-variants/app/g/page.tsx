@@ -74,7 +74,7 @@ export default function G() {
           <h2 className="text-[32px] leading-[38px] md:text-[44px] md:leading-[50px]">Quick questions in Chat, saved work in Projects</h2>
           
         </section>
-        <section className="mx-auto max-w-[1100px] px-5 pt-28 md:px-6"><h2 className="mb-8 text-[32px] leading-[38px] md:text-[44px]">Runs on your machine</h2><SetupRows /><FaqList /></section>
+        <section className="mx-auto max-w-[1100px] px-5 pt-28 md:px-6"><h2 className="mb-8 text-[32px] leading-[38px] md:text-[44px]">Setup</h2><SetupRows /><FaqList /></section>
         <Close max="max-w-[1100px]" center />
       </main>
       <footer className="mt-28 overflow-hidden px-5 pb-6"><div className="font-display text-[34vw] font-bold leading-[0.8] text-ink md:text-[22vw]">dime<span className="text-[var(--cobalt-tx)]">.</span></div></footer>

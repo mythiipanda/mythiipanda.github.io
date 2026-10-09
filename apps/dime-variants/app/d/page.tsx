@@ -56,7 +56,7 @@ export default function D() {
             </div>
           </section>
         ))}
-        <Close max="max-w-[1300px]" />
+        <Close max="max-w-[1300px]" flush />
       </main>
       <div className="mt-20"><Foot max="max-w-[1300px]" /></div>
     </Page>

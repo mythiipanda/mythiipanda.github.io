@@ -75,7 +75,7 @@ export default function A() {
           </section>
         ))}
         <Closing />
-        <Close max="max-w-[1284px]" />
+        <Close max="max-w-[1284px]" flush />
       </main>
     </Page>
   );

@@ -30,15 +30,15 @@ export default function H() {
           <ul className="space-y-1 pt-2 text-[15px] leading-[24px] text-ink-2 md:self-end md:text-right">
             <li>Chat for the quick answer</li>
             <li>Projects for the work you keep</li>
-            <li>Self-hosted, any OpenAI-compatible model</li>
+            <li>Self-hosted. Gemini and NVIDIA NIM today</li>
           </ul>
         </section>
-        <section id="product" className="pb-24 md:pb-40">
+        <section id="product" className="pb-20 md:pb-28">
           <h2 className={`${h2} max-w-[680px]`}>Ask a question. Keep the notebook.</h2>
           <div className="mt-12 h-[620px] overflow-hidden rounded-[8px] shadow-[0_0_0_1px_var(--line-strong)] md:h-[760px]"><Workbench /></div>
         </section>
         {stories.map((s, i) => (
-          <section key={s.title} className="pb-24 md:pb-40">
+          <section key={s.title} className="pb-20 md:pb-28">
             <h2 className={`${h2} max-w-[680px] ${i % 2 ? "md:ml-auto" : ""}`}>{s.title}</h2>
             <div className={`mt-12 grid items-end gap-8 md:grid-cols-[1.7fr_1fr] ${i % 2 ? "md:[&>div:first-child]:order-2" : ""}`}>
               <div className="h-[460px] overflow-hidden rounded-[8px] shadow-[0_0_0_1px_var(--line-strong)] md:h-[520px]"><Workbench tab={s.tab} bare /></div>
@@ -49,7 +49,7 @@ export default function H() {
             </div>
           </section>
         ))}
-        <Close max="max-w-[1425px]" />
+        <Close max="max-w-[1425px]" flush />
       </main>
       <Foot max="max-w-[1425px]" />
     </Page>

@@ -36,7 +36,7 @@ export const copy = {
   },
   faq: [
     { id: "who", question: "Who is it for?", answer: "Stat nerds first, then analysts, then teams. Open source, no paid plan." },
-    { id: "models", question: "Which models?", answer: "Any OpenAI-compatible endpoint. Local models included." },
+    { id: "models", question: "Which models?", answer: "Gemini by default, NVIDIA NIM behind the same interface. Any OpenAI-compatible endpoint is planned." },
     { id: "host", question: "Where does it run?", answer: "On your machine." },
   ],
   close: { title: "Clone it and ask about last season", button: "Star on GitHub" },

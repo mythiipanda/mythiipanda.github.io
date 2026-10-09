@@ -52,7 +52,7 @@ export default function I() {
         </div>
         <Index n="04" label="Setup" />
         <div id="self-host"><SetupRows /></div>
-        <Close max="max-w-[1280px]" />
+        <Close max="max-w-[1280px]" flush />
       </main>
       <div className="mt-24"><Foot max="max-w-[1280px]" /></div>
     </Page>

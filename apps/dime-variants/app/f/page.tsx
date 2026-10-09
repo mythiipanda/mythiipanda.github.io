@@ -6,11 +6,11 @@ import { Notebook, Warehouse, Skills, History } from "@/components/workbench/Wor
 import { Page, RoadmapRows, FaqList, Foot } from "@/components/v/kit";
 import { REPO } from "@/lib/copy";
 
-function Win({ title, children, className = "" }: { title: string; children: ReactNode; className?: string }) {
+function Win({ title, children, className = "", fit = false }: { title: string; children: ReactNode; className?: string; fit?: boolean }) {
   return (
     <div className={`overflow-hidden rounded-[10px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] ${className}`}>
       <div className="flex h-9 items-center gap-2 border-b border-line bg-field px-3 font-mono text-[11px] text-ink-3"><span className="size-2 rounded-full bg-line-strong" /><span className="size-2 rounded-full bg-line-strong" /><span className="size-2 rounded-full bg-line-strong" /><span className="ml-2">{title}</span></div>
-      <div className="h-[420px] overflow-hidden p-3 md:h-[520px] md:p-4">{children}</div>
+      <div className={`overflow-hidden p-3 md:p-4 ${fit ? "max-h-[520px]" : "h-[420px] md:h-[520px]"}`}>{children}</div>
     </div>
   );
 }
@@ -54,10 +54,10 @@ export default function F() {
             <h3 className="text-[28px] leading-[34px] md:text-[34px] md:leading-[40px]">Skills and workflows are plain files</h3>
             <p className="mt-4 text-[16px] leading-[25px] text-ink-2">14 skills ship today.</p>
           </div>
-          <Win title="skills"><Skills /></Win>
+          <Win title="skills" fit><Skills /></Win>
         </section>
         <section className="mx-auto grid max-w-[1200px] gap-10 px-5 pt-20 md:grid-cols-[1fr_320px] md:items-center md:gap-16 md:pt-32">
-          <Win title="history" className="md:order-1"><History /></Win>
+          <Win title="history" fit className="md:order-1"><History /></Win>
           <div className="md:order-2">
             <h3 className="text-[28px] leading-[34px] md:text-[34px] md:leading-[40px]">History you can diff</h3>
             

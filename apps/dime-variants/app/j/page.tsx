@@ -11,8 +11,8 @@ import { REPO, copy } from "@/lib/copy";
 
 function Tile({ label, children, className = "" }: { label: string; children: ReactNode; className?: string }) {
   return (
-    <figure className={`flex h-[440px] flex-col overflow-hidden rounded-[10px] shadow-[0_0_0_1px_var(--line)] ${className.includes("bg-") ? "" : "bg-field"} ${className}`}>
-      <div className="relative min-h-0 flex-1 overflow-hidden">{children}</div>
+    <figure className={`flex h-[520px] flex-col overflow-hidden rounded-[10px] shadow-[0_0_0_1px_var(--line)] ${className.includes("bg-") ? "" : "bg-field"} ${className}`}>
+      <div className="relative min-h-0 flex-1 overflow-y-auto p-3">{children}</div>
       <figcaption className="flex h-10 shrink-0 items-center border-t border-line px-4 font-mono text-[11px] opacity-80">{label}</figcaption>
     </figure>
   );
@@ -46,7 +46,7 @@ export default function J() {
               ))}
             </div>
           </Tile>
-          <Tile label="Warehouse" className="md:col-span-2 md:h-[400px]"><Warehouse /></Tile>
+          <Tile label="Warehouse" className="md:col-span-2 md:h-[620px]"><Warehouse /></Tile>
           <Tile label="Skills"><Skills /></Tile>
           <Tile label="History"><History /></Tile>
           <Tile label="Self-host" className="md:col-span-2 md:h-[300px]">
@@ -55,7 +55,7 @@ export default function J() {
             </ol>
           </Tile>
         </section>
-        <Close max="max-w-[1100px]" />
+        <Close max="max-w-[1100px]" flush />
       </main>
       <div className="mt-24"><Foot max="max-w-[1100px]" /></div>
     </Page>
