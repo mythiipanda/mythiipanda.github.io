@@ -6,8 +6,7 @@ import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
 import Workbench, { type Tab } from "@/components/workbench/Workbench";
 import { Pillars } from "@/components/landing/Pillars";
-import { Closing } from "@/components/landing/Sections";
-import { Page, Cta } from "@/components/v/kit";
+import { Page, Cta, Foot } from "@/components/v/kit";
 import { copy, REPO } from "@/lib/copy";
 
 const nav = [["Product", "#product"], ["Skills", "#skills"], ["Setup", "#self-host"]];
@@ -74,9 +73,9 @@ export default function A() {
             <Shot tab={f.tab} />
           </section>
         ))}
-        <Closing />
         <Close max="max-w-[1284px]" flush />
       </main>
+      <div className="mt-20"><Foot max="max-w-[1284px]" /></div>
     </Page>
   );
 }
