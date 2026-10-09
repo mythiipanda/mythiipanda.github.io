@@ -30,7 +30,7 @@ export default function G() {
       <main>
         <section className="mx-auto max-w-[900px] px-5 pb-16 pt-24 text-center md:pt-40">
           <h1 className="text-[44px] leading-[48px] md:text-[64px] md:leading-[68px]">Your analyst for NBA data</h1>
-          <p className="mx-auto mt-6 max-w-[480px] text-[17px] leading-[26px] text-ink-2">Open source, self-hosted and built around one prompt. Type a question, press <Kbd>/</Kbd> for skills or <Kbd>@</Kbd> for tables.</p>
+          <p className="mx-auto mt-6 max-w-[480px] text-[17px] leading-[26px] text-ink-2">Open source and self-hosted. Press / for skills, @ for tables.</p>
           <div className="mt-8 flex justify-center gap-3"><ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink><ButtonLink href="#self-host" variant="ghost">See the setup steps</ButtonLink></div>
         </section>
         <section id="palette" className="mx-auto max-w-[1100px] px-3 md:px-6">
@@ -56,7 +56,7 @@ export default function G() {
         <section id="skills" className="mx-auto max-w-[1100px] px-5 pt-32 md:px-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2 className="max-w-[520px] text-[32px] leading-[38px] md:text-[44px] md:leading-[50px]">14 skills ship in the repo</h2>
-            <p className="max-w-[340px] text-[15px] leading-[24px] text-ink-2">A skill is a SKILL.md file. A workflow is a skill with parameters that generates a whole Project. 14 skills exist today.</p>
+            <p className="max-w-[340px] text-[15px] leading-[24px] text-ink-2">14 skills today.</p>
           </div>
           <div className="mt-10 flex gap-3 overflow-x-auto pb-2">
             {skills.map((s) => (
@@ -71,7 +71,7 @@ export default function G() {
         </section>
         <section className="mx-auto max-w-[900px] px-5 pt-32 text-center">
           <h2 className="text-[32px] leading-[38px] md:text-[44px] md:leading-[50px]">Quick questions in Chat, saved work in Projects</h2>
-          <p className="mx-auto mt-5 max-w-[520px] text-[16px] leading-[25px] text-ink-2">Send an answer to a Project and it becomes a notebook of prompt, SQL, Python, chart and markdown cells, saved as files in git.</p>
+          
         </section>
         <section className="mx-auto max-w-[1100px] px-5 pt-28 md:px-6"><h2 className="mb-8 text-[32px] leading-[38px] md:text-[44px]">Built in this order</h2><RoadmapRows /></section>
         <section className="mx-auto max-w-[1100px] px-5 pt-28 md:px-6"><h2 className="mb-8 text-[32px] leading-[38px] md:text-[44px]">Runs on your machine</h2><SetupRows /><FaqList /></section>

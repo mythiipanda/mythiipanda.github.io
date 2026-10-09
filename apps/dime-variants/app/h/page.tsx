@@ -6,9 +6,9 @@ import { REPO } from "@/lib/copy";
 import { roadmap } from "@/lib/roadmap";
 
 const stories = [
-  { tab: "warehouse" as const, title: "One warehouse, five tables", lead: "A DuckDB file you fetch once. Every query reads it.", list: ["player_season", "boxscores", "lineups", "shots", "schedule"] },
-  { tab: "skills" as const, title: "Skills are SKILL.md files", lead: "A skill is a SKILL.md. A workflow is a skill with parameters that generates a Project.", list: ["14 skills today", "Load with /", "Edit in any editor"] },
-  { tab: "history" as const, title: "Every run is a commit", lead: "Every run is staged for commit. Diff it, roll it back, rerun it next season.", list: ["Commit per run", "Pinned to a warehouse version", "Files you own"] },
+  { tab: "warehouse" as const, title: "One warehouse, five tables", lead: "One DuckDB file.", list: ["player_season", "boxscores", "lineups", "shots", "schedule"] },
+  { tab: "skills" as const, title: "Skills are SKILL.md files", lead: "Press / to load one.", list: ["14 skills today", "Load with /", "Edit in any editor"] },
+  { tab: "history" as const, title: "Every run is a commit", lead: "Diff it. Roll it back.", list: ["Commit per run", "Pinned to a warehouse version", "Files you own"] },
 ];
 
 const h2 = "text-[36px] leading-[38px] tracking-[-0.05em] md:text-[56px] md:leading-[56px] md:tracking-[-0.06em] font-medium";

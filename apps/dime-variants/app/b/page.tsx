@@ -37,7 +37,7 @@ export default function B() {
             ))}
           </h1>
           <div className="mt-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-[360px] text-[14px] leading-[22px] text-ink-2">Stat nerds first, analysts next, teams later. No paid plan.</p>
+            <p className="max-w-[360px] text-[14px] leading-[22px] text-ink-2">Stat nerds first. No paid plan.</p>
             <Cta />
           </div>
         </section>
@@ -45,7 +45,7 @@ export default function B() {
           <div className="grid gap-10 md:grid-cols-[1fr_1.2fr]">
             <div>
               <h2 className="text-[26px] leading-[32px] md:text-[34px] md:leading-[40px]">{copy.pillars[0].title}</h2>
-              <p className="mt-4 max-w-[380px] text-[14px] leading-[22px] text-ink-2">{copy.pillars[0].text}</p>
+              
             </div>
             <div className="flex flex-col gap-3">
               <Cell n={1} kind="prompt"><p className="text-[13px] text-ink">Which wings over 500 minutes have the best true shooting?</p></Cell>
@@ -62,7 +62,7 @@ export default function B() {
         <Sheet id="skills" label="02 / skills">
           <h2 className="mb-8 max-w-[560px] text-[26px] leading-[32px] md:text-[34px] md:leading-[40px]">{copy.pillars[1].title}</h2>
           <SkillRows />
-          <p className="mt-6 max-w-[480px] text-[13px] leading-[20px] text-ink-3">{copy.pillars[1].text}</p>
+          
         </Sheet>
         <Sheet label="03 / history">
           <h2 className="mb-8 max-w-[560px] text-[26px] leading-[32px] md:text-[34px] md:leading-[40px]">{copy.pillars[2].title}</h2>

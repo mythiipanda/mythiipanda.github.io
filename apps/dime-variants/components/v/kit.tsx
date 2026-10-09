@@ -62,7 +62,7 @@ export function Frame({ children, h = "h-[640px] md:h-[720px]", className = "" }
 }
 
 export function SetupRows() {
-  const notes = ["Get the code", "Download the data pack. nba.duckdb lands in the repo folder", "Start the app. Your model key goes in a local .env file"];
+  const notes = ["Clone", "Fetch data", "Run"];
   return (
     <section id="self-host" className="scroll-mt-24">
       <ol className="border-t border-line">
@@ -152,10 +152,10 @@ export function RoadmapRows() {
     <section id="roadmap" className="scroll-mt-24">
       <ol className="border-t border-line">
         {roadmap.map((r) => (
-          <li key={r.n} className="grid gap-2 border-b border-line py-6 md:grid-cols-[56px_1fr_1.2fr] md:items-baseline md:gap-8 md:py-7">
+          <li key={r.n} className="grid gap-2 border-b border-line py-6 md:grid-cols-[56px_1fr] md:items-baseline md:gap-8 md:py-6">
             <span className="font-mono text-[12px] text-ink-3">0{r.n}</span>
             <h3 className="text-[18px] font-medium leading-[24px] text-ink md:text-[20px]">{r.title}</h3>
-            <p className="text-[15px] leading-[24px] text-ink-2">{r.text}</p>
+            {r.text ? <p className="text-[15px] leading-[24px] text-ink-2">{r.text}</p> : null}
           </li>
         ))}
       </ol>

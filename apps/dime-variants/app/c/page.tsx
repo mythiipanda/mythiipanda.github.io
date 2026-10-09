@@ -32,7 +32,7 @@ export default function C() {
         <section className="mx-auto grid min-h-[820px] max-w-[1320px] items-center gap-10 px-5 py-14 md:px-6 lg:grid-cols-[480px_1fr] lg:gap-16">
           <div>
             <h1 className="text-[64px] md:text-[96px]">Ask the league anything.</h1>
-            <p className="mt-6 max-w-[440px] text-[18px] leading-[27px] text-ink-2">An open-source, self-hostable analyst. Chat for quick questions, Projects for notebooks that live in git.</p>
+            <p className="mt-6 max-w-[440px] text-[18px] leading-[27px] text-ink-2">Chat for quick questions. Projects for the work you keep.</p>
             <div className="mt-8 flex items-center gap-3">
               <ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink>
               <ButtonLink href="#self-host" variant="ghost">See the setup steps</ButtonLink>
@@ -44,7 +44,7 @@ export default function C() {
         </section>
         <section id="product" className="mx-auto max-w-[1320px] px-5 py-24 text-center md:px-6">
           <h2 className="mx-auto max-w-[760px] text-[40px] leading-[48px] md:text-[56px] md:leading-[67px]">Every question reruns next <span className="text-[var(--cobalt-tx)]">season</span></h2>
-          <p className="mx-auto mt-5 max-w-[520px] text-[18px] leading-[27px] text-ink-2">Every answer is a file you own. Send it to a Project and it keeps its SQL, chart and note.</p>
+          
           <div className="mx-auto mt-10 flex justify-center gap-2">
             {tabs.map((x) => (
               <button key={x.id} type="button" onClick={() => setTab(x.id)} className={`h-10 rounded-full px-5 text-[14px] transition-colors duration-150 ${tab === x.id ? "bg-ink text-canvas" : "text-ink-2 shadow-[0_0_0_1px_var(--line-strong)] hover:text-ink"}`}>{x.label}</button>
@@ -58,17 +58,17 @@ export default function C() {
         </section>
         <section id="models" className="mx-auto max-w-[1320px] px-5 py-24 md:px-6">
           <h2 className="max-w-[640px] text-[40px] leading-[48px] md:text-[56px] md:leading-[67px]">Bring your own model</h2>
-          <p className="mt-4 max-w-[520px] text-[18px] leading-[27px] text-ink-2">dime talks to any OpenAI-compatible endpoint. Local models are first-class.</p>
+          
           <div className="mt-12 grid gap-4 md:grid-cols-[1.3fr_1fr]">
             <div className="rounded-[14px] bg-field p-8 shadow-[0_0_0_1px_var(--line)]">
               <div className="font-mono text-[12px] text-ink-3">endpoint</div>
-              <p className="mt-4 text-[22px] leading-[30px] md:text-[28px] md:leading-[36px]">Hosted or local. If it speaks the OpenAI API, dime can use it.</p>
-              <p className="mt-6 text-[14px] leading-[22px] text-ink-2">Local scores are tracked in DimeBench, so you can see how each model does.</p>
+              <p className="mt-4 text-[22px] leading-[30px] md:text-[28px] md:leading-[36px]">Hosted or local.</p>
+              
             </div>
             <div className="rounded-[14px] bg-field p-8 shadow-[0_0_0_1px_var(--line)]">
               <div className="font-mono text-[12px] text-ink-3">metrics registry, sample</div>
               <pre className="mt-4 overflow-x-auto font-mono text-[13.5px] leading-[24px] text-ink-2">{"ts_pct:\n  formula: pts / (2 * (fga + 0.44 * fta))"}</pre>
-              <p className="mt-6 text-[14px] leading-[22px] text-ink-2">A metric registry the agent calls as tools. Planned, and open to community additions.</p>
+              <p className="mt-6 text-[14px] leading-[22px] text-ink-2">A metric registry. Planned.</p>
             </div>
           </div>
         </section>

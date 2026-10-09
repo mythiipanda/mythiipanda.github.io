@@ -40,7 +40,7 @@ export default function J() {
         <section id="notebooks" className="mt-16 grid gap-10 md:mt-24 md:grid-cols-[1fr_1.5fr] md:gap-16">
           <div>
             <h2 className="text-[28px] leading-[34px] md:text-[34px] md:leading-[40px]">{copy.pillars[0].title}</h2>
-            <p className="mt-4 max-w-[380px] text-[16px] leading-[26px] text-ink-2">{copy.statement.rest}</p>
+            
           </div>
           <div className="min-w-0"><Notebook /></div>
         </section>

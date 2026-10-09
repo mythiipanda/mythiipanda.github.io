@@ -30,7 +30,7 @@ export default function F() {
         <section className="mx-auto grid max-w-[1200px] gap-8 px-5 pb-10 pt-16 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-14 md:pt-[110px]">
           <h1 className="text-[48px] leading-[54px] md:text-[74px] md:leading-[88px]"><span className="serif-i block font-normal">The open-source</span>analyst for NBA data</h1>
           <div>
-            <p className="max-w-[360px] text-[17px] leading-[26px] text-ink-2">Chat handles quick questions. Projects are notebooks saved in git. You host it, and any OpenAI-compatible model runs it.</p>
+            <p className="max-w-[360px] text-[17px] leading-[26px] text-ink-2">Chat for quick questions. Projects for the work you keep.</p>
             <div className="mt-7 flex items-center gap-3"><ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink><ButtonLink href="#self-host" variant="ghost">See the setup steps</ButtonLink></div>
           </div>
         </section>
@@ -46,12 +46,12 @@ export default function F() {
         </section>
         <section className="mx-auto max-w-[900px] px-5 pb-10 pt-28 text-center md:pt-40">
           <h2 className="text-[34px] leading-[40px] md:text-[56px] md:leading-[64px]"><span className="serif-i block font-normal">Chat for the quick answer.</span>Projects for the work you keep.</h2>
-          <p className="mx-auto mt-6 max-w-[520px] text-[17px] leading-[26px] text-ink-2">Send an answer to a Project and it becomes prompt, SQL, Python, chart and markdown cells, pinned to a warehouse version and saved as files in git.</p>
+          
         </section>
         <section id="skills" className="mx-auto grid max-w-[1200px] gap-10 px-5 pt-20 md:grid-cols-[320px_1fr] md:items-center md:gap-16 md:pt-32">
           <div>
             <h3 className="text-[28px] leading-[34px] md:text-[34px] md:leading-[40px]">Skills and workflows are plain files</h3>
-            <p className="mt-4 text-[16px] leading-[25px] text-ink-2">A skill is a SKILL.md file. A workflow is a skill with parameters that generates a Project. 14 skills exist today.</p>
+            <p className="mt-4 text-[16px] leading-[25px] text-ink-2">14 skills ship today.</p>
           </div>
           <Win title="skills"><Skills /></Win>
         </section>
@@ -59,7 +59,7 @@ export default function F() {
           <Win title="history" className="md:order-1"><History /></Win>
           <div className="md:order-2">
             <h3 className="text-[28px] leading-[34px] md:text-[34px] md:leading-[40px]">History you can diff</h3>
-            <p className="mt-4 text-[16px] leading-[25px] text-ink-2">Each run stages its cells. Commit, review and roll back like any repo.</p>
+            
           </div>
         </section>
         <section className="mx-auto max-w-[1200px] px-5 pt-28 md:pt-40"><h2 className="mb-8 text-[34px] leading-[40px] md:text-[48px] md:leading-[56px]"><span className="serif-i">Built in</span> this order</h2><RoadmapRows /></section>

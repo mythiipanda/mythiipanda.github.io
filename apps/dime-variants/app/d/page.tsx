@@ -52,7 +52,7 @@ export default function D() {
             <div className={r.flip ? "md:order-2" : ""}><Frame tab={r.tab} /></div>
             <div className={`${r.flip ? "md:order-1" : ""} md:pb-4`}>
               <h2 className="text-[17px] font-medium leading-[24px]">{r.title}</h2>
-              <p className="mt-2 max-w-[340px] text-[14px] leading-[21px] text-ink-2">{r.text}</p>
+              
             </div>
           </section>
         ))}

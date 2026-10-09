@@ -30,7 +30,7 @@ export default function E() {
           <div className="hidden border-r border-line p-5 font-mono text-[11px] leading-[18px] text-ink-3 md:block">nba.duckdb<br />5 tables<br />267,237 rows<br />refreshed today</div>
           <div className="px-5 py-14 md:px-10 md:py-24">
             <h1 className="max-w-[900px] text-[38px] md:text-[72px]">{hero.e.h1}</h1>
-            <p className="mt-6 max-w-[520px] text-[16px] leading-[26px] text-ink-2">{hero.e.sub}</p>
+            <p className="mt-6 max-w-[520px] text-[16px] leading-[26px] text-ink-2">Fetch the data pack and ask.</p>
             <div className="mt-8"><Cta /></div>
           </div>
         </section>

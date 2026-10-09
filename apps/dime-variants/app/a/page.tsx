@@ -53,7 +53,7 @@ export default function A() {
         <section className="pt-16 md:pt-[130px]">
           <h1 className="max-w-[820px] text-[40px] leading-[42px] md:text-[64px] md:font-[510] md:leading-[64px]">The open-source analyst for NBA data</h1>
           <div className="mt-6 flex flex-col gap-5 md:mt-8 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-[420px] text-[15px] leading-[24px] text-ink-2">Chat for quick questions. Projects for notebooks that live in git. Self-host it on your own machine.</p>
+            <p className="max-w-[420px] text-[15px] leading-[24px] text-ink-2">Chat for quick questions. Projects for the work you keep.</p>
             <ButtonLink href="#self-host" variant="ghost">See the setup steps &rarr;</ButtonLink>
           </div>
         </section>
@@ -63,14 +63,14 @@ export default function A() {
           </div>
         </section>
         <section className="pt-24 md:pt-[128px]">
-          <p className="max-w-[900px] text-[28px] leading-[32px] md:text-[48px] md:font-[510] md:leading-[48px]">Harvey for the NBA. <span className="text-ink-2">An open-source agent and platform you host yourself, with Chat for quick answers and Projects for the work you keep.</span></p>
+          <p className="max-w-[900px] text-[28px] leading-[32px] md:text-[48px] md:font-[510] md:leading-[48px]">Harvey for the NBA. <span className="text-ink-2">An open-source agent you host yourself.</span></p>
         </section>
         <Pillars />
         {features.map((f, i) => (
           <section key={f.title} id={f.tab === "skills" ? "skills" : undefined} className="pt-24 md:pt-[128px]">
             <div className="mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-start md:justify-between md:gap-16">
               <h2 className="max-w-[460px] text-[30px] leading-[34px] md:text-[48px] md:font-[510] md:leading-[48px]">{f.title}</h2>
-              <p className="max-w-[360px] text-[15px] leading-[24px] text-ink-2">{f.text}</p>
+              
             </div>
             <Shot tab={f.tab} />
           </section>
@@ -78,7 +78,7 @@ export default function A() {
         <section className="pt-24 md:pt-[128px]">
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-16">
             <h2 className="max-w-[460px] text-[30px] leading-[34px] md:text-[48px] md:font-[510] md:leading-[48px]">Built in this order</h2>
-            <p className="max-w-[360px] text-[15px] leading-[24px] text-ink-2">The agent comes first. Nothing new ships until it passes DimeBench.</p>
+            
           </div>
           <RoadmapRows />
         </section>
