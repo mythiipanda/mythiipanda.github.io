@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { colorScheme: "dark light", width: "device-width", initialScale: 1, themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#0B0C0E" }, { media: "(prefers-color-scheme: light)", color: "#FFFFFF" }] };
 
-const themeScript = `if(/\/c\/?$/.test(location.pathname)){document.documentElement.dataset.theme="light"}else try{var t=localStorage.getItem("dime-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
+const themeScript = `var p=location.pathname;if(p.charAt(p.length-1)==="/")p=p.slice(0,-1);if(p.slice(-2)==="/c"){document.documentElement.dataset.theme="light"}else try{var t=localStorage.getItem("dime-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

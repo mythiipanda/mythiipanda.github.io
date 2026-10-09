@@ -7,6 +7,7 @@ import {
   Line,
   LineChart,
   ResponsiveContainer,
+  Cell,
   Tooltip,
   XAxis,
   YAxis,
@@ -66,6 +67,7 @@ function zoneData(
   return rows.map((r) => ({ label: str(r.zone), FG_PCT: num(r.FG_PCT) }));
 }
 
+const BLUES = ["#2458F5", "#4A74F7", "#6F90F8", "#93AAFA", "#B7C6FC", "#D3DDFD"];
 const AXIS = { fontSize: 11, fill: "var(--color-warm-gray)" } as const;
 
 export default function AutoChart({
@@ -88,7 +90,7 @@ export default function AutoChart({
             <XAxis dataKey="label" tick={AXIS} interval={2} />
             <YAxis tick={AXIS} width={30} />
             <Tooltip />
-            <Line type="monotone" dataKey="PTS" stroke="var(--color-cyan-signal)" strokeWidth={2} dot={false} />
+            <Line type="monotone" dataKey="PTS" stroke="var(--accent)" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -107,7 +109,7 @@ export default function AutoChart({
             <XAxis type="number" tick={AXIS} />
             <YAxis type="category" dataKey="label" tick={AXIS} width={categoryAxisWidth(lead.map((d) => d.label))} interval={0} />
             <Tooltip />
-            <Bar dataKey="value" fill="var(--accent)" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="value" fill="var(--accent)" radius={[0, 4, 4, 0]}>{lead.map((_, i) => <Cell key={i} fill={BLUES[i % BLUES.length]} />)}</Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -126,7 +128,7 @@ export default function AutoChart({
             <XAxis dataKey="label" tick={AXIS} />
             <YAxis tick={AXIS} width={36} domain={[0, 1]} />
             <Tooltip />
-            <Bar dataKey="FG_PCT" fill="var(--color-cyan-signal)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="FG_PCT" fill="var(--accent)" radius={[4, 4, 0, 0]}>{zone.map((_, i) => <Cell key={i} fill={BLUES[i % BLUES.length]} />)}</Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
