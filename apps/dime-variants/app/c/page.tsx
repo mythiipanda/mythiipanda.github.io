@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { CLight } from "@/components/v/CLight";
 import { CSetup } from "@/components/v/CSetup";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
@@ -30,13 +31,13 @@ export default function C() {
       <main>
         <section className="mx-auto max-w-[1320px] px-5 pb-12 pt-10 md:px-6 lg:pt-14">
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
-            <h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px] lg:col-span-7">Harvey for NBA Analysts</h1>
-            <div className="lg:col-span-5">
+            <BlurFade className="lg:col-span-7" direction="up" offset={8} duration={0.5}><h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px]">Harvey for NBA Analysts</h1></BlurFade>
+            <BlurFade className="lg:col-span-5" direction="up" offset={8} duration={0.5} delay={0.08}><div>
               <p className="max-w-[440px] text-[18px] leading-[27px] text-ink-2">{short.sub}</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
               </div>
-            </div>
+            </div></BlurFade>
           </div>
           <div className="mt-10 overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:hidden"><div className="h-[560px] md:h-[640px]"><Workbench dime bare initialTab="chat" /></div></div>
           <div className="mt-12 hidden overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:block"><div className="h-[660px]"><Workbench dime initialTab="chat" /></div></div>
