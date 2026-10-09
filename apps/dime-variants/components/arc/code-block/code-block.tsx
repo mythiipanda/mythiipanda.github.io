@@ -44,6 +44,7 @@ function tokenKind(value: string, source: string, index: number, language: strin
 }
 
 function highlight(code: string, language: string): ReactNode[] {
+  if (language === "bash" || language === "sh") return [code];
   const parts: ReactNode[] = [];
   let cursor = 0;
 

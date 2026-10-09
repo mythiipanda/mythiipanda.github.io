@@ -15,24 +15,24 @@ export default function C() {
       <header className="h-[58px] border-b border-line">
         <nav className="mx-auto grid h-full max-w-[1320px] grid-cols-[auto_1fr_auto] items-center gap-8 px-5 md:px-6">
           <a href="#top" aria-label="dime home"><CLogo /></a>
-          <div className="hidden gap-8 text-[14px] text-ink-2 md:flex"><a href="#self-host" className="transition-colors duration-150 hover:text-ink">Setup</a></div>
+          <span />
           <div className="col-start-3 flex items-center gap-2"><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} /><span className="max-sm:hidden">{short.star}</span><span className="sm:hidden">Star</span></ButtonLink></div>
         </nav>
       </header>
       <main>
-        <section className="mx-auto grid min-h-[680px] max-w-[1320px] items-center gap-10 px-5 py-12 md:px-6 lg:grid-cols-[460px_1fr] lg:gap-16">
-          <div>
-            <h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px]">Harvey for NBA Analysts</h1>
-            <p className="mt-6 max-w-[440px] text-[18px] leading-[27px] text-ink-2">{short.sub}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
-              <ButtonLink href="#self-host" variant="ghost">{short.setup}</ButtonLink>
+        <section className="mx-auto max-w-[1320px] px-5 pb-12 pt-10 md:px-6 lg:pt-14">
+          <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
+            <h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px] lg:col-span-7">Harvey for NBA Analysts</h1>
+            <div className="lg:col-span-5">
+              <p className="max-w-[440px] text-[18px] leading-[27px] text-ink-2">{short.sub}</p>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
+                <code className="inline-flex max-w-full overflow-x-auto whitespace-nowrap rounded-[8px] bg-field px-3 py-3 font-mono text-[11.5px] text-ink-2 shadow-[0_0_0_1px_var(--line)] sm:text-[13px]">git clone github.com/mythiipanda/dime</code>
+              </div>
             </div>
-            <code className="mt-5 inline-flex max-w-full overflow-x-auto whitespace-nowrap rounded-[8px] bg-field px-3 py-2 font-mono text-[11.5px] sm:text-[13px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">git clone github.com/mythiipanda/dime</code>
           </div>
-          <div className="min-w-0 lg:-mr-[max(0px,calc((100vw-1320px)/2+24px))]">
-            <div className="h-[560px] overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] md:h-[640px] lg:rounded-r-none"><Workbench bare initialTab="chat" /></div>
-          </div>
+          <div className="mt-10 overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:hidden"><div className="h-[560px] md:h-[640px]"><Workbench bare initialTab="chat" /></div></div>
+          <div className="mt-12 hidden overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:block"><div className="h-[660px]"><Workbench initialTab="chat" /></div></div>
         </section>
         <CSetup />
       </main>

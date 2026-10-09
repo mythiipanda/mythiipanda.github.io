@@ -32,29 +32,52 @@ export function Chat() {
         </div>
       </BlurFade>
       <BlurFade delay={0.4}>
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-wrap items-center gap-1.5">
-            {runSteps.slice(0, 3).map((st) => (
-              <span key={st.label} className="inline-flex h-6 items-center gap-1.5 rounded-full bg-field px-2.5 text-[11.5px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">
-                <Tick />
-                {st.label}
-                <span className="font-mono text-ink-3">{st.ms}</span>
-              </span>
-            ))}
+        <div className="flex gap-3">
+          <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-canvas"><DimeMark size={13} /></span>
+          <div className="flex min-w-0 flex-1 flex-col gap-3">
+            <div className="flex flex-wrap items-center gap-1.5">
+              {runSteps.slice(0, 3).map((st) => (
+                <span key={st.label} className="inline-flex h-6 items-center gap-1.5 rounded-full bg-field px-2.5 text-[11.5px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">
+                  <Tick />
+                  {st.label}
+                  <span className="font-mono text-ink-3">{st.ms}</span>
+                </span>
+              ))}
+            </div>
+            <p className="text-[14px] leading-[22px] text-ink">
+              <b className="font-medium">Luke Kennard leads at 68.9%</b> on 13.1 usage. Jalen Duren is a tenth behind at 68.8%. 164 players clear the 1,500 minute floor.
+            </p>
+            <Shell title="True shooting leaders" source="silver_advanced · 5 of 164" copyText="select PLAYER_NAME, TEAM_ABBREVIATION, TS_PCT, USG_PCT from silver_advanced where GP * MIN >= 1500">
+              <SortTable
+                columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
+                rows={rows.map((r) => [r.player, r.team, r.ts.toFixed(1), r.usg.toFixed(1)])}
+              />
+            </Shell>
           </div>
-          <p className="text-[14px] leading-[22px] text-ink">
-            <b className="font-medium">Luke Kennard leads at 68.9%</b> on 13.1 usage. Jalen Duren is a tenth behind at 68.8%. 164 players clear the 1,500 minute floor.
-          </p>
-          <Shell title="True shooting leaders" source="silver_advanced · 5 of 164" copyText="select PLAYER_NAME, TEAM_ABBREVIATION, TS_PCT, USG_PCT from silver_advanced where GP * MIN >= 1500">
-            <SortTable
-              columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
-              rows={rows.map((r) => [r.player, r.team, r.ts.toFixed(1), r.usg.toFixed(1)])}
-            />
-          </Shell>
-          <div className="flex flex-wrap gap-1.5">
-            {["Clutch splits?", "Compare Kennard and Duren", "Send to Project"].map((q, i) => (
-              <button key={q} type="button" className={`h-10 rounded-full md:h-8 px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? "bg-ink text-canvas hover:bg-ink" : "text-ink-2"}`}>{q}</button>
-            ))}
+        </div>
+      </BlurFade>
+      <BlurFade delay={0.9}>
+        <div className="ml-auto max-w-[520px] rounded-[14px] rounded-br-[4px] bg-field px-3.5 py-2.5 text-[14px] leading-[22px] text-ink shadow-[0_0_0_1px_var(--line)]">Who has the highest usage among them?</div>
+      </BlurFade>
+      <BlurFade delay={1.2}>
+        <div className="flex gap-3">
+          <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-canvas"><DimeMark size={13} /></span>
+          <div className="flex min-w-0 flex-1 flex-col gap-3">
+            <p className="text-[14px] leading-[22px] text-ink"><b className="font-medium">Nikola Jokić at 28.9%</b>, well ahead of Duren at 23.1%.</p>
+            <ul className="flex flex-col gap-1.5 rounded-[10px] bg-field p-3 shadow-[0_0_0_1px_var(--line)]">
+              {[...rows].sort((a, b) => b.usg - a.usg).map((r) => (
+                <li key={r.player} className="grid grid-cols-[88px_1fr_40px] items-center gap-3 text-[12.5px]">
+                  <span className="truncate text-ink-2">{r.player}</span>
+                  <span className="h-1.5 rounded-full bg-hover-2"><span className="block h-full rounded-full bg-[var(--cobalt-tx)]" style={{ width: `${(r.usg / 30) * 100}%` }} /></span>
+                  <span className="text-right font-mono text-ink">{r.usg.toFixed(1)}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap gap-1.5">
+              {["Clutch splits?", "Compare Kennard and Duren", "Send to Project"].map((q, i) => (
+                <button key={q} type="button" className={`h-10 rounded-full md:h-8 px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? "bg-ink text-canvas hover:bg-ink" : "text-ink-2"}`}>{q}</button>
+              ))}
+            </div>
           </div>
         </div>
       </BlurFade>
@@ -267,7 +290,7 @@ function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
 export function Inspector() {
   const [scanned, setScanned] = useState(0);
   useEffect(() => {
-    const t = setTimeout(() => setScanned(31204), 1500);
+    const t = setTimeout(() => setScanned(582), 1500);
     return () => clearTimeout(t);
   }, []);
   return (
