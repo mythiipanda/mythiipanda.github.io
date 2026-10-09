@@ -2,6 +2,7 @@
 
 import ThreadRail from "@/components/dime/ThreadRail";
 import DataTable from "@/components/dime/DataTable";
+import ToolRows from "@/components/dime/ToolRows";
 import AutoChart from "@/components/dime/AutoChart";
 import GlideMenu from "@/components/primitives/GlideMenu";
 import ToolChips from "@/components/primitives/ToolChips";
@@ -32,6 +33,12 @@ const tabs: { id: Tab; label: string; icon: typeof NotebookPen }[] = [
 ];
 
 const ease = [0.23, 1, 0.32, 1] as const;
+
+const dimeRows = [
+  { label: "Read skill leaderboard", meta: "3ms", detail: "backend/v2/skills/leaderboard" },
+  { label: "Write SQL", meta: "1.1s", detail: "cells/02-sql.sql" },
+  { label: "Run on DuckDB", meta: "164 rows · 41ms", detail: "582 rows scanned in warehouse.duckdb" },
+];
 
 const chatSteps = [
   { icon: "read", label: "Read skill", chip: "leaderboard", mono: true, detailMono: true, detail: [{ text: "backend/v2/skills/leaderboard" }] },
@@ -87,10 +94,7 @@ export function Chat() {
         <div className="flex gap-3">
           <CMark size={22} className="mt-px shrink-0" />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
-            <ToolChips
-              steps={chatSteps}
-              labels={{ header: "3 tool calls" }}
-            />
+            {dime ? <ToolRows rows={dimeRows} /> : <ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} />}
             <p className="text-[14px] leading-[22px] text-ink">
               <b className="font-medium">Luke Kennard leads at 68.9%</b> on 13.1 usage. Jalen Duren is a tenth behind at 68.8%. 164 players clear the 1,500 minute floor.
             </p>
@@ -139,6 +143,7 @@ export function Chat() {
 }
 
 export function Notebook() {
+  const dime = useContext(DimeCtx);
   return (
     <div className="flex flex-col gap-3">
       <BlurFade delay={0.05} inView={false}>
@@ -151,23 +156,26 @@ export function Notebook() {
         </Cell>
       </BlurFade>
       <BlurFade delay={0.3}>
-        <div className="px-1"><ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} /></div>
+        <div className="px-1">{dime ? <ToolRows rows={dimeRows} /> : <ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} />}</div>
       </BlurFade>
       <BlurFade delay={0.45}>
         <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">164 rows</span></span>}>
           <Sql />
           <div className="mt-3">
+            {dime ? <DataTable rows={tableRows} storeKey="nb" /> : (
             <Shell title="Result" source="5 of 164 rows">
               <SortTable
                 columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
                 rows={rows.map((r) => [r.player, r.team, r.ts.toFixed(1), r.usg.toFixed(1)])}
               />
             </Shell>
+            )}
           </div>
         </Cell>
       </BlurFade>
       <BlurFade delay={0.85}>
         <Cell n={3} kind="chart" meta={<span className="font-mono">ts% · top 5 of 164</span>}>
+          {dime ? <AutoChart table={{ rows: tableRows, meta: { stat_category: "TS_PCT" } }} /> : (
           <div className="flex flex-col gap-2.5">
             {rows.map((r, i) => (
               <div key={r.player} className="grid grid-cols-[88px_1fr_44px] items-center gap-3 text-[12.5px]">
@@ -185,6 +193,7 @@ export function Notebook() {
               </div>
             ))}
           </div>
+          )}
         </Cell>
       </BlurFade>
       <BlurFade delay={1.4}>
