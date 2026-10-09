@@ -1,9 +1,12 @@
 "use client";
 
+import ThreadRail from "@/components/dime/ThreadRail";
+import DataTable from "@/components/dime/DataTable";
+import AutoChart from "@/components/dime/AutoChart";
 import GlideMenu from "@/components/primitives/GlideMenu";
 import ToolChips from "@/components/primitives/ToolChips";
 import { CMark } from "@/components/v/CMark";
-import { useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { CalendarBlank, ChatCircle, Compass, PencilSimpleLine, SidebarSimple } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChatCircle as MessageSquare, ArrowUp, FolderOpen, Lightning as Zap, Database, GitCommit as GitCommitHorizontal, Notebook as NotebookPen, ArrowElbowDownLeft as CornerDownLeft, GitBranch, CaretDown as ChevronDown, MagnifyingGlass as Search } from "@phosphor-icons/react";
@@ -14,6 +17,10 @@ import { AnimatedBackground } from "@/components/ui/animated-background";
 import { projects, skills, tables, schema, commits, rows, runSteps } from "./data";
 import { Cell, Pill, Sql, Tick } from "./Primitives";
 import { Shell, SortTable } from "./Artifact";
+
+const DimeCtx = createContext(false);
+
+const tableRows = rows.map((r) => ({ PLAYER: r.player, TEAM: r.team, TS_PCT: r.ts, USG_PCT: r.usg }));
 
 export type Tab = "chat" | "notebook" | "warehouse" | "skills" | "history";
 const tabs: { id: Tab; label: string; icon: typeof NotebookPen }[] = [
@@ -33,6 +40,7 @@ const chatSteps = [
 ];
 
 function Composer() {
+  const dime = useContext(DimeCtx);
   const [elapsed, setElapsed] = useState(0);
   const [live, setLive] = useState(true);
   useEffect(() => {
@@ -40,22 +48,34 @@ function Composer() {
     const stop = setTimeout(() => { setLive(false); clearInterval(t); }, 3600);
     return () => { clearInterval(t); clearTimeout(stop); };
   }, []);
+  if (!dime) {
+    return (
+      <div className="flex min-h-11 items-center gap-3 rounded-[12px] bg-surface py-1.5 pl-4 pr-1.5 shadow-[0_0_0_1px_var(--line-strong)]">
+        <span className="flex-1 truncate text-[14px] text-ink-3">Ask about a player, team, lineup, trade, or trend...</span>
+        {live ? (
+          <span className="inline-flex h-8 items-center gap-2 rounded-[8px] bg-ink px-3 text-[12.5px] font-medium tabular-nums text-canvas">Stop {elapsed}s</span>
+        ) : (
+          <span aria-label="Send" className="flex size-8 items-center justify-center rounded-[8px] bg-hover-2 text-ink-3"><ArrowUp size={16} weight="bold" /></span>
+        )}
+      </div>
+    );
+  }
   return (
-    <div className="flex min-h-11 items-center gap-3 rounded-[12px] bg-surface py-1.5 pl-4 pr-1.5 shadow-[0_0_0_1px_var(--line-strong)]">
-      <span className="flex-1 truncate text-[14px] text-ink-3">Ask about a player, team, lineup, trade, or trend...</span>
+    <div className="composer-card chat-composer chat-composer-dock">
+      <span style={{ flex: 1, fontSize: 13, color: "var(--color-ash-gray)", minWidth: 0 }} className="truncate">Ask a follow-up...</span>
       {live ? (
-        <span className="inline-flex h-8 items-center gap-2 rounded-[8px] bg-ink px-3 text-[12.5px] font-medium text-canvas tabular-nums">
-          <span className="size-2 rounded-[2px] bg-canvas" />
-          Stop {elapsed}s
-        </span>
+        <span className="pill-ghost" style={{ borderColor: "var(--color-cyan-signal)", color: "var(--color-cyan-edge)", fontSize: 13, padding: "4px 12px" }}>Stop {elapsed}s</span>
       ) : (
-        <span aria-label="Send" className="flex size-8 items-center justify-center rounded-[8px] bg-hover-2 text-ink-3"><ArrowUp size={16} weight="bold" /></span>
+        <span aria-label="Send" style={{ width: 28, height: 28, borderRadius: 8, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--color-stone-muted)", color: "var(--color-warm-gray)" }}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+        </span>
       )}
     </div>
   );
 }
 
 export function Chat() {
+  const dime = useContext(DimeCtx);
   return (
     <div className="mx-auto flex max-w-[680px] flex-col gap-5">
       <BlurFade delay={0.05} inView={false}>
@@ -74,12 +94,16 @@ export function Chat() {
             <p className="text-[14px] leading-[22px] text-ink">
               <b className="font-medium">Luke Kennard leads at 68.9%</b> on 13.1 usage. Jalen Duren is a tenth behind at 68.8%. 164 players clear the 1,500 minute floor.
             </p>
-            <Shell title="True shooting leaders" source="silver_advanced · 5 of 164" copyText="select PLAYER_NAME, TEAM_ABBREVIATION, TS_PCT, USG_PCT from silver_advanced where GP * MIN >= 1500">
-              <SortTable
-                columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
-                rows={rows.map((r) => [r.player, r.team, r.ts.toFixed(1), r.usg.toFixed(1)])}
-              />
-            </Shell>
+            {dime ? (
+              <DataTable rows={tableRows} storeKey="ts" />
+            ) : (
+              <Shell title="True shooting leaders" source="silver_advanced · 5 of 164" copyText="select PLAYER_NAME, TEAM_ABBREVIATION, TS_PCT, USG_PCT from silver_advanced where GP * MIN >= 1500">
+                <SortTable
+                  columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
+                  rows={rows.map((r) => [r.player, r.team, r.ts.toFixed(1), r.usg.toFixed(1)])}
+                />
+              </Shell>
+            )}
           </div>
         </div>
       </BlurFade>
@@ -91,6 +115,7 @@ export function Chat() {
           <CMark size={22} className="mt-px shrink-0" />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
             <p className="text-[14px] leading-[22px] text-ink"><b className="font-medium">Nikola Jokić at 28.9%</b>, well ahead of Duren at 23.1%.</p>
+            {dime ? <AutoChart table={{ rows: tableRows, meta: { stat_category: "USG_PCT" } }} /> : (
             <ul className="flex flex-col gap-1.5 rounded-[10px] bg-field p-3 shadow-[0_0_0_1px_var(--line)]">
               {[...rows].sort((a, b) => b.usg - a.usg).map((r) => (
                 <li key={r.player} className="grid grid-cols-[88px_1fr_40px] items-center gap-3 text-[12.5px]">
@@ -100,6 +125,7 @@ export function Chat() {
                 </li>
               ))}
             </ul>
+            )}
             <div className="flex flex-wrap gap-1.5">
               {["Clutch splits?", "Compare Kennard and Duren", "Send to Project"].map((q, i) => (
                 <button key={q} type="button" className={`h-10 rounded-full md:h-8 px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? "bg-ink text-canvas hover:bg-ink" : "text-ink-2"}`}>{q}</button>
@@ -296,7 +322,7 @@ function RailLabel({ children }: { children: ReactNode }) {
   return <div className="mx-2 mb-1 flex h-7 items-center px-2 text-[12.5px] font-medium text-ink-3">{children}</div>;
 }
 
-function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
+function LegacyRail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
   return (
     <aside className="hidden w-[224px] shrink-0 flex-col border-r border-line bg-field pb-2 lg:flex">
       <div className="mb-2.5 flex h-10 items-center justify-between pl-4 pr-3.5">
@@ -334,6 +360,23 @@ function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
           <GitBranch size={16} className="text-ink-3" />main
         </div>
       </div>
+    </aside>
+  );
+}
+
+const threadSeed = [
+  { id: "true-shooting", title: "Best true shooting 2025-26", hours: 0.2, turns: 2 },
+  { id: "bench", title: "Thunder bench minutes", hours: 3, turns: 3 },
+  { id: "onoff", title: "Luka on/off splits", hours: 30, turns: 4 },
+  { id: "mvp", title: "MVP ladder, week 2", hours: 52, turns: 2 },
+  { id: "slate", title: "Tonight's slate", hours: 150, turns: 1 },
+];
+
+function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
+  const threads = threadSeed.map((t) => ({ id: t.id, title: t.title, turns: t.turns, updated: new Date(Date.now() - t.hours * 3600000).toISOString() }));
+  return (
+    <aside className="hidden w-[232px] shrink-0 lg:block">
+      <ThreadRail threads={threads} active="true-shooting" onSelect={() => setTab("chat")} onNew={() => setTab("chat")} onHomeClick={() => setTab("chat")} onSearch={() => setTab("warehouse")} />
     </aside>
   );
 }
@@ -383,12 +426,13 @@ export function Inspector() {
   );
 }
 
-export default function Workbench({ initialTab = "notebook", bare = false, tab: forced }: { initialTab?: Tab; bare?: boolean; tab?: Tab }) {
+export default function Workbench({ initialTab = "notebook", bare = false, tab: forced, dime = false }: { initialTab?: Tab; bare?: boolean; tab?: Tab; dime?: boolean }) {
   const [own, setTab] = useState<Tab>(initialTab);
   const tab = forced ?? own;
   return (
-    <div className="flex h-full min-h-0 w-full bg-canvas text-ink">
-      {!bare && <Rail tab={tab} setTab={setTab} />}
+    <DimeCtx.Provider value={dime}>
+    <div data-dime={dime ? "" : undefined} className="flex h-full min-h-0 w-full bg-canvas text-ink">
+      {!bare && (dime ? <Rail tab={tab} setTab={setTab} /> : <LegacyRail tab={tab} setTab={setTab} />)}
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-12 shrink-0 items-center justify-between gap-3 border-b border-line px-3 md:px-4">
           {forced === undefined ? <div className="flex min-w-0 items-center gap-1 overflow-x-auto">
@@ -422,5 +466,6 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
       </div>
       {!bare && <Inspector />}
     </div>
+    </DimeCtx.Provider>
   );
 }

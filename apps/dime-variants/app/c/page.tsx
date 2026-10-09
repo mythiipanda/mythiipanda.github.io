@@ -31,8 +31,8 @@ export default function C() {
               </div>
             </div>
           </div>
-          <div className="mt-10 overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:hidden"><div className="h-[560px] md:h-[640px]"><Workbench bare initialTab="chat" /></div></div>
-          <div className="mt-12 hidden overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:block"><div className="h-[660px]"><Workbench initialTab="chat" /></div></div>
+          <div className="mt-10 overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:hidden"><div className="h-[560px] md:h-[640px]"><Workbench dime bare initialTab="chat" /></div></div>
+          <div className="mt-12 hidden overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:block"><div className="h-[660px]"><Workbench dime initialTab="chat" /></div></div>
         </section>
         <CSetup />
       </main>
