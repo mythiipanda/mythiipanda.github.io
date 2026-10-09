@@ -304,3 +304,14 @@ html { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; }
 a, button, [role="tab"] { touch-action: manipulation; }
 button { user-select: none; }
 input, textarea, select { font-size: 16px; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: transparent; border-radius: 100px; }
+html:hover ::-webkit-scrollbar-thumb { background: rgba(41, 41, 41, 0.18); }
+::-webkit-scrollbar-thumb:hover { background: rgba(41, 41, 41, 0.3); }
+html, html * { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+html *:hover { scrollbar-color: rgba(41, 41, 41, 0.18) transparent; }
+html[data-theme="dark"]:hover ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); }
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) transparent; }

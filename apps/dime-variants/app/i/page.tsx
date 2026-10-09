@@ -1,3 +1,4 @@
+import { Close } from "@/components/v/Close";
 import { Foot, Page, SetupRows } from "@/components/v/kit";
 import { Notebook, Warehouse, Skills, History, Inspector } from "@/components/workbench/Workbench";
 import { ThemeToggle } from "@/components/landing/Nav";
@@ -51,6 +52,7 @@ export default function I() {
         </div>
         <Index n="04" label="Setup" />
         <div id="self-host"><SetupRows /></div>
+        <Close max="max-w-[1280px]" />
       </main>
       <div className="mt-24"><Foot max="max-w-[1280px]" /></div>
     </Page>

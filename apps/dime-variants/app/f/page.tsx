@@ -1,3 +1,4 @@
+import { Close } from "@/components/v/Close";
 import type { ReactNode } from "react";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
@@ -62,10 +63,7 @@ export default function F() {
             
           </div>
         </section>
-        <section className="mx-auto mt-28 max-w-[900px] px-5 text-center">
-          <h2 className="text-[34px] leading-[40px] md:text-[56px] md:leading-[64px]"><span className="serif-i block font-normal">Clone it and</span>ask about last season</h2>
-          <div className="mt-8 flex justify-center"><ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink></div>
-        </section>
+        <Close max="max-w-[900px]" center />
       </main>
       <div className="mt-24"><Foot /></div>
     </Page>

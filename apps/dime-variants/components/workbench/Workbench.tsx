@@ -10,6 +10,7 @@ import { Kbd } from "@/components/ui/kbd";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 import { projects, skills, tables, schema, commits, rows, runSteps } from "./data";
 import { Cell, Pill, Sql, Tick } from "./Primitives";
+import { Shell, SortTable } from "./Artifact";
 
 export type Tab = "notebook" | "warehouse" | "skills" | "history";
 const tabs: { id: Tab; label: string; icon: typeof NotebookPen }[] = [
@@ -36,6 +37,14 @@ export function Notebook() {
       <BlurFade delay={0.45}>
         <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">61 rows</span></span>}>
           <Sql />
+          <div className="mt-3">
+            <Shell title="Result" source="5 of 61 rows">
+              <SortTable
+                columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
+                rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
+              />
+            </Shell>
+          </div>
         </Cell>
       </BlurFade>
       <BlurFade delay={0.85}>
@@ -73,48 +82,32 @@ export function Notebook() {
 export function Warehouse() {
   return (
     <div className="flex flex-col gap-3">
-    <div className="grid gap-3 lg:grid-cols-[1fr_260px]">
-      <div className="overflow-hidden rounded-[10px] shadow-[0_0_0_1px_var(--line)]">
-        <div className="grid grid-cols-[1fr_72px_48px_84px] border-b border-line bg-field px-4 py-2 font-mono text-[11px] text-ink-3">
-          <span>table</span><span className="text-right">rows</span><span className="text-right">cols</span><span className="text-right">refreshed</span>
-        </div>
-        {tables.map((t, i) => (
-          <BlurFade key={t.name} delay={0.04 * i} duration={0.3}>
-            <div className={`grid grid-cols-[1fr_72px_48px_84px] items-center px-4 py-3 text-[13px] ${i ? "border-t border-line" : ""} ${i === 0 ? "bg-hover" : ""}`}>
-              <span className="font-mono text-ink">{t.name}</span>
-              <span className="text-right font-mono text-ink-2">{t.rows}</span>
-              <span className="text-right font-mono text-ink-2">{t.cols}</span>
-              <span className="text-right font-mono text-ink-3">{t.fresh}</span>
-            </div>
-          </BlurFade>
-        ))}
-      </div>
-      <div className="rounded-[10px] p-4 shadow-[0_0_0_1px_var(--line)]">
-        <div className="mb-3 font-mono text-[11px] text-ink-3">player_season</div>
-        {schema.map(([c, t]) => (
-          <div key={c} className="flex items-center justify-between py-1.5 text-[12.5px]">
-            <span className="font-mono text-ink">{c}</span>
-            <span className="font-mono text-ink-3">{t}</span>
+      <div className="grid gap-3 lg:grid-cols-[1fr_240px]">
+        <Shell title="Tables" source="nba.duckdb" copyText="player_season, boxscores, lineups, shots, schedule">
+          <SortTable
+            active={0}
+            columns={[{ key: "t", label: "Table" }, { key: "r", label: "Rows", numeric: true }, { key: "c", label: "Cols", numeric: true }, { key: "f", label: "Refreshed", numeric: true }]}
+            rows={tables.map((t) => [t.name, t.rows, t.cols, t.fresh])}
+          />
+        </Shell>
+        <div className="rounded-[10px] shadow-[0_0_0_1px_var(--line)]">
+          <div className="flex h-10 items-center border-b border-line px-4 text-[13px] font-medium text-ink">player_season</div>
+          <div className="px-4 py-2">
+            {schema.map(([c, t]) => (
+              <div key={c} className="flex h-7 items-center justify-between text-[12.5px]">
+                <span className="font-mono text-ink">{c}</span>
+                <span className="font-mono text-ink-3">{t}</span>
+              </div>
+            ))}
           </div>
-        ))}
-        <div className="mt-3 border-t border-line pt-3 text-[12px] text-ink-3">nba.duckdb · read only</div>
+        </div>
       </div>
-    </div>
-    <div className="overflow-hidden rounded-[10px] shadow-[0_0_0_1px_var(--line)]">
-      <div className="flex items-center justify-between border-b border-line bg-field px-4 py-2 font-mono text-[11px] text-ink-3"><span>preview · player_season</span><span>5 of 612</span></div>
-      <table className="w-full text-[12.5px] tabular-nums">
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={r.player} className={i ? "border-t border-line" : ""}>
-              <td className="px-4 py-2 text-ink">{r.player}</td>
-              <td className="px-4 py-2 font-mono text-ink-3">{r.team}</td>
-              <td className="px-4 py-2 text-right font-mono text-ink-2">{r.ts}</td>
-              <td className="px-4 py-2 text-right font-mono text-ink-2">{r.usg}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <Shell title="Preview" source="player_season · 5 of 612" copyText="select * from player_season limit 5">
+        <SortTable
+          columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
+          rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
+        />
+      </Shell>
     </div>
   );
 }

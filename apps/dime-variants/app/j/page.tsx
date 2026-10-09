@@ -1,5 +1,6 @@
 "use client";
 
+import { Close } from "@/components/v/Close";
 import { useEffect, useState, type ReactNode } from "react";
 import { Foot, Page } from "@/components/v/kit";
 import { NumberFlow } from "@/components/ui/number-flow";
@@ -54,6 +55,7 @@ export default function J() {
             </ol>
           </Tile>
         </section>
+        <Close max="max-w-[1100px]" />
       </main>
       <div className="mt-24"><Foot max="max-w-[1100px]" /></div>
     </Page>

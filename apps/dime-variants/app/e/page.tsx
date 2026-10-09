@@ -1,5 +1,6 @@
 "use client";
 
+import { Close } from "@/components/v/Close";
 import { useState, type ReactNode } from "react";
 import { Foot, Page, SetupRows } from "@/components/v/kit";
 import { Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
@@ -43,6 +44,7 @@ export default function E() {
         </div>
         <h2 className="mb-6 mt-20 text-[22px] leading-[35px]">Run it</h2>
         <div id="self-host"><SetupRows /></div>
+        <Close max="max-w-[760px]" />
       </main>
       <Foot max="max-w-[760px]" />
     </Page>

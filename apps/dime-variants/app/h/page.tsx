@@ -1,3 +1,4 @@
+import { Close } from "@/components/v/Close";
 import { Page, SetupRows, FaqList, Foot } from "@/components/v/kit";
 import Workbench from "@/components/workbench/Workbench";
 import { ThemeToggle } from "@/components/landing/Nav";
@@ -48,6 +49,7 @@ export default function H() {
             </div>
           </section>
         ))}
+        <Close max="max-w-[1425px]" />
       </main>
       <Foot max="max-w-[1425px]" />
     </Page>

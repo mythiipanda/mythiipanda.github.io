@@ -1,3 +1,4 @@
+import { Close } from "@/components/v/Close";
 import type { ReactNode } from "react";
 import { DockNav, Cta, FaqList, Foot, Page, RoadmapRows, SetupRows } from "@/components/v/kit";
 import { Sql, Cell } from "@/components/workbench/Primitives";
@@ -72,6 +73,7 @@ export default function B() {
           <h2 className="mb-8 text-[26px] leading-[32px] md:text-[34px]">Runs on your machine</h2>
           <SetupRows />
         </Sheet>
+        <Close max="max-w-[1200px]" />
       </main>
       <div className="pb-14"><Foot max="max-w-[1200px]" /></div>
     </Page>

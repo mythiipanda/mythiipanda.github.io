@@ -1,5 +1,6 @@
 "use client";
 
+import { Close } from "@/components/v/Close";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
@@ -72,7 +73,7 @@ export default function C() {
             </div>
           </div>
         </section>
-        <CobaltBand max="max-w-[1320px]" />
+        <Close max="max-w-[1320px]" />
       </main>
       <div className="mt-24"><Foot max="max-w-[1320px]" /></div>
     </Page>

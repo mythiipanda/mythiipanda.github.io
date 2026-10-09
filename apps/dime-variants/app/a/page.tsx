@@ -1,20 +1,19 @@
 "use client";
 
+import { Close } from "@/components/v/Close";
 import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
 import Workbench, { type Tab } from "@/components/workbench/Workbench";
 import { Pillars } from "@/components/landing/Pillars";
 import { Closing } from "@/components/landing/Sections";
-import { Page, RoadmapRows, FaqList } from "@/components/v/kit";
+import { Page, Cta } from "@/components/v/kit";
 import { copy, REPO } from "@/lib/copy";
 
 const nav = [["Product", "#product"], ["Skills", "#skills"], ["Setup", "#self-host"]];
 
 const features: { tab: Tab; title: string; text: string }[] = [
-  { tab: "notebook", title: "Projects keep every cell", text: "Prompt, SQL, Python, chart and markdown cells in one notebook, saved as files in git." },
   { tab: "warehouse", title: "One warehouse, pinned by version", text: "Every Project pins to a warehouse version, so a result from last week reruns on the same data." },
-  { tab: "skills", title: "Skills and workflows", text: "A skill is a SKILL.md file. A workflow is a skill with parameters that generates a Project." },
   { tab: "history", title: "History you can diff", text: "Each run stages its cells. Commit, review and roll back like any repo." },
 ];
 
@@ -54,7 +53,7 @@ export default function A() {
           <h1 className="max-w-[820px] text-[40px] leading-[42px] md:text-[64px] md:font-[510] md:leading-[64px]">The open-source analyst for NBA data</h1>
           <div className="mt-6 flex flex-col gap-5 md:mt-8 md:flex-row md:items-end md:justify-between">
             <p className="max-w-[420px] text-[15px] leading-[24px] text-ink-2">Chat for quick questions. Projects for the work you keep.</p>
-            <ButtonLink href="#self-host" variant="ghost">See the setup steps &rarr;</ButtonLink>
+            <Cta />
           </div>
         </section>
         <section id="product" className="mt-14 md:mt-[72px]">
@@ -76,6 +75,7 @@ export default function A() {
           </section>
         ))}
         <Closing />
+        <Close max="max-w-[1284px]" />
       </main>
     </Page>
   );

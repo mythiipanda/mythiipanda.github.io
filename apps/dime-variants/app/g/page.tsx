@@ -1,5 +1,6 @@
 "use client";
 
+import { Close } from "@/components/v/Close";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
@@ -74,6 +75,7 @@ export default function G() {
           
         </section>
         <section className="mx-auto max-w-[1100px] px-5 pt-28 md:px-6"><h2 className="mb-8 text-[32px] leading-[38px] md:text-[44px]">Runs on your machine</h2><SetupRows /><FaqList /></section>
+        <Close max="max-w-[1100px]" center />
       </main>
       <footer className="mt-28 overflow-hidden px-5 pb-6"><div className="font-display text-[34vw] font-bold leading-[0.8] text-ink md:text-[22vw]">dime<span className="text-[var(--cobalt-tx)]">.</span></div></footer>
       <Foot max="max-w-[1100px]" />
