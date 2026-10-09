@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export const viewport: Viewport = { colorScheme: "dark light", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { colorScheme: "dark light", width: "device-width", initialScale: 1, themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#0B0C0E" }, { media: "(prefers-color-scheme: light)", color: "#FFFFFF" }] };
 
 const themeScript = `try{var t=localStorage.getItem("dime-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
 

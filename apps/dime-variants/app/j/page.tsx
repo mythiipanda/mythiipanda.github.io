@@ -1,18 +1,25 @@
 "use client";
 
-import { hero } from "@/lib/variants";
-import { useEffect, useState } from "react";
-import { CommitRows, SkillRows } from "@/components/v/features";
-import { RunNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
+import { useEffect, useState, type ReactNode } from "react";
+import { Foot, Page } from "@/components/v/kit";
 import { NumberFlow } from "@/components/ui/number-flow";
-import { Notebook } from "@/components/workbench/Workbench";
-import { copy } from "@/lib/copy";
+import { Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
+import { ThemeToggle } from "@/components/landing/Nav";
+import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
+import { REPO, copy } from "@/lib/copy";
+
+function Tile({ label, children, className = "" }: { label: string; children: ReactNode; className?: string }) {
+  return (
+    <figure className={`flex h-[440px] flex-col overflow-hidden rounded-[10px] shadow-[0_0_0_1px_var(--line)] ${className.includes("bg-") ? "" : "bg-field"} ${className}`}>
+      <div className="relative min-h-0 flex-1 overflow-hidden">{children}</div>
+      <figcaption className="flex h-10 shrink-0 items-center border-t border-line px-4 font-mono text-[11px] opacity-80">{label}</figcaption>
+    </figure>
+  );
+}
 
 const figs = [
   { v: 31204, l: "rows scanned" },
-  { v: 41, l: "milliseconds" },
   { v: 61, l: "wings qualify" },
-  { v: 4, l: "cells saved" },
 ];
 
 export default function J() {
@@ -20,34 +27,35 @@ export default function J() {
   useEffect(() => { const t = setTimeout(() => setOn(true), 400); return () => clearTimeout(t); }, []);
   return (
     <Page v="j">
-      <RunNav label="sample run / wing-efficiency / 2025" />
-      <main className="mx-auto max-w-[1200px] px-5 md:px-6">
-        <section className="pt-14 md:pt-20">
-          <h1 className="max-w-[820px] text-[38px] leading-[42px] md:text-[56px] md:leading-[58px]">{hero.j.h1}</h1>
-          <div className="mt-8"><Cta /></div>
-          <div className="mt-14 md:mt-20">
-            <div className="font-mono text-[12px] text-ink-3">Sample run: wings over 500 minutes by true shooting</div>
-            <div className="mt-4 grid grid-cols-2 border-t border-line md:grid-cols-[1.7fr_1fr_1fr_1fr]">
+      <header className="mx-auto flex h-14 max-w-[1100px] items-center justify-between px-5 md:px-6">
+        <a href="#top" aria-label="dime home"><Logo /></a>
+        <div className="flex items-center gap-1"><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink></div>
+      </header>
+      <main className="mx-auto max-w-[1100px] px-5 md:px-6">
+        <section className="mx-auto max-w-[880px] pb-12 pt-16 md:pb-16 md:pt-28">
+          <h1 className="text-[40px] leading-[44px] tracking-[-0.025em] md:text-[60px] md:leading-[66px]">Open-source NBA analyst</h1>
+          <p className="mt-4 text-[17px] leading-[26px] text-ink-2">Chat for quick questions. Projects for the work you keep.</p>
+        </section>
+        <section className="grid gap-4 md:grid-cols-2">
+          <Tile label="Notebook"><Notebook /></Tile>
+          <Tile label="Sample run" className="bg-[var(--cobalt)] text-white">
+            <div className="absolute inset-0 flex flex-col justify-end gap-8 p-6 md:p-10">
               {figs.map((f) => (
-                <div key={f.l} className="border-b border-line py-6 pr-4 md:border-b-0 md:py-8">
-                  <NumberFlow value={on ? f.v : 0} className="fig text-[32px] leading-[38px] md:text-[60px] md:leading-[64px]" />
-                  <div className="mt-2 text-[14px] text-ink-2">{f.l}</div>
-                </div>
+                <div key={f.l}><NumberFlow value={on ? f.v : 0} className="fig text-[34px] leading-[40px] md:text-[56px] md:leading-[60px] whitespace-nowrap" /><div className="mt-2 text-[14px] opacity-80">{f.l}</div></div>
               ))}
             </div>
-          </div>
+          </Tile>
+          <Tile label="Warehouse" className="md:col-span-2 md:h-[400px]"><Warehouse /></Tile>
+          <Tile label="Skills"><Skills /></Tile>
+          <Tile label="History"><History /></Tile>
+          <Tile label="Self-host" className="md:col-span-2 md:h-[300px]">
+            <ol className="flex h-full flex-col justify-center p-6 md:p-10">
+              {copy.host.commands.map((c) => (<li key={c} className="border-b border-line py-4 font-mono text-[13px] text-ink last:border-b-0 md:text-[15px]">{c}</li>))}
+            </ol>
+          </Tile>
         </section>
-        <section id="notebooks" className="mt-16 grid gap-10 md:mt-24 md:grid-cols-[1fr_1.5fr] md:gap-16">
-          <div>
-            <h2 className="text-[28px] leading-[34px] md:text-[34px] md:leading-[40px]">{copy.pillars[0].title}</h2>
-            
-          </div>
-          <div className="min-w-0"><Notebook /></div>
-        </section>
-        <section id="skills" className="mt-20 md:mt-28"><h2 className="mb-6 text-[28px] leading-[34px] md:text-[36px]">Skills and history</h2><div className="grid gap-10 md:grid-cols-2"><SkillRows /><CommitRows /></div></section>
-        <div><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
       </main>
-      <div className="mt-24"><Foot /></div>
+      <div className="mt-24"><Foot max="max-w-[1100px]" /></div>
     </Page>
   );
 }

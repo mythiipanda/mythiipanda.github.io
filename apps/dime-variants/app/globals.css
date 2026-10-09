@@ -299,3 +299,8 @@ html[data-theme="light"] [data-v="i"] { --canvas: #F4F6FA; --surface: #F4F6FA; -
 code, pre, .font-mono { overflow-wrap: anywhere; }
 li, dd, dt, p, h1, h2, h3 { min-width: 0; }
 .fig, td, th { font-variant-numeric: tabular-nums; }
+
+html { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; }
+a, button, [role="tab"] { touch-action: manipulation; }
+button { user-select: none; }
+input, textarea, select { font-size: 16px; }
