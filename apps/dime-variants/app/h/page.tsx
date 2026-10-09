@@ -11,7 +11,7 @@ const stories = [
   { tab: "history" as const, title: "Every run is a commit", lead: "Diff it. Roll it back.", list: ["Commit per run", "Pinned to a warehouse version", "Files you own"] },
 ];
 
-const h2 = "text-[36px] leading-[38px] tracking-[-0.05em] md:text-[56px] md:leading-[56px] md:tracking-[-0.06em] font-medium";
+const h2 = "text-[36px] leading-[38px] tracking-[-0.03em] md:text-[56px] md:leading-[56px] md:tracking-[-0.04em] font-medium";
 
 export default function H() {
   return (
@@ -23,7 +23,7 @@ export default function H() {
       <main className="mx-auto max-w-[1425px] px-6">
         <section className="grid gap-10 pb-20 pt-24 md:grid-cols-[1.4fr_1fr] md:pb-32 md:pt-40">
           <div>
-            <h1 className="text-[44px] leading-[44px] tracking-[-0.06em] md:text-[64px] md:leading-[64px]">Open-source analyst for NBA data</h1>
+            <h1 className="text-[44px] leading-[44px] tracking-[-0.04em] font-medium md:text-[64px] md:leading-[64px]">Open-source analyst for NBA data</h1>
             <div className="mt-8"><ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink></div>
           </div>
           <ul className="space-y-1 pt-2 text-[15px] leading-[24px] text-ink-2 md:self-end md:text-right">

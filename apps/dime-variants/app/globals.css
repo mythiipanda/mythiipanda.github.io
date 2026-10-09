@@ -266,7 +266,7 @@ table, td, th, .tnum { font-variant-numeric: tabular-nums; }
 [data-v="f"] .serif-i { font-family: var(--font-serif), serif; font-weight: 400; font-style: italic; }
 [data-v="f"] h1, [data-v="f"] h2 { font-weight: 700; }
 [data-v="g"] h1, [data-v="g"] .skill-name { font-stretch: 76%; font-weight: 700; }
-[data-v="h"] h1 { font-stretch: 75%; font-weight: 800; }
+[data-v="h"] h1, [data-v="h"] h2 { font-stretch: 100%; font-weight: 500; }
 [data-v="j"] .fig { font-family: var(--font-code), monospace; font-stretch: 100%; font-weight: 500; }
 [data-v="c"] h1 { font-family: var(--font-serif), serif; font-weight: 400; line-height: 0.98; }
 [data-v="i"] h1 { font-weight: 500; }

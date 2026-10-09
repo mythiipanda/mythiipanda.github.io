@@ -38,7 +38,7 @@ export default function F() {
           <div className="grid gap-4 md:grid-cols-[1fr_1.35fr_1fr] md:items-start">
             <Win title="wing-efficiency / notebook" className="md:mt-16"><Notebook /></Win>
             <Win title="chat" className="md:z-10 md:scale-[1.03]"><Notebook /></Win>
-            <Win title="warehouse" className="md:mt-16"><Warehouse /></Win>
+            <Win title="history" className="md:mt-16"><History /></Win>
           </div>
           <div className="mt-10 flex flex-wrap justify-center gap-2">
             {chips.map((c) => (<span key={c} className="rounded-full px-4 py-2 text-[13px] text-ink-2 shadow-[0_0_0_1px_var(--line-strong)]">{c}</span>))}
