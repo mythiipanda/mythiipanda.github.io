@@ -1,6 +1,5 @@
-import { BarNav, Cta, Foot, Frame, Page } from "@/components/v/kit";
+import { BarNav, CobaltBand, Cta, FaqList, Foot, Frame, Page, SetupRows } from "@/components/v/kit";
 import Workbench from "@/components/workbench/Workbench";
-import { HostSection, Questions } from "@/components/landing/Sections";
 import { Kbd } from "@/components/ui/kbd";
 
 const asks = [
@@ -11,7 +10,7 @@ const asks = [
 
 export default function H() {
   return (
-    <Page>
+    <Page v="h">
       <BarNav />
       <main className="mx-auto max-w-[1320px] px-5 md:px-6">
         <section className="pt-12 md:pt-16">
@@ -25,8 +24,10 @@ export default function H() {
           </ul>
         </section>
         <section id="notebooks" className="mt-20 md:mt-28"><Frame h="h-[620px] md:h-[760px]"><Workbench /></Frame></section>
-        <div id="skills"><HostSection /><Questions /></div>
+        <div id="skills"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
+        <FaqList />
       </main>
+      <CobaltBand max="max-w-[1320px]" />
       <div className="mt-24"><Foot max="max-w-[1320px]" /></div>
     </Page>
   );

@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BarNav, Cta, Foot, Frame, Page } from "@/components/v/kit";
+import { BarNav, Cta, FaqList, Foot, Frame, Page, SetupRows } from "@/components/v/kit";
 import Workbench, { type Tab } from "@/components/workbench/Workbench";
-import { HostSection, Questions } from "@/components/landing/Sections";
 import { copy } from "@/lib/copy";
 
 const steps: { tab: Tab; title: string; text: string }[] = [
@@ -24,7 +23,7 @@ export default function I() {
     return () => io.disconnect();
   }, []);
   return (
-    <Page>
+    <Page v="i">
       <BarNav />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="pt-14 md:pt-20">
@@ -46,7 +45,8 @@ export default function I() {
             <Frame h="h-[520px] lg:h-[calc(100vh-8rem-20px)] lg:max-h-[720px]"><Workbench bare tab={steps[active].tab} /></Frame>
           </div>
         </section>
-        <div id="skills"><HostSection /><Questions /></div>
+        <div id="skills"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
+        <FaqList />
       </main>
       <div className="mt-24"><Foot /></div>
     </Page>

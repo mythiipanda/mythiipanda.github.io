@@ -1,12 +1,11 @@
-import { BarNav, Cta, Foot, Page } from "@/components/v/kit";
+import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { Sql } from "@/components/workbench/Primitives";
 import { rows, runSteps } from "@/components/workbench/data";
-import { HostSection, Questions } from "@/components/landing/Sections";
 import { BlurFade } from "@/components/ui/blur-fade";
 
 export default function B() {
   return (
-    <Page>
+    <Page v="b">
       <BarNav max="max-w-[880px]" />
       <main className="mx-auto max-w-[880px] px-5 md:px-6">
         <section className="pt-16 md:pt-24">
@@ -42,8 +41,9 @@ export default function B() {
           </div>
         </section>
         <div id="skills" />
-        <HostSection />
-        <Questions />
+        <h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2>
+        <SetupRows />
+        <FaqList />
       </main>
       <div className="mt-24"><Foot max="max-w-[880px]" /></div>
     </Page>

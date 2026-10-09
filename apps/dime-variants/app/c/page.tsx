@@ -1,11 +1,10 @@
-import { BarNav, Cta, Foot, Frame, Page } from "@/components/v/kit";
+import { BarNav, CobaltBand, Cta, FaqList, Foot, Frame, Page, SetupRows } from "@/components/v/kit";
 import Workbench from "@/components/workbench/Workbench";
-import { HostSection, Questions } from "@/components/landing/Sections";
 import { copy } from "@/lib/copy";
 
 export default function C() {
   return (
-    <Page>
+    <Page v="c">
       <BarNav />
       <main>
         <section className="mx-auto grid max-w-[1320px] gap-10 px-5 pt-14 md:px-6 md:pt-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
@@ -28,7 +27,8 @@ export default function C() {
             ))}
           </dl>
         </section>
-        <div id="skills" className="mx-auto max-w-[1200px] px-0 md:px-6"><HostSection /><Questions /></div>
+        <div id="skills" className="mx-auto max-w-[1200px] px-5 md:px-6"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /><FaqList /></div>
+        <CobaltBand />
       </main>
       <div className="mt-24"><Foot /></div>
     </Page>

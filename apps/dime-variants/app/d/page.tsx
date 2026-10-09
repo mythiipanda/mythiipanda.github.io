@@ -1,12 +1,12 @@
 import { BarNav, Cta, Foot, Page } from "@/components/v/kit";
 import { Cell, Pill, Sql } from "@/components/workbench/Primitives";
 import { rows, skills, commits } from "@/components/workbench/data";
-import { HostSection, Questions } from "@/components/landing/Sections";
+import { SetupCells } from "@/components/v/cells";
 import { copy } from "@/lib/copy";
 
 export default function D() {
   return (
-    <Page>
+    <Page v="d">
       <BarNav max="max-w-[760px]" />
       <main className="mx-auto flex max-w-[760px] flex-col gap-4 px-5 pt-14 md:px-6 md:pt-20">
         <Cell n={1} kind="ask">
@@ -45,7 +45,7 @@ export default function D() {
           ))}
         </Cell>
       </main>
-      <div className="mx-auto max-w-[760px]"><HostSection /><Questions /></div>
+      <div className="mx-auto max-w-[760px] px-5 md:px-6"><SetupCells /></div>
       <div className="mt-24"><Foot max="max-w-[760px]" /></div>
     </Page>
   );

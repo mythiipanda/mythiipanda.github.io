@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BarNav, Cta, Foot, Page } from "@/components/v/kit";
+import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { NumberFlow } from "@/components/ui/number-flow";
 import { Notebook } from "@/components/workbench/Workbench";
-import { HostSection, Questions } from "@/components/landing/Sections";
 import { copy } from "@/lib/copy";
 
 const figs = [
@@ -18,7 +17,7 @@ export default function J() {
   const [on, setOn] = useState(false);
   useEffect(() => { const t = setTimeout(() => setOn(true), 400); return () => clearTimeout(t); }, []);
   return (
-    <Page>
+    <Page v="j">
       <BarNav />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="pt-14 md:pt-20">
@@ -26,10 +25,10 @@ export default function J() {
           <div className="mt-8"><Cta /></div>
           <div className="mt-14 md:mt-20">
             <div className="font-mono text-[12px] text-ink-3">One question, one run: wings over 500 minutes by true shooting</div>
-            <div className="mt-4 grid grid-cols-2 border-t border-line md:grid-cols-4">
+            <div className="mt-4 grid grid-cols-2 border-t border-line md:grid-cols-[1.7fr_1fr_1fr_1fr]">
               {figs.map((f) => (
                 <div key={f.l} className="border-b border-line py-6 pr-4 md:border-b-0 md:py-8">
-                  <NumberFlow value={on ? f.v : 0} className="font-display text-[52px] leading-[54px] md:text-[88px] md:leading-[90px]" />
+                  <NumberFlow value={on ? f.v : 0} className="fig text-[44px] leading-[48px] md:text-[60px] md:leading-[64px]" />
                   <div className="mt-2 text-[14px] text-ink-2">{f.l}</div>
                 </div>
               ))}
@@ -43,7 +42,8 @@ export default function J() {
           </div>
           <div className="min-w-0"><Notebook /></div>
         </section>
-        <div id="skills"><HostSection /><Questions /></div>
+        <div id="skills"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
+        <FaqList />
       </main>
       <div className="mt-24"><Foot /></div>
     </Page>

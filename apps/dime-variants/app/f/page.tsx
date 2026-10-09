@@ -6,7 +6,7 @@ import { copy } from "@/lib/copy";
 
 export default function F() {
   return (
-    <Page>
+    <Page v="f">
       <BarNav />
       <main className="mx-auto grid max-w-[1200px] gap-10 px-5 pt-14 md:px-6 md:pt-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
         <aside className="lg:sticky lg:top-24 lg:self-start">

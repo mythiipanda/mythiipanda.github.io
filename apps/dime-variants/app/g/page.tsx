@@ -1,17 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { BarNav, Cta, Foot, Page } from "@/components/v/kit";
+import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { skills } from "@/components/workbench/data";
 import { Tick } from "@/components/workbench/Primitives";
-import { HostSection, Questions } from "@/components/landing/Sections";
 import { copy } from "@/lib/copy";
 
 export default function G() {
   const [sel, setSel] = useState(0);
   const s = skills[sel];
   return (
-    <Page>
+    <Page v="g">
       <BarNav />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="pt-14 md:pt-20">
@@ -23,8 +22,8 @@ export default function G() {
           <ul>
             {skills.map((k, i) => (
               <li key={k.name}>
-                <button type="button" onClick={() => setSel(i)} onMouseEnter={() => setSel(i)} className={`flex w-full items-baseline justify-between gap-4 py-3 text-left font-display text-[40px] leading-[1.05] transition-colors duration-150 md:py-4 md:text-[64px] ${sel === i ? "text-ink" : "text-ink-3 hover:text-ink-2"}`}>
-                  <span className="truncate">{k.name}</span>
+                <button type="button" onClick={() => setSel(i)} onMouseEnter={() => setSel(i)} className={`skill-name flex w-full items-baseline justify-between gap-4 py-3 text-left font-display text-[44px] leading-[1.0] transition-colors duration-150 md:py-4 md:text-[80px] ${sel === i ? "text-ink" : "text-ink-3 hover:text-ink-2"}`}>
+                  <span className="">{k.name}</span>
                   <span className="font-mono text-[12px] text-ink-3">{k.runs} runs</span>
                 </button>
               </li>
@@ -40,7 +39,8 @@ export default function G() {
             <p className="mt-6 text-[14px] leading-[22px] text-ink-3">A skill is a file in your repo. dime loads it when you type / in the composer.</p>
           </div>
         </section>
-        <div id="notebooks"><HostSection /><Questions /></div>
+        <div id="notebooks"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
+        <FaqList />
       </main>
       <div className="mt-24"><Foot /></div>
     </Page>

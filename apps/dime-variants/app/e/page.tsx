@@ -1,16 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { BarNav, Cta, Foot, Page } from "@/components/v/kit";
+import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { tables, schema } from "@/components/workbench/data";
 import { NumberFlow } from "@/components/ui/number-flow";
-import { HostSection, Questions } from "@/components/landing/Sections";
 import { copy } from "@/lib/copy";
 
 export default function E() {
   const [sel, setSel] = useState(0);
   return (
-    <Page>
+    <Page v="e">
       <BarNav />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="grid gap-8 pt-14 md:grid-cols-[1.3fr_1fr] md:items-end md:pt-20">
@@ -39,12 +38,8 @@ export default function E() {
             </div>
           </div>
         </section>
-        <div id="skills"><dl className="mt-20 border-t border-line">
-          {copy.pillars.map((p) => (
-            <div key={p.title} className="grid gap-2 border-b border-line py-6 md:grid-cols-[1fr_1fr] md:gap-12"><dt className="text-[20px] font-semibold">{p.title}</dt><dd className="text-[15px] leading-[24px] text-ink-2">{p.text}</dd></div>
-          ))}
-        </dl></div>
-        <HostSection /><Questions />
+        <div id="skills" />
+        <h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /><FaqList />
       </main>
       <div className="mt-24"><Foot /></div>
     </Page>
