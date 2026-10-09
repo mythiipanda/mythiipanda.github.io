@@ -103,3 +103,19 @@ export function CobaltBand({ max = "max-w-[1200px]" }: { max?: string }) {
     </section>
   );
 }
+
+export function DockNav() {
+  return (
+    <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-canvas">
+      <div className="mx-auto flex h-14 max-w-[880px] items-center gap-4 px-5 font-mono text-[13px] md:px-6">
+        <a href="#top" aria-label="dime home" className="shrink-0"><Logo size={16} /></a>
+        <div className="flex min-w-0 flex-1 items-center gap-2 text-ink-3"><span className="text-[var(--cobalt-tx)]">&gt;</span><span className="hidden truncate sm:block">ask about the league</span></div>
+        <div className="hidden gap-5 text-ink-2 md:flex">
+          {links.map((l) => (<a key={l.label} href={l.href} className="transition-colors hover:text-ink">{l.label.toLowerCase()}</a>))}
+        </div>
+        <ThemeToggle />
+        <ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink>
+      </div>
+    </nav>
+  );
+}

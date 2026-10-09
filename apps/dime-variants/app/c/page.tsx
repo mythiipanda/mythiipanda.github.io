@@ -1,6 +1,7 @@
 import { BarNav, CobaltBand, Cta, FaqList, Foot, Frame, Page, SetupRows } from "@/components/v/kit";
 import Workbench from "@/components/workbench/Workbench";
 import { copy } from "@/lib/copy";
+import { hero } from "@/lib/variants";
 
 export default function C() {
   return (
@@ -9,8 +10,8 @@ export default function C() {
       <main>
         <section className="mx-auto grid max-w-[1320px] gap-10 px-5 pt-14 md:px-6 md:pt-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           <div className="flex flex-col justify-center lg:pr-6">
-            <h1 className="text-[42px] leading-[46px] md:text-[60px] md:leading-[62px]">The open-source analyst for NBA data</h1>
-            <p className="mt-6 max-w-[440px] text-[17px] leading-[27px] text-ink-2">{copy.hero.sub}</p>
+            <h1 className="text-[52px] md:text-[104px]">{hero.c.h1}</h1>
+            <p className="mt-6 max-w-[440px] text-[17px] leading-[27px] text-ink-2">{hero.c.sub}</p>
             <div className="mt-8"><Cta /></div>
           </div>
           <div className="min-w-0 lg:-mr-[max(0px,calc((100vw-1320px)/2+24px))]">

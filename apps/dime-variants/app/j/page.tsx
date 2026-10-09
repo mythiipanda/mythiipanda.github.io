@@ -1,6 +1,8 @@
 "use client";
 
+import { hero } from "@/lib/variants";
 import { useEffect, useState } from "react";
+import { CommitRows, SkillRows } from "@/components/v/features";
 import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { NumberFlow } from "@/components/ui/number-flow";
 import { Notebook } from "@/components/workbench/Workbench";
@@ -21,7 +23,7 @@ export default function J() {
       <BarNav />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="pt-14 md:pt-20">
-          <h1 className="max-w-[820px] text-[38px] leading-[42px] md:text-[56px] md:leading-[58px]">The open-source analyst for NBA data</h1>
+          <h1 className="max-w-[820px] text-[38px] leading-[42px] md:text-[56px] md:leading-[58px]">{hero.j.h1}</h1>
           <div className="mt-8"><Cta /></div>
           <div className="mt-14 md:mt-20">
             <div className="font-mono text-[12px] text-ink-3">One question, one run: wings over 500 minutes by true shooting</div>
@@ -42,7 +44,8 @@ export default function J() {
           </div>
           <div className="min-w-0"><Notebook /></div>
         </section>
-        <div id="skills"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
+        <section id="skills" className="mt-20 md:mt-28"><h2 className="mb-6 text-[28px] leading-[34px] md:text-[36px]">Skills and history</h2><div className="grid gap-10 md:grid-cols-2"><SkillRows /><CommitRows /></div></section>
+        <div><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
         <FaqList />
       </main>
       <div className="mt-24"><Foot /></div>

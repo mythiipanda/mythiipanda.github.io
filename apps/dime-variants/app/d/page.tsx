@@ -1,52 +1,60 @@
-import { BarNav, Cta, Foot, Page } from "@/components/v/kit";
+import { Cta, Page } from "@/components/v/kit";
+import { ThemeToggle } from "@/components/landing/Nav";
+import { Logo, ButtonLink } from "@/components/landing/ui";
 import { Cell, Pill, Sql } from "@/components/workbench/Primitives";
-import { rows, skills, commits } from "@/components/workbench/data";
+import { rows } from "@/components/workbench/data";
+import { SkillRows, CommitRows } from "@/components/v/features";
 import { SetupCells } from "@/components/v/cells";
-import { copy } from "@/lib/copy";
+import { hero } from "@/lib/variants";
+import { copy, REPO } from "@/lib/copy";
+
+const toc = [["ask", "1"], ["query", "2"], ["table", "3"], ["skills", "4"], ["history", "5"], ["setup", "6"]];
 
 export default function D() {
   return (
     <Page v="d">
-      <BarNav max="max-w-[760px]" />
-      <main className="mx-auto flex max-w-[760px] flex-col gap-4 px-5 pt-14 md:px-6 md:pt-20">
-        <Cell n={1} kind="ask">
-          <h1 className="text-[34px] leading-[38px] md:text-[48px] md:leading-[52px]">The open-source analyst for NBA data</h1>
-          <p className="mt-4 text-[16px] leading-[26px] text-ink-2">{copy.hero.sub}</p>
-          <div className="mt-6"><Cta /></div>
-        </Cell>
-        <div id="notebooks" />
-        <Cell n={2} kind="sql" meta={<Pill tone="ok">ran 41 ms</Pill>}>
-          <h2 className="mb-4 text-[22px] leading-[28px]">{copy.pillars[0].title}</h2>
-          <Sql />
-        </Cell>
-        <Cell n={3} kind="table" meta={<span className="font-mono">61 rows</span>}>
-          <table className="w-full text-left text-[13px]">
-            <thead className="font-mono text-[11px] text-ink-3"><tr><th className="py-1.5 font-normal">player</th><th className="font-normal">team</th><th className="text-right font-normal">ts%</th><th className="text-right font-normal">usg%</th></tr></thead>
-            <tbody className="tabular-nums text-ink-2">
-              {rows.map((r) => (
-                <tr key={r.player} className="border-t border-line"><td className="py-2 text-ink">{r.player}</td><td>{r.team}</td><td className="text-right">{r.ts}</td><td className="text-right">{r.usg}</td></tr>
-              ))}
-            </tbody>
-          </table>
-        </Cell>
-        <div id="skills" />
-        <Cell n={4} kind="skills">
-          <h2 className="mb-4 text-[22px] leading-[28px]">{copy.pillars[1].title}</h2>
-          <div className="flex flex-col">
-            {skills.map((s) => (
-              <div key={s.name} className="flex items-baseline justify-between gap-4 border-t border-line py-3 text-[14px]"><span className="font-mono text-ink">{s.name}</span><span className="hidden text-ink-2 sm:block">{s.text}</span></div>
+      <div className="mx-auto grid max-w-[1100px] gap-0 px-5 md:grid-cols-[200px_minmax(0,1fr)] md:gap-14 md:px-6">
+        <aside className="flex items-center justify-between py-4 md:sticky md:top-0 md:h-screen md:flex-col md:items-start md:justify-between md:py-8">
+          <a href="#top" aria-label="dime home"><Logo /></a>
+          <ol className="hidden font-mono text-[12.5px] md:block">
+            {toc.map(([t, n]) => (
+              <li key={t}><a href={`#${t}`} className="flex gap-3 py-1.5 text-ink-3 transition-colors hover:text-ink"><span className="w-3 text-right">{n}</span>{t}</a></li>
             ))}
-          </div>
-        </Cell>
-        <Cell n={5} kind="git">
-          <h2 className="mb-4 text-[22px] leading-[28px]">{copy.pillars[2].title}</h2>
-          {commits.map((c) => (
-            <div key={c.ref} className="flex items-center justify-between gap-4 border-t border-line py-3 font-mono text-[12.5px]"><span className="text-[var(--cobalt-tx)]">{c.ref}</span><span className="flex-1 truncate text-ink-2">{c.msg}</span><span className="text-ink-3">{c.when}</span></div>
-          ))}
-        </Cell>
-      </main>
-      <div className="mx-auto max-w-[760px] px-5 md:px-6"><SetupCells /></div>
-      <div className="mt-24"><Foot max="max-w-[760px]" /></div>
+          </ol>
+          <div className="flex items-center gap-2"><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill">Star on GitHub</ButtonLink></div>
+        </aside>
+        <main className="flex min-w-0 flex-col gap-5 pb-24 pt-6 md:pt-16">
+          <div id="ask"><Cell n={1} kind="ask">
+            <h1 className="text-[44px] md:text-[72px]">{hero.d.h1}</h1>
+            <p className="mt-5 max-w-[520px] text-[16px] leading-[26px] text-ink-2">{hero.d.sub}</p>
+            <div className="mt-7"><Cta /></div>
+          </Cell></div>
+          <div id="query"><Cell n={2} kind="sql" meta={<Pill tone="ok">ran 41 ms</Pill>}>
+            <h2 className="mb-4 text-[32px] md:text-[40px]">{copy.pillars[0].title}</h2>
+            <p className="mb-5 max-w-[480px] text-[15px] leading-[24px] text-ink-2">{copy.pillars[0].text}</p>
+            <Sql />
+          </Cell></div>
+          <div id="table"><Cell n={3} kind="table" meta={<span className="font-mono">61 rows</span>}>
+            <table className="w-full text-left text-[13px]">
+              <thead className="font-mono text-[11px] text-ink-3"><tr><th className="py-1.5 font-normal">player</th><th className="font-normal">team</th><th className="text-right font-normal">ts%</th><th className="text-right font-normal">usg%</th></tr></thead>
+              <tbody className="tabular-nums text-ink-2">
+                {rows.map((r) => (<tr key={r.player} className="border-t border-line"><td className="py-2 text-ink">{r.player}</td><td>{r.team}</td><td className="text-right">{r.ts}</td><td className="text-right">{r.usg}</td></tr>))}
+              </tbody>
+            </table>
+          </Cell></div>
+          <div id="skills"><Cell n={4} kind="skills">
+            <h2 className="mb-3 text-[32px] md:text-[40px]">{copy.pillars[1].title}</h2>
+            <p className="mb-5 max-w-[480px] text-[15px] leading-[24px] text-ink-2">{copy.pillars[1].text}</p>
+            <SkillRows />
+          </Cell></div>
+          <div id="history"><Cell n={5} kind="git">
+            <h2 className="mb-3 text-[32px] md:text-[40px]">{copy.pillars[2].title}</h2>
+            <p className="mb-5 max-w-[480px] text-[15px] leading-[24px] text-ink-2">{copy.pillars[2].text}</p>
+            <CommitRows />
+          </Cell></div>
+          <div id="setup"><SetupCells /></div>
+        </main>
+      </div>
     </Page>
   );
 }

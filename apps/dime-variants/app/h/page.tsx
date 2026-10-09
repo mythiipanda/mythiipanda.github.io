@@ -1,3 +1,4 @@
+import { FeatureStack } from "@/components/v/features";
 import { BarNav, CobaltBand, Cta, FaqList, Foot, Frame, Page, SetupRows } from "@/components/v/kit";
 import Workbench from "@/components/workbench/Workbench";
 import { Kbd } from "@/components/ui/kbd";
@@ -23,7 +24,8 @@ export default function H() {
             {asks.map((a) => (<li key={a} className="py-3 text-[15px] text-ink-2">{a}</li>))}
           </ul>
         </section>
-        <section id="notebooks" className="mt-20 md:mt-28"><Frame h="h-[620px] md:h-[760px]"><Workbench /></Frame></section>
+        <section className="mt-20 md:mt-28"><Frame h="h-[620px] md:h-[760px]"><Workbench /></Frame></section>
+        <FeatureStack />
         <div id="skills"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
         <FaqList />
       </main>

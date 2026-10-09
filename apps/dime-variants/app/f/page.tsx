@@ -1,8 +1,10 @@
+import { SkillRows } from "@/components/v/features";
 import { BarNav, Cta, Foot, Page } from "@/components/v/kit";
 import { Sql } from "@/components/workbench/Primitives";
 import { commits } from "@/components/workbench/data";
 import { HostSection, Questions } from "@/components/landing/Sections";
 import { copy } from "@/lib/copy";
+import { hero } from "@/lib/variants";
 
 export default function F() {
   return (
@@ -10,8 +12,8 @@ export default function F() {
       <BarNav />
       <main className="mx-auto grid max-w-[1200px] gap-10 px-5 pt-14 md:px-6 md:pt-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
         <aside className="lg:sticky lg:top-24 lg:self-start">
-          <h1 className="text-[40px] leading-[44px] md:text-[56px] md:leading-[58px]">The open-source analyst for NBA data</h1>
-          <p className="mt-6 max-w-[420px] text-[17px] leading-[27px] text-ink-2">{copy.hero.sub}</p>
+          <h1 className="text-[40px] leading-[44px] md:text-[56px] md:leading-[58px]">{hero.f.h1}</h1>
+          <p className="mt-6 max-w-[420px] text-[17px] leading-[27px] text-ink-2">{hero.f.sub}</p>
           <div className="mt-8"><Cta /></div>
         </aside>
         <ol id="notebooks" className="relative min-w-0 border-l border-line pl-6 md:pl-10">
@@ -30,7 +32,8 @@ export default function F() {
           ))}
         </ol>
       </main>
-      <div id="skills" className="mx-auto max-w-[1200px] px-0 md:px-6"><HostSection /><Questions /></div>
+      <section id="skills" className="mx-auto mt-24 max-w-[1200px] px-5 md:px-6"><h2 className="mb-6 text-[28px] leading-[34px] md:text-[36px]">Skills store the steps you repeat</h2><SkillRows /></section>
+      <div className="mx-auto max-w-[1200px] px-0 md:px-6"><HostSection /><Questions /></div>
       <div className="mt-24"><Foot /></div>
     </Page>
   );

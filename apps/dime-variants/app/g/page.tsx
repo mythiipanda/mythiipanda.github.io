@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { CommitRows } from "@/components/v/features";
 import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { skills } from "@/components/workbench/data";
 import { Tick } from "@/components/workbench/Primitives";
 import { copy } from "@/lib/copy";
+import { hero } from "@/lib/variants";
 
 export default function G() {
   const [sel, setSel] = useState(0);
@@ -14,8 +16,8 @@ export default function G() {
       <BarNav />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="pt-14 md:pt-20">
-          <h1 className="max-w-[760px] text-[34px] leading-[38px] md:text-[48px] md:leading-[52px]">The open-source analyst for NBA data</h1>
-          <p className="mt-5 max-w-[500px] text-[17px] leading-[27px] text-ink-2">{copy.hero.sub}</p>
+          <h1 className="max-w-[760px] text-[34px] leading-[38px] md:text-[48px] md:leading-[52px]">{hero.g.h1}</h1>
+          <p className="mt-5 max-w-[500px] text-[17px] leading-[27px] text-ink-2">{hero.g.sub}</p>
           <div className="mt-7"><Cta /></div>
         </section>
         <section id="skills" className="mt-16 grid gap-10 border-t border-line pt-10 md:mt-24 md:grid-cols-[1.4fr_1fr] md:gap-16">
@@ -39,7 +41,8 @@ export default function G() {
             <p className="mt-6 text-[14px] leading-[22px] text-ink-3">A skill is a file in your repo. dime loads it when you type / in the composer.</p>
           </div>
         </section>
-        <div id="notebooks"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
+        <section id="notebooks" className="mt-20 md:mt-28"><h2 className="mb-6 text-[28px] leading-[34px] md:text-[36px]">Git keeps the history</h2><CommitRows /></section>
+        <div><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
         <FaqList />
       </main>
       <div className="mt-24"><Foot /></div>

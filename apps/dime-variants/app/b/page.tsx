@@ -1,19 +1,21 @@
-import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
+import { ManSections } from "@/components/v/features";
+import { DockNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { Sql } from "@/components/workbench/Primitives";
 import { rows, runSteps } from "@/components/workbench/data";
+import { hero } from "@/lib/variants";
 import { BlurFade } from "@/components/ui/blur-fade";
 
 export default function B() {
   return (
     <Page v="b">
-      <BarNav max="max-w-[880px]" />
+      <DockNav />
       <main className="mx-auto max-w-[880px] px-5 md:px-6">
         <section className="pt-16 md:pt-24">
-          <h1 className="max-w-[720px] text-[40px] leading-[44px] md:text-[64px] md:leading-[66px]">The open-source analyst for NBA data</h1>
+          <h1 className="max-w-[760px] text-[30px] leading-[36px] md:text-[44px] md:leading-[52px]"><span className="text-[var(--cobalt-tx)]">$ </span>{hero.b.h1}</h1>
           <p className="mt-6 max-w-[520px] text-[17px] leading-[27px] text-ink-2">Ask in plain English. dime writes the SQL, runs it on your DuckDB file and saves every cell to your repo.</p>
           <div className="mt-8"><Cta /></div>
         </section>
-        <section id="notebooks" className="mt-16 md:mt-24">
+        <section className="mt-16 md:mt-24">
           <div className="overflow-hidden rounded-[12px] bg-field font-mono text-[13px] leading-[22px] shadow-[0_0_0_1px_var(--line)]">
             <div className="flex h-9 items-center border-b border-line px-4 text-[11px] text-ink-3">~/dime/wing-efficiency</div>
             <div className="space-y-6 p-5 md:p-7">
@@ -40,12 +42,12 @@ export default function B() {
             </div>
           </div>
         </section>
-        <div id="skills" />
+        <ManSections />
         <h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2>
         <SetupRows />
         <FaqList />
       </main>
-      <div className="mt-24"><Foot max="max-w-[880px]" /></div>
+      <div className="mt-24 pb-14"><Foot max="max-w-[880px]" /></div>
     </Page>
   );
 }

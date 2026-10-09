@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { CapTable } from "@/components/v/features";
 import { BarNav, Cta, FaqList, Foot, Page, SetupRows } from "@/components/v/kit";
 import { tables, schema } from "@/components/workbench/data";
 import { NumberFlow } from "@/components/ui/number-flow";
 import { copy } from "@/lib/copy";
+import { hero } from "@/lib/variants";
 
 export default function E() {
   const [sel, setSel] = useState(0);
@@ -13,8 +15,8 @@ export default function E() {
       <BarNav />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="grid gap-8 pt-14 md:grid-cols-[1.3fr_1fr] md:items-end md:pt-20">
-          <h1 className="text-[40px] leading-[44px] md:text-[64px] md:leading-[66px]">The open-source analyst for NBA data</h1>
-          <div><p className="mb-6 text-[17px] leading-[27px] text-ink-2">{copy.hero.sub}</p><Cta /></div>
+          <h1 className="text-[40px] leading-[44px] md:text-[64px] md:leading-[66px]">{hero.e.h1}</h1>
+          <div><p className="mb-6 text-[17px] leading-[27px] text-ink-2">{hero.e.sub}</p><Cta /></div>
         </section>
         <section id="notebooks" className="mt-14 grid gap-px overflow-hidden rounded-[14px] bg-line shadow-[0_0_0_1px_var(--line)] md:mt-20 md:grid-cols-[1.6fr_1fr]">
           <div className="bg-canvas">
@@ -38,7 +40,7 @@ export default function E() {
             </div>
           </div>
         </section>
-        <div id="skills" />
+        <CapTable />
         <h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /><FaqList />
       </main>
       <div className="mt-24"><Foot /></div>

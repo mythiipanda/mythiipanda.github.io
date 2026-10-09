@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { BarNav, Cta, FaqList, Foot, Frame, Page, SetupRows } from "@/components/v/kit";
 import Workbench, { type Tab } from "@/components/workbench/Workbench";
 import { copy } from "@/lib/copy";
+import { hero } from "@/lib/variants";
 
 const steps: { tab: Tab; title: string; text: string }[] = [
   { tab: "notebook", title: "Ask", text: "Write the question in plain English. Tag a table with @ or a skill with /." },
@@ -27,8 +28,8 @@ export default function I() {
       <BarNav />
       <main className="mx-auto max-w-[1200px] px-5 md:px-6">
         <section className="pt-14 md:pt-20">
-          <h1 className="max-w-[820px] text-[40px] leading-[44px] md:text-[68px] md:leading-[70px]">The open-source analyst for NBA data</h1>
-          <p className="mt-6 max-w-[500px] text-[17px] leading-[27px] text-ink-2">{copy.hero.sub}</p>
+          <h1 className="max-w-[820px] text-[40px] leading-[44px] md:text-[68px] md:leading-[70px]">{hero.i.h1}</h1>
+          <p className="mt-6 max-w-[500px] text-[17px] leading-[27px] text-ink-2">{hero.i.sub}</p>
           <div className="mt-8"><Cta /></div>
         </section>
         <section id="notebooks" className="mt-16 grid gap-10 md:mt-24 lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] lg:gap-14">
