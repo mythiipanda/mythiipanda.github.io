@@ -295,3 +295,7 @@ html[data-theme="light"] [data-v="i"] { --canvas: #F4F6FA; --surface: #F4F6FA; -
   header a[href], header button, footer a[href], main nav a[href], main nav button { min-height: 44px; }
   header a[href]:not([class*="rounded"]), footer a[href] { display: inline-flex; align-items: center; }
 }
+
+code, pre, .font-mono { overflow-wrap: anywhere; }
+li, dd, dt, p, h1, h2, h3 { min-width: 0; }
+.fig, td, th { font-variant-numeric: tabular-nums; }
