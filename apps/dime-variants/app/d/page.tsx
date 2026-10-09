@@ -8,7 +8,7 @@ import { Page, RoadmapRows, FaqList, Foot } from "@/components/v/kit";
 import { REPO } from "@/lib/copy";
 
 const rows: { tab: Tab; title: string; text: string; flip: boolean }[] = [
-  { tab: "notebook", title: "Chat answers fast. Projects keep the work.", text: "Ask in Chat for a quick answer. Send it to a Project and it becomes a notebook of prompt, SQL, Python, chart and markdown cells.", flip: false },
+  { tab: "notebook", title: "Quick questions in Chat, saved work in Projects", text: "Ask in Chat for a quick answer. Send it to a Project and it becomes a notebook of prompt, SQL, Python, chart and markdown cells.", flip: false },
   { tab: "warehouse", title: "One warehouse, pinned by version.", text: "A prebuilt warehouse on Hugging Face, refreshed nightly, is on the roadmap. Each Project pins the version it ran on.", flip: true },
   { tab: "skills", title: "Skills and workflows are plain files.", text: "A skill is a SKILL.md file. A workflow is a skill with parameters that generates a Project. 14 skills exist today.", flip: false },
   { tab: "history", title: "History you can diff.", text: "Projects save as files in git. Commit, review and roll back like any repo.", flip: true },

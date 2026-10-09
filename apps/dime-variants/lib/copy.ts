@@ -9,13 +9,13 @@ export const copy = {
   },
   statement: { lead: "You ask about a lineup.", rest: "dime shows the SQL under the answer. You keep both in a project folder, as plain files you can rerun and commit." },
   pillars: [
-    { title: "Chat answers. Projects keep the work.", text: "Ask in Chat for a quick answer. Send it to a Project and it becomes a notebook of prompt, SQL, Python, chart and markdown cells." },
-    { title: "Skills are plain files", text: "A skill is a SKILL.md file. A workflow is a skill with parameters that generates a whole Project. 14 skills exist today." },
-    { title: "Git holds the history", text: "Projects save as files in git and pin to a warehouse version, so any result can be rerun and diffed." },
+    { title: "Quick questions in Chat, saved work in Projects", text: "Ask in Chat for a quick answer. Send it to a Project and it becomes a notebook of prompt, SQL, Python, chart and markdown cells." },
+    { title: "Skills are SKILL.md files", text: "A skill is a SKILL.md file. A workflow is a skill with parameters that generates a whole Project. 14 skills exist today." },
+    { title: "Every run is a commit", text: "Projects save as files in git and pin to a warehouse version, so any result can be rerun and diffed." },
   ],
   git: { title: "Every answer keeps its query", sub: "dime writes SQL, chart and note cells into one folder per question. They are plain files, so you can diff them, review them and roll them back." },
   skills: {
-    title: "Skills store the steps you repeat",
+    title: "Skills hold the steps you repeat",
     sub: "A skill is a file with the metrics and minute floors you want. dime loads it when you ask.",
     rows: [
       { name: "scouting-report", text: "One page per player: shooting splits, on/off and three comparable players.", runs: "18 runs" },
@@ -28,10 +28,10 @@ export const copy = {
     sub: "Clone the repo, fetch the data pack, add a model key and start the app. The warehouse is one DuckDB file.",
     commands: ["git clone github.com/mythiipanda/dime", "./scripts/fetch-data.sh", "cd frontend && npm run dev"],
     items: [
-      { title: "Your data", text: "nba.duckdb lands in the repo folder after fetch-data.sh." },
-      { title: "Your keys", text: "Your model key goes in a local .env file." },
-      { title: "Your repo", text: "Notebooks save as files you can commit. Remote sync is planned." },
-      { title: "Your projects", text: "One folder per question, with cells you can rerun." },
+      { title: "nba.duckdb", text: "nba.duckdb lands in the repo folder after fetch-data.sh." },
+      { title: ".env", text: "Your model key goes in a local .env file." },
+      { title: "Notebooks", text: "Notebooks save as files you can commit. Remote sync is planned." },
+      { title: "Projects", text: "One folder per question, with cells you can rerun." },
     ],
   },
   faq: [

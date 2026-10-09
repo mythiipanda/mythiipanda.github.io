@@ -281,7 +281,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
           {forced === undefined ? <div className="flex min-w-0 items-center gap-1 overflow-x-auto">
             <AnimatedBackground defaultValue={tab} className="rounded-[7px] bg-hover-2" transition={{ type: "spring", bounce: 0.1, duration: 0.35 }} onValueChange={(v) => v && setTab(v as Tab)}>
               {tabs.map(({ id, label, icon: Icon }) => (
-                <button key={id} data-id={id} type="button" className={`flex h-8 shrink-0 items-center gap-1.5 px-2.5 text-[13px] transition-colors ${tab === id ? "text-ink" : "text-ink-2 hover:text-ink"}`}>
+                <button key={id} data-id={id} type="button" className={`flex h-10 shrink-0 md:h-8 items-center gap-1.5 px-2.5 text-[13px] transition-colors ${tab === id ? "text-ink" : "text-ink-2 hover:text-ink"}`}>
                   <span className="flex items-center gap-1.5"><Icon size={14} />{label}</span>
                 </button>
               ))}

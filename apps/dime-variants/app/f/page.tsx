@@ -30,7 +30,7 @@ export default function F() {
         <section className="mx-auto grid max-w-[1200px] gap-8 px-5 pb-10 pt-16 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-14 md:pt-[110px]">
           <h1 className="text-[48px] leading-[54px] md:text-[74px] md:leading-[88px]"><span className="serif-i block font-normal">The open-source</span>analyst for NBA data</h1>
           <div>
-            <p className="max-w-[360px] text-[17px] leading-[26px] text-ink-2">Chat gives the quick answer. Projects keep the work as notebooks in git. You host it, and any OpenAI-compatible model runs it.</p>
+            <p className="max-w-[360px] text-[17px] leading-[26px] text-ink-2">Chat handles quick questions. Projects are notebooks saved in git. You host it, and any OpenAI-compatible model runs it.</p>
             <div className="mt-7 flex items-center gap-3"><ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink><ButtonLink href="#self-host" variant="ghost">See the setup steps</ButtonLink></div>
           </div>
         </section>

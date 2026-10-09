@@ -55,7 +55,7 @@ export default function G() {
         </section>
         <section id="skills" className="mx-auto max-w-[1100px] px-5 pt-32 md:px-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h2 className="max-w-[520px] text-[32px] leading-[38px] md:text-[44px] md:leading-[50px]">There is a skill for that</h2>
+            <h2 className="max-w-[520px] text-[32px] leading-[38px] md:text-[44px] md:leading-[50px]">14 skills ship in the repo</h2>
             <p className="max-w-[340px] text-[15px] leading-[24px] text-ink-2">A skill is a SKILL.md file. A workflow is a skill with parameters that generates a whole Project. 14 skills exist today.</p>
           </div>
           <div className="mt-10 flex gap-3 overflow-x-auto pb-2">
@@ -70,7 +70,7 @@ export default function G() {
           </div>
         </section>
         <section className="mx-auto max-w-[900px] px-5 pt-32 text-center">
-          <h2 className="text-[32px] leading-[38px] md:text-[44px] md:leading-[50px]">Chat answers. Projects keep the work.</h2>
+          <h2 className="text-[32px] leading-[38px] md:text-[44px] md:leading-[50px]">Quick questions in Chat, saved work in Projects</h2>
           <p className="mx-auto mt-5 max-w-[520px] text-[16px] leading-[25px] text-ink-2">Send an answer to a Project and it becomes a notebook of prompt, SQL, Python, chart and markdown cells, saved as files in git.</p>
         </section>
         <section className="mx-auto max-w-[1100px] px-5 pt-28 md:px-6"><h2 className="mb-8 text-[32px] leading-[38px] md:text-[44px]">Built in this order</h2><RoadmapRows /></section>

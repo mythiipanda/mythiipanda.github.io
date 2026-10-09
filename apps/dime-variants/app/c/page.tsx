@@ -31,7 +31,7 @@ export default function C() {
       <main>
         <section className="mx-auto grid min-h-[820px] max-w-[1320px] items-center gap-10 px-5 py-14 md:px-6 lg:grid-cols-[480px_1fr] lg:gap-16">
           <div>
-            <h1 className="text-[64px] md:text-[96px]">NBA data, answered.</h1>
+            <h1 className="text-[64px] md:text-[96px]">Ask the league anything.</h1>
             <p className="mt-6 max-w-[440px] text-[18px] leading-[27px] text-ink-2">An open-source, self-hostable analyst. Chat for quick questions, Projects for notebooks that live in git.</p>
             <div className="mt-8 flex items-center gap-3">
               <ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink>
@@ -43,7 +43,7 @@ export default function C() {
           </div>
         </section>
         <section id="product" className="mx-auto max-w-[1320px] px-5 py-24 text-center md:px-6">
-          <h2 className="mx-auto max-w-[760px] text-[40px] leading-[48px] md:text-[56px] md:leading-[67px]">Ask this morning, <span className="text-[var(--cobalt-tx)]">rerun</span> next season</h2>
+          <h2 className="mx-auto max-w-[760px] text-[40px] leading-[48px] md:text-[56px] md:leading-[67px]">Every question reruns next <span className="text-[var(--cobalt-tx)]">season</span></h2>
           <p className="mx-auto mt-5 max-w-[520px] text-[18px] leading-[27px] text-ink-2">Every answer is a file you own. Send it to a Project and it keeps its SQL, chart and note.</p>
           <div className="mx-auto mt-10 flex justify-center gap-2">
             {tabs.map((x) => (
