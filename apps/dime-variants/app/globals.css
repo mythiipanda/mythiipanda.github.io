@@ -317,3 +317,16 @@ html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255, 
 html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) transparent; }
 
 [data-v="c"] { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+[data-v="c"] {
+  --foreground: var(--ink); --text-secondary: var(--ink-2); --text-muted: var(--ink-3);
+  --surface: var(--field); --surface-muted: var(--hover); --surface-raised: var(--canvas);
+  --border: var(--line); --border-subtle: var(--line); --border-strong: var(--line-strong);
+  --success: var(--green); --danger: var(--red);
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px;
+  --text-xs: 12px; --text-sm: 13px; --control-height-sm: 32px;
+  --radius-panel: 14px; --radius-control: 8px;
+  --duration-instant: 80ms; --duration-fast: 150ms; --duration-spring: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1); --ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1);
+  --tracking-body: 0; --leading-body: 1.6; --font-body: var(--font-code);
+}
