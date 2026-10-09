@@ -382,3 +382,4 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-dime] .chat-composer textarea::placeholder { color: var(--color-ash-gray); }
 @media (max-width: 640px) { [data-dime] .table-tools .tools-extra { display: none; } }
 @media (prefers-reduced-motion: reduce) { [data-dime] .pulse-dot { animation: none; } }
+[id]{scroll-margin-top:72px}

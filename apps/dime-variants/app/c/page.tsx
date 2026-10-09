@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { CLight } from "@/components/v/CLight";
 import { CSetup } from "@/components/v/CSetup";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
@@ -9,10 +10,17 @@ import { Page, Foot } from "@/components/v/kit";
 import { REPO, short } from "@/lib/copy";
 
 export default function C() {
-    return (
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const f = () => setScrolled(window.scrollY > 8);
+    f();
+    window.addEventListener("scroll", f, { passive: true });
+    return () => window.removeEventListener("scroll", f);
+  }, []);
+  return (
     <Page v="c">
       <CLight />
-      <header className="h-[58px] border-b border-line">
+      <header className={`sticky top-0 z-50 h-[58px] border-b bg-canvas transition-[border-color] duration-200 ${scrolled ? "border-line" : "border-transparent"}`}>
         <nav className="mx-auto grid h-full max-w-[1320px] grid-cols-[auto_1fr_auto] items-center gap-8 px-5 md:px-6">
           <a href="#top" aria-label="dime home"><CLogo /></a>
           <span />
