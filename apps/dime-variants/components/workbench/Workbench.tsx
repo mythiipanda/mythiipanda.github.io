@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { FolderOpen, Zap, Database, GitCommitHorizontal, NotebookPen, CornerDownLeft, GitBranch, ChevronDown, Search } from "lucide-react";
+import { MessageSquare, ArrowUp, FolderOpen, Zap, Database, GitCommitHorizontal, NotebookPen, CornerDownLeft, GitBranch, ChevronDown, Search } from "lucide-react";
 import { DimeMark } from "@/components/product/DimeMark";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { NumberFlow } from "@/components/ui/number-flow";
@@ -12,8 +12,9 @@ import { projects, skills, tables, schema, commits, rows, runSteps } from "./dat
 import { Cell, Pill, Sql, Tick } from "./Primitives";
 import { Shell, SortTable } from "./Artifact";
 
-export type Tab = "notebook" | "warehouse" | "skills" | "history";
+export type Tab = "chat" | "notebook" | "warehouse" | "skills" | "history";
 const tabs: { id: Tab; label: string; icon: typeof NotebookPen }[] = [
+  { id: "chat", label: "Chat", icon: MessageSquare },
   { id: "notebook", label: "Notebook", icon: NotebookPen },
   { id: "warehouse", label: "Warehouse", icon: Database },
   { id: "skills", label: "Skills", icon: Zap },
@@ -21,6 +22,45 @@ const tabs: { id: Tab; label: string; icon: typeof NotebookPen }[] = [
 ];
 
 const ease = [0.23, 1, 0.32, 1] as const;
+
+export function Chat() {
+  return (
+    <div className="mx-auto flex max-w-[680px] flex-col gap-5">
+      <BlurFade delay={0.05} inView={false}>
+        <div className="ml-auto max-w-[520px] rounded-[14px] rounded-br-[4px] bg-field px-3.5 py-2.5 text-[14px] leading-[22px] text-ink shadow-[0_0_0_1px_var(--line)]">
+          Which wings over 500 minutes have the best true shooting this season?
+        </div>
+      </BlurFade>
+      <BlurFade delay={0.4}>
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-wrap items-center gap-1.5">
+            {runSteps.slice(0, 3).map((st) => (
+              <span key={st.label} className="inline-flex h-6 items-center gap-1.5 rounded-full bg-field px-2.5 text-[11.5px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">
+                <Tick />
+                {st.label}
+                <span className="font-mono text-ink-3">{st.ms}</span>
+              </span>
+            ))}
+          </div>
+          <p className="text-[14px] leading-[22px] text-ink">
+            <b className="font-medium">Okafor leads at 68.4%</b> on 27.1 usage. Reyes is within half a point with three fewer usage points. 61 wings clear the 500 minute floor.
+          </p>
+          <Shell title="League wings" source="player_season · 5 of 61" copyText="select player, team, ts_pct, usg_pct from metrics.player_season">
+            <SortTable
+              columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
+              rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
+            />
+          </Shell>
+          <div className="flex flex-wrap gap-1.5">
+            {["Clutch splits?", "Compare Okafor and Reyes", "Send to Project"].map((q, i) => (
+              <button key={q} type="button" className={`h-8 rounded-full px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? "bg-ink text-canvas hover:bg-ink" : "text-ink-2"}`}>{q}</button>
+            ))}
+          </div>
+        </div>
+      </BlurFade>
+    </div>
+  );
+}
 
 export function Notebook() {
   return (
@@ -294,6 +334,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
         <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4 md:px-6 md:py-5">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div key={tab} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.18, ease }}>
+              {tab === "chat" && <Chat />}
               {tab === "notebook" && <Notebook />}
               {tab === "warehouse" && <Warehouse />}
               {tab === "skills" && <Skills />}

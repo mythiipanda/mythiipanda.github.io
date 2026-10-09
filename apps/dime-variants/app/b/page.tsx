@@ -73,7 +73,7 @@ export default function B() {
           <h2 className="mb-8 text-[26px] leading-[32px] md:text-[34px]">Runs on your machine</h2>
           <SetupRows />
         </Sheet>
-        <Close max="max-w-[1200px]" />
+        <Close max="max-w-[1200px]" cmd={false} />
       </main>
       <div className="pb-14"><Foot max="max-w-[1200px]" /></div>
     </Page>

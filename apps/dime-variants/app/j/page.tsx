@@ -4,7 +4,7 @@ import { Close } from "@/components/v/Close";
 import { useEffect, useState, type ReactNode } from "react";
 import { Foot, Page } from "@/components/v/kit";
 import { NumberFlow } from "@/components/ui/number-flow";
-import { Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
+import { Chat, Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
 import { REPO, copy } from "@/lib/copy";
@@ -38,7 +38,7 @@ export default function J() {
           <p className="mt-4 text-[17px] leading-[26px] text-ink-2">Chat for quick questions. Projects for the work you keep.</p>
         </section>
         <section className="grid gap-4 md:grid-cols-2">
-          <Tile label="Notebook"><Notebook /></Tile>
+          <Tile label="Chat"><Chat /></Tile>
           <Tile label="Sample run" className="bg-[var(--cobalt)] text-white">
             <div className="absolute inset-0 flex flex-col justify-end gap-8 p-6 md:p-10">
               {figs.map((f) => (
@@ -55,7 +55,7 @@ export default function J() {
             </ol>
           </Tile>
         </section>
-        <Close max="max-w-[1100px]" flush />
+        <Close max="max-w-[1100px]" flush cmd={false} />
       </main>
       <div className="mt-24"><Foot max="max-w-[1100px]" /></div>
     </Page>

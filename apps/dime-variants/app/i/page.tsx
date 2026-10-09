@@ -1,6 +1,6 @@
 import { Close } from "@/components/v/Close";
 import { Foot, Page, SetupRows } from "@/components/v/kit";
-import { Notebook, Warehouse, Skills, History, Inspector } from "@/components/workbench/Workbench";
+import { Chat, Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
 import { REPO } from "@/lib/copy";
@@ -38,8 +38,8 @@ export default function I() {
         </section>
         <Index n="01" label="Chat and Projects" />
         <div className="grid gap-4 md:grid-cols-2">
-          <Tile name="Notebook" note="Sample"><Notebook /></Tile>
-          <Tile name="Inspector" note="Sample" span="hidden md:flex"><Inspector /></Tile>
+          <Tile name="Chat" note="Quick questions"><Chat /></Tile>
+          <Tile name="Notebook" note="Saved work"><Notebook /></Tile>
         </div>
         <Index n="02" label="Data and skills" />
         <div className="grid gap-4 md:grid-cols-2">
@@ -52,7 +52,7 @@ export default function I() {
         </div>
         <Index n="04" label="Setup" />
         <div id="self-host"><SetupRows /></div>
-        <Close max="max-w-[1280px]" flush />
+        <Close max="max-w-[1280px]" flush cmd={false} />
       </main>
       <div className="mt-24"><Foot max="max-w-[1280px]" /></div>
     </Page>

@@ -3,13 +3,14 @@
 import { Close } from "@/components/v/Close";
 import { useState, type ReactNode } from "react";
 import { Foot, Page, SetupRows } from "@/components/v/kit";
-import { Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
+import { Chat, Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
 import { REPO } from "@/lib/copy";
 
 const items: { id: string; name: string; tag: string; node: ReactNode }[] = [
-  { id: "chat", name: "Notebook", tag: "Projects", node: <Notebook /> },
+  { id: "chat", name: "Chat", tag: "Chat", node: <Chat /> },
+  { id: "notebook", name: "Notebook", tag: "Projects", node: <Notebook /> },
   { id: "data", name: "Warehouse", tag: "DuckDB", node: <Warehouse /> },
   { id: "skills", name: "Skills", tag: "SKILL.md", node: <Skills /> },
   { id: "git", name: "History", tag: "Git", node: <History /> },
@@ -44,7 +45,7 @@ export default function E() {
         </div>
         <h2 className="mb-6 mt-20 text-[22px] leading-[35px]">Run it</h2>
         <div id="self-host"><SetupRows /></div>
-        <Close max="max-w-[760px]" flush />
+        <Close max="max-w-[760px]" flush cmd={false} />
       </main>
       <Foot max="max-w-[760px]" />
     </Page>

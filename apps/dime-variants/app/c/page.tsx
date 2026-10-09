@@ -40,7 +40,7 @@ export default function C() {
             </div>
           </div>
           <div className="min-w-0 lg:-mr-[max(0px,calc((100vw-1320px)/2+24px))]">
-            <div className="h-[560px] overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] md:h-[680px] lg:rounded-r-none"><Workbench bare initialTab="notebook" /></div>
+            <div className="h-[560px] overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] md:h-[680px] lg:rounded-r-none"><Workbench bare initialTab="chat" /></div>
           </div>
         </section>
         <section id="product" className="mx-auto max-w-[1320px] px-5 py-20 text-center md:px-6">

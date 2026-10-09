@@ -2,7 +2,7 @@ import { Close } from "@/components/v/Close";
 import type { ReactNode } from "react";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
-import { Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
+import { Chat, Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
 import { Page, RoadmapRows, FaqList, Foot } from "@/components/v/kit";
 import { REPO } from "@/lib/copy";
 
@@ -38,7 +38,7 @@ export default function F() {
         <section id="product" className="mx-auto max-w-[1300px] px-3 md:px-6">
           <div className="grid gap-4 md:grid-cols-[1fr_1.35fr_1fr] md:items-start">
             <Win title="wing-efficiency / notebook" className="md:mt-16"><Notebook /></Win>
-            <Win title="chat" className="md:z-10 md:scale-[1.03]"><Notebook /></Win>
+            <Win title="chat" className="md:z-10 md:scale-[1.03]"><Chat /></Win>
             <Win title="history" className="md:mt-16"><History /></Win>
           </div>
           <div className="mt-10 flex flex-wrap justify-center gap-2">

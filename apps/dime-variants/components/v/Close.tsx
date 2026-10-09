@@ -27,13 +27,13 @@ function CopyCmd() {
   );
 }
 
-export function Close({ max = "max-w-[1200px]", center = false, title = "Run it on your machine.", flush = false }: { max?: string; center?: boolean; title?: string; flush?: boolean }) {
+export function Close({ max = "max-w-[1200px]", center = false, title = "Run it on your machine.", flush = false, cmd = true }: { max?: string; center?: boolean; title?: string; flush?: boolean; cmd?: boolean }) {
   return (
     <section id="close" className={flush ? "pt-10 md:pt-16" : `mx-auto ${max} px-5 pt-10 md:px-6 md:pt-16`}>
       <div className={`flex flex-col gap-8 border-t border-line pt-12 md:pt-16 ${center ? "items-center text-center" : "items-start md:flex-row md:items-end md:justify-between"}`}>
         <div className={`flex w-full min-w-0 flex-col gap-5 md:w-auto ${center ? "items-center" : "items-start"}`}>
           <h2 className="text-[28px] leading-[34px] md:text-[36px] md:leading-[42px]">{title}</h2>
-          <CopyCmd />
+          {cmd && <CopyCmd />}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink>
