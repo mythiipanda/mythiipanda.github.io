@@ -1,7 +1,10 @@
 "use client";
 
+import GlideMenu from "@/components/primitives/GlideMenu";
+import ToolChips from "@/components/primitives/ToolChips";
 import { CMark } from "@/components/v/CMark";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { CalendarBlank, ChatCircle, Compass, PencilSimpleLine, SidebarSimple } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChatCircle as MessageSquare, ArrowUp, FolderOpen, Lightning as Zap, Database, GitCommit as GitCommitHorizontal, Notebook as NotebookPen, ArrowElbowDownLeft as CornerDownLeft, GitBranch, CaretDown as ChevronDown, MagnifyingGlass as Search } from "@phosphor-icons/react";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -23,6 +26,12 @@ const tabs: { id: Tab; label: string; icon: typeof NotebookPen }[] = [
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
+const chatSteps = [
+  { icon: "read", label: "Read skill", chip: "leaderboard", mono: true, detailMono: true, detail: [{ text: "backend/v2/skills/leaderboard" }] },
+  { icon: "write", label: "Write SQL", chip: "cells/02-sql.sql", mono: true, detailMono: true, detail: [{ text: "select PLAYER_NAME, TS_PCT, USG_PCT" }, { text: "from silver_advanced" }] },
+  { icon: "db", label: "Run on DuckDB", chip: "164 rows in 41 ms", mono: true, detailMono: true, detail: [{ text: "warehouse.duckdb, 582 rows scanned" }] },
+];
+
 export function Chat() {
   return (
     <div className="mx-auto flex max-w-[680px] flex-col gap-5">
@@ -35,15 +44,10 @@ export function Chat() {
         <div className="flex gap-3">
           <CMark size={22} className="mt-px shrink-0" />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
-            <div className="flex flex-wrap items-center gap-1.5">
-              {runSteps.slice(0, 3).map((st) => (
-                <span key={st.label} className="inline-flex h-6 items-center gap-1.5 rounded-full bg-field px-2.5 text-[11.5px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">
-                  <Tick />
-                  {st.label}
-                  <span className="font-mono text-ink-3">{st.ms}</span>
-                </span>
-              ))}
-            </div>
+            <ToolChips
+              steps={chatSteps}
+              labels={{ header: "3 tool calls" }}
+            />
             <p className="text-[14px] leading-[22px] text-ink">
               <b className="font-medium">Luke Kennard leads at 68.9%</b> on 13.1 usage. Jalen Duren is a tenth behind at 68.8%. 164 players clear the 1,500 minute floor.
             </p>
@@ -241,47 +245,70 @@ export function History() {
   );
 }
 
+function RailRow({ icon, label, active, mono, trail, onClick }: { icon?: ReactNode; label: string; active?: boolean; mono?: boolean; trail?: string; onClick?: () => void }) {
+  return (
+    <button
+      data-row
+      type="button"
+      onClick={onClick}
+      className={`relative z-10 mx-2 flex h-8 w-[calc(100%-16px)] items-center rounded-[8px] px-2 text-left transition-transform duration-150 active:scale-[0.98] ${active ? "bg-hover-2" : ""}`}
+    >
+      {icon && <span className={`mr-1.5 flex size-5 shrink-0 items-center justify-center ${active ? "text-ink" : "text-ink-2"}`}>{icon}</span>}
+      <span className={`min-w-0 flex-1 truncate ${mono ? "font-mono text-[12.5px]" : "text-[14px] font-medium"} ${active ? "text-ink" : "text-ink-2"}`}>{label}</span>
+      {trail && <span className="ml-2 shrink-0 text-[12px] tabular-nums text-ink-3">{trail}</span>}
+    </button>
+  );
+}
+
+function RailGroup({ children }: { children: ReactNode }) {
+  return (
+    <GlideMenu rowSelector="[data-row]" highlightClassName="inset-x-2 rounded-[8px] bg-hover-2" className="flex flex-col gap-px">
+      {children}
+    </GlideMenu>
+  );
+}
+
+function RailLabel({ children }: { children: ReactNode }) {
+  return <div className="mx-2 mb-1 flex h-7 items-center px-2 text-[12.5px] font-medium text-ink-3">{children}</div>;
+}
+
 function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
   return (
-    <aside className="hidden w-[232px] shrink-0 flex-col border-r border-line bg-field lg:flex">
-      <div className="flex h-12 items-center justify-between px-3.5">
+    <aside className="hidden w-[224px] shrink-0 flex-col border-r border-line bg-field pb-2 lg:flex">
+      <div className="mb-2.5 flex h-10 items-center justify-between pl-4 pr-3.5">
         <span className="flex items-center gap-2 text-[14px] font-semibold"><CMark size={16} /><span>dime<span className="text-[var(--cobalt-tx)]">.</span></span></span>
-        <Search size={14} className="text-ink-3" />
+        <SidebarSimple size={18} className="text-ink-3" />
       </div>
-      <div className="px-2">
-        <button type="button" onClick={() => setTab("notebook")} className="flex h-8 w-full items-center justify-between rounded-[7px] px-2 text-[13px] text-ink-2 shadow-[0_0_0_1px_var(--line)] hover:bg-hover">
-          <span className="flex items-center gap-2 text-ink"><FolderOpen size={14} />nba-2025</span>
-          <ChevronDown size={14} />
-        </button>
+      <RailGroup>
+        <RailRow icon={<PencilSimpleLine size={18} />} label="New analysis" onClick={() => setTab("chat")} />
+      </RailGroup>
+      <div className="mt-3">
+        <RailGroup>
+          <RailRow icon={<ChatCircle size={18} />} label="Chat" active={tab === "chat"} onClick={() => setTab("chat")} />
+          <RailRow icon={<CalendarBlank size={18} />} label="Today" />
+          <RailRow icon={<Compass size={18} />} label="Explore" />
+        </RailGroup>
       </div>
-      <div className="mt-4 px-3.5 text-[11px] text-ink-3">Notebooks</div>
-      <nav className="mt-1.5 flex flex-col gap-0.5 px-2">
-        {projects.map((p) => (
-          <button key={p.name} type="button" onClick={() => setTab("notebook")} className={`flex h-8 items-center justify-between rounded-[7px] px-2 text-[13px] ${p.active ? "bg-hover-2 text-ink" : "text-ink-2 hover:bg-hover"}`}>
-            <span className="flex items-center gap-2 truncate font-mono text-[12px]"><NotebookPen size={13} className="text-ink-3" />{p.name}</span>
-            <span className="font-mono text-[10.5px] text-ink-3">{p.cells}</span>
-          </button>
-        ))}
-      </nav>
-      <div className="mt-5 px-3.5 text-[11px] text-ink-3">Skills</div>
-      <nav className="mt-1.5 flex flex-col gap-0.5 px-2">
-        {skills.map((s) => (
-          <button key={s.name} type="button" onClick={() => setTab("skills")} className="flex h-8 items-center gap-2 rounded-[7px] px-2 font-mono text-[12px] text-ink-2 hover:bg-hover">
-            <Zap size={13} className="text-ink-3" />{s.name}
-          </button>
-        ))}
-      </nav>
-      <div className="mt-5 px-3.5 text-[11px] text-ink-3">Warehouse</div>
-      <nav className="mt-1.5 flex flex-col gap-0.5 px-2">
-        {tables.slice(0, 4).map((t) => (
-          <button key={t.name} type="button" onClick={() => setTab("warehouse")} className="flex h-8 items-center gap-2 rounded-[7px] px-2 font-mono text-[12px] text-ink-2 hover:bg-hover">
-            <Database size={13} className="text-ink-3" />{t.name}
-          </button>
-        ))}
-      </nav>
-      <div className="mt-auto flex h-10 items-center gap-2 border-t border-line px-3.5 font-mono text-[11.5px] text-ink-2">
-        <GitBranch size={13} className="text-ink-3" />main
-        <span className="ml-auto text-ink-3">4 ahead</span>
+      <div className="mt-4">
+        <RailLabel>Analyses</RailLabel>
+        <RailGroup>
+          {projects.map((p) => (
+            <RailRow key={p.name} label={p.name} active={tab === "notebook"} onClick={() => setTab("notebook")} />
+          ))}
+        </RailGroup>
+      </div>
+      <div className="mt-4">
+        <RailLabel>Warehouse</RailLabel>
+        <RailGroup>
+          {tables.slice(0, 4).map((t) => (
+            <RailRow key={t.name} label={t.name} mono trail={t.rows} onClick={() => setTab("warehouse")} />
+          ))}
+        </RailGroup>
+      </div>
+      <div className="mx-2 mt-auto border-t border-line pt-3">
+        <div className="flex h-8 items-center gap-2 px-2 font-mono text-[12px] text-ink-2">
+          <GitBranch size={16} className="text-ink-3" />main
+        </div>
       </div>
     </aside>
   );

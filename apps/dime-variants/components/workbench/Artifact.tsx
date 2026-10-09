@@ -26,10 +26,10 @@ export function Shell({ title, source, copyText, children }: { title: string; so
         <span className="truncate text-[13px] font-medium text-ink">{title}</span>
         <div className="flex items-center gap-0.5">
           {source && <span className="mr-1.5 hidden truncate font-mono text-[11px] text-ink-3 sm:block">{source}</span>}
-          <button type="button" aria-label={tall ? "Collapse" : "Expand"} onClick={() => setTall((v) => !v)} className={iconBtn}>
+          <button type="button" aria-label={tall ? "Collapse" : "Expand"} onClick={() => setTall((v) => !v)} className={`${iconBtn} hidden md:inline-flex`}>
             {tall ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
           </button>
-          <button type="button" aria-label="Copy" onClick={copy} className={iconBtn}>
+          <button type="button" aria-label="Copy" onClick={copy} className={`${iconBtn} hidden md:inline-flex`}>
             {copied ? <Check size={14} /> : <Copy size={14} />}
           </button>
         </div>
