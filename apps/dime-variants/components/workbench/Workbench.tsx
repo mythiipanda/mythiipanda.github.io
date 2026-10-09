@@ -32,6 +32,29 @@ const chatSteps = [
   { icon: "db", label: "Run on DuckDB", chip: "164 rows in 41 ms", mono: true, detailMono: true, detail: [{ text: "warehouse.duckdb, 582 rows scanned" }] },
 ];
 
+function Composer() {
+  const [elapsed, setElapsed] = useState(0);
+  const [live, setLive] = useState(true);
+  useEffect(() => {
+    const t = setInterval(() => setElapsed((e) => e + 1), 1000);
+    const stop = setTimeout(() => { setLive(false); clearInterval(t); }, 3600);
+    return () => { clearInterval(t); clearTimeout(stop); };
+  }, []);
+  return (
+    <div className="flex min-h-11 items-center gap-3 rounded-[12px] bg-surface py-1.5 pl-4 pr-1.5 shadow-[0_0_0_1px_var(--line-strong)]">
+      <span className="flex-1 truncate text-[14px] text-ink-3">Ask about a player, team, lineup, trade, or trend...</span>
+      {live ? (
+        <span className="inline-flex h-8 items-center gap-2 rounded-[8px] bg-ink px-3 text-[12.5px] font-medium text-canvas tabular-nums">
+          <span className="size-2 rounded-[2px] bg-canvas" />
+          Stop {elapsed}s
+        </span>
+      ) : (
+        <span aria-label="Send" className="flex size-8 items-center justify-center rounded-[8px] bg-hover-2 text-ink-3"><ArrowUp size={16} weight="bold" /></span>
+      )}
+    </div>
+  );
+}
+
 export function Chat() {
   return (
     <div className="mx-auto flex max-w-[680px] flex-col gap-5">
@@ -102,15 +125,7 @@ export function Notebook() {
         </Cell>
       </BlurFade>
       <BlurFade delay={0.3}>
-        <div className="flex flex-wrap items-center gap-1.5 px-1">
-          {runSteps.slice(0, 3).map((st) => (
-            <span key={st.label} className="inline-flex h-6 items-center gap-1.5 rounded-full bg-field px-2.5 text-[11.5px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">
-              <Tick />
-              {st.label}
-              <span className="font-mono text-ink-3">{st.ms}</span>
-            </span>
-          ))}
-        </div>
+        <div className="px-1"><ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} /></div>
       </BlurFade>
       <BlurFade delay={0.45}>
         <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">164 rows</span></span>}>
@@ -196,13 +211,22 @@ export function Skills() {
       <ul className="divide-y divide-line">
         {skills.map((s, i) => (
           <BlurFade key={s.name} delay={0.06 * i} duration={0.3}>
-            <li className="px-4 py-3.5">
-              <div className="flex items-center justify-between gap-3">
-                <b className="flex min-w-0 items-center gap-2 font-mono text-[13px] font-medium"><Zap size={14} className="shrink-0 text-ink-3" /><span className="truncate">{s.name}</span></b>
-                <span className="shrink-0 font-mono text-[11.5px] text-ink-3">{s.runs}</span>
+            <li className="flex gap-3 px-4 py-3.5">
+              <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-[8px] bg-surface text-ink-2 shadow-[0_0_0_1px_var(--line)]"><Zap size={15} /></span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-3">
+                  <b className="truncate text-[14px] font-medium text-ink">{s.name}</b>
+                  <span className="shrink-0 font-mono text-[11.5px] text-ink-3">{s.runs}</span>
+                </div>
+                <p className="mt-0.5 text-[13px] leading-[20px] text-ink-2">{s.text}</p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {s.steps.map((st, k) => (
+                    <span key={st} className="inline-flex h-6 items-center gap-1.5 rounded-[6px] bg-surface px-2 text-[12px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">
+                      <span className="font-mono text-[10.5px] tabular-nums text-ink-3">{k + 1}</span>{st}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <p className="mt-1 text-[13px] leading-[20px] text-ink-2">{s.text}</p>
-              <p className="mt-2 font-mono text-[11.5px] leading-[18px] text-ink-3">{s.steps.join("  /  ")}</p>
             </li>
           </BlurFade>
         ))}
@@ -393,10 +417,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
           </AnimatePresence>
         </div>
         <div className={`shrink-0 border-t border-line p-3 md:px-6 ${bare ? "hidden" : ""}`}>
-          <div className="flex h-11 items-center gap-3 rounded-[10px] bg-field px-3.5 shadow-[0_0_0_1px_var(--line-strong)]">
-            <span className="flex-1 truncate text-[13.5px] text-ink-3">Ask a question, or press <Kbd>/</Kbd> for skills and <Kbd>@</Kbd> for tables</span>
-            <span className="hidden items-center gap-1 text-[11px] text-ink-3 sm:flex">Run <CornerDownLeft size={12} /></span>
-          </div>
+          <Composer />
         </div>
       </div>
       {!bare && <Inspector />}

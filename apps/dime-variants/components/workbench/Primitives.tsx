@@ -17,30 +17,27 @@ export function Sql() {
 
 export function Pill({ children, tone = "plain" }: { children: React.ReactNode; tone?: "plain" | "ok" }) {
   return (
-    <span className={`inline-flex h-5 items-center rounded-[5px] px-1.5 font-mono text-[11px] ${tone === "ok" ? "bg-green-tint text-green" : "bg-field text-ink-2 shadow-[0_0_0_1px_var(--line)]"}`}>
+    <span className={`inline-flex h-5 items-center rounded-[5px] px-1.5 font-mono text-[11px] ${tone === "ok" ? "bg-field text-ink-2 shadow-[0_0_0_1px_var(--line)]" : "bg-field text-ink-2 shadow-[0_0_0_1px_var(--line)]"}`}>
       {children}
     </span>
   );
 }
 
 export function Tick() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="text-green">
-      <path d="m3.5 8.5 3 3 6-7" />
-    </svg>
-  );
+  return <span aria-hidden className="block size-1.5 rounded-full bg-ink-3" />;
 }
 
 export function Cell({ n, kind, meta, children }: { n: number; kind: string; meta?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <section className="group relative rounded-[10px] bg-canvas shadow-[0_0_0_1px_var(--line)] transition-shadow hover:shadow-[0_0_0_1px_var(--line-strong)]">
-      <header className="flex h-8 items-center justify-between border-b border-line px-4 text-[11px] text-ink-3">
-        <span className="font-mono">
-          <b className="font-medium text-ink-2">{n}</b> · {kind}
+    <section className="group relative overflow-hidden rounded-[12px] bg-surface shadow-[0_0_0_1px_var(--line)] transition-shadow hover:shadow-[0_0_0_1px_var(--line-strong)]">
+      <header className="flex h-10 items-center justify-between gap-3 border-b border-line px-3.5 text-[12px] text-ink-3">
+        <span className="flex items-center gap-2">
+          <span className="flex size-5 items-center justify-center rounded-[6px] bg-hover-2 font-mono text-[11px] tabular-nums text-ink-2">{n}</span>
+          <span className="text-[12.5px] font-medium capitalize text-ink-2">{kind}</span>
         </span>
         {meta}
       </header>
-      <div className="p-3.5">{children}</div>
+      <div className="p-4">{children}</div>
     </section>
   );
 }
