@@ -213,7 +213,6 @@ export default function ThreadRail({
                         margin: "0 8px",
                         fontSize: 13,
                         background: isSelected ? "var(--color-field)" : "transparent",
-                        boxShadow: isSelected ? "inset 2px 0 0 var(--accent)" : "none",
                         border: "none",
                         cursor: "pointer",
                         width: "calc(100% - 16px)",

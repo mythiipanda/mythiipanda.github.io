@@ -461,7 +461,7 @@ const threadSeed = [
 function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
   const threads = threadSeed.map((t) => ({ id: t.id, title: t.title, turns: t.turns, updated: new Date(Date.now() - t.hours * 3600000).toISOString() }));
   return (
-    <aside className="hidden w-[232px] shrink-0 lg:block">
+    <aside data-sidebar="frozen" className="hidden w-[232px] shrink-0 lg:block">
       <ThreadRail threads={threads} active="true-shooting" onSelect={() => setTab("chat")} onNew={() => setTab("chat")} onHomeClick={() => setTab("chat")} onSearch={() => setTab("warehouse")} />
     </aside>
   );
