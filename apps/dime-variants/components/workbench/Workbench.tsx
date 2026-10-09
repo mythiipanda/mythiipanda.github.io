@@ -215,7 +215,43 @@ export function Notebook() {
   );
 }
 
+const tableList = tables.map((t) => ({ TABLE: t.name, ROWS: t.rows, COLS: t.cols, REFRESHED: t.fresh }));
+
+function DimeCard({ title, source, quiet, children }: { title: string; source?: string; quiet?: boolean; children: ReactNode }) {
+  return (
+    <div className="overflow-hidden rounded-[10px] bg-canvas shadow-[0_0_0_1px_var(--line)]">
+      <div className="flex h-10 items-center justify-between border-b border-line px-4">
+        <span className="truncate text-[13px] font-medium text-ink">{title}</span>
+        {source && <span className="truncate font-mono text-[11px] text-ink-3">{source}</span>}
+      </div>
+      <div className={`p-3 ${quiet ? "[&_.table-tools]:hidden" : ""}`}>{children}</div>
+    </div>
+  );
+}
+
 export function Warehouse() {
+  const dime = useContext(DimeCtx);
+  if (dime) {
+    return (
+      <div className="flex flex-col gap-3">
+        <div className="grid gap-3 lg:grid-cols-[1fr_240px]">
+          <DimeCard title="Tables" source="warehouse.duckdb" quiet><DataTable rows={tableList} storeKey="wh-tables" /></DimeCard>
+          <div className="rounded-[10px] shadow-[0_0_0_1px_var(--line)]">
+            <div className="flex h-10 items-center border-b border-line px-4 text-[13px] font-medium text-ink">silver_advanced</div>
+            <div className="px-4 py-2">
+              {schema.map(([c, t]) => (
+                <div key={c} className="flex h-7 items-center justify-between text-[12.5px]">
+                  <span className="font-mono text-ink">{c}</span>
+                  <span className="font-mono text-ink-3">{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <DimeCard title="Preview" source="silver_advanced · 5 of 582"><DataTable rows={tableRows} storeKey="wh-preview" /></DimeCard>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col gap-3">
       <div className="grid gap-3 lg:grid-cols-[1fr_240px]">
