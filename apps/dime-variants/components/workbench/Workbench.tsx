@@ -34,6 +34,17 @@ export function Notebook() {
           </div>
         </Cell>
       </BlurFade>
+      <BlurFade delay={0.3}>
+        <div className="flex flex-wrap items-center gap-1.5 px-1">
+          {runSteps.slice(0, 3).map((st) => (
+            <span key={st.label} className="inline-flex h-6 items-center gap-1.5 rounded-full bg-field px-2.5 text-[11.5px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">
+              <Tick />
+              {st.label}
+              <span className="font-mono text-ink-3">{st.ms}</span>
+            </span>
+          ))}
+        </div>
+      </BlurFade>
       <BlurFade delay={0.45}>
         <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">61 rows</span></span>}>
           <Sql />
