@@ -1,9 +1,9 @@
 "use client";
 
+import { CMark } from "@/components/v/CMark";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChatCircle as MessageSquare, ArrowUp, FolderOpen, Lightning as Zap, Database, GitCommit as GitCommitHorizontal, Notebook as NotebookPen, ArrowElbowDownLeft as CornerDownLeft, GitBranch, CaretDown as ChevronDown, MagnifyingGlass as Search } from "@phosphor-icons/react";
-import { DimeMark } from "@/components/product/DimeMark";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { NumberFlow } from "@/components/ui/number-flow";
 import { Kbd } from "@/components/ui/kbd";
@@ -33,7 +33,7 @@ export function Chat() {
       </BlurFade>
       <BlurFade delay={0.4}>
         <div className="flex gap-3">
-          <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-canvas"><DimeMark size={13} /></span>
+          <CMark size={22} className="mt-px shrink-0" />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
             <div className="flex flex-wrap items-center gap-1.5">
               {runSteps.slice(0, 3).map((st) => (
@@ -61,7 +61,7 @@ export function Chat() {
       </BlurFade>
       <BlurFade delay={1.2}>
         <div className="flex gap-3">
-          <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-canvas"><DimeMark size={13} /></span>
+          <CMark size={22} className="mt-px shrink-0" />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
             <p className="text-[14px] leading-[22px] text-ink"><b className="font-medium">Nikola Jokić at 28.9%</b>, well ahead of Duren at 23.1%.</p>
             <ul className="flex flex-col gap-1.5 rounded-[10px] bg-field p-3 shadow-[0_0_0_1px_var(--line)]">
@@ -245,7 +245,7 @@ function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
   return (
     <aside className="hidden w-[232px] shrink-0 flex-col border-r border-line bg-field lg:flex">
       <div className="flex h-12 items-center justify-between px-3.5">
-        <span className="flex items-center gap-2 text-[14px] font-semibold"><DimeMark size={17} /><span>dime<span className="text-[var(--cobalt-tx)]">.</span></span></span>
+        <span className="flex items-center gap-2 text-[14px] font-semibold"><CMark size={16} /><span>dime<span className="text-[var(--cobalt-tx)]">.</span></span></span>
         <Search size={14} className="text-ink-3" />
       </div>
       <div className="px-2">
