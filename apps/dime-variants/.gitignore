@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+.brief
+tsconfig.tsbuildinfo
+.env*
+.agents
+.brief
+skills-lock.json

@@ -26,6 +26,15 @@ jobs:
         env:
           BASE_PATH: /dime-site
       - run: cp -r apps/dime-landing/out dist/dime-site
+      - run: npm ci --prefix apps/dime-variants
+      - run: npm run build --prefix apps/dime-variants
+        env:
+          BASE_PATH: /dime-site
+          ASSET_PREFIX: /dime-site/vx
+      - run: |
+          mkdir -p dist/dime-site/vx
+          cp -r apps/dime-variants/out/_next dist/dime-site/vx/_next
+          for l in a b c d e f g h i j; do cp -r apps/dime-variants/out/$l dist/dime-site/$l; done
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
