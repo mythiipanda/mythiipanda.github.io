@@ -1,11 +1,11 @@
 "use client";
 
-import { Close } from "@/components/v/Close";
-import { ThemeToggle } from "@/components/landing/Nav";
+import { CTheme } from "@/components/v/CTheme";
+import { CSetup } from "@/components/v/CSetup";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
 import { CLogo } from "@/components/v/CLogo";
 import Workbench, { Notebook, Warehouse, Skills, History } from "@/components/workbench/Workbench";
-import { Page, Foot, SetupRows } from "@/components/v/kit";
+import { Page, Foot } from "@/components/v/kit";
 import { REPO, short } from "@/lib/copy";
 
 const tabs = [
@@ -22,7 +22,7 @@ export default function C() {
         <nav className="mx-auto grid h-full max-w-[1320px] grid-cols-[auto_1fr_auto] items-center gap-8 px-5 md:px-6">
           <a href="#top" aria-label="dime home"><CLogo /></a>
           <div className="hidden gap-8 text-[14px] text-ink-2 md:flex"><a href="#product" className="transition-colors duration-150 hover:text-ink">Product</a><a href="#self-host" className="transition-colors duration-150 hover:text-ink">Setup</a></div>
-          <div className="col-start-3 flex items-center gap-2"><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />{short.star}</ButtonLink></div>
+          <div className="col-start-3 flex items-center gap-2"><CTheme /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />{short.star}</ButtonLink></div>
         </nav>
       </header>
       <main>
@@ -56,10 +56,9 @@ export default function C() {
             ))}
           </div>
         </section>
-        <div className="mx-auto max-w-[1320px] px-5 md:px-6"><SetupRows title /></div>
-        <Close max="max-w-[1320px]" />
+        <CSetup />
       </main>
-      <div className="mt-24"><Foot brand max="max-w-[1320px]" /></div>
+      <div><Foot brand max="max-w-[1320px]" /></div>
     </Page>
   );
 }
