@@ -428,6 +428,7 @@ export function Inspector() {
   }, []);
   return (
     <aside className="hidden w-[248px] shrink-0 flex-col gap-5 border-l border-line bg-field p-4 xl:flex">
+      {!dime && (
       <div>
         <div className="mb-2.5 text-[11px] text-ink-3">Run</div>
         <ol className="flex flex-col">
@@ -445,6 +446,7 @@ export function Inspector() {
           ))}
         </ol>
       </div>
+      )}
       <div className="rounded-[10px] bg-canvas p-3.5 shadow-[0_0_0_1px_var(--line)]">
         <div className="mb-2 flex items-center justify-between text-[11px] text-ink-3"><span>Staged</span><span className="font-mono">main</span></div>
         <div className="font-mono text-[11.5px] leading-[20px] text-ink-2">
