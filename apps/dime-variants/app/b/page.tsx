@@ -32,7 +32,7 @@ export default function B() {
         <Sheet id="notebooks" k="notebook" label="01">
           <div className="grid gap-10">
             <div className="flex flex-col gap-3">
-              <Cell n={1} kind="prompt"><p className="text-[13px] text-ink">Which wings over 500 minutes have the best true shooting?</p></Cell>
+              <Cell n={1} kind="prompt"><p className="text-[13px] text-ink">Who had the best true shooting in 2025-26 with 1,500 or more minutes?</p></Cell>
               <Cell n={2} kind="sql"><Sql /></Cell>
               <Cell n={3} kind="table">
                 <table className="w-full text-left text-[12.5px]"><tbody className="tabular-nums text-ink-2">

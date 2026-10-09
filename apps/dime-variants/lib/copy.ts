@@ -18,9 +18,9 @@ export const copy = {
     title: "Skills hold the steps you repeat",
     sub: "Metrics and minute floors, saved once.",
     rows: [
-      { name: "scouting-report", text: "One page per player: shooting splits, on/off and three comparable players.", runs: "18 runs" },
-      { name: "shot-quality", text: "Expected points by shot location and defender distance.", runs: "9 runs" },
-      { name: "lineup-report", text: "Five-man units ranked by net rating, with a minutes floor.", runs: "6 runs" },
+      { name: "leaderboard", text: "Read and present stat leaderboards with stated minutes qualifications for rate stats.", runs: "SKILL.md" },
+      { name: "player-comparison", text: "Compare NBA players for current ability, team fit, asset value, or a stated future horizon.", runs: "SKILL.md" },
+      { name: "schedule-rest", text: "Quantify rest, travel and schedule congestion effects on a matchup without overstating them.", runs: "SKILL.md" },
     ],
   },
   host: {
@@ -28,7 +28,7 @@ export const copy = {
     sub: "Clone the repo, fetch the data pack, add a model key and start the app. The warehouse is one DuckDB file.",
     commands: ["git clone github.com/mythiipanda/dime", "./scripts/fetch-data.sh", "cd frontend && npm run dev"],
     items: [
-      { title: "nba.duckdb", text: "nba.duckdb lands in the repo folder after fetch-data.sh." },
+      { title: "warehouse.duckdb", text: "warehouse.duckdb lands in backend/data after fetch-data.sh." },
       { title: ".env", text: "Your model key goes in a local .env file." },
       { title: "Notebooks", text: "Notebooks save as files you can commit. Remote sync is planned." },
       { title: "Projects", text: "One folder per question, with cells you can rerun." },
@@ -42,12 +42,12 @@ export const copy = {
   close: { title: "Clone it and ask about last season", button: "Star on GitHub" },
   foot: { link: "GitHub" },
   chat: {
-    q1: "Who sat most on the second night of back to backs in 2025?",
-    a1: "Denver 14, Portland 11. Full table saved to rest-days, cell 2.",
-    q2: "Wings over 500 minutes sorted by ts% in 2025?",
-    a2: "61 wings qualify. Okafor leads at 68.4% on 1,204 minutes. Table in cell 3.",
+    q1: "Who had the best true shooting in 2025-26 with 1,500 or more minutes?",
+    a1: "Luke Kennard leads at 68.9%. Table saved in cell 2.",
+    q2: "Who has the highest usage among them?",
+    a2: "Nikola Jokić at 28.9% among the top five. Table in cell 3.",
     placeholder: "Ask about the league",
-    note: "Okafor's usage rose every month after the trade. Check rest-days before the playoff split.",
+    note: "164 players clear the 1,500 minute floor.",
   },
 };
 export const REPO = "https://github.com/mythiipanda/dime";

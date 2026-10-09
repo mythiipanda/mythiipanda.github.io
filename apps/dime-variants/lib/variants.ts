@@ -8,5 +8,5 @@ export const hero: Record<string, { h1: string; sub: string }> = {
   g: { h1: "Skills for the analysis you repeat", sub: "A skill is a file with your metrics and minute floors. Type / and dime loads it." },
   h: { h1: "The open-source analyst for NBA data", sub: "Ask about any player or lineup. dime writes the SQL and keeps the answer." },
   i: { h1: "From question to commit in four steps", sub: "Ask, query, reuse a skill, commit. Everything stays in a folder on your machine." },
-  j: { h1: "One question. One run. Four saved cells.", sub: "A sample run on the wing-efficiency project, start to finish." },
+  j: { h1: "One question. One run. Four saved cells.", sub: "A run on the true-shooting project, start to finish." },
 };

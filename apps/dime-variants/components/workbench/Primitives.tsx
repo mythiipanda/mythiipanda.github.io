@@ -7,7 +7,7 @@ export function Sql() {
         <div key={i} className="whitespace-pre">
           <span className="mr-4 inline-block w-3 select-none text-right text-ink-3">{i + 1}</span>
           {line.map(([t, s], j) => (
-            <span key={j} className={t === "k" ? "text-[var(--cobalt-tx)]" : t === "s" ? "text-ink" : ""}>{s}</span>
+            <span key={j} className={t === "k" ? "text-[var(--cobalt-tx)]" : ""}>{s}</span>
           ))}
         </div>
       ))}

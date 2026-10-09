@@ -28,7 +28,7 @@ export function Chat() {
     <div className="mx-auto flex max-w-[680px] flex-col gap-5">
       <BlurFade delay={0.05} inView={false}>
         <div className="ml-auto max-w-[520px] rounded-[14px] rounded-br-[4px] bg-field px-3.5 py-2.5 text-[14px] leading-[22px] text-ink shadow-[0_0_0_1px_var(--line)]">
-          Which wings over 500 minutes have the best true shooting this season?
+          Who had the best true shooting in 2025-26 with 1,500 or more minutes?
         </div>
       </BlurFade>
       <BlurFade delay={0.4}>
@@ -43,16 +43,16 @@ export function Chat() {
             ))}
           </div>
           <p className="text-[14px] leading-[22px] text-ink">
-            <b className="font-medium">Okafor leads at 68.4%</b> on 27.1 usage. Reyes is within half a point with three fewer usage points. 61 wings clear the 500 minute floor.
+            <b className="font-medium">Luke Kennard leads at 68.9%</b> on 13.1 usage. Jalen Duren is a tenth behind at 68.8%. 164 players clear the 1,500 minute floor.
           </p>
-          <Shell title="League wings" source="player_season · 5 of 61" copyText="select player, team, ts_pct, usg_pct from metrics.player_season">
+          <Shell title="True shooting leaders" source="silver_advanced · 5 of 164" copyText="select PLAYER_NAME, TEAM_ABBREVIATION, TS_PCT, USG_PCT from silver_advanced where GP * MIN >= 1500">
             <SortTable
               columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
               rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
             />
           </Shell>
           <div className="flex flex-wrap gap-1.5">
-            {["Clutch splits?", "Compare Okafor and Reyes", "Send to Project"].map((q, i) => (
+            {["Clutch splits?", "Compare Kennard and Duren", "Send to Project"].map((q, i) => (
               <button key={q} type="button" className={`h-10 rounded-full md:h-8 px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? "bg-ink text-canvas hover:bg-ink" : "text-ink-2"}`}>{q}</button>
             ))}
           </div>
@@ -67,10 +67,10 @@ export function Notebook() {
     <div className="flex flex-col gap-3">
       <BlurFade delay={0.05} inView={false}>
         <Cell n={1} kind="ask">
-          <p className="text-[15px] leading-[22px] text-ink">Which wings over 500 minutes have the best true shooting this season?</p>
+          <p className="text-[15px] leading-[22px] text-ink">Who had the best true shooting in 2025-26 with 1,500 or more minutes?</p>
           <div className="mt-3 flex flex-wrap gap-1.5">
-            <Pill>@player_season</Pill>
-            <Pill>/scouting-report</Pill>
+            <Pill>@silver_advanced</Pill>
+            <Pill>/leaderboard</Pill>
           </div>
         </Cell>
       </BlurFade>
@@ -86,10 +86,10 @@ export function Notebook() {
         </div>
       </BlurFade>
       <BlurFade delay={0.45}>
-        <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">61 rows</span></span>}>
+        <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">164 rows</span></span>}>
           <Sql />
           <div className="mt-3">
-            <Shell title="Result" source="5 of 61 rows">
+            <Shell title="Result" source="5 of 164 rows">
               <SortTable
                 columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
                 rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
@@ -99,7 +99,7 @@ export function Notebook() {
         </Cell>
       </BlurFade>
       <BlurFade delay={0.85}>
-        <Cell n={3} kind="chart" meta={<span className="font-mono">ts% · top 5 of 61</span>}>
+        <Cell n={3} kind="chart" meta={<span className="font-mono">ts% · top 5 of 164</span>}>
           <div className="flex flex-col gap-2.5">
             {rows.map((r, i) => (
               <div key={r.player} className="grid grid-cols-[88px_1fr_44px] items-center gap-3 text-[12.5px]">
@@ -122,7 +122,7 @@ export function Notebook() {
       <BlurFade delay={1.4}>
         <Cell n={4} kind="note">
           <p className="text-[14px] leading-[22px] text-ink-2">
-            <b className="font-medium text-ink">Okafor leads at 68.4%</b> on 27.1 usage. Reyes is within half a point with three fewer usage points. Sample floor is 500 minutes, so 61 wings qualify.
+            <b className="font-medium text-ink">Luke Kennard leads at 68.9%</b> on 13.1 usage. Jalen Duren is a tenth behind at 68.8%. 164 players clear the 1,500 minute floor.
           </p>
         </Cell>
       </BlurFade>
@@ -134,7 +134,7 @@ export function Warehouse() {
   return (
     <div className="flex flex-col gap-3">
       <div className="grid gap-3 lg:grid-cols-[1fr_240px]">
-        <Shell title="Tables" source="nba.duckdb" copyText="player_season, boxscores, lineups, shots, schedule">
+        <Shell title="Tables" source="warehouse.duckdb" copyText="silver_advanced, silver_boxscores, silver_lineups, silver_shots, silver_schedule">
           <SortTable
             active={0}
             columns={[{ key: "t", label: "Table" }, { key: "r", label: "Rows", numeric: true }, { key: "c", label: "Cols", numeric: true }, { key: "f", label: "Refreshed", numeric: true }]}
@@ -142,7 +142,7 @@ export function Warehouse() {
           />
         </Shell>
         <div className="rounded-[10px] shadow-[0_0_0_1px_var(--line)]">
-          <div className="flex h-10 items-center border-b border-line px-4 text-[13px] font-medium text-ink">player_season</div>
+          <div className="flex h-10 items-center border-b border-line px-4 text-[13px] font-medium text-ink">silver_advanced</div>
           <div className="px-4 py-2">
             {schema.map(([c, t]) => (
               <div key={c} className="flex h-7 items-center justify-between text-[12.5px]">
@@ -153,7 +153,7 @@ export function Warehouse() {
           </div>
         </div>
       </div>
-      <Shell title="Preview" source="player_season · 5 of 612" copyText="select * from player_season limit 5">
+      <Shell title="Preview" source="silver_advanced · 5 of 582" copyText="select * from silver_advanced limit 5">
         <SortTable
           columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
           rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
@@ -165,14 +165,14 @@ export function Warehouse() {
 
 export function Skills() {
   return (
-    <Shell title="Skills" source="skills/*.md" copyText="scouting-report, shot-quality, lineup-report">
+    <Shell title="Skills" source="backend/v2/skills" copyText="leaderboard, player-comparison, schedule-rest">
       <ul className="divide-y divide-line">
         {skills.map((s, i) => (
           <BlurFade key={s.name} delay={0.06 * i} duration={0.3}>
             <li className="px-4 py-3.5">
               <div className="flex items-center justify-between gap-3">
                 <b className="flex min-w-0 items-center gap-2 font-mono text-[13px] font-medium"><Zap size={14} className="shrink-0 text-ink-3" /><span className="truncate">{s.name}</span></b>
-                <span className="shrink-0 font-mono text-[11.5px] text-ink-3">{s.runs} runs</span>
+                <span className="shrink-0 font-mono text-[11.5px] text-ink-3">{s.runs}</span>
               </div>
               <p className="mt-1 text-[13px] leading-[20px] text-ink-2">{s.text}</p>
               <p className="mt-2 font-mono text-[11.5px] leading-[18px] text-ink-3">{s.steps.join("  /  ")}</p>
@@ -210,8 +210,8 @@ export function History() {
       <div className="ml-8 overflow-hidden rounded-[10px] shadow-[0_0_0_1px_var(--line)]">
         <div className="border-b border-line bg-field px-4 py-2 font-mono text-[11px] text-ink-3">cells/04-chart.json</div>
         <pre className="p-4 font-mono text-[12px] leading-[20px]">
-          <div className="text-green">+ {`{ "type": "line", "x": "month", "y": "usage",`}</div>
-          <div className="text-green">+ {`  "series": ["Okafor", "league_median"] }`}</div>
+          <div className="text-green">+ {`{ "type": "bar", "x": "PLAYER_NAME",`}</div>
+          <div className="text-green">+ {`  "y": "TS_PCT", "limit": 5 }`}</div>
         </pre>
       </div>
     </div>
@@ -296,14 +296,14 @@ export function Inspector() {
           <div><span className="text-green">+</span> cells/03-chart.json</div>
           <div><span className="text-ink-3">~</span> notebook.dime</div>
         </div>
-        <div className="mt-3 rounded-[6px] bg-field px-2.5 py-2 text-[12px] text-ink shadow-[0_0_0_1px_var(--line)]">Rank wings by ts%</div>
+        <div className="mt-3 rounded-[6px] bg-field px-2.5 py-2 text-[12px] text-ink shadow-[0_0_0_1px_var(--line)]">Rank by TS% with a 1,500 minute floor</div>
       </div>
       <div className="mt-auto flex items-end justify-between">
         <div>
           <div className="text-[11px] text-ink-3">Rows scanned</div>
           <div className="font-mono text-[22px] font-medium leading-[28px]"><NumberFlow value={scanned} className="text-ink" /></div>
         </div>
-        <span className="font-mono text-[11px] text-ink-3">nba.duckdb</span>
+        <span className="font-mono text-[11px] text-ink-3">warehouse.duckdb</span>
       </div>
     </aside>
   );
@@ -327,7 +327,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
             </AnimatedBackground>
           </div> : <span className="font-mono text-[12px] text-ink-2">{forced}</span>}
           <div className="hidden items-center gap-2 font-mono text-[11.5px] text-ink-3 sm:flex">
-            <span>nba-2025 / wing-efficiency</span>
+            <span>warehouse / true-shooting</span>
             <Pill tone="ok">saved</Pill>
           </div>
         </div>

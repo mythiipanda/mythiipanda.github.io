@@ -9,7 +9,7 @@ export function SkillRows() {
         <div key={s.name} className="grid gap-1 border-b border-line py-4 md:grid-cols-[220px_1fr_80px] md:items-baseline md:gap-6">
           <span className="font-mono text-[14px] text-ink">{s.name}</span>
           <span className="text-[14px] leading-[22px] text-ink-2">{s.text}</span>
-          <span className="font-mono text-[12px] text-ink-3 md:text-right">{s.runs} runs</span>
+          <span className="font-mono text-[12px] text-ink-3 md:text-right">{s.runs}</span>
         </div>
       ))}
     </div>
@@ -56,7 +56,7 @@ export function CapTable() {
     ["notebook", "SQL, chart and note cells saved as plain files", "cells/"],
     ["skills", "Metrics and minute floors, loaded with /", "skills/"],
     ["history", "Staged on every run. Commit, diff, roll back", ".git"],
-    ["warehouse", "One DuckDB file fetched by script", "nba.duckdb"],
+    ["warehouse", "One DuckDB file fetched by script", "warehouse.duckdb"],
   ];
   return (
     <section id="skills" className="mt-20 md:mt-28">
