@@ -15,7 +15,7 @@ export default function C() {
         <nav className="mx-auto grid h-full max-w-[1320px] grid-cols-[auto_1fr_auto] items-center gap-8 px-5 md:px-6">
           <a href="#top" aria-label="dime home"><CLogo /></a>
           <div className="hidden gap-8 text-[14px] text-ink-2 md:flex"><a href="#self-host" className="transition-colors duration-150 hover:text-ink">Setup</a></div>
-          <div className="col-start-3 flex items-center gap-2"><CTheme /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />{short.star}</ButtonLink></div>
+          <div className="col-start-3 flex items-center gap-2"><CTheme /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} /><span className="max-sm:hidden">{short.star}</span><span className="sm:hidden">Star</span></ButtonLink></div>
         </nav>
       </header>
       <main>
@@ -27,7 +27,7 @@ export default function C() {
               <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
               <ButtonLink href="#self-host" variant="ghost">{short.setup}</ButtonLink>
             </div>
-            <code className="mt-5 inline-flex max-w-full overflow-x-auto whitespace-nowrap rounded-[8px] bg-field px-3 py-2 font-mono text-[13px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">git clone github.com/mythiipanda/dime</code>
+            <code className="mt-5 inline-flex max-w-full overflow-x-auto whitespace-nowrap rounded-[8px] bg-field px-3 py-2 font-mono text-[11.5px] sm:text-[13px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">git clone github.com/mythiipanda/dime</code>
           </div>
           <div className="min-w-0 lg:-mr-[max(0px,calc((100vw-1320px)/2+24px))]">
             <div className="h-[560px] overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] md:h-[640px] lg:rounded-r-none"><Workbench bare initialTab="chat" /></div>
