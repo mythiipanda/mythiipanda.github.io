@@ -35,7 +35,6 @@ export default function C() {
               <p className="max-w-[440px] text-[18px] leading-[27px] text-ink-2">{short.sub}</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
-                <code className="inline-flex max-w-full overflow-x-auto whitespace-nowrap rounded-[8px] bg-field px-3 py-3 font-mono text-[11.5px] text-ink-2 shadow-[0_0_0_1px_var(--line)] sm:text-[13px]">git clone github.com/mythiipanda/dime</code>
               </div>
             </div>
           </div>

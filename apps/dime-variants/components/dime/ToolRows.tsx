@@ -8,7 +8,7 @@ export default function ToolRows({ rows }: { rows: ToolRowData[] }) {
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, padding: "6px 0" }}>
             <span
               aria-hidden
-              style={{ width: 7, height: 7, borderRadius: 9999, background: "var(--color-ink-black)", flexShrink: 0, transform: "translateY(-1px)" }}
+              style={{ width: 7, height: 7, borderRadius: 9999, background: "var(--accent)", flexShrink: 0, transform: "translateY(-1px)" }}
             />
             <span style={{ flex: 1, minWidth: 0 }}>
               <span style={{ display: "block", fontSize: 13, color: "var(--color-ink-black)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.label}</span>

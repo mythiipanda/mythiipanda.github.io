@@ -391,6 +391,7 @@ function Rail({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
 }
 
 export function Inspector() {
+  const dime = useContext(DimeCtx);
   const [scanned, setScanned] = useState(0);
   useEffect(() => {
     const t = setTimeout(() => setScanned(582), 1500);
@@ -427,7 +428,7 @@ export function Inspector() {
       <div className="mt-auto flex items-end justify-between">
         <div>
           <div className="text-[11px] text-ink-3">Rows scanned</div>
-          <div className="font-mono text-[22px] font-medium leading-[28px]"><NumberFlow value={scanned} className="text-ink" /></div>
+          <div className="font-mono text-[22px] font-medium leading-[28px]"><NumberFlow value={scanned} className={dime ? "text-accent" : "text-ink"} /></div>
         </div>
         <span className="font-mono text-[11px] text-ink-3">warehouse.duckdb</span>
       </div>
@@ -455,7 +456,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
           </div> : <span className="font-mono text-[12px] text-ink-2">{forced}</span>}
           <div className="hidden items-center gap-2 font-mono text-[11.5px] text-ink-3 sm:flex">
             <span>warehouse / true-shooting</span>
-            <Pill tone="ok">saved</Pill>
+            {dime ? null : <Pill tone="ok">saved</Pill>}
           </div>
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4 md:px-6 md:py-5">
