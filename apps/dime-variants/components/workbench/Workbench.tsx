@@ -336,6 +336,7 @@ export function Skills() {
 }
 
 export function History() {
+  const dime = useContext(DimeCtx);
   return (
     <div className="relative flex flex-col">
       <div className="absolute bottom-3 left-[5px] top-3 w-px bg-line" />
@@ -354,10 +355,20 @@ export function History() {
                 {c.files.map((f) => <span key={f} className="text-ink-3">{f}</span>)}
                 <span className="ml-auto text-ink-3">{c.when}</span>
               </div>
+              {dime && i === 0 && (
+                <div className="mt-3 overflow-hidden rounded-[8px] bg-field shadow-[0_0_0_1px_var(--line)]">
+                  <div className="border-b border-line px-3 py-1.5 font-mono text-[11px] text-ink-3">cells/04-chart.json</div>
+                  <pre className="px-3 py-2.5 font-mono text-[12px] leading-[20px] text-ink">
+                    <div><span className="mr-2 text-accent">+</span>{`{ "type": "bar", "x": "PLAYER_NAME",`}</div>
+                    <div><span className="mr-2 text-accent">+</span>{`  "y": "TS_PCT", "limit": 5 }`}</div>
+                  </pre>
+                </div>
+              )}
             </div>
           </div>
         </BlurFade>
       ))}
+      {dime ? null : (
       <div className="ml-8 overflow-hidden rounded-[10px] shadow-[0_0_0_1px_var(--line)]">
         <div className="border-b border-line bg-field px-4 py-2 font-mono text-[11px] text-ink-3">cells/04-chart.json</div>
         <pre className="p-4 font-mono text-[12px] leading-[20px]">
@@ -365,6 +376,7 @@ export function History() {
           <div className="text-green">+ {`  "y": "TS_PCT", "limit": 5 }`}</div>
         </pre>
       </div>
+      )}
     </div>
   );
 }
