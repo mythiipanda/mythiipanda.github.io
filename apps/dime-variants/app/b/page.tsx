@@ -68,11 +68,9 @@ export default function B() {
           <h2 className="mb-8 max-w-[560px] text-[26px] leading-[32px] md:text-[34px] md:leading-[40px]">{copy.pillars[2].title}</h2>
           <CommitRows />
         </Sheet>
-        <Sheet label="04 / roadmap"><RoadmapRows /></Sheet>
         <Sheet label="05 / setup">
           <h2 className="mb-8 text-[26px] leading-[32px] md:text-[34px]">Runs on your machine</h2>
           <SetupRows />
-          <FaqList />
         </Sheet>
       </main>
       <div className="pb-14"><Foot max="max-w-[1200px]" /></div>

@@ -23,7 +23,7 @@ export default function C() {
         <nav className="mx-auto grid h-full max-w-[1320px] grid-cols-[auto_1fr_auto] items-center gap-8 px-5 md:px-6">
           <a href="#top" aria-label="dime home"><Logo /></a>
           <div className="hidden justify-center gap-8 text-[14px] text-ink-2 md:flex">
-            <a href="#product" className="hover:text-ink">Product</a><a href="#models" className="hover:text-ink">Models</a><a href="#roadmap" className="hover:text-ink">Roadmap</a><a href="#self-host" className="hover:text-ink">Setup</a>
+            <a href="#product" className="hover:text-ink">Product</a><a href="#models" className="hover:text-ink">Models</a><a href="#self-host" className="hover:text-ink">Setup</a>
           </div>
           <div className="col-start-3 flex items-center gap-2"><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink></div>
         </nav>
@@ -54,7 +54,7 @@ export default function C() {
             <div className="flex h-10 items-center border-b border-line px-5 font-mono text-[12px] text-ink-3">{t.file}</div>
             <pre className="min-h-[260px] overflow-x-auto p-6 font-mono text-[13.5px] leading-[24px] text-ink-2 md:p-8">{t.code.join("\n")}</pre>
           </div>
-          <p className="mx-auto mt-4 max-w-[1000px] text-left text-[13px] text-ink-3">Sample files. Projects and Send to Project are on the roadmap.</p>
+          <p className="mx-auto mt-4 max-w-[1000px] text-left text-[13px] text-ink-3">Sample files.</p>
         </section>
         <section id="models" className="mx-auto max-w-[1320px] px-5 py-24 md:px-6">
           <h2 className="max-w-[640px] text-[40px] leading-[48px] md:text-[56px] md:leading-[67px]">Bring your own model</h2>
@@ -72,8 +72,6 @@ export default function C() {
             </div>
           </div>
         </section>
-        <section className="mx-auto max-w-[1320px] px-5 py-12 md:px-6"><h2 className="mb-10 text-[40px] leading-[48px] md:text-[56px] md:leading-[67px]">Built in this order</h2><RoadmapRows /></section>
-        <div className="mx-auto max-w-[1320px] px-5 md:px-6"><FaqList /></div>
         <CobaltBand max="max-w-[1320px]" />
       </main>
       <div className="mt-24"><Foot max="max-w-[1320px]" /></div>

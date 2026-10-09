@@ -9,7 +9,7 @@ import { Closing } from "@/components/landing/Sections";
 import { Page, RoadmapRows, FaqList } from "@/components/v/kit";
 import { copy, REPO } from "@/lib/copy";
 
-const nav = [["Product", "#product"], ["Skills", "#skills"], ["Roadmap", "#roadmap"], ["Setup", "#self-host"]];
+const nav = [["Product", "#product"], ["Skills", "#skills"], ["Setup", "#self-host"]];
 
 const features: { tab: Tab; title: string; text: string }[] = [
   { tab: "notebook", title: "Projects keep every cell", text: "Prompt, SQL, Python, chart and markdown cells in one notebook, saved as files in git." },
@@ -75,14 +75,6 @@ export default function A() {
             <Shot tab={f.tab} />
           </section>
         ))}
-        <section className="pt-24 md:pt-[128px]">
-          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-16">
-            <h2 className="max-w-[460px] text-[30px] leading-[34px] md:text-[48px] md:font-[510] md:leading-[48px]">Built in this order</h2>
-            
-          </div>
-          <RoadmapRows />
-        </section>
-        <FaqList />
         <Closing />
       </main>
     </Page>

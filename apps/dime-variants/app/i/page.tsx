@@ -59,7 +59,6 @@ export default function I() {
           </div>
         </section>
         <div id="skills"><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
-        <FaqList />
       </main>
       <div className="mt-24"><Foot /></div>
     </Page>

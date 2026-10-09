@@ -17,7 +17,7 @@ export default function H() {
   return (
     <Page v="h">
       <header className="mx-auto flex h-16 max-w-[1425px] items-center justify-between px-6">
-        <div className="flex items-center gap-8"><a href="#top" aria-label="dime home"><Logo /></a><nav className="hidden gap-6 text-[14px] text-ink-2 md:flex"><a href="#product" className="hover:text-ink">Product</a><a href="#roadmap" className="hover:text-ink">Roadmap</a><a href="#self-host" className="hover:text-ink">Setup</a></nav></div>
+        <div className="flex items-center gap-8"><a href="#top" aria-label="dime home"><Logo /></a><nav className="hidden gap-6 text-[14px] text-ink-2 md:flex"><a href="#product" className="hover:text-ink">Product</a><a href="#self-host" className="hover:text-ink">Setup</a></nav></div>
         <div className="flex items-center gap-2"><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink></div>
       </header>
       <main className="mx-auto max-w-[1425px] px-6">
@@ -48,17 +48,6 @@ export default function H() {
             </div>
           </section>
         ))}
-        <section id="roadmap" className="pb-24 md:pb-40">
-          <h2 className={`${h2} max-w-[680px]`}>Built in this order</h2>
-          <ol className="mt-12 border-t border-line">
-            {roadmap.map((r) => (
-              <li key={r.n} className="grid gap-2 border-b border-line py-6 md:grid-cols-[80px_1fr_1.2fr] md:gap-8"><span className="font-mono text-[13px] text-ink-3">0{r.n}</span><span className="text-[18px] font-medium tracking-[-0.02em]">{r.title}</span><span className="text-[15px] leading-[24px] text-ink-2">{r.text}</span></li>
-            ))}
-          </ol>
-          <p className="mt-4 text-[13px] text-ink-3">Planned work, in order. Not shipped.</p>
-        </section>
-        <section id="self-host" className="pb-24 md:pb-40"><h2 className={`${h2} mb-12 max-w-[680px]`}>Runs on your machine</h2><SetupRows /></section>
-        <section className="pb-24"><FaqList /></section>
       </main>
       <Foot max="max-w-[1425px]" />
     </Page>

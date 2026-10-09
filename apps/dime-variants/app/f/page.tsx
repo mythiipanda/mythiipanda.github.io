@@ -23,7 +23,7 @@ export default function F() {
         <nav className="flex h-[62px] w-full max-w-[860px] items-center justify-between rounded-[14px] border border-line bg-canvas/95 px-5 backdrop-blur">
           <div className="hidden gap-6 text-[14px] text-ink-2 md:flex"><a href="#product" className="hover:text-ink">Product</a><a href="#skills" className="hover:text-ink">Skills</a></div>
           <a href="#top" aria-label="dime home"><Logo /></a>
-          <div className="flex items-center gap-2"><div className="hidden gap-6 text-[14px] text-ink-2 md:flex"><a href="#roadmap" className="hover:text-ink">Roadmap</a><a href="#self-host" className="hover:text-ink">Setup</a></div><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink></div>
+          <div className="flex items-center gap-2"><div className="hidden gap-6 text-[14px] text-ink-2 md:flex"><a href="#self-host" className="hover:text-ink">Setup</a></div><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink></div>
         </nav>
       </header>
       <main>
@@ -62,8 +62,6 @@ export default function F() {
             
           </div>
         </section>
-        <section className="mx-auto max-w-[1200px] px-5 pt-28 md:pt-40"><h2 className="mb-8 text-[34px] leading-[40px] md:text-[48px] md:leading-[56px]"><span className="serif-i">Built in</span> this order</h2><RoadmapRows /></section>
-        <div className="mx-auto max-w-[1200px] px-5"><FaqList /></div>
         <section className="mx-auto mt-28 max-w-[900px] px-5 text-center">
           <h2 className="text-[34px] leading-[40px] md:text-[56px] md:leading-[64px]"><span className="serif-i block font-normal">Clone it and</span>ask about last season</h2>
           <div className="mt-8 flex justify-center"><ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink></div>

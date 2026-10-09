@@ -57,10 +57,6 @@ export default function E() {
           </div>
         </section>
         <div className="px-5 md:px-10"><CapTable /></div>
-        <section id="roadmap" className={`mt-20 grid md:grid-cols-[240px_1fr] ${cell} border-t border-line`}>
-          <h2 className="border-b border-line p-5 text-[20px] md:border-b-0 md:border-r">Roadmap</h2>
-          <div className="px-5 md:px-10"><RoadmapRows /></div>
-        </section>
         <section id="self-host" className={`grid md:grid-cols-[240px_1fr] ${cell}`}>
           <h2 className="border-b border-line p-5 text-[20px] md:border-b-0 md:border-r">Runs on your machine</h2>
           <ol>

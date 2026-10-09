@@ -23,7 +23,7 @@ export default function G() {
       <header className="sticky top-4 z-30 flex justify-center px-3">
         <nav className="flex h-[52px] w-full max-w-[1100px] items-center justify-between rounded-[12px] border border-line bg-canvas/95 pl-4 pr-2 backdrop-blur">
           <a href="#top" aria-label="dime home"><Logo size={17} /></a>
-          <div className="hidden gap-6 text-[13px] text-ink-2 md:flex"><a href="#palette" className="hover:text-ink">Palette</a><a href="#skills" className="hover:text-ink">Skills</a><a href="#roadmap" className="hover:text-ink">Roadmap</a><a href="#self-host" className="hover:text-ink">Setup</a></div>
+          <div className="hidden gap-6 text-[13px] text-ink-2 md:flex"><a href="#palette" className="hover:text-ink">Palette</a><a href="#skills" className="hover:text-ink">Skills</a><a href="#self-host" className="hover:text-ink">Setup</a></div>
           <div className="flex items-center gap-1"><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink></div>
         </nav>
       </header>
@@ -73,7 +73,6 @@ export default function G() {
           <h2 className="text-[32px] leading-[38px] md:text-[44px] md:leading-[50px]">Quick questions in Chat, saved work in Projects</h2>
           
         </section>
-        <section className="mx-auto max-w-[1100px] px-5 pt-28 md:px-6"><h2 className="mb-8 text-[32px] leading-[38px] md:text-[44px]">Built in this order</h2><RoadmapRows /></section>
         <section className="mx-auto max-w-[1100px] px-5 pt-28 md:px-6"><h2 className="mb-8 text-[32px] leading-[38px] md:text-[44px]">Runs on your machine</h2><SetupRows /><FaqList /></section>
       </main>
       <footer className="mt-28 overflow-hidden px-5 pb-6"><div className="font-display text-[34vw] font-bold leading-[0.8] text-ink md:text-[22vw]">dime<span className="text-[var(--cobalt-tx)]">.</span></div></footer>

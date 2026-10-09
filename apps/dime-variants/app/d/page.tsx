@@ -37,7 +37,7 @@ export default function D() {
       <header className="h-[52px]">
         <nav className="mx-auto flex h-full max-w-[1300px] items-center justify-between px-5">
           <a href="#top" aria-label="dime home"><Logo size={17} /></a>
-          <div className="hidden gap-6 text-[13px] text-ink-2 md:flex"><a href="#product" className="hover:text-ink">Product</a><a href="#roadmap" className="hover:text-ink">Roadmap</a><a href="#self-host" className="hover:text-ink">Setup</a><a href={REPO} className="hover:text-ink">GitHub</a></div>
+          <div className="hidden gap-6 text-[13px] text-ink-2 md:flex"><a href="#product" className="hover:text-ink">Product</a><a href="#self-host" className="hover:text-ink">Setup</a><a href={REPO} className="hover:text-ink">GitHub</a></div>
           <div className="flex items-center gap-1"><ThemeToggle /><ButtonLink href={REPO} variant="ink" size="pill">Star on GitHub</ButtonLink></div>
         </nav>
       </header>
@@ -56,8 +56,6 @@ export default function D() {
             </div>
           </section>
         ))}
-        <section className="mt-24 md:mt-32"><h2 className="mb-8 text-[26px] leading-[32px]">Built in this order</h2><RoadmapRows /></section>
-        <FaqList />
         <section className="mt-24 flex flex-col items-start gap-6 border-t border-line pt-12 md:flex-row md:items-center md:justify-between">
           <h2 className="text-[26px] leading-[32px]">Clone it and ask about last season.</h2>
           <ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink>

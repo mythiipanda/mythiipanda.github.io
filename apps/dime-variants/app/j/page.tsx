@@ -46,7 +46,6 @@ export default function J() {
         </section>
         <section id="skills" className="mt-20 md:mt-28"><h2 className="mb-6 text-[28px] leading-[34px] md:text-[36px]">Skills and history</h2><div className="grid gap-10 md:grid-cols-2"><SkillRows /><CommitRows /></div></section>
         <div><h2 className="mb-6 mt-20 text-[28px] leading-[34px] md:mt-28 md:text-[36px]">Runs on your machine</h2><SetupRows /></div>
-        <FaqList />
       </main>
       <div className="mt-24"><Foot /></div>
     </Page>
