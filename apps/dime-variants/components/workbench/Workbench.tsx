@@ -53,7 +53,7 @@ export function Chat() {
           </Shell>
           <div className="flex flex-wrap gap-1.5">
             {["Clutch splits?", "Compare Okafor and Reyes", "Send to Project"].map((q, i) => (
-              <button key={q} type="button" className={`h-8 rounded-full px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? "bg-ink text-canvas hover:bg-ink" : "text-ink-2"}`}>{q}</button>
+              <button key={q} type="button" className={`h-10 rounded-full md:h-8 px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? "bg-ink text-canvas hover:bg-ink" : "text-ink-2"}`}>{q}</button>
             ))}
           </div>
         </div>

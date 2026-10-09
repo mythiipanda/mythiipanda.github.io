@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { ButtonLink, GithubMark, Logo } from "@/components/landing/ui";
-import { copy, REPO } from "@/lib/copy";
+import { copy, REPO, short } from "@/lib/copy";
 import { roadmap } from "@/lib/roadmap";
 
 export const links = [
@@ -31,9 +31,9 @@ export function BarNav({ max = "max-w-[1200px]" }: { max?: string }) {
 
 export function Cta({ secondary = "#self-host" }: { secondary?: string }) {
   return (
-    <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-      <ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink>
-      <ButtonLink href={secondary} variant="ghost">See the setup steps &rarr;</ButtonLink>
+    <div className="flex flex-wrap items-center gap-3">
+      <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
+      <ButtonLink href={secondary} variant="ghost">{short.setup}</ButtonLink>
     </div>
   );
 }
@@ -61,10 +61,11 @@ export function Frame({ children, h = "h-[640px] md:h-[720px]", className = "" }
   );
 }
 
-export function SetupRows() {
+export function SetupRows({ title = false, className = "mt-20 md:mt-28" }: { title?: boolean; className?: string }) {
   const notes = ["Clone", "Fetch data", "Run"];
   return (
-    <section id="self-host" className="scroll-mt-24">
+    <section id="self-host" className={`scroll-mt-24 ${title ? className : ""}`}>
+      {title && <h2 className="mb-6 font-display text-[26px] leading-[32px] md:text-[34px] md:leading-[40px]">{short.groups.setup}</h2>}
       <ol className="border-t border-line">
         {copy.host.commands.map((c, i) => (
           <li key={c} className="grid gap-2 border-b border-line py-6 md:grid-cols-[48px_1.4fr_1fr] md:items-baseline md:py-8">
@@ -111,9 +112,6 @@ export function DockNav() {
       <div className="mx-auto flex h-14 max-w-[880px] items-center gap-4 px-5 font-mono text-[13px] md:px-6">
         <a href="#top" aria-label="dime home" className="shrink-0"><Logo size={16} /></a>
         <div className="flex min-w-0 flex-1 items-center gap-2 text-ink-3"><span className="text-[var(--cobalt-tx)]">&gt;</span><span className="hidden truncate sm:block">ask about the league</span></div>
-        <div className="hidden gap-5 text-ink-2 md:flex">
-          {links.map((l) => (<a key={l.label} href={l.href} className="transition-colors hover:text-ink">{l.label.toLowerCase()}</a>))}
-        </div>
         <ThemeToggle />
         <ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink>
       </div>
@@ -160,5 +158,18 @@ export function RoadmapRows() {
         ))}
       </ol>
     </section>
+  );
+}
+
+export function Cap({ k, className = "" }: { k: keyof typeof short.tiles; className?: string }) {
+  const t = short.tiles[k];
+  return (
+    <div className={`flex items-baseline justify-between gap-4 ${className}`}><h3 className="font-mono text-[12px] uppercase tracking-[0.04em] text-ink">{t.name}</h3><p className="text-[13px] text-ink-3">{t.note}</p></div>
+  );
+}
+
+export function Group({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="mb-6 mt-20 flex items-baseline justify-between border-b border-line pb-4 md:mt-28"><h2 className="font-display text-[22px] font-semibold uppercase leading-[30px] tracking-[-0.02em] md:text-[30px] md:leading-[46px]">{label}</h2><span className="font-mono text-[12px] text-ink-3">{n}</span></div>
   );
 }

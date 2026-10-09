@@ -50,18 +50,19 @@ export function SortTable({ columns, rows, active }: { columns: Col[]; rows: (st
       return c * sort.dir;
     });
   }, [rows, sort]);
+  const hide = (i: number) => (columns.length >= 4 && i === columns.length - 1 ? "max-[480px]:hidden" : columns.length >= 4 && i === columns.length - 2 ? "max-[480px]:pr-4" : "");
   const toggle = (i: number) =>
     setSort((s) => (s && s.col === i ? { col: i, dir: s.dir === 1 ? -1 : 1 } : { col: i, dir: columns[i].numeric ? -1 : 1 }));
   return (
-    <table className="w-full min-w-[360px] text-[13px]">
+    <table className="w-full text-[13px]">
       <thead className="sticky top-0 z-10 bg-canvas">
         <tr className="border-b border-line">
           {columns.map((c, i) => (
-            <th key={c.key} className={`p-0 text-[12.5px] font-medium ${i === 0 ? "pl-4" : ""} ${i === columns.length - 1 ? "pr-4" : ""}`}>
+            <th key={c.key} className={`p-0 text-[12.5px] font-medium ${i === 0 ? "pl-4" : ""} ${i === columns.length - 1 ? "pr-4" : ""} ${hide(i)}`}>
               <button
                 type="button"
                 onClick={() => toggle(i)}
-                className={`flex h-8 w-full items-center gap-1 transition-colors duration-100 hover:text-ink ${c.numeric ? "justify-end" : ""} ${sort?.col === i ? "text-ink" : "text-ink-2"}`}
+                className={`flex h-10 w-full items-center gap-1 md:h-8 transition-colors duration-100 hover:text-ink ${c.numeric ? "justify-end" : ""} ${sort?.col === i ? "text-ink" : "text-ink-2"}`}
               >
                 {c.label}
                 {sort?.col === i && <ChevronDown size={11} style={{ transform: sort.dir === 1 ? "rotate(180deg)" : "none" }} />}
@@ -74,7 +75,7 @@ export function SortTable({ columns, rows, active }: { columns: Col[]; rows: (st
         {sorted.map((r, ri) => (
           <tr key={ri} className={`h-[34px] transition-colors duration-100 hover:bg-hover ${active === ri && !sort ? "bg-hover" : ""}`}>
             {columns.map((c, i) => (
-              <td key={c.key} className={`${i === 0 ? "pl-4" : ""} ${i === columns.length - 1 ? "pr-4" : ""} ${c.numeric ? "text-right font-mono tabular-nums text-ink-2" : i === 0 ? "text-ink" : "font-mono text-ink-3"}`}>
+              <td key={c.key} className={`${hide(i)} ${i === 0 ? "pl-4" : ""} ${i === columns.length - 1 ? "pr-4" : ""} ${c.numeric ? "text-right font-mono tabular-nums text-ink-2" : i === 0 ? "text-ink" : "font-mono text-ink-3"}`}>
                 {r[i]}
               </td>
             ))}

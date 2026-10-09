@@ -51,3 +51,19 @@ export const copy = {
   },
 };
 export const REPO = "https://github.com/mythiipanda/dime";
+
+export const short = {
+  h1a: "Ask the league.",
+  h1b: "Keep the work.",
+  sub: "Open-source NBA analyst. Self-hosted.",
+  star: "Star on GitHub",
+  setup: "Setup",
+  groups: { chat: "Chat and Projects", data: "Data and skills", history: "History", setup: "Setup" },
+  tiles: {
+    chat: { name: "Chat", note: "Quick questions" },
+    notebook: { name: "Notebook", note: "Saved work" },
+    warehouse: { name: "Warehouse", note: "One DuckDB file" },
+    skills: { name: "Skills", note: "14 today" },
+    git: { name: "Git", note: "Commit per run" },
+  },
+};

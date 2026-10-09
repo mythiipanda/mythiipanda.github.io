@@ -27,7 +27,7 @@ function CopyCmd() {
   );
 }
 
-export function Close({ max = "max-w-[1200px]", center = false, title = "Run it on your machine.", flush = false, cmd = true }: { max?: string; center?: boolean; title?: string; flush?: boolean; cmd?: boolean }) {
+export function Close({ max = "max-w-[1200px]", center = false, title = "Run it on your machine.", flush = false, cmd = false }: { max?: string; center?: boolean; title?: string; flush?: boolean; cmd?: boolean }) {
   return (
     <section id="close" className={flush ? "pt-10 md:pt-16" : `mx-auto ${max} px-5 pt-10 md:px-6 md:pt-16`}>
       <div className={`flex flex-col gap-8 border-t border-line pt-12 md:pt-16 ${center ? "items-center text-center" : "items-start md:flex-row md:items-end md:justify-between"}`}>
