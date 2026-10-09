@@ -48,7 +48,7 @@ export function Chat() {
           <Shell title="True shooting leaders" source="silver_advanced · 5 of 164" copyText="select PLAYER_NAME, TEAM_ABBREVIATION, TS_PCT, USG_PCT from silver_advanced where GP * MIN >= 1500">
             <SortTable
               columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
-              rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
+              rows={rows.map((r) => [r.player, r.team, r.ts.toFixed(1), r.usg.toFixed(1)])}
             />
           </Shell>
           <div className="flex flex-wrap gap-1.5">
@@ -92,7 +92,7 @@ export function Notebook() {
             <Shell title="Result" source="5 of 164 rows">
               <SortTable
                 columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
-                rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
+                rows={rows.map((r) => [r.player, r.team, r.ts.toFixed(1), r.usg.toFixed(1)])}
               />
             </Shell>
           </div>
@@ -113,7 +113,7 @@ export function Notebook() {
                     transition={{ duration: 0.7, delay: 1.1 + i * 0.07, ease }}
                   />
                 </div>
-                <span className="text-right font-mono text-ink">{r.ts}</span>
+                <span className="text-right font-mono text-ink">{r.ts.toFixed(1)}</span>
               </div>
             ))}
           </div>
@@ -156,7 +156,7 @@ export function Warehouse() {
       <Shell title="Preview" source="silver_advanced · 5 of 582" copyText="select * from silver_advanced limit 5">
         <SortTable
           columns={[{ key: "p", label: "Player" }, { key: "t", label: "Team" }, { key: "ts", label: "TS%", numeric: true }, { key: "u", label: "USG%", numeric: true }]}
-          rows={rows.map((r) => [r.player, r.team, r.ts, r.usg])}
+          rows={rows.map((r) => [r.player, r.team, r.ts.toFixed(1), r.usg.toFixed(1)])}
         />
       </Shell>
     </div>

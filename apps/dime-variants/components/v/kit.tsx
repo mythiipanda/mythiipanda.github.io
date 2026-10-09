@@ -1,3 +1,4 @@
+import { CLogo } from "@/components/v/CLogo";
 import type { ReactNode } from "react";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { ButtonLink, GithubMark, Logo } from "@/components/landing/ui";
@@ -38,11 +39,11 @@ export function Cta({ secondary = "#self-host" }: { secondary?: string }) {
   );
 }
 
-export function Foot({ max = "max-w-[1200px]" }: { max?: string }) {
+export function Foot({ max = "max-w-[1200px]", brand = false }: { max?: string; brand?: boolean }) {
   return (
     <footer className="border-t border-line">
       <div className={`mx-auto flex ${max} items-center justify-between px-5 py-8 text-[13px] text-ink-3 md:px-6`}>
-        <Logo size={16} />
+        {brand ? <CLogo size={18} /> : <Logo size={16} />}
         <a href={REPO} className="transition-colors hover:text-ink">GitHub</a>
       </div>
     </footer>
