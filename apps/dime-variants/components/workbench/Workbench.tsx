@@ -224,7 +224,7 @@ function DimeCard({ title, source, quiet, children }: { title: string; source?: 
         <span className="truncate text-[13px] font-medium text-ink">{title}</span>
         {source && <span className="truncate font-mono text-[11px] text-ink-3">{source}</span>}
       </div>
-      <div className={`p-3 ${quiet ? "[&_.table-tools]:hidden" : ""}`}>{children}</div>
+      <div className={`p-3 ${quiet ? "quiet-tools" : ""}`}>{children}</div>
     </div>
   );
 }

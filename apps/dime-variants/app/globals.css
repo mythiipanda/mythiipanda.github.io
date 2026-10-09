@@ -395,3 +395,4 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-v="c"] .dime-table tbody tr { transition: background-color 120ms ease; }
 [data-v="c"] .dime-table tbody tr:hover { background: var(--hover); }
 @media (hover: none) { [data-v="c"] .dime-table tbody tr:hover { background: transparent; } }
+[data-dime] .quiet-tools .table-tools { display: none !important; }
