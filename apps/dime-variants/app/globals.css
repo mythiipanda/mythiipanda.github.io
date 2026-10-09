@@ -386,5 +386,4 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-dime] .tab-active svg { color: var(--accent); }
 [data-dime] [aria-label="Send"] { background: var(--accent); color: #fff; }
 [data-dime] .sidebar-row[aria-current="true"], [data-dime] .sidebar-row.is-active { box-shadow: inset 2px 0 0 var(--accent); }
-[data-dime] .pulse-dot { background: var(--accent); }
 [data-dime] .chat-composer:focus-within { border-color: var(--accent); }

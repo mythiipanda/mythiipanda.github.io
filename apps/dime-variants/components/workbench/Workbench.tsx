@@ -1,10 +1,10 @@
 "use client";
 
-import ThreadRail from "@/components/dime/ThreadRail";
 import DataTable from "@/components/dime/DataTable";
-import ToolRows from "@/components/dime/ToolRows";
 import AutoChart from "@/components/dime/AutoChart";
 import GlideMenu from "@/components/primitives/GlideMenu";
+import { skillDocs } from "@/lib/dime/skills";
+import ThreadRail from "@/components/dime/ThreadRail";
 import ToolChips from "@/components/primitives/ToolChips";
 import { CMark } from "@/components/v/CMark";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
@@ -34,12 +34,6 @@ const tabs: { id: Tab; label: string; icon: typeof NotebookPen }[] = [
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
-const dimeRows = [
-  { label: "Read skill leaderboard", meta: "3ms", detail: "backend/v2/skills/leaderboard" },
-  { label: "Write SQL", meta: "1.1s", detail: "cells/02-sql.sql" },
-  { label: "Run on DuckDB", meta: "164 rows · 41ms", detail: "582 rows scanned in warehouse.duckdb" },
-];
-
 const chatSteps = [
   { icon: "read", label: "Read skill", chip: "leaderboard", mono: true, detailMono: true, detail: [{ text: "backend/v2/skills/leaderboard" }] },
   { icon: "write", label: "Write SQL", chip: "cells/02-sql.sql", mono: true, detailMono: true, detail: [{ text: "select PLAYER_NAME, TS_PCT, USG_PCT" }, { text: "from silver_advanced" }] },
@@ -67,16 +61,30 @@ function Composer() {
       </div>
     );
   }
+  return <DimeComposer />;
+}
+
+function DimeComposer() {
+  const [draft, setDraft] = useState("");
+  const can = draft.trim().length > 0;
   return (
-    <div className="composer-card chat-composer chat-composer-dock">
-      <span style={{ flex: 1, fontSize: 13, color: "var(--color-ash-gray)", minWidth: 0 }} className="truncate">Ask a follow-up...</span>
-      {live ? (
-        <span className="pill-ghost" style={{ borderColor: "var(--color-cyan-signal)", color: "var(--color-cyan-edge)", fontSize: 13, padding: "4px 12px" }}>Stop {elapsed}s</span>
-      ) : (
-        <span aria-label="Send" style={{ width: 28, height: 28, borderRadius: 8, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--color-stone-muted)", color: "var(--color-warm-gray)" }}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
-        </span>
-      )}
+    <div className="flex items-center gap-2 rounded-full bg-surface py-1.5 pl-5 pr-1.5 shadow-[0_1px_2px_rgba(20,18,12,0.06),0_8px_24px_-8px_rgba(20,18,12,0.14)] transition-shadow duration-200 focus-within:shadow-[0_0_0_1.5px_var(--accent),0_8px_24px_-8px_rgba(20,18,12,0.14)]">
+      <input
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        placeholder="Ask about any team, player, lineup, or market…"
+        aria-label="Ask"
+        className="h-9 min-w-0 flex-1 bg-transparent text-[14px] text-ink outline-none placeholder:text-ink-3 [@media(pointer:coarse)]:text-base"
+      />
+      <button
+        type="button"
+        aria-label="Send"
+        disabled={!can}
+        className="flex size-9 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-150 enabled:active:scale-[0.96]"
+        style={{ background: can ? "var(--accent)" : "var(--line)", color: can ? "#fff" : "var(--ink-3)" }}
+      >
+        <ArrowUp size={16} weight="bold" />
+      </button>
     </div>
   );
 }
@@ -94,7 +102,7 @@ export function Chat() {
         <div className="flex gap-3">
           <CMark size={22} className="mt-px shrink-0" />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
-            {dime ? <ToolRows rows={dimeRows} /> : <ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} />}
+            <ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} />
             <p className="text-[14px] leading-[22px] text-ink">
               <b className="font-medium">Luke Kennard leads at 68.9%</b> on 13.1 usage. Jalen Duren is a tenth behind at 68.8%. 164 players clear the 1,500 minute floor.
             </p>
@@ -156,7 +164,7 @@ export function Notebook() {
         </Cell>
       </BlurFade>
       <BlurFade delay={0.3}>
-        <div className="px-1">{dime ? <ToolRows rows={dimeRows} /> : <ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} />}</div>
+        <div className="px-1"><ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} /></div>
       </BlurFade>
       <BlurFade delay={0.45}>
         <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">164 rows</span></span>}>
@@ -241,32 +249,53 @@ export function Warehouse() {
 }
 
 export function Skills() {
+  const [sel, setSel] = useState("leaderboard");
+  const doc = skillDocs.find((d) => d.name === sel) ?? skillDocs[0];
   return (
-    <Shell title="Skills" source="backend/v2/skills" copyText="leaderboard, player-comparison, schedule-rest">
-      <ul className="divide-y divide-line">
-        {skills.map((s, i) => (
-          <BlurFade key={s.name} delay={0.06 * i} duration={0.3}>
-            <li className="flex gap-3 px-4 py-3.5">
-              <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-[8px] bg-surface text-ink-2 shadow-[0_0_0_1px_var(--line)]"><Zap size={15} /></span>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between gap-3">
-                  <b className="truncate text-[14px] font-medium text-ink">{s.name}</b>
-                  <span className="shrink-0 font-mono text-[11.5px] text-ink-3">{s.runs}</span>
-                </div>
-                <p className="mt-0.5 text-[13px] leading-[20px] text-ink-2">{s.text}</p>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {s.steps.map((st, k) => (
-                    <span key={st} className="inline-flex h-6 items-center gap-1.5 rounded-[6px] bg-surface px-2 text-[12px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">
-                      <span className="font-mono text-[10.5px] tabular-nums text-ink-3">{k + 1}</span>{st}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </li>
-          </BlurFade>
+    <div className="grid h-full min-h-0 overflow-hidden rounded-[10px] shadow-[0_0_0_1px_var(--line)] md:grid-cols-[210px_1fr]">
+      <div className="max-h-[170px] overflow-auto border-b border-line py-1.5 md:max-h-none md:border-b-0 md:border-r">
+        <div className="px-3 pb-1.5 pt-1 font-mono text-[11px] text-ink-3">backend/v2/skills</div>
+        {skillDocs.map((d) => (
+          <button
+            key={d.name}
+            type="button"
+            onClick={() => setSel(d.name)}
+            className={`flex h-8 w-full items-center px-3 text-left text-[13px] transition-colors duration-150 ${d.name === sel ? "bg-field text-ink shadow-[inset_2px_0_0_var(--accent)]" : "text-ink-2 hover:bg-hover"}`}
+          >
+            {d.name}
+          </button>
         ))}
-      </ul>
-    </Shell>
+      </div>
+      <div key={doc.name} className="min-h-0 overflow-auto px-5 py-4">
+        <BlurFade duration={0.25} offset={4} direction="up">
+          <div className="font-mono text-[11px] text-ink-3">SKILL.md</div>
+          <h3 className="mt-1 text-[20px] font-medium leading-[26px] text-ink">{doc.name}</h3>
+          <p className="mt-1 text-[14px] leading-[22px] text-ink-2">{doc.description}</p>
+          {doc.when && (
+            <>
+              <div className="mt-5 text-[12px] font-medium text-ink">When to use</div>
+              <p className="mt-1 text-[13px] leading-[20px] text-ink-2">{doc.when}</p>
+            </>
+          )}
+          {doc.insights.length > 0 && (
+            <>
+              <div className="mt-5 text-[12px] font-medium text-ink">Key insights</div>
+              <ul className="mt-1 flex flex-col gap-1.5">
+                {doc.insights.map((t) => <li key={t} className="text-[13px] leading-[20px] text-ink-2">{t}</li>)}
+              </ul>
+            </>
+          )}
+          {doc.caveats.length > 0 && (
+            <>
+              <div className="mt-5 text-[12px] font-medium text-ink">Caveats</div>
+              <ul className="mt-1 flex flex-col gap-1.5">
+                {doc.caveats.map((t) => <li key={t} className="text-[13px] leading-[20px] text-ink-2">{t}</li>)}
+              </ul>
+            </>
+          )}
+        </BlurFade>
+      </div>
+    </div>
   );
 }
 

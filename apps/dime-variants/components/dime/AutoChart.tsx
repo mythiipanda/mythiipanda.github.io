@@ -107,7 +107,7 @@ export default function AutoChart({
             <XAxis type="number" tick={AXIS} />
             <YAxis type="category" dataKey="label" tick={AXIS} width={categoryAxisWidth(lead.map((d) => d.label))} interval={0} />
             <Tooltip />
-            <Bar dataKey="value" fill="var(--color-ink-black)" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="value" fill="var(--accent)" radius={[0, 4, 4, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
