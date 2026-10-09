@@ -549,7 +549,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
             </motion.div>
           </AnimatePresence>
         </div>
-        <div className={`shrink-0 border-t border-line p-3 md:px-6 ${bare ? "hidden" : ""}`}>
+        <div className={`shrink-0 border-t border-line p-3 md:px-6 ${bare && !dime ? "hidden" : ""}`}>
           <Composer />
         </div>
       </div>
