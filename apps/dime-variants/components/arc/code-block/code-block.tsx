@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { ChevronDown, FileCode2 } from "lucide-react";
+import { CaretDown as ChevronDown, FileCode as FileCode2 } from "@phosphor-icons/react";
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } from "motion/react";
 import { motionTokens } from "../lib/motion-tokens";
 import { CopyButton } from "../copy-button/copy-button";
@@ -140,7 +140,7 @@ export function CodeBlock({ code, filename, language = "tsx", maxLines }: CodeBl
     <section className={styles.block} aria-label={filename ? `${filename} source code` : `${displayLanguage} source code`} style={maxLines ? { "--code-lines": maxLines } as CSSProperties : undefined}>
       <header className={styles.header}>
         <div className={styles.file}>
-          <FileCode2 size={16} strokeWidth={1.75} aria-hidden="true" />
+          <FileCode2 size={16} aria-hidden="true" />
           <FileName name={filename ?? "Source code"} reduced={reduced} />
           <span className={styles.language}>{displayLanguage}</span>
         </div>
@@ -157,7 +157,7 @@ export function CodeBlock({ code, filename, language = "tsx", maxLines }: CodeBl
         {/* Both labels reserve the cell, so the chevron never moves when the words change. */}
         <span className={styles.swap} aria-hidden="true">{expandLabels.map(text => <span key={text} className={styles.reserve}>{text}</span>)}<span className={styles.swapStack}><SwapText value={expandLabels[expanded ? 1 : 0]} reduced={reduced} /></span></span>
         <span className={styles.srOnly}>{expandLabels[expanded ? 1 : 0]}</span>
-        <motion.span className={styles.chevron} aria-hidden="true" initial={false} animate={{ rotate: expanded ? 180 : 0 }} transition={reduced ? { duration: 0 } : motionTokens.spring.snappy}><ChevronDown size={16} strokeWidth={1.75} /></motion.span>
+        <motion.span className={styles.chevron} aria-hidden="true" initial={false} animate={{ rotate: expanded ? 180 : 0 }} transition={reduced ? { duration: 0 } : motionTokens.spring.snappy}><ChevronDown size={16} /></motion.span>
       </button>}
     </section>
   );

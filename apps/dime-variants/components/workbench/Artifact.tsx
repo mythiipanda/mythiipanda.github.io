@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, type ReactNode } from "react";
-import { Maximize2, Minimize2, Copy, Check, ChevronDown } from "lucide-react";
+import { ArrowsOut as Maximize2, ArrowsIn as Minimize2, Copy, Check, CaretDown as ChevronDown } from "@phosphor-icons/react";
 
 export type Col = { key: string; label: string; numeric?: boolean };
 

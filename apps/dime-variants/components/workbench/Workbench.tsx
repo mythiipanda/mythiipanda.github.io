@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MessageSquare, ArrowUp, FolderOpen, Zap, Database, GitCommitHorizontal, NotebookPen, CornerDownLeft, GitBranch, ChevronDown, Search } from "lucide-react";
+import { ChatCircle as MessageSquare, ArrowUp, FolderOpen, Lightning as Zap, Database, GitCommit as GitCommitHorizontal, Notebook as NotebookPen, ArrowElbowDownLeft as CornerDownLeft, GitBranch, CaretDown as ChevronDown, MagnifyingGlass as Search } from "@phosphor-icons/react";
 import { DimeMark } from "@/components/product/DimeMark";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { NumberFlow } from "@/components/ui/number-flow";

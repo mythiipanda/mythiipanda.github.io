@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, type TargetAndTransition, type Transition } from "motion/react";
-import { CircleAlert, Copy } from "lucide-react";
+import { WarningCircle as CircleAlert, Copy } from "@phosphor-icons/react";
 import { motionTokens } from "../lib/motion-tokens";
 import { useCopyFeedback } from "../lib/use-copy-feedback";
 import styles from "./copy-button.module.css";
@@ -84,7 +84,7 @@ export function CopyButton({ value, label = "Copy", className, iconOnly = false,
     <span className={styles.icon} aria-hidden="true">
       <AnimatePresence initial={false}>
         <motion.span key={state} className={styles.iconInner} data-state={state} initial={reduced ? fadeIn : iconIn} animate={rest} exit={reduced ? fadeOut : iconOut} transition={reduced ? instant : iconEnter}>
-          {state === "copied" ? <DrawnCheck reduced={reduced} /> : state === "error" ? <CircleAlert size={16} strokeWidth={1.75} /> : <Copy size={16} strokeWidth={1.75} />}
+          {state === "copied" ? <DrawnCheck reduced={reduced} /> : state === "error" ? <CircleAlert size={16} /> : <Copy size={16} />}
         </motion.span>
       </AnimatePresence>
     </span>
