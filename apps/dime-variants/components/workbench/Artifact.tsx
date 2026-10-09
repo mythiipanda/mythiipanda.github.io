@@ -53,7 +53,7 @@ export function SortTable({ columns, rows, active }: { columns: Col[]; rows: (st
   const toggle = (i: number) =>
     setSort((s) => (s && s.col === i ? { col: i, dir: s.dir === 1 ? -1 : 1 } : { col: i, dir: columns[i].numeric ? -1 : 1 }));
   return (
-    <table className="w-full min-w-[420px] text-[13px]">
+    <table className="w-full min-w-[360px] text-[13px]">
       <thead className="sticky top-0 z-10 bg-canvas">
         <tr className="border-b border-line">
           {columns.map((c, i) => (
