@@ -315,3 +315,5 @@ html *:hover { scrollbar-color: rgba(41, 41, 41, 0.18) transparent; }
 html[data-theme="dark"]:hover ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); }
 html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
 html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) transparent; }
+
+[data-v="c"] { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
