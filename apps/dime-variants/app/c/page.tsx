@@ -1,6 +1,6 @@
 "use client";
 
-import { CTheme } from "@/components/v/CTheme";
+import { CLight } from "@/components/v/CLight";
 import { CSetup } from "@/components/v/CSetup";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
 import { CLogo } from "@/components/v/CLogo";
@@ -11,11 +11,12 @@ import { REPO, short } from "@/lib/copy";
 export default function C() {
     return (
     <Page v="c">
+      <CLight />
       <header className="h-[58px] border-b border-line">
         <nav className="mx-auto grid h-full max-w-[1320px] grid-cols-[auto_1fr_auto] items-center gap-8 px-5 md:px-6">
           <a href="#top" aria-label="dime home"><CLogo /></a>
           <div className="hidden gap-8 text-[14px] text-ink-2 md:flex"><a href="#self-host" className="transition-colors duration-150 hover:text-ink">Setup</a></div>
-          <div className="col-start-3 flex items-center gap-2"><CTheme /><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} /><span className="max-sm:hidden">{short.star}</span><span className="sm:hidden">Star</span></ButtonLink></div>
+          <div className="col-start-3 flex items-center gap-2"><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} /><span className="max-sm:hidden">{short.star}</span><span className="sm:hidden">Star</span></ButtonLink></div>
         </nav>
       </header>
       <main>
