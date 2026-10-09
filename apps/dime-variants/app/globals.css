@@ -396,3 +396,4 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-v="c"] .dime-table tbody tr:hover { background: var(--hover); }
 @media (hover: none) { [data-v="c"] .dime-table tbody tr:hover { background: transparent; } }
 [data-dime] .quiet-tools .table-tools { display: none !important; }
+[data-v="c"], [data-v="c"] [data-dime] { --ink-3: #626B7D; --color-ash-gray: #626B7D; }

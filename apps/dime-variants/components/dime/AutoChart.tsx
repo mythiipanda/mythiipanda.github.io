@@ -67,7 +67,7 @@ function zoneData(
   return rows.map((r) => ({ label: str(r.zone), FG_PCT: num(r.FG_PCT) }));
 }
 
-const BLUES = ["#2458F5", "#4A74F7", "#6F90F8", "#93AAFA", "#B7C6FC", "#D3DDFD"];
+const BLUES = ["#2458F5", "#2F62F6", "#3C6CF6", "#4A77F7", "#5580F7", "#5E86F8"];
 const AXIS = { fontSize: 11, fill: "var(--color-warm-gray)" } as const;
 
 export default function AutoChart({
