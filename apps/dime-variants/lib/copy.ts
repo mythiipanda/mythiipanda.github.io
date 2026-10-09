@@ -9,9 +9,9 @@ export const copy = {
   },
   statement: { lead: "You ask about a lineup.", rest: "dime shows the SQL under the answer. You keep both in a project folder, as plain files you can rerun and commit." },
   pillars: [
-    { title: "Every answer keeps its query", text: "SQL, chart and note cells save as plain files in one folder per question." },
-    { title: "Skills store the steps you repeat", text: "A skill is a file with your metrics and minute floors. dime loads it when you ask." },
-    { title: "Git keeps the history", text: "Each run stages its cells. Commit, diff and roll back like any repo." },
+    { title: "Chat answers. Projects keep the work.", text: "Ask in Chat for a quick answer. Send it to a Project and it becomes a notebook of prompt, SQL, Python, chart and markdown cells." },
+    { title: "Skills are plain files", text: "A skill is a SKILL.md file. A workflow is a skill with parameters that generates a whole Project. 14 skills exist today." },
+    { title: "Git holds the history", text: "Projects save as files in git and pin to a warehouse version, so any result can be rerun and diffed." },
   ],
   git: { title: "Every answer keeps its query", sub: "dime writes SQL, chart and note cells into one folder per question. They are plain files, so you can diff them, review them and roll them back." },
   skills: {
@@ -35,9 +35,10 @@ export const copy = {
     ],
   },
   faq: [
-    { id: "run", question: "What does dime need to run?", answer: "A clone of the repo, the data pack from scripts/fetch-data.sh, a model key in a local .env file, and npm run dev in the frontend folder." },
-    { id: "files", question: "Where do my answers live?", answer: "In a project folder on your machine. Each question keeps its SQL, chart and note cells as plain files you can rerun and commit." },
-    { id: "remote", question: "Can I sync notebooks to a git remote?", answer: "Remote sync is planned. Today the files sit in your repo folder and you commit them yourself." },
+    { id: "who", question: "Who is dime for?", answer: "Stat nerds first, analysts next, teams later. It is an open-source project with no paid plan." },
+    { id: "models", question: "Which models does it run on?", answer: "Any OpenAI-compatible endpoint. Local models are first-class." },
+    { id: "data", question: "Where does the data come from?", answer: "A prebuilt warehouse on Hugging Face, versioned and refreshed nightly, is on the roadmap. Today scripts/fetch-data.sh downloads the data pack into one DuckDB file." },
+    { id: "host", question: "Where does dime run?", answer: "On your machine. Self-hosting comes first, and the setup is a clone, a data fetch and npm run dev." },
   ],
   close: { title: "Clone it and ask about last season", button: "Star on GitHub" },
   foot: { link: "GitHub" },

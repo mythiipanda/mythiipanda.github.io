@@ -1,60 +1,69 @@
-import { Cta, Page } from "@/components/v/kit";
-import { ThemeToggle } from "@/components/landing/Nav";
-import { Logo, ButtonLink } from "@/components/landing/ui";
-import { Cell, Pill, Sql } from "@/components/workbench/Primitives";
-import { rows } from "@/components/workbench/data";
-import { SkillRows, CommitRows } from "@/components/v/features";
-import { SetupCells } from "@/components/v/cells";
-import { hero } from "@/lib/variants";
-import { copy, REPO } from "@/lib/copy";
+"use client";
 
-const toc = [["ask", "1"], ["query", "2"], ["table", "3"], ["skills", "4"], ["history", "5"], ["setup", "6"]];
+import { useEffect, useRef, useState } from "react";
+import { ThemeToggle } from "@/components/landing/Nav";
+import { Logo, ButtonLink, GithubMark } from "@/components/landing/ui";
+import Workbench, { type Tab } from "@/components/workbench/Workbench";
+import { Page, RoadmapRows, FaqList, Foot } from "@/components/v/kit";
+import { REPO } from "@/lib/copy";
+
+const rows: { tab: Tab; title: string; text: string; flip: boolean }[] = [
+  { tab: "notebook", title: "Chat answers fast. Projects keep the work.", text: "Ask in Chat for a quick answer. Send it to a Project and it becomes a notebook of prompt, SQL, Python, chart and markdown cells.", flip: false },
+  { tab: "warehouse", title: "One warehouse, pinned by version.", text: "A prebuilt warehouse on Hugging Face, refreshed nightly, is on the roadmap. Each Project pins the version it ran on.", flip: true },
+  { tab: "skills", title: "Skills and workflows are plain files.", text: "A skill is a SKILL.md file. A workflow is a skill with parameters that generates a Project. 14 skills exist today.", flip: false },
+  { tab: "history", title: "History you can diff.", text: "Projects save as files in git. Commit, review and roll back like any repo.", flip: true },
+];
+
+function Frame({ tab, tall = false }: { tab: Tab; tall?: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setSeen(true); io.disconnect(); } }, { threshold: 0.15 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <div ref={ref} className={`flex items-center justify-center rounded-[6px] bg-field p-4 md:p-12 ${tall ? "h-[560px] md:h-[820px]" : "h-[460px] md:h-[640px]"}`}>
+      <div className="h-full w-full overflow-hidden rounded-[8px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)]">{seen && <Workbench bare tab={tab} />}</div>
+    </div>
+  );
+}
 
 export default function D() {
   return (
     <Page v="d">
-      <div className="mx-auto grid max-w-[1100px] gap-0 px-5 md:grid-cols-[200px_minmax(0,1fr)] md:gap-14 md:px-6">
-        <aside className="flex items-center justify-between py-4 md:sticky md:top-0 md:h-screen md:flex-col md:items-start md:justify-between md:py-8">
-          <a href="#top" aria-label="dime home"><Logo /></a>
-          <ol className="hidden font-mono text-[12.5px] md:block">
-            {toc.map(([t, n]) => (
-              <li key={t}><a href={`#${t}`} className="flex gap-3 py-1.5 text-ink-3 transition-colors hover:text-ink"><span className="w-3 text-right">{n}</span>{t}</a></li>
-            ))}
-          </ol>
-          <div className="flex items-center gap-2"><ThemeToggle /><ButtonLink href={REPO} variant="primary" size="pill">Star on GitHub</ButtonLink></div>
-        </aside>
-        <main className="flex min-w-0 flex-col gap-5 pb-24 pt-6 md:pt-16">
-          <div id="ask"><Cell n={1} kind="ask">
-            <h1 className="text-[44px] md:text-[72px]">{hero.d.h1}</h1>
-            <p className="mt-5 max-w-[520px] text-[16px] leading-[26px] text-ink-2">{hero.d.sub}</p>
-            <div className="mt-7"><Cta /></div>
-          </Cell></div>
-          <div id="query"><Cell n={2} kind="sql" meta={<Pill tone="ok">ran 41 ms</Pill>}>
-            <h2 className="mb-4 text-[32px] md:text-[40px]">{copy.pillars[0].title}</h2>
-            <p className="mb-5 max-w-[480px] text-[15px] leading-[24px] text-ink-2">{copy.pillars[0].text}</p>
-            <Sql />
-          </Cell></div>
-          <div id="table"><Cell n={3} kind="table" meta={<span className="font-mono">61 rows</span>}>
-            <table className="w-full text-left text-[13px]">
-              <thead className="font-mono text-[11px] text-ink-3"><tr><th className="py-1.5 font-normal">player</th><th className="font-normal">team</th><th className="text-right font-normal">ts%</th><th className="text-right font-normal">usg%</th></tr></thead>
-              <tbody className="tabular-nums text-ink-2">
-                {rows.map((r) => (<tr key={r.player} className="border-t border-line"><td className="py-2 text-ink">{r.player}</td><td>{r.team}</td><td className="text-right">{r.ts}</td><td className="text-right">{r.usg}</td></tr>))}
-              </tbody>
-            </table>
-          </Cell></div>
-          <div id="skills"><Cell n={4} kind="skills">
-            <h2 className="mb-3 text-[32px] md:text-[40px]">{copy.pillars[1].title}</h2>
-            <p className="mb-5 max-w-[480px] text-[15px] leading-[24px] text-ink-2">{copy.pillars[1].text}</p>
-            <SkillRows />
-          </Cell></div>
-          <div id="history"><Cell n={5} kind="git">
-            <h2 className="mb-3 text-[32px] md:text-[40px]">{copy.pillars[2].title}</h2>
-            <p className="mb-5 max-w-[480px] text-[15px] leading-[24px] text-ink-2">{copy.pillars[2].text}</p>
-            <CommitRows />
-          </Cell></div>
-          <div id="setup"><SetupCells /></div>
-        </main>
-      </div>
+      <header className="h-[52px]">
+        <nav className="mx-auto flex h-full max-w-[1300px] items-center justify-between px-5">
+          <a href="#top" aria-label="dime home"><Logo size={17} /></a>
+          <div className="hidden gap-6 text-[13px] text-ink-2 md:flex"><a href="#product" className="hover:text-ink">Product</a><a href="#roadmap" className="hover:text-ink">Roadmap</a><a href="#self-host" className="hover:text-ink">Setup</a><a href={REPO} className="hover:text-ink">GitHub</a></div>
+          <div className="flex items-center gap-1"><ThemeToggle /><ButtonLink href={REPO} variant="ink" size="pill">Star on GitHub</ButtonLink></div>
+        </nav>
+      </header>
+      <main className="mx-auto max-w-[1300px] px-5">
+        <section className="pt-14 md:pt-[112px]">
+          <h1 className="max-w-[660px] text-[22px] font-normal leading-[28px] md:text-[26px] md:leading-[32px]">dime is the open-source analyst for NBA data. Ask in Chat, keep the work in Projects, and host it yourself.</h1>
+          <div className="mt-6 flex items-center gap-2"><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} />Star on GitHub</ButtonLink><ButtonLink href="#self-host" variant="ghost" size="pill">See the setup steps</ButtonLink></div>
+        </section>
+        <section id="product" className="mt-10 md:mt-14"><Frame tab="notebook" tall /></section>
+        {rows.map((r) => (
+          <section key={r.title} className="mt-16 grid gap-6 md:mt-24 md:grid-cols-[1.9fr_1fr] md:items-end md:gap-8">
+            <div className={r.flip ? "md:order-2" : ""}><Frame tab={r.tab} /></div>
+            <div className={`${r.flip ? "md:order-1" : ""} md:pb-4`}>
+              <h2 className="text-[17px] font-medium leading-[24px]">{r.title}</h2>
+              <p className="mt-2 max-w-[340px] text-[14px] leading-[21px] text-ink-2">{r.text}</p>
+            </div>
+          </section>
+        ))}
+        <section className="mt-24 md:mt-32"><h2 className="mb-8 text-[26px] leading-[32px]">Built in this order</h2><RoadmapRows /></section>
+        <FaqList />
+        <section className="mt-24 flex flex-col items-start gap-6 border-t border-line pt-12 md:flex-row md:items-center md:justify-between">
+          <h2 className="text-[26px] leading-[32px]">Clone it and ask about last season.</h2>
+          <ButtonLink href={REPO} variant="primary"><GithubMark />Star on GitHub</ButtonLink>
+        </section>
+      </main>
+      <div className="mt-16"><Foot max="max-w-[1300px]" /></div>
     </Page>
   );
 }

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { ThemeToggle } from "@/components/landing/Nav";
 import { ButtonLink, GithubMark, Logo } from "@/components/landing/ui";
 import { copy, REPO } from "@/lib/copy";
+import { roadmap } from "@/lib/roadmap";
 
 export const links = [
   { label: "Notebooks", href: "#notebooks" },
@@ -143,5 +144,21 @@ export function RunNav({ label }: { label: string }) {
         <div className="flex items-center gap-1"><ThemeToggle /><ButtonLink href={REPO} variant="ink" size="pill">Star on GitHub</ButtonLink></div>
       </nav>
     </header>
+  );
+}
+
+export function RoadmapRows() {
+  return (
+    <section id="roadmap" className="scroll-mt-24">
+      <ol className="border-t border-line">
+        {roadmap.map((r) => (
+          <li key={r.n} className="grid gap-2 border-b border-line py-6 md:grid-cols-[56px_1fr_1.2fr] md:items-baseline md:gap-8 md:py-7">
+            <span className="font-mono text-[12px] text-ink-3">0{r.n}</span>
+            <h3 className="text-[18px] font-medium leading-[24px] text-ink md:text-[20px]">{r.title}</h3>
+            <p className="text-[15px] leading-[24px] text-ink-2">{r.text}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }

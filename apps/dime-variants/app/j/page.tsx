@@ -26,11 +26,11 @@ export default function J() {
           <h1 className="max-w-[820px] text-[38px] leading-[42px] md:text-[56px] md:leading-[58px]">{hero.j.h1}</h1>
           <div className="mt-8"><Cta /></div>
           <div className="mt-14 md:mt-20">
-            <div className="font-mono text-[12px] text-ink-3">One question, one run: wings over 500 minutes by true shooting</div>
+            <div className="font-mono text-[12px] text-ink-3">Sample run: wings over 500 minutes by true shooting</div>
             <div className="mt-4 grid grid-cols-2 border-t border-line md:grid-cols-[1.7fr_1fr_1fr_1fr]">
               {figs.map((f) => (
                 <div key={f.l} className="border-b border-line py-6 pr-4 md:border-b-0 md:py-8">
-                  <NumberFlow value={on ? f.v : 0} className="fig text-[44px] leading-[48px] md:text-[60px] md:leading-[64px]" />
+                  <NumberFlow value={on ? f.v : 0} className="fig text-[32px] leading-[38px] md:text-[60px] md:leading-[64px]" />
                   <div className="mt-2 text-[14px] text-ink-2">{f.l}</div>
                 </div>
               ))}
