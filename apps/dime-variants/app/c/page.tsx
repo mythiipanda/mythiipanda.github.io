@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { MotionConfig } from "motion/react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { CLight } from "@/components/v/CLight";
 import { CSetup } from "@/components/v/CSetup";
@@ -19,6 +20,7 @@ export default function C() {
     return () => window.removeEventListener("scroll", f);
   }, []);
   return (
+    <MotionConfig reducedMotion="user">
     <Page v="c">
       <CLight />
       <header className={`sticky top-0 z-50 h-[58px] border-b bg-canvas transition-[border-color] duration-200 ${scrolled ? "border-line" : "border-transparent"}`}>
@@ -46,5 +48,6 @@ export default function C() {
       </main>
       <div><Foot brand max="max-w-[1320px]" /></div>
     </Page>
+    </MotionConfig>
   );
 }
