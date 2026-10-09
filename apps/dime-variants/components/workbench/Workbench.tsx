@@ -444,6 +444,11 @@ function LegacyRail({ tab, setTab, dime }: { tab: Tab; setTab: (t: Tab) => void;
         <div className="flex h-8 items-center gap-2 px-2 font-mono text-[12px] text-ink-2">
           <GitBranch size={16} className="text-ink-3" />main
         </div>
+        {dime && (
+          <div className="mt-1 flex h-9 items-center gap-2 rounded-[8px] px-2 text-[13px] font-medium text-ink">
+            <span className="flex size-5 items-center justify-center rounded-full bg-hover-2 text-[10px] font-semibold text-ink-2">T</span>Tony
+          </div>
+        )}
       </div>
     </aside>
   );
