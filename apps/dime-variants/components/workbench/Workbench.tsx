@@ -114,27 +114,22 @@ export function Warehouse() {
 
 export function Skills() {
   return (
-    <div className="flex flex-col gap-3">
-      {skills.map((s, i) => (
-        <BlurFade key={s.name} delay={0.06 * i} duration={0.3}>
-          <div className="rounded-[10px] p-4 shadow-[0_0_0_1px_var(--line)]">
-            <div className="flex items-center justify-between">
-              <b className="flex items-center gap-2 font-mono text-[13px] font-medium"><Zap size={14} className="text-ink-3" />{s.name}</b>
-              <span className="font-mono text-[11px] text-ink-3">{s.runs} runs</span>
-            </div>
-            <p className="mt-1.5 text-[13px] leading-[20px] text-ink-2">{s.text}</p>
-            <ol className="mt-3 grid gap-1.5 sm:grid-cols-2">
-              {s.steps.map((st, j) => (
-                <li key={st} className="flex items-center gap-2 font-mono text-[11.5px] text-ink-2">
-                  <span className="flex size-4 items-center justify-center rounded-[4px] bg-field text-[10px] text-ink-3 shadow-[0_0_0_1px_var(--line)]">{j + 1}</span>
-                  {st}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </BlurFade>
-      ))}
-    </div>
+    <Shell title="Skills" source="skills/*.md" copyText="scouting-report, shot-quality, lineup-report">
+      <ul className="divide-y divide-line">
+        {skills.map((s, i) => (
+          <BlurFade key={s.name} delay={0.06 * i} duration={0.3}>
+            <li className="px-4 py-3.5">
+              <div className="flex items-center justify-between gap-3">
+                <b className="flex min-w-0 items-center gap-2 font-mono text-[13px] font-medium"><Zap size={14} className="shrink-0 text-ink-3" /><span className="truncate">{s.name}</span></b>
+                <span className="shrink-0 font-mono text-[11.5px] text-ink-3">{s.runs} runs</span>
+              </div>
+              <p className="mt-1 text-[13px] leading-[20px] text-ink-2">{s.text}</p>
+              <p className="mt-2 font-mono text-[11.5px] leading-[18px] text-ink-3">{s.steps.join("  /  ")}</p>
+            </li>
+          </BlurFade>
+        ))}
+      </ul>
+    </Shell>
   );
 }
 
@@ -146,12 +141,12 @@ export function History() {
         <BlurFade key={c.ref} delay={0.06 * i} duration={0.3}>
           <div className="relative flex gap-5 py-3 pl-0">
             <span className={`relative z-[1] mt-1.5 size-[11px] shrink-0 rounded-full border-2 border-canvas ${i === 0 ? "bg-accent" : "bg-[var(--bar-2)]"}`} />
-            <div className="min-w-0 flex-1 rounded-[10px] p-3.5 shadow-[0_0_0_1px_var(--line)]">
+            <div className="min-w-0 flex-1 rounded-[10px] px-4 py-3 shadow-[0_0_0_1px_var(--line)]">
               <div className="flex items-center justify-between gap-3">
-                <b className="text-[13.5px] font-medium">{c.msg}</b>
+                <b className="text-[14px] font-medium">{c.msg}</b>
                 <span className="font-mono text-[11px] text-ink-3">{c.ref}</span>
               </div>
-              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11.5px] text-ink-2">
+              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[12px] text-ink-2">
                 <span className="text-green">+{c.add}</span>
                 <span className="text-red">-{c.del}</span>
                 {c.files.map((f) => <span key={f} className="text-ink-3">{f}</span>)}
@@ -295,7 +290,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
             </motion.div>
           </AnimatePresence>
         </div>
-        <div className="shrink-0 border-t border-line p-3 md:px-6">
+        <div className={`shrink-0 border-t border-line p-3 md:px-6 ${bare ? "hidden" : ""}`}>
           <div className="flex h-11 items-center gap-3 rounded-[10px] bg-field px-3.5 shadow-[0_0_0_1px_var(--line-strong)]">
             <span className="flex-1 truncate text-[13.5px] text-ink-3">Ask a question, or press <Kbd>/</Kbd> for skills and <Kbd>@</Kbd> for tables</span>
             <span className="hidden items-center gap-1 text-[11px] text-ink-3 sm:flex">Run <CornerDownLeft size={12} /></span>
