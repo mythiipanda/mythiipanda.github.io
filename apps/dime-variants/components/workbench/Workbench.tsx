@@ -420,7 +420,7 @@ function RailLabel({ children }: { children: ReactNode }) {
   return <div className="mx-2 mb-1 flex h-7 items-center px-2 text-[12.5px] font-medium text-ink-3">{children}</div>;
 }
 
-function LegacyRail({ tab, setTab, dime }: { tab: Tab; setTab: (t: Tab) => void; dime?: boolean }) {
+function LegacyRail({ tab, setTab, dime, view, setView }: { tab: Tab; setTab: (t: Tab) => void; dime?: boolean; view: null | "today" | "explore"; setView: (v: null | "today" | "explore") => void }) {
   return (
     <aside data-sidebar={dime ? "frozen" : undefined} className={`hidden w-[224px] shrink-0 flex-col bg-field pb-2 lg:flex ${dime ? "" : "border-r border-line"}`}>
       <div className="mb-2.5 flex h-10 items-center justify-between pl-4 pr-3.5">
@@ -432,16 +432,16 @@ function LegacyRail({ tab, setTab, dime }: { tab: Tab; setTab: (t: Tab) => void;
       </RailGroup>
       <div className="mt-3">
         <RailGroup>
-          <RailRow icon={<ChatCircle size={18} />} label="Chat" active={tab === "chat"} onClick={() => setTab("chat")} />
-          <RailRow icon={<CalendarBlank size={18} />} label="Today" />
-          <RailRow icon={<Compass size={18} />} label="Explore" />
+          <RailRow icon={<ChatCircle size={18} />} label="Chat" active={!view && tab === "chat"} onClick={() => setTab("chat")} />
+          <RailRow icon={<CalendarBlank size={18} />} label="Today" active={view === "today"} onClick={() => setView("today")} />
+          <RailRow icon={<Compass size={18} />} label="Explore" active={view === "explore"} onClick={() => setView("explore")} />
         </RailGroup>
       </div>
       <div className="mt-4">
         <RailLabel>Notebooks</RailLabel>
         <RailGroup>
           {projects.map((p) => (
-            <RailRow key={p.name} label={p.name} active={tab === "notebook"} onClick={() => setTab("notebook")} />
+            <RailRow key={p.name} label={p.name} active={!view && tab === "notebook"} onClick={() => setTab("notebook")} />
           ))}
         </RailGroup>
       </div>
@@ -515,8 +515,61 @@ export function Inspector() {
   );
 }
 
+function Today() {
+  const done = commits.filter((c) => c.when.includes("min") || c.when.includes("hour"));
+  return (
+    <div className="mx-auto flex max-w-[680px] flex-col gap-3">
+      <h3 className="mb-1 text-[15px] font-medium text-ink">Today</h3>
+      {done.map((c) => (
+        <div key={c.ref} className="rounded-[10px] px-4 py-3 shadow-[0_0_0_1px_var(--line)]">
+          <div className="flex items-center justify-between gap-3">
+            <b className="text-[14px] font-medium">{c.msg}</b>
+            <span className="shrink-0 font-mono text-[11px] text-ink-3">{c.when}</span>
+          </div>
+          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[12px] text-ink-2">
+            <span className="text-green">+{c.add}</span>
+            <span className="text-red">-{c.del}</span>
+            {c.files.map((f) => <span key={f} className="text-ink-3">{f}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Explore({ go }: { go: (t: Tab) => void }) {
+  return (
+    <div className="mx-auto flex max-w-[680px] flex-col gap-6">
+      <div>
+        <h3 className="mb-2 text-[15px] font-medium text-ink">Warehouse</h3>
+        <div className="flex flex-col gap-2">
+          {tables.map((t) => (
+            <button key={t.name} type="button" onClick={() => go("warehouse")} className="flex items-center justify-between rounded-[10px] px-4 py-3 text-left shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover">
+              <span className="font-mono text-[13px] text-ink">{t.name}</span>
+              <span className="font-mono text-[12px] text-ink-3">{t.rows} rows</span>
+            </button>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 className="mb-2 text-[15px] font-medium text-ink">Skills</h3>
+        <div className="flex flex-col gap-2">
+          {skills.map((k) => (
+            <button key={k.name} type="button" onClick={() => go("skills")} className="rounded-[10px] px-4 py-3 text-left shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover">
+              <span className="block font-mono text-[13px] text-ink">{k.name}</span>
+              <span className="mt-1 block text-[13px] leading-[19px] text-ink-2">{k.text}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Workbench({ initialTab = "notebook", bare = false, tab: forced, dime = false }: { initialTab?: Tab; bare?: boolean; tab?: Tab; dime?: boolean }) {
-  const [own, setTab] = useState<Tab>(initialTab);
+  const [own, setOwn] = useState<Tab>(initialTab);
+  const [view, setView] = useState<null | "today" | "explore">(null);
+  const setTab = (t: Tab) => { setView(null); setOwn(t); };
   const [asked, setAsked] = useState<string[]>([]);
   const ctx = { asked, ask: (q: string) => { setAsked((a) => [...a, q]); setTab("chat"); }, go: setTab };
   const tab = forced ?? own;
@@ -524,7 +577,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
     <DimeCtx.Provider value={dime}>
     <AskCtx.Provider value={ctx}>
     <div data-dime={dime ? "" : undefined} className="flex h-full min-h-0 w-full bg-canvas text-ink">
-      {!bare && <LegacyRail tab={tab} setTab={setTab} dime={dime} />}
+      {!bare && <LegacyRail tab={tab} setTab={setTab} dime={dime} view={view} setView={setView} />}
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-12 shrink-0 items-center justify-between gap-3 border-b border-line px-3 md:px-4">
           {forced === undefined ? <div className="flex min-w-0 items-center gap-1 overflow-x-auto">
@@ -543,12 +596,14 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4 md:px-6 md:py-5">
           <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={tab} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.18, ease }}>
-              {tab === "chat" && <Chat />}
-              {tab === "notebook" && <Notebook />}
-              {tab === "warehouse" && <Warehouse />}
-              {tab === "skills" && <Skills />}
-              {tab === "history" && <History />}
+            <motion.div key={view ?? tab} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.18, ease }}>
+              {view === "today" && <Today />}
+              {view === "explore" && <Explore go={setTab} />}
+              {!view && tab === "chat" && <Chat />}
+              {!view && tab === "notebook" && <Notebook />}
+              {!view && tab === "warehouse" && <Warehouse />}
+              {!view && tab === "skills" && <Skills />}
+              {!view && tab === "history" && <History />}
             </motion.div>
           </AnimatePresence>
         </div>
