@@ -1,7 +1,8 @@
 ---
 import { projects as all } from "../content";
 import { url } from "../lib/url";
-const projects = [...all].sort((a, b) => Number(b.dates) - Number(a.dates));
+const rank = (p: { name: string }) => (p.name === "Dime" ? 1 : 0);
+const projects = [...all].sort((a, b) => rank(b) - rank(a) || Number(b.dates) - Number(a.dates));
 ---
 <section class="in" style="--i:3" aria-labelledby="h-proj">
   <h2 id="h-proj">Projects</h2>
