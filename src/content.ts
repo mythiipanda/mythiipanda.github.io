@@ -56,6 +56,7 @@ export const projects: Project[] = [
     url: 'https://mythiipanda.github.io/valops/',
     dates: '2026',
     blurb: 'Modeling Valorant Champions Shanghai.',
+    thumb: '/thumbs/valops.png',
   },
   {
     name: 'TDILEARNED',
@@ -69,6 +70,7 @@ export const projects: Project[] = [
     url: 'https://mythiipanda.github.io/dime-site/',
     dates: '2026',
     blurb: 'Built an AI agent for NBA analytics.',
+    thumb: '/thumbs/dime.png',
   },
   {
     name: 'Snaek’s Value List',
