@@ -12,6 +12,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { tipStyle } from "@/components/dime/VisionCharts";
 import { categoryAxisWidth } from "@/lib/dime/viz";
 
 type Row = Record<string, unknown>;
@@ -67,6 +68,8 @@ function zoneData(
   return rows.map((r) => ({ label: str(r.zone), FG_PCT: num(r.FG_PCT) }));
 }
 
+const LABELS: Record<string, string> = { USG_PCT: "Usage rate", TS_PCT: "True shooting", PTS: "Points", AST_PCT: "Assist rate" };
+const isPct = (k: string) => k.endsWith("_PCT");
 const BLUES = ["#1B3FB8", "#2458F5", "#3A72F6", "#5489F8", "#6C9AF9", "#7BA3F9"];
 const AXIS = { fontSize: 11, fill: "var(--color-warm-gray)" } as const;
 
@@ -89,7 +92,7 @@ export default function AutoChart({
             <CartesianGrid stroke="var(--color-stone-border)" vertical={false} />
             <XAxis dataKey="label" tick={AXIS} interval={2} />
             <YAxis tick={AXIS} width={30} />
-            <Tooltip />
+            <Tooltip {...tipStyle} />
             <Line type="monotone" dataKey="PTS" stroke="var(--accent)" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
@@ -101,14 +104,14 @@ export default function AutoChart({
     return (
       <div style={{ marginTop: 8 }}>
         <div style={{ fontSize: 12, color: "var(--color-warm-gray)", marginBottom: 4 }}>
-          Top {stat}
+          {LABELS[stat] ?? stat}{isPct(stat) ? ", %" : ""}
         </div>
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={lead} layout="vertical">
             <CartesianGrid stroke="var(--color-stone-border)" horizontal={false} />
             <XAxis type="number" tick={AXIS} />
             <YAxis type="category" dataKey="label" tick={AXIS} width={categoryAxisWidth(lead.map((d) => d.label))} interval={0} />
-            <Tooltip />
+            <Tooltip {...tipStyle} formatter={(v) => [isPct(stat) ? `${v}%` : String(v), LABELS[stat] ?? stat]} />
             <Bar dataKey="value" fill="var(--accent)" radius={[0, 4, 4, 0]}>{lead.map((_, i) => <Cell key={i} fill={BLUES[i % BLUES.length]} />)}</Bar>
           </BarChart>
         </ResponsiveContainer>
@@ -127,7 +130,7 @@ export default function AutoChart({
             <CartesianGrid stroke="var(--color-stone-border)" vertical={false} />
             <XAxis dataKey="label" tick={AXIS} />
             <YAxis tick={AXIS} width={36} domain={[0, 1]} />
-            <Tooltip />
+            <Tooltip {...tipStyle} />
             <Bar dataKey="FG_PCT" fill="var(--accent)" radius={[4, 4, 0, 0]}>{zone.map((_, i) => <Cell key={i} fill={BLUES[i % BLUES.length]} />)}</Bar>
           </BarChart>
         </ResponsiveContainer>

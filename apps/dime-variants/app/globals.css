@@ -422,3 +422,4 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
   [data-v="c"] a[target="_blank"][class*="bg-surface"]:hover, [data-v="c"] a[target="_blank"][class*="bg-canvas"]:hover { background-color: #fff; box-shadow: var(--float-md); }
   [data-v="c"] footer a:hover, [data-v="c"] header a:hover { color: var(--color-ink, #14120c); }
 }
+[data-v="c"] .tc-chip { flex: none; max-width: 100%; }
