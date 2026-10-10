@@ -515,9 +515,8 @@ export function Inspector() {
   );
 }
 
-export default function Workbench({ initialTab = "notebook", bare = false, tab: forced, dime = false, scrollTab }: { initialTab?: Tab; bare?: boolean; tab?: Tab; dime?: boolean; scrollTab?: Tab }) {
+export default function Workbench({ initialTab = "notebook", bare = false, tab: forced, dime = false }: { initialTab?: Tab; bare?: boolean; tab?: Tab; dime?: boolean }) {
   const [own, setTab] = useState<Tab>(initialTab);
-  useEffect(() => { if (scrollTab) setTab(scrollTab); }, [scrollTab]);
   const [asked, setAsked] = useState<string[]>([]);
   const ctx = { asked, ask: (q: string) => { setAsked((a) => [...a, q]); setTab("chat"); }, go: setTab };
   const tab = forced ?? own;

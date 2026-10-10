@@ -7,7 +7,7 @@ import { CLight } from "@/components/v/CLight";
 import { CSetup } from "@/components/v/CSetup";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
 import { CLogo } from "@/components/v/CLogo";
-import ScrollShowcase from "@/components/dime/ScrollShowcase";
+import HeroWindow from "@/components/dime/HeroWindow";
 import { Page } from "@/components/v/kit";
 import { REPO, short } from "@/lib/copy";
 
@@ -41,7 +41,7 @@ export default function C() {
               </div>
             </div></BlurFade>
           </div>
-          <ScrollShowcase />
+          <HeroWindow />
         </section>
         <CSetup />
       </main>
