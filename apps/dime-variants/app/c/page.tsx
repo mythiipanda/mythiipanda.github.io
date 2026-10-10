@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import DitherMark from "@/components/dime/DitherMark";
 import { MotionConfig } from "motion/react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { CLight } from "@/components/v/CLight";
@@ -8,7 +9,7 @@ import { CSetup } from "@/components/v/CSetup";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
 import { CLogo } from "@/components/v/CLogo";
 import Workbench from "@/components/workbench/Workbench";
-import { Page, Foot } from "@/components/v/kit";
+import { Page } from "@/components/v/kit";
 import { REPO, short } from "@/lib/copy";
 
 export default function C() {
@@ -46,7 +47,15 @@ export default function C() {
         </section>
         <CSetup />
       </main>
-      <div><Foot brand max="max-w-[1320px]" /></div>
+      <footer className="mx-auto max-w-[1320px] px-5 pb-10 pt-6 md:px-6">
+        <div className="flex flex-col items-center gap-8">
+          <DitherMark />
+          <div className="flex w-full items-center justify-between text-[13px] text-ink-3">
+            <CLogo size={18} />
+            <a href={REPO} className="transition-colors hover:text-ink">GitHub</a>
+          </div>
+        </div>
+      </footer>
     </Page>
     </MotionConfig>
   );

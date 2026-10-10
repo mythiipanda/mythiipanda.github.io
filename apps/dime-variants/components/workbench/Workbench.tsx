@@ -415,7 +415,7 @@ function LegacyRail({ tab, setTab, dime }: { tab: Tab; setTab: (t: Tab) => void;
         <SidebarSimple size={18} className="text-ink-3" />
       </div>
       <RailGroup>
-        <RailRow icon={<PencilSimpleLine size={18} />} label="New analysis" onClick={() => setTab("chat")} />
+        <RailRow icon={<PencilSimpleLine size={18} />} label="New notebook" onClick={() => setTab("chat")} />
       </RailGroup>
       <div className="mt-3">
         <RailGroup>
@@ -425,7 +425,7 @@ function LegacyRail({ tab, setTab, dime }: { tab: Tab; setTab: (t: Tab) => void;
         </RailGroup>
       </div>
       <div className="mt-4">
-        <RailLabel>Analyses</RailLabel>
+        <RailLabel>Notebooks</RailLabel>
         <RailGroup>
           {projects.map((p) => (
             <RailRow key={p.name} label={p.name} active={tab === "notebook"} onClick={() => setTab("notebook")} />
@@ -514,8 +514,8 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
           {forced === undefined ? <div className="flex min-w-0 items-center gap-1 overflow-x-auto">
             <AnimatedBackground defaultValue={tab} className="rounded-[7px] bg-hover-2" transition={{ type: "spring", bounce: 0.1, duration: 0.35 }} onValueChange={(v) => v && setTab(v as Tab)}>
               {tabs.map(({ id, label, icon: Icon }) => (
-                <button key={id} data-id={id} type="button" className={`flex h-10 shrink-0 md:h-8 items-center gap-1.5 px-2.5 text-[13px] transition-colors ${tab === id ? "text-ink" : "text-ink-2 hover:text-ink"}`}>
-                  <span className="flex items-center gap-1.5"><Icon size={14} /><span className={tab === id ? "" : "max-sm:sr-only"}>{label}</span></span>
+                <button key={id} data-id={id} type="button" className={`flex h-10 shrink-0 md:h-8 items-center gap-1.5 px-2.5 ${dime ? "text-[14px] font-medium" : "text-[13px]"} transition-colors ${tab === id ? "text-ink" : "text-ink-2 hover:text-ink"}`}>
+                  <span className="flex items-center gap-1.5"><Icon size={dime ? 18 : 14} /><span className={tab === id ? "" : "max-sm:sr-only"}>{label}</span></span>
                 </button>
               ))}
             </AnimatedBackground>
