@@ -483,7 +483,7 @@ export function Inspector() {
       </div>
       )}
       <div className="rounded-[10px] bg-canvas p-3.5 shadow-[0_0_0_1px_var(--line)]">
-        <div className="mb-2 flex items-center justify-between text-[11px] text-ink-3"><span>Staged</span><span className="font-mono">main</span></div>
+        <div className="mb-2 flex items-center justify-between text-[11px] text-ink-3"><span>Staged</span><span className={dime ? "hidden" : "font-mono"}>main</span></div>
         <div className="font-mono text-[11.5px] leading-[20px] text-ink-2">
           <div><span className="text-green">+</span> cells/02-sql.sql</div>
           <div><span className="text-green">+</span> cells/03-chart.json</div>
@@ -496,7 +496,7 @@ export function Inspector() {
           <div className="text-[11px] text-ink-3">Rows scanned</div>
           <div className="font-mono text-[22px] font-medium leading-[28px]"><NumberFlow value={scanned} className={dime ? "text-accent" : "text-ink"} /></div>
         </div>
-        <span className="font-mono text-[11px] text-ink-3">warehouse.duckdb</span>
+        <span className={dime ? "hidden" : "font-mono text-[11px] text-ink-3"}>warehouse.duckdb</span>
       </div>
     </aside>
   );
@@ -512,7 +512,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-12 shrink-0 items-center justify-between gap-3 border-b border-line px-3 md:px-4">
           {forced === undefined ? <div className="flex min-w-0 items-center gap-1 overflow-x-auto">
-            <AnimatedBackground defaultValue={tab} className={dime ? "rounded-[8px] bg-surface shadow-[0_1px_2px_rgba(20,18,12,0.05),0_4px_14px_-4px_rgba(20,18,12,0.12)]" : "rounded-[7px] bg-hover-2"} transition={{ type: "spring", bounce: 0.1, duration: 0.35 }} onValueChange={(v) => v && setTab(v as Tab)}>
+            <AnimatedBackground defaultValue={tab} className={dime ? "rounded-[8px] bg-surface shadow-[0_0_0_1px_rgba(20,18,12,0.04),0_1px_2px_rgba(20,18,12,0.04)]" : "rounded-[7px] bg-hover-2"} transition={{ type: "spring", bounce: 0.1, duration: 0.35 }} onValueChange={(v) => v && setTab(v as Tab)}>
               {tabs.map(({ id, label, icon: Icon }) => (
                 <button key={id} data-id={id} type="button" className={`flex h-10 shrink-0 md:h-8 items-center gap-1.5 px-2.5 ${dime ? "text-[14px] font-medium" : "text-[13px]"} transition-colors ${tab === id ? "text-ink" : "text-ink-2 hover:text-ink"}`}>
                   <span className="flex items-center gap-1.5"><Icon size={dime ? 18 : 14} /><span className={tab === id ? "" : "max-sm:sr-only"}>{label}</span></span>
@@ -520,7 +520,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
               ))}
             </AnimatedBackground>
           </div> : <span className="font-mono text-[12px] text-ink-2">{forced}</span>}
-          <div className="hidden items-center gap-2 font-mono text-[11.5px] text-ink-3 sm:flex">
+          <div className={dime ? "hidden" : "hidden items-center gap-2 font-mono text-[11.5px] text-ink-3 sm:flex"}>
             <span>warehouse / true-shooting</span>
             {dime ? null : <Pill tone="ok">saved</Pill>}
           </div>

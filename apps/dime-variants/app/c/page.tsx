@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import DitherMark from "@/components/dime/DitherMark";
+import FooterArt from "@/components/dime/FooterArt";
 import { MotionConfig } from "motion/react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { CLight } from "@/components/v/CLight";
@@ -42,14 +42,13 @@ export default function C() {
               </div>
             </div></BlurFade>
           </div>
-          <div className="mt-10 overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:hidden"><div className="h-[560px] md:h-[640px]"><Workbench dime bare initialTab="chat" /></div></div>
-          <div className="mt-12 hidden overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:block"><div className="h-[660px]"><Workbench dime initialTab="chat" /></div></div>
+          <div className="mt-10 overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:mt-12"><div className="h-[560px] md:h-[640px] lg:h-[660px]"><Workbench dime initialTab="chat" /></div></div>
         </section>
         <CSetup />
       </main>
       <footer className="mx-auto max-w-[1320px] px-5 pb-10 pt-6 md:px-6">
         <div className="flex flex-col items-center gap-8">
-          <DitherMark />
+          <FooterArt />
           <div className="flex w-full items-center justify-between text-[13px] text-ink-3">
             <CLogo size={18} />
             <a href={REPO} className="transition-colors hover:text-ink">GitHub</a>
