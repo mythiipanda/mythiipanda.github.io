@@ -338,7 +338,7 @@ export function History() {
   const dime = useContext(DimeCtx);
   return (
     <div className="relative flex flex-col">
-      <div className="absolute bottom-3 left-[5px] top-3 w-px bg-line" />
+      <div className={dime ? "absolute bottom-3 left-[4.5px] top-3 w-[2px] rounded-full bg-hover-2" : "absolute bottom-3 left-[5px] top-3 w-px bg-line"} />
       {commits.map((c, i) => (
         <BlurFade key={c.ref} delay={0.06 * i} duration={0.3}>
           <div className="relative flex gap-5 py-3 pl-0">
