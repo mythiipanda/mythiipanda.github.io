@@ -80,7 +80,7 @@ function DimeComposer() {
         aria-label="Send"
         disabled={!can}
         className="flex size-9 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-150 enabled:active:scale-[0.96]"
-        style={{ background: can ? "var(--accent)" : "var(--line)", color: can ? "#fff" : "var(--ink-3)" }}
+        style={{ background: "var(--accent)", color: "#fff", opacity: can ? 1 : 0.5 }}
       >
         <ArrowUp size={16} weight="bold" />
       </button>
@@ -512,7 +512,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-12 shrink-0 items-center justify-between gap-3 border-b border-line px-3 md:px-4">
           {forced === undefined ? <div className="flex min-w-0 items-center gap-1 overflow-x-auto">
-            <AnimatedBackground defaultValue={tab} className="rounded-[7px] bg-hover-2" transition={{ type: "spring", bounce: 0.1, duration: 0.35 }} onValueChange={(v) => v && setTab(v as Tab)}>
+            <AnimatedBackground defaultValue={tab} className={dime ? "rounded-[8px] bg-surface shadow-[0_1px_2px_rgba(20,18,12,0.05),0_4px_14px_-4px_rgba(20,18,12,0.12)]" : "rounded-[7px] bg-hover-2"} transition={{ type: "spring", bounce: 0.1, duration: 0.35 }} onValueChange={(v) => v && setTab(v as Tab)}>
               {tabs.map(({ id, label, icon: Icon }) => (
                 <button key={id} data-id={id} type="button" className={`flex h-10 shrink-0 md:h-8 items-center gap-1.5 px-2.5 ${dime ? "text-[14px] font-medium" : "text-[13px]"} transition-colors ${tab === id ? "text-ink" : "text-ink-2 hover:text-ink"}`}>
                   <span className="flex items-center gap-1.5"><Icon size={dime ? 18 : 14} /><span className={tab === id ? "" : "max-sm:sr-only"}>{label}</span></span>
