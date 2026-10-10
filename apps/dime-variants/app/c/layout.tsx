@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const url = "https://mythiipanda.github.io/dime-site/c/";
 const title = "dime. The open-source analyst for NBA data";
-const description = "Ask in plain English. dime writes the SQL, builds the chart and saves the notebook to your own git repo.";
+const description = "Dime is your NBA analyst. It works in your projects, runs your models, and shows its work.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mythiipanda.github.io"),

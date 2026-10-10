@@ -35,7 +35,7 @@ export default function C() {
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
             <BlurFade className="lg:col-span-7" direction="up" offset={8} duration={0.5}><h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px]">Harvey for NBA Analysts</h1></BlurFade>
             <BlurFade className="lg:col-span-5" direction="up" offset={8} duration={0.5} delay={0.08}><div>
-              <p className="max-w-[510px] text-[17px] leading-[26px] text-ink-2">Ask in plain English. dime writes the SQL, builds the chart and saves the notebook to your own git repo.</p>
+              <p className="max-w-[510px] text-[17px] leading-[26px] text-ink-2">Dime is your NBA analyst. It works in your projects, runs your models, and shows its work.</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
               </div>
