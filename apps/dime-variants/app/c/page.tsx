@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FooterArt from "@/components/dime/FooterArt";
 import { MotionConfig } from "motion/react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { CLight } from "@/components/v/CLight";
@@ -47,8 +46,7 @@ export default function C() {
         <CSetup />
       </main>
       <footer className="mx-auto max-w-[1320px] px-5 pb-10 pt-6 md:px-6">
-        <div className="flex flex-col items-center gap-8">
-          <FooterArt />
+        <div className="flex flex-col items-center gap-0">
           <div className="flex w-full items-center justify-between text-[13px] text-ink-3">
             <CLogo size={18} />
             <a href={REPO} className="transition-colors hover:text-ink">GitHub</a>
