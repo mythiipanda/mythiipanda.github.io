@@ -8,7 +8,7 @@ import { CLight } from "@/components/v/CLight";
 import { CSetup } from "@/components/v/CSetup";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
 import { CLogo } from "@/components/v/CLogo";
-import Workbench from "@/components/workbench/Workbench";
+import ScrollShowcase from "@/components/dime/ScrollShowcase";
 import { Page } from "@/components/v/kit";
 import { REPO, short } from "@/lib/copy";
 
@@ -42,7 +42,7 @@ export default function C() {
               </div>
             </div></BlurFade>
           </div>
-          <div className="mt-10 overflow-hidden rounded-[16px] bg-canvas shadow-[0_0_0_1px_var(--line-strong)] lg:mt-12"><div className="h-[560px] md:h-[640px] lg:h-[660px]"><Workbench dime initialTab="chat" /></div></div>
+          <ScrollShowcase />
         </section>
         <CSetup />
       </main>

@@ -502,8 +502,9 @@ export function Inspector() {
   );
 }
 
-export default function Workbench({ initialTab = "notebook", bare = false, tab: forced, dime = false }: { initialTab?: Tab; bare?: boolean; tab?: Tab; dime?: boolean }) {
+export default function Workbench({ initialTab = "notebook", bare = false, tab: forced, dime = false, scrollTab }: { initialTab?: Tab; bare?: boolean; tab?: Tab; dime?: boolean; scrollTab?: Tab }) {
   const [own, setTab] = useState<Tab>(initialTab);
+  useEffect(() => { if (scrollTab) setTab(scrollTab); }, [scrollTab]);
   const tab = forced ?? own;
   return (
     <DimeCtx.Provider value={dime}>
