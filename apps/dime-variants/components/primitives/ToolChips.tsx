@@ -84,7 +84,7 @@ export default function ToolChips({
   };
   const closePreview = (file: string) => () =>
     setPreview((current) => (current?.file === file ? null : current));
-  const total = steps.length + 1; // rows, then diff chips
+  const total = steps.length + 1;
 
   useEffect(() => {
     if (step >= total) return;
