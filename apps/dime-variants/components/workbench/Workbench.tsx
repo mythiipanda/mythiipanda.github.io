@@ -346,7 +346,7 @@ export function History() {
             <div className="min-w-0 flex-1 rounded-[10px] px-4 py-3 shadow-[0_0_0_1px_var(--line)]">
               <div className="flex items-center justify-between gap-3">
                 <b className="text-[14px] font-medium">{c.msg}</b>
-                <span className="font-mono text-[11px] text-ink-3">{c.ref}</span>
+                <span className="shrink-0 font-mono text-[11px] text-ink-3">{c.ref}</span>
               </div>
               <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[12px] text-ink-2">
                 <span className="text-green">+{c.add}</span>
@@ -357,7 +357,7 @@ export function History() {
               {dime && i === 0 && (
                 <div className="mt-3 overflow-hidden rounded-[8px] bg-field shadow-[0_0_0_1px_var(--line)]">
                   <div className="border-b border-line px-3 py-1.5 font-mono text-[11px] text-ink-3">cells/04-chart.json</div>
-                  <pre className="px-3 py-2.5 font-mono text-[12px] leading-[20px] text-ink">
+                  <pre className="overflow-x-auto px-3 py-2.5 font-mono text-[12px] leading-[20px] text-ink">
                     <div><span className="mr-2 text-accent">+</span>{`{ "type": "bar", "x": "PLAYER_NAME",`}</div>
                     <div><span className="mr-2 text-accent">+</span>{`  "y": "TS_PCT", "limit": 5 }`}</div>
                   </pre>

@@ -411,3 +411,5 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
   [data-v="c"] [data-dime] .dime-table:hover { box-shadow: var(--float-lg) !important; }
   [data-v="c"] button[class*="rounded-full"][class*="shadow-[0_0_0_1px_var(--line)]"]:not([data-sidebar] *):hover { box-shadow: var(--float-md) !important; transform: translateY(-1px); }
 }
+[data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] [class*="bg-field"][class*="shadow-[0_0_0_1px_var(--line)]"]:not([data-sidebar] *), [data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] .dime-table { box-shadow: none !important; transform: none !important; }
+[data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] .dime-table { background: var(--color-pure-white, #fff); }
