@@ -154,7 +154,7 @@ export function Chat() {
       {asked.map((q, k) => (
         <div key={k} className="flex flex-col gap-3">
           <div className="ml-auto max-w-[520px] rounded-[14px] rounded-br-[4px] bg-field px-3.5 py-2.5 text-[14px] leading-[22px] text-ink shadow-[0_0_0_1px_var(--line)]">{q}</div>
-          <div className="flex gap-3"><CMark size={22} className="mt-px shrink-0" /><p className="text-[14px] leading-[22px] text-ink-2">This page is a recorded run. Self-host dime to ask your own questions against your own warehouse.</p></div>
+          <div className="flex gap-3"><CMark size={22} className="mt-px shrink-0" /><p className="text-[14px] leading-[22px] text-ink-2">This page is a recorded run. Self-host dime to ask your own questions.</p></div>
         </div>
       ))}
       <div ref={endRef} />
