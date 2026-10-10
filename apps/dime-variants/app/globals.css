@@ -417,3 +417,4 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-v="c"] [data-dime] .field:focus { box-shadow: var(--float-sm), 0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent); outline: none; }
 [data-v="c"] [data-dime] .pill-ghost, [data-v="c"] [data-dime] .tab-active { border: none !important; background: var(--color-pure-white, #fff); box-shadow: var(--float-sm); }
 [data-v="c"] .cell-sub { display: none; }
+[data-v="c"] [data-dime] button:not([data-sidebar] *):focus-visible, [data-v="c"] main a:focus-visible { outline: 2px solid color-mix(in oklab, var(--accent) 55%, transparent); outline-offset: 2px; }
