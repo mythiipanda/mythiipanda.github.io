@@ -85,7 +85,7 @@ export function ShotMap() {
   const sum = shotSummary();
   return (
     <div className="flex flex-col gap-4 md:flex-row md:items-center">
-      <svg viewBox="0 0 500 440" className="w-full max-w-[420px] shrink-0" role="img" aria-label="Luke Kennard shot map">
+      <svg viewBox="0 0 500 440" className="w-full max-w-[420px] shrink-0" role="img" aria-label="Kennard shots">
         <g fill="none" stroke="rgba(20,18,12,0.14)" strokeWidth="1.5">
           <rect x="2" y="2" width="496" height="436" rx="2" />
           <rect x="190" y="2" width="120" height="190" />
@@ -108,7 +108,7 @@ export function ShotMap() {
       </svg>
       <div className="min-w-0 flex-1">
         <div className="font-mono text-[22px] font-medium leading-[28px] tabular-nums text-ink">{sum.fgm} of {sum.fga}</div>
-        <div className="text-[12px] text-ink-3">Kennard field goals, recorded shots</div>
+        <div className="text-[12px] text-ink-3">Field goals, recorded shots</div>
         <div className="mt-3 flex flex-col gap-1.5">
           {sum.rows.map((r, i) => (
             <div key={r.zone} className="flex items-center gap-3 text-[13px]">

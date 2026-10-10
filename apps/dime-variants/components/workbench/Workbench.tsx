@@ -559,7 +559,7 @@ function Today() {
         <Stat label="Leader TS%" value="68.9%" />
         <Stat label="Rows scanned" value="582" />
       </div>
-      <Panel title="True shooting against usage" source="top 5 by TS%">
+      <Panel title="True shooting and usage" source="top 5">
         <ResponsiveContainer width="100%" height={250}>
           <ScatterChart margin={{ top: 12, right: 28, bottom: 18, left: 0 }}>
             <CartesianGrid stroke="var(--line)" />
@@ -574,10 +574,10 @@ function Today() {
         </ResponsiveContainer>
       </Panel>
       <div className="grid gap-4 md:grid-cols-2">
-        <Panel title="Lineup pulse" source="net rating, 200+ min">
+        <Panel title="Lineups" source="net rating">
           <LineupPulse />
         </Panel>
-        <Panel title="Saved today" source="git">
+        <Panel title="Commits" source="git">
           <div className="flex flex-col gap-2.5">
             {done.map((c) => (
               <div key={c.ref} className="flex items-center justify-between gap-3 text-[13px]">
@@ -605,9 +605,9 @@ function Explore({ go }: { go: (t: Tab) => void }) {
     <div className="mx-auto flex max-w-[760px] flex-col gap-4">
       <div>
         <h3 className="text-[17px] font-medium text-ink">Explore</h3>
-        <p className="mt-0.5 text-[13.5px] text-ink-2">Pick a question and follow it into the data.</p>
+        
       </div>
-      <Panel title="Luke Kennard shot map" source="silver_shots">
+      <Panel title="Kennard shots" source="silver_shots">
         <ShotMap />
       </Panel>
       <div className="flex flex-wrap gap-2">
@@ -616,10 +616,10 @@ function Explore({ go }: { go: (t: Tab) => void }) {
         ))}
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <Panel title="Nikola Jokić RAPTOR" source="total, by season">
+        <Panel title="Jokić RAPTOR" source="by season">
           <RaptorLine />
         </Panel>
-        <Panel title="Warehouse tables" source="rows, log scale">
+        <Panel title="Tables" source="rows, log scale">
           <ResponsiveContainer width="100%" height={190}>
             <BarChart data={size} layout="vertical" margin={{ left: 0, right: 8 }}>
               <CartesianGrid stroke="var(--line)" horizontal={false} />
