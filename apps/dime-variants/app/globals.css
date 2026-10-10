@@ -406,3 +406,9 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-v="c"] [data-dime] .chat-composer:focus-within { box-shadow: var(--float-lg), 0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent) !important; }
 [data-v="c"] [data-dime] [class*="border-line"]:not([data-sidebar] *) { border-color: transparent !important; }
 [data-v="c"] [data-sidebar] [data-row][class*="bg-hover-2"] { background: var(--color-pure-white, #fff); box-shadow: var(--float-sm); }
+[data-v="c"] [data-dime] .dime-table, [data-v="c"] [class*="rounded-[10px]"][class*="shadow-[0_0_0_1px_var(--line)]"]:not([data-sidebar] *) { transition: box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+@media (hover: hover) and (pointer: fine) {
+  [data-v="c"] [class*="rounded-[10px]"][class*="shadow-[0_0_0_1px_var(--line)]"]:not([data-sidebar] *):hover { box-shadow: var(--float-lg) !important; transform: translateY(-1px); }
+  [data-v="c"] [data-dime] .dime-table:hover { box-shadow: var(--float-lg) !important; }
+  [data-v="c"] button[class*="rounded-full"][class*="shadow-[0_0_0_1px_var(--line)]"]:not([data-sidebar] *):hover { box-shadow: var(--float-md) !important; transform: translateY(-1px); }
+}
