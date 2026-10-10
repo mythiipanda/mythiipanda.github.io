@@ -259,7 +259,7 @@ export default function DataTable({ rows, capCols = 8, capRows = 25, heat = fals
           }}
           title="Show percentile rank within each numeric column"
         >
-          Pct
+          Percent
         </button>
         <button
           className={`tools-extra ${showIds ? "tab-active" : "pill-ghost"}`}
@@ -406,7 +406,7 @@ export default function DataTable({ rows, capCols = 8, capRows = 25, heat = fals
                       </>
                     )}
                     {t.subs[ri][t.cols[j]] && (
-                      <div style={{ fontSize: 10, color: "var(--color-ash-gray)" }}>
+                      <div className="cell-sub" style={{ fontSize: 10, color: "var(--color-ash-gray)" }}>
                         {t.subs[ri][t.cols[j]]}
                       </div>
                     )}
