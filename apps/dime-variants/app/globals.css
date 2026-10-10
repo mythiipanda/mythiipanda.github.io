@@ -376,7 +376,6 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-dime] .pulse-dot { animation: dime-pulse-dot 1200ms ease-in-out infinite; }
 @keyframes dime-pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 [data-dime] .chat-composer { background: var(--color-pure-white); border: 1px solid var(--color-stone-border); box-shadow: 0 16px 50px color-mix(in oklab, var(--color-ink-black) 8%, transparent); }
-[data-dime] .chat-composer:focus-within { border-color: var(--color-stone-muted); }
 [data-dime] .chat-composer-dock { display: flex; gap: 10px; align-items: center; padding: 10px 12px 10px 14px; border-radius: 15px; }
 [data-dime] .chat-composer textarea { color: var(--color-ink-black); }
 [data-dime] .chat-composer textarea::placeholder { color: var(--color-ash-gray); }
@@ -384,7 +383,6 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 @media (prefers-reduced-motion: reduce) { [data-dime] .pulse-dot { animation: none; } }
 [id]{scroll-margin-top:72px}
 [data-dime] [aria-label="Send"] { background: var(--accent); color: #fff; }
-[data-dime] .chat-composer:focus-within { border-color: var(--accent); }
 [data-v="c"] { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 [data-v="c"] h1, [data-v="c"] h2 { text-wrap: balance; }
 [data-v="c"] p { text-wrap: pretty; }
@@ -402,7 +400,6 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-v="c"] [data-dime] .dime-table { border: none !important; box-shadow: var(--float-md) !important; }
 [data-v="c"] [data-dime] .dime-table td, [data-v="c"] [data-dime] .dime-table th { border-bottom-color: rgba(20,18,12,0.05) !important; }
 [data-v="c"] [data-dime] .chat-composer { border: none !important; box-shadow: var(--float-lg) !important; }
-[data-v="c"] [data-dime] .chat-composer:focus-within { box-shadow: var(--float-lg), 0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent) !important; }
 [data-v="c"] [data-dime] [class*="border-line"]:not([data-sidebar] *) { border-color: transparent !important; }
 [data-v="c"] [data-sidebar] [data-row][class*="bg-hover-2"] { background: var(--color-pure-white, #fff); box-shadow: var(--float-sm); }
 [data-v="c"] [data-dime] .dime-table, [data-v="c"] [class*="rounded-[10px]"][class*="shadow-[0_0_0_1px_var(--line)]"]:not([data-sidebar] *) { transition: box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1); }
@@ -414,7 +411,14 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 [data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] [class*="bg-field"][class*="shadow-[0_0_0_1px_var(--line)]"]:not([data-sidebar] *), [data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] .dime-table { box-shadow: none !important; transform: none !important; }
 [data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] .dime-table { background: var(--color-pure-white, #fff); }
 [data-v="c"] [data-dime] .field { border: none !important; background: var(--color-pure-white, #fff) !important; box-shadow: var(--float-sm); border-radius: 999px; padding-left: 14px; }
-[data-v="c"] [data-dime] .field:focus { box-shadow: var(--float-sm), 0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent); outline: none; }
+[data-v="c"] [data-dime] .field:focus { outline: none; }
 [data-v="c"] [data-dime] .pill-ghost, [data-v="c"] [data-dime] .tab-active { border: none !important; background: var(--color-pure-white, #fff); box-shadow: var(--float-sm); }
 [data-v="c"] .cell-sub { display: none; }
-[data-v="c"] [data-dime] button:not([data-sidebar] *):focus-visible, [data-v="c"] main a:focus-visible { outline: 2px solid color-mix(in oklab, var(--accent) 55%, transparent); outline-offset: 2px; }
+[data-v="c"] [data-dime] input, [data-v="c"] [data-dime] input:focus, [data-v="c"] [data-dime] input:focus-visible { outline: none !important; box-shadow: none; }
+[data-v="c"] [data-dime] button:not([data-sidebar] *):focus-visible, [data-v="c"] main a:focus-visible { outline: 1px solid rgba(20,18,12,0.22); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  [data-v="c"] a[target="_blank"] { transition: background-color 140ms ease-out, box-shadow 140ms ease-out, color 140ms ease-out; }
+  [data-v="c"] a[target="_blank"]:hover { background-color: #1B3FB8; }
+  [data-v="c"] a[target="_blank"][class*="bg-surface"]:hover, [data-v="c"] a[target="_blank"][class*="bg-canvas"]:hover { background-color: #fff; box-shadow: var(--float-md); }
+  [data-v="c"] footer a:hover, [data-v="c"] header a:hover { color: var(--color-ink, #14120c); }
+}

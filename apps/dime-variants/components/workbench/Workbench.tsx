@@ -6,7 +6,7 @@ import GlideMenu from "@/components/primitives/GlideMenu";
 import { skillDocs } from "@/lib/dime/skills";
 import ToolChips from "@/components/primitives/ToolChips";
 import { CMark } from "@/components/v/CMark";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { CalendarBlank, ChatCircle, Compass, PencilSimpleLine, SidebarSimple } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChatCircle as MessageSquare, ArrowUp, FolderOpen, Lightning as Zap, Database, GitCommit as GitCommitHorizontal, Notebook as NotebookPen, ArrowElbowDownLeft as CornerDownLeft, GitBranch, CaretDown as ChevronDown, MagnifyingGlass as Search } from "@phosphor-icons/react";
@@ -19,6 +19,7 @@ import { Cell, Pill, Sql, Tick } from "./Primitives";
 import { Shell, SortTable } from "./Artifact";
 
 const DimeCtx = createContext(false);
+const AskCtx = createContext<{ asked: string[]; ask: (q: string) => void; go: (t: Tab) => void }>({ asked: [], ask: () => {}, go: () => {} });
 
 const tableRows = rows.map((r) => ({ PLAYER: r.player, TEAM: r.team, TS_PCT: r.ts, USG_PCT: r.usg }));
 
@@ -36,7 +37,7 @@ const ease = [0.23, 1, 0.32, 1] as const;
 const chatSteps = [
   { icon: "read", label: "Read skill", chip: "leaderboard", mono: true, detailMono: true, detail: [{ text: "backend/v2/skills/leaderboard" }] },
   { icon: "write", label: "Write SQL", chip: "cells/02-sql.sql", mono: true, detailMono: true, detail: [{ text: "select PLAYER_NAME, TS_PCT, USG_PCT" }, { text: "from silver_advanced" }] },
-  { icon: "db", label: "Run on DuckDB", chip: "164 rows in 41 ms", mono: true, detailMono: true, detail: [{ text: "warehouse.duckdb, 582 rows scanned" }] },
+  { icon: "db", label: "Run on DuckDB", chip: "5 rows in 41 ms", mono: true, detailMono: true, detail: [{ text: "warehouse.duckdb, 582 rows scanned" }] },
 ];
 
 function Composer() {
@@ -65,9 +66,11 @@ function Composer() {
 
 function DimeComposer() {
   const [draft, setDraft] = useState("");
+  const { ask } = useContext(AskCtx);
   const can = draft.trim().length > 0;
+  const submit = () => { if (!can) return; ask(draft.trim()); setDraft(""); };
   return (
-    <div className="flex items-center gap-2 rounded-full bg-surface py-1.5 pl-5 pr-1.5 shadow-[0_1px_2px_rgba(20,18,12,0.06),0_8px_24px_-8px_rgba(20,18,12,0.14)] transition-shadow duration-200 focus-within:shadow-[0_0_0_1.5px_var(--accent),0_8px_24px_-8px_rgba(20,18,12,0.14)]">
+    <form onSubmit={(e) => { e.preventDefault(); submit(); }} className="flex items-center gap-2 rounded-full bg-surface py-1.5 pl-5 pr-1.5 shadow-[0_1px_2px_rgba(20,18,12,0.06),0_8px_24px_-8px_rgba(20,18,12,0.14)] transition-shadow duration-200">
       <input
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
@@ -76,7 +79,7 @@ function DimeComposer() {
         className="h-9 min-w-0 flex-1 bg-transparent text-[14px] text-ink outline-none placeholder:text-ink-3 [@media(pointer:coarse)]:text-base"
       />
       <button
-        type="button"
+        type="submit"
         aria-label="Send"
         disabled={!can}
         className="flex size-9 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-150 enabled:active:scale-[0.96]"
@@ -84,12 +87,15 @@ function DimeComposer() {
       >
         <ArrowUp size={16} weight="bold" />
       </button>
-    </div>
+    </form>
   );
 }
 
 export function Chat() {
   const dime = useContext(DimeCtx);
+  const { asked, ask, go } = useContext(AskCtx);
+  const endRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (asked.length) { const box = endRef.current?.closest<HTMLElement>(".overflow-y-auto"); box?.scrollTo({ top: box.scrollHeight, behavior: "smooth" }); } }, [asked.length]);
   return (
     <div className="mx-auto flex max-w-[680px] flex-col gap-5">
       <BlurFade delay={0.05} inView={false}>
@@ -139,12 +145,19 @@ export function Chat() {
             )}
             <div className="flex flex-wrap gap-1.5">
               {["Clutch splits?", "Compare Kennard and Duren", "Send to notebook"].map((q, i) => (
-                <button key={q} type="button" className={`h-10 rounded-full md:h-8 px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? (dime ? "!shadow-[0_0_0_1px_var(--accent)] text-accent hover:bg-hover" : "bg-ink text-canvas hover:bg-ink") : "text-ink-2"}`}>{q}</button>
+                <button key={q} type="button" onClick={() => (i === 2 ? go("notebook") : ask(q))} className={`h-10 rounded-full md:h-8 px-3 text-[12.5px] shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover ${i === 2 ? (dime ? "text-accent hover:bg-hover" : "bg-ink text-canvas hover:bg-ink") : "text-ink-2"}`}>{q}</button>
               ))}
             </div>
           </div>
         </div>
       </BlurFade>
+      {asked.map((q, k) => (
+        <div key={k} className="flex flex-col gap-3">
+          <div className="ml-auto max-w-[520px] rounded-[14px] rounded-br-[4px] bg-field px-3.5 py-2.5 text-[14px] leading-[22px] text-ink shadow-[0_0_0_1px_var(--line)]">{q}</div>
+          <div className="flex gap-3"><CMark size={22} className="mt-px shrink-0" /><p className="text-[14px] leading-[22px] text-ink-2">This page is a recorded run. Self-host dime to ask your own questions against your own warehouse.</p></div>
+        </div>
+      ))}
+      <div ref={endRef} />
     </div>
   );
 }
@@ -166,7 +179,7 @@ export function Notebook() {
         <div className="px-1"><ToolChips steps={chatSteps} labels={{ header: "3 tool calls" }} /></div>
       </BlurFade>
       <BlurFade delay={0.45}>
-        <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">164 rows</span></span>}>
+        <Cell n={2} kind="sql" meta={<span className="flex items-center gap-2"><Pill tone="ok">ran 41 ms</Pill><span className="font-mono">5 rows</span></span>}>
           <Sql />
           <div className="mt-3">
             {dime ? <DataTable rows={tableRows} storeKey="nb" /> : (
@@ -505,9 +518,12 @@ export function Inspector() {
 export default function Workbench({ initialTab = "notebook", bare = false, tab: forced, dime = false, scrollTab }: { initialTab?: Tab; bare?: boolean; tab?: Tab; dime?: boolean; scrollTab?: Tab }) {
   const [own, setTab] = useState<Tab>(initialTab);
   useEffect(() => { if (scrollTab) setTab(scrollTab); }, [scrollTab]);
+  const [asked, setAsked] = useState<string[]>([]);
+  const ctx = { asked, ask: (q: string) => { setAsked((a) => [...a, q]); setTab("chat"); }, go: setTab };
   const tab = forced ?? own;
   return (
     <DimeCtx.Provider value={dime}>
+    <AskCtx.Provider value={ctx}>
     <div data-dime={dime ? "" : undefined} className="flex h-full min-h-0 w-full bg-canvas text-ink">
       {!bare && <LegacyRail tab={tab} setTab={setTab} dime={dime} />}
       <div className="flex min-w-0 flex-1 flex-col">
@@ -543,6 +559,7 @@ export default function Workbench({ initialTab = "notebook", bare = false, tab: 
       </div>
       {!bare && <Inspector />}
     </div>
+    </AskCtx.Provider>
     </DimeCtx.Provider>
   );
 }
