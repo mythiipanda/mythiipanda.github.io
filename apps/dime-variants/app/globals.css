@@ -413,3 +413,6 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 }
 [data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] [class*="bg-field"][class*="shadow-[0_0_0_1px_var(--line)]"]:not([data-sidebar] *), [data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] .dime-table { box-shadow: none !important; transform: none !important; }
 [data-v="c"] [class*="shadow-[0_0_0_1px_var(--line)]"] .dime-table { background: var(--color-pure-white, #fff); }
+[data-v="c"] [data-dime] .field { border: none !important; background: var(--color-pure-white, #fff) !important; box-shadow: var(--float-sm); border-radius: 999px; padding-left: 14px; }
+[data-v="c"] [data-dime] .field:focus { box-shadow: var(--float-sm), 0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent); outline: none; }
+[data-v="c"] [data-dime] .pill-ghost, [data-v="c"] [data-dime] .tab-active { border: none !important; background: var(--color-pure-white, #fff); box-shadow: var(--float-sm); }
