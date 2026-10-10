@@ -28,7 +28,7 @@ export default function C() {
         <nav className="mx-auto grid h-full max-w-[1320px] grid-cols-[auto_1fr_auto] items-center gap-8 px-5 md:px-6">
           <a href="#top" aria-label="dime home"><CLogo /></a>
           <span />
-          <div className="col-start-3 flex items-center gap-2"><ButtonLink href={REPO} variant="primary" size="pill"><GithubMark size={14} /><span className="max-sm:hidden">{short.star}</span><span className="sm:hidden">Star</span></ButtonLink></div>
+          <div className="col-start-3 flex items-center gap-2"><ButtonLink href={REPO} variant="ghost" size="pill"><GithubMark size={14} /><span className="max-sm:hidden">{short.star}</span><span className="sm:hidden">Star</span></ButtonLink></div>
         </nav>
       </header>
       <main>
@@ -36,7 +36,7 @@ export default function C() {
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
             <BlurFade className="lg:col-span-7" direction="up" offset={8} duration={0.5}><h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px]">Harvey for NBA Analysts</h1></BlurFade>
             <BlurFade className="lg:col-span-5" direction="up" offset={8} duration={0.5} delay={0.08}><div>
-              <p className="max-w-[440px] text-[18px] leading-[27px] text-ink-2">Ask in plain English. dime writes the SQL, builds the chart and saves the notebook to your own git repo.</p>
+              <p className="max-w-[510px] text-[17px] leading-[26px] text-ink-2">Ask in plain English. dime writes the SQL, builds the chart and saves the notebook to your own git repo.</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
               </div>
