@@ -8,6 +8,7 @@ import ToolChips from "@/components/primitives/ToolChips";
 import { CMark } from "@/components/v/CMark";
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { CalendarBlank, ChatCircle, Compass, PencilSimpleLine, SidebarSimple } from "@phosphor-icons/react";
+import { Bar, BarChart, CartesianGrid, Cell as BarCell, LabelList, ResponsiveContainer, Scatter, ScatterChart, XAxis, YAxis, ZAxis } from "recharts";
 import { motion, AnimatePresence } from "motion/react";
 import { ChatCircle as MessageSquare, ArrowUp, FolderOpen, Lightning as Zap, Database, GitCommit as GitCommitHorizontal, Notebook as NotebookPen, ArrowElbowDownLeft as CornerDownLeft, GitBranch, CaretDown as ChevronDown, MagnifyingGlass as Search } from "@phosphor-icons/react";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -515,52 +516,136 @@ export function Inspector() {
   );
 }
 
+const COBALTS = ["#1B3FB8", "#2458F5", "#3A72F6", "#5489F8", "#6C9AF9"];
+const AX = { fontSize: 11, fill: "var(--ink-3)" } as const;
+
+function Panel({ title, source, children, wide }: { title: string; source: string; children: ReactNode; wide?: boolean }) {
+  return (
+    <div className={`rounded-[12px] bg-surface p-4 shadow-[0_0_0_1px_rgba(20,18,12,0.04),0_1px_2px_rgba(20,18,12,0.04)] ${wide ? "md:col-span-2" : ""}`}>
+      <div className="mb-3 flex items-baseline justify-between gap-3">
+        <b className="text-[14px] font-medium text-ink">{title}</b>
+        <span className="font-mono text-[11px] text-ink-3">{source}</span>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-[12px] bg-surface px-4 py-3 shadow-[0_0_0_1px_rgba(20,18,12,0.04),0_1px_2px_rgba(20,18,12,0.04)]">
+      <div className="text-[11.5px] text-ink-3">{label}</div>
+      <div className="mt-0.5 font-mono text-[22px] font-medium leading-[28px] tabular-nums text-ink">{value}</div>
+    </div>
+  );
+}
+
 function Today() {
+  const { ask } = useContext(AskCtx);
+  const ts = rows.map((r) => ({ label: r.player.split(" ")[1], value: r.ts }));
+  const sc = rows.map((r) => ({ label: r.player.split(" ")[1], usg: r.usg, ts: r.ts }));
+  const usg = [...rows].sort((a, b) => b.usg - a.usg).map((r) => ({ label: r.player.split(" ")[1], value: r.usg }));
   const done = commits.filter((c) => c.when.includes("min") || c.when.includes("hour"));
   return (
-    <div className="mx-auto flex max-w-[680px] flex-col gap-3">
-      <h3 className="mb-1 text-[15px] font-medium text-ink">Today</h3>
-      {done.map((c) => (
-        <div key={c.ref} className="rounded-[10px] px-4 py-3 shadow-[0_0_0_1px_var(--line)]">
-          <div className="flex items-center justify-between gap-3">
-            <b className="text-[14px] font-medium">{c.msg}</b>
-            <span className="shrink-0 font-mono text-[11px] text-ink-3">{c.when}</span>
-          </div>
-          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[12px] text-ink-2">
-            <span className="text-green">+{c.add}</span>
-            <span className="text-red">-{c.del}</span>
-            {c.files.map((f) => <span key={f} className="text-ink-3">{f}</span>)}
-          </div>
+    <div className="mx-auto flex max-w-[760px] flex-col gap-4">
+      <div>
+        <h3 className="text-[17px] font-medium text-ink">Today</h3>
+        <p className="mt-0.5 text-[13.5px] text-ink-2">What the true-shooting notebook found, from silver_advanced.</p>
+      </div>
+      <div className="grid grid-cols-3 gap-3">
+        <Stat label="Players qualified" value="164" />
+        <Stat label="Leader TS%" value="68.9" />
+        <Stat label="Rows scanned" value="582" />
+      </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        <Panel title="True shooting leaders" source="TS%, top 5">
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={ts} layout="vertical" margin={{ left: 0, right: 8 }}>
+              <CartesianGrid stroke="var(--line)" horizontal={false} />
+              <XAxis type="number" domain={[60, 70]} tick={AX} tickLine={false} axisLine={false} />
+              <YAxis type="category" dataKey="label" tick={AX} width={58} interval={0} tickLine={false} axisLine={false} />
+              <Bar dataKey="value" radius={[0, 4, 4, 0]} isAnimationActive={false}>{ts.map((_, i) => <BarCell key={i} fill={COBALTS[i]} />)}</Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </Panel>
+        <Panel title="Usage among the five" source="USG%">
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={usg} layout="vertical" margin={{ left: 0, right: 8 }}>
+              <CartesianGrid stroke="var(--line)" horizontal={false} />
+              <XAxis type="number" domain={[0, 32]} tick={AX} tickLine={false} axisLine={false} />
+              <YAxis type="category" dataKey="label" tick={AX} width={58} interval={0} tickLine={false} axisLine={false} />
+              <Bar dataKey="value" radius={[0, 4, 4, 0]} isAnimationActive={false}>{usg.map((_, i) => <BarCell key={i} fill={COBALTS[i]} />)}</Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </Panel>
+        <Panel title="Efficiency against usage" source="TS% by USG%" wide>
+          <ResponsiveContainer width="100%" height={230}>
+            <ScatterChart margin={{ top: 8, right: 24, bottom: 4, left: 0 }}>
+              <CartesianGrid stroke="var(--line)" />
+              <XAxis type="number" dataKey="usg" name="USG%" domain={[10, 32]} tick={AX} tickLine={false} axisLine={false} />
+              <YAxis type="number" dataKey="ts" name="TS%" domain={[66, 70]} tick={AX} width={36} tickLine={false} axisLine={false} />
+              <ZAxis range={[90, 90]} />
+              <Scatter data={sc} fill="#2458F5" isAnimationActive={false}>
+                <LabelList dataKey="label" position="top" style={{ fontSize: 11, fill: "var(--ink-2)" }} />
+              </Scatter>
+            </ScatterChart>
+          </ResponsiveContainer>
+        </Panel>
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        {["Clutch splits?", "Compare Kennard and Duren"].map((q) => (
+          <button key={q} type="button" onClick={() => ask(q)} className="rounded-full px-3 py-1.5 text-[13px] text-ink-2 shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover hover:text-ink">{q}</button>
+        ))}
+      </div>
+      <Panel title="Saved today" source="git">
+        <div className="flex flex-col gap-2">
+          {done.map((c) => (
+            <div key={c.ref} className="flex items-center justify-between gap-3 text-[13px]">
+              <span className="text-ink">{c.msg}</span>
+              <span className="shrink-0 font-mono text-[11px] text-ink-3">{c.when}</span>
+            </div>
+          ))}
         </div>
-      ))}
+      </Panel>
     </div>
   );
 }
 
 function Explore({ go }: { go: (t: Tab) => void }) {
+  const { ask } = useContext(AskCtx);
+  const size = tables.map((t) => ({ label: t.name.replace("silver_", ""), value: Number(t.rows.replace(/,/g, "")) }));
+  const prompts = ["Who shoots best from three?", "Rank centers by usage", "Which teams play most back to backs?", "Lineups with the best net rating"];
   return (
-    <div className="mx-auto flex max-w-[680px] flex-col gap-6">
+    <div className="mx-auto flex max-w-[760px] flex-col gap-4">
       <div>
-        <h3 className="mb-2 text-[15px] font-medium text-ink">Warehouse</h3>
-        <div className="flex flex-col gap-2">
-          {tables.map((t) => (
-            <button key={t.name} type="button" onClick={() => go("warehouse")} className="flex items-center justify-between rounded-[10px] px-4 py-3 text-left shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover">
-              <span className="font-mono text-[13px] text-ink">{t.name}</span>
-              <span className="font-mono text-[12px] text-ink-3">{t.rows} rows</span>
-            </button>
+        <h3 className="text-[17px] font-medium text-ink">Explore</h3>
+        <p className="mt-0.5 text-[13.5px] text-ink-2">Browse the warehouse, pick a skill, or start a question.</p>
+      </div>
+      <Panel title="Warehouse tables" source="rows, log scale">
+        <ResponsiveContainer width="100%" height={200}>
+          <BarChart data={size} layout="vertical" margin={{ left: 0, right: 8 }}>
+            <CartesianGrid stroke="var(--line)" horizontal={false} />
+            <XAxis type="number" scale="log" domain={[100, 1000000]} ticks={[100, 1000, 10000, 100000, 1000000]} tickFormatter={(v: number) => (v >= 1000000 ? "1M" : v >= 1000 ? `${v / 1000}k` : String(v))} tick={AX} tickLine={false} axisLine={false} allowDataOverflow />
+            <YAxis type="category" dataKey="label" tick={AX} width={72} interval={0} tickLine={false} axisLine={false} />
+            <Bar dataKey="value" radius={[0, 4, 4, 0]} isAnimationActive={false} onClick={() => go("warehouse")} cursor="pointer">{size.map((_, i) => <BarCell key={i} fill={COBALTS[i]} />)}</Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </Panel>
+      <div>
+        <div className="mb-2 text-[12px] text-ink-3">Start a question</div>
+        <div className="flex flex-wrap gap-2">
+          {prompts.map((q) => (
+            <button key={q} type="button" onClick={() => ask(q)} className="rounded-full px-3 py-1.5 text-[13px] text-ink-2 shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover hover:text-ink">{q}</button>
           ))}
         </div>
       </div>
-      <div>
-        <h3 className="mb-2 text-[15px] font-medium text-ink">Skills</h3>
-        <div className="flex flex-col gap-2">
-          {skills.map((k) => (
-            <button key={k.name} type="button" onClick={() => go("skills")} className="rounded-[10px] px-4 py-3 text-left shadow-[0_0_0_1px_var(--line)] transition-colors hover:bg-hover">
-              <span className="block font-mono text-[13px] text-ink">{k.name}</span>
-              <span className="mt-1 block text-[13px] leading-[19px] text-ink-2">{k.text}</span>
-            </button>
-          ))}
-        </div>
+      <div className="grid gap-3 md:grid-cols-3">
+        {skills.map((k) => (
+          <button key={k.name} type="button" onClick={() => go("skills")} className="rounded-[12px] bg-surface p-4 text-left shadow-[0_0_0_1px_rgba(20,18,12,0.04),0_1px_2px_rgba(20,18,12,0.04)] transition-colors hover:bg-hover">
+            <span className="block font-mono text-[13px] text-ink">{k.name}</span>
+            <span className="mt-1.5 block text-[12.5px] leading-[18px] text-ink-2">{k.text}</span>
+          </button>
+        ))}
       </div>
     </div>
   );
