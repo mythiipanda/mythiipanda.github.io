@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://mythiipanda.github.io"),
   openGraph: { title, description, url, siteName: "dime", type: "website" },
   twitter: { card: "summary_large_image", title, description },
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = { colorScheme: "dark light", width: "device-width", initialScale: 1, themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#0B0C0E" }, { media: "(prefers-color-scheme: light)", color: "#FFFFFF" }] };
