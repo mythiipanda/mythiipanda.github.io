@@ -8,19 +8,26 @@ const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["nor
 const body = Instrument_Sans({ subsets: ["latin"], variable: "--font-body", axes: ["wdth"], display: "swap" });
 const mono = Martian_Mono({ subsets: ["latin"], variable: "--font-code", axes: ["wdth"], display: "swap" });
 
+const url = "https://mythiipanda.github.io/dime-site/";
+const title = "dime. The open-source analyst for NBA data";
+const description = "Dime is your NBA analyst. It works in your projects, runs your models, and shows its work.";
+
 export const metadata: Metadata = {
-  title: "dime. The open-source analyst for NBA data",
-  description: "Ask in plain English. dime writes the SQL, builds the chart and saves the notebook to your own git repo.",
+  title,
+  description,
+  metadataBase: new URL("https://mythiipanda.github.io"),
+  openGraph: { title, description, url, siteName: "dime", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
   robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = { colorScheme: "dark light", width: "device-width", initialScale: 1, themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#0B0C0E" }, { media: "(prefers-color-scheme: light)", color: "#FFFFFF" }] };
 
-const themeScript = `var p=location.pathname;if(p.charAt(p.length-1)==="/")p=p.slice(0,-1);if(p.slice(-2)==="/c"){document.documentElement.dataset.theme="light"}else try{var t=localStorage.getItem("dime-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
+const themeScript = `document.documentElement.dataset.theme="light"`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" className={`${display.variable} ${serif.variable} ${body.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="light" className={`${display.variable} ${serif.variable} ${body.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

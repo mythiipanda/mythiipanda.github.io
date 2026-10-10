@@ -66,9 +66,8 @@ export const projects: Project[] = [
   },
   {
     name: 'Dime',
-    url: 'https://github.com/mythiipanda/dime',
-    linkLabel: 'Repo ↗',
-    dates: '2025',
+    url: 'https://mythiipanda.github.io/dime-site/',
+    dates: '2026',
     blurb: 'Built an AI agent for NBA analytics.',
   },
   {
