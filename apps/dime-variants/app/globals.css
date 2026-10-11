@@ -438,10 +438,12 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 .v1-pill:active { transform: scale(0.97); }
 .v1-ghost { display: inline-flex; align-items: center; height: 48px; padding-inline: 8px; font-size: 15px; font-weight: 500; color: var(--vx-ink); }
 .v1-card { background: var(--vx-raised); border: 1px solid var(--vx-rule); border-radius: 8px; }
-.v1-anno { position: absolute; display: flex; align-items: center; gap: 8px; font-family: var(--vx-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--vx-ink2); white-space: nowrap; }
+.v1-anno { position: absolute; display: flex; align-items: center; gap: 8px; width: 150px; font-family: var(--vx-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--vx-ink2); white-space: nowrap; }
 .v1-anno::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--vx-cobalt); flex: none; }
-.v1-anno i { display: block; width: 40px; height: 1px; background: var(--vx-ink3); flex: none; }
-.v1-anno-l { flex-direction: row-reverse; }
+.v1-anno i { display: block; width: 36px; height: 1px; background: var(--vx-ink3); flex: none; }
+.v1-anno-l { justify-content: flex-end; }
+.v1-anno-l::before { order: 2; }
+.v1-anno-l i { order: 1; }
 @media (max-width: 1023px) { .v1-anno { display: none; } }
 .v1-wordmark { font-family: var(--vx-mono); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vx-ink); }
 

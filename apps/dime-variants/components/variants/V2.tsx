@@ -30,10 +30,10 @@ export function V2() {
         </section>
         <section className="vx-wrap v2-grid border-b vx-hair py-14">
           <Note>the product</Note>
-          <div className="relative xl:px-[110px]">
-            <span className="v1-anno" style={{ right: 0, top: "24%" }}><i />Answer, then the SQL</span>
-            <span className="v1-anno v1-anno-l" style={{ left: 0, bottom: "18%" }}>Ask about the league<i /></span>
-            <HeroWindow />
+          <div className="relative">
+            <span className="v1-anno" style={{ right: 0, top: "22%" }}><i />Answer, then SQL</span>
+            <span className="v1-anno v1-anno-l" style={{ left: 0, bottom: "16%" }}>Ask the league<i /></span>
+            <div className="lg:mx-[150px]"><HeroWindow /></div>
           </div>
         </section>
         <section className="vx-wrap v2-grid border-b vx-hair py-14">

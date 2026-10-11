@@ -25,12 +25,12 @@ export function V1({ grain = true }: { grain?: boolean }) {
           </div>
         </section>
         <section className="vx-wrap pb-8">
-          <div className="relative lg:px-[120px]">
-            <span className="v1-anno v1-anno-l" style={{ left: 0, top: "38%" }}>Frozen sidebar<i /></span>
-            <span className="v1-anno" style={{ left: 0, bottom: "22%" }}><i />ToolChips, not dots</span>
-            <span className="v1-anno" style={{ right: 0, top: "16%" }}><i />Provenance under every answer</span>
-            <span className="v1-anno" style={{ right: 0, bottom: "14%" }}><i />Borderless pill composer</span>
-            <HeroWindow />
+          <div className="relative">
+            <span className="v1-anno v1-anno-l" style={{ left: 0, top: "36%" }}>Sidebar<i /></span>
+            <span className="v1-anno v1-anno-l" style={{ left: 0, bottom: "22%" }}>ToolChips<i /></span>
+            <span className="v1-anno" style={{ right: 0, top: "14%" }}><i />Provenance</span>
+            <span className="v1-anno" style={{ right: 0, bottom: "14%" }}><i />Composer</span>
+            <div className="lg:mx-[150px]"><HeroWindow /></div>
           </div>
         </section>
         <section className="vx-wrap border-t vx-hair py-20 md:py-28">
