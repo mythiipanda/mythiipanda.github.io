@@ -10,7 +10,7 @@ export function V1({ grain = true }: { grain?: boolean }) {
   return (
     <div id="top" className={`vx v1-bg min-h-screen overflow-x-clip ${grain ? "v1-grain" : ""}`} style={{ color: "var(--vx-ink)" }}>
       <header className="vx-wrap flex h-[72px] items-center justify-between border-b vx-hair">
-        <a href="#top" className="flex items-center gap-3" aria-label="dime home"><CLogo /><span className="v1-wordmark">dime</span></a>
+        <a href="#top" aria-label="dime home"><CLogo /></a>
         <a href={REPO} className="v1-ghost gap-2"><GithubMark size={14} />{short.star}</a>
       </header>
       <main>
@@ -24,11 +24,14 @@ export function V1({ grain = true }: { grain?: boolean }) {
             </div>
           </div>
         </section>
-        <section className="vx-wrap relative pb-8">
-          <span className="v1-anno" style={{ left: "-4px", top: "38%" }}><i />Frozen sidebar</span>
-          <span className="v1-anno" style={{ right: "-4px", top: "18%" }}><i />ToolChips, not dots</span>
-          <span className="v1-anno" style={{ right: "6%", bottom: "64px" }}><i />Borderless pill composer</span>
-          <HeroWindow />
+        <section className="vx-wrap pb-8">
+          <div className="relative lg:px-[120px]">
+            <span className="v1-anno v1-anno-l" style={{ left: 0, top: "38%" }}>Frozen sidebar<i /></span>
+            <span className="v1-anno" style={{ left: 0, bottom: "22%" }}><i />ToolChips, not dots</span>
+            <span className="v1-anno" style={{ right: 0, top: "16%" }}><i />Provenance under every answer</span>
+            <span className="v1-anno" style={{ right: 0, bottom: "14%" }}><i />Borderless pill composer</span>
+            <HeroWindow />
+          </div>
         </section>
         <section className="vx-wrap border-t vx-hair py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-12">

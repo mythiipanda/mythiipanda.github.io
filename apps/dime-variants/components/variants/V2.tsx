@@ -21,7 +21,7 @@ export function V2() {
       </header>
       <main className="pb-24">
         <section className="vx-wrap v2-grid border-b vx-hair pt-14 pb-16 md:pt-20">
-          <Note>hero, recorded run below</Note>
+          <Note>the pitch</Note>
           <div>
             <h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px]">{H1}</h1>
             <p className="mt-6 max-w-[510px] text-[17px] leading-[26px]" style={{ color: "var(--vx-ink2)" }}>{SUB}</p>
@@ -29,10 +29,10 @@ export function V2() {
           </div>
         </section>
         <section className="vx-wrap v2-grid border-b vx-hair py-14">
-          <Note>the product, clickable</Note>
-          <div className="relative">
-            <span className="v1-anno" style={{ right: "-4px", top: "24%" }}><i />Answer, then the SQL</span>
-            <span className="v1-anno" style={{ left: "-4px", bottom: "96px" }}><i />Ask about the league</span>
+          <Note>the product</Note>
+          <div className="relative xl:px-[110px]">
+            <span className="v1-anno" style={{ right: 0, top: "24%" }}><i />Answer, then the SQL</span>
+            <span className="v1-anno v1-anno-l" style={{ left: 0, bottom: "18%" }}>Ask about the league<i /></span>
             <HeroWindow />
           </div>
         </section>

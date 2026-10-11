@@ -440,7 +440,8 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 .v1-card { background: var(--vx-raised); border: 1px solid var(--vx-rule); border-radius: 8px; }
 .v1-anno { position: absolute; display: flex; align-items: center; gap: 8px; font-family: var(--vx-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--vx-ink2); white-space: nowrap; }
 .v1-anno::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--vx-cobalt); flex: none; }
-.v1-anno i { display: block; width: 48px; height: 1px; background: var(--vx-ink3); flex: none; order: -1; }
+.v1-anno i { display: block; width: 40px; height: 1px; background: var(--vx-ink3); flex: none; }
+.v1-anno-l { flex-direction: row-reverse; }
 @media (max-width: 1023px) { .v1-anno { display: none; } }
 .v1-wordmark { font-family: var(--vx-mono); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vx-ink); }
 
@@ -463,7 +464,7 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 .v4-air { padding-block: clamp(72px, 9vw, 128px); }
 
 .v5-bg { background-color: var(--canvas); }
-.v5-bg.v5-grid { background-image: linear-gradient(var(--vx-rule) 1px, transparent 1px), linear-gradient(90deg, var(--vx-rule) 1px, transparent 1px); background-size: 64px 64px; }
+.v5-bg.v5-grid { background-image: linear-gradient(oklch(0.16 0.01 255 / 0.05) 1px, transparent 1px), linear-gradient(90deg, oklch(0.16 0.01 255 / 0.05) 1px, transparent 1px); background-size: 64px 64px; }
 .v5-spec { border: 1px solid var(--vx-rule); border-radius: 3px; background: var(--surface); }
 .v5-tick { height: 10px; background-image: repeating-linear-gradient(90deg, var(--vx-ink3) 0 1px, transparent 1px 64px); opacity: 0.5; }
 .v5-coord { font-family: var(--vx-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--vx-ink3); font-variant-numeric: tabular-nums; }

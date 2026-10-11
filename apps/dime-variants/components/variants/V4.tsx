@@ -11,7 +11,7 @@ export function V4() {
         <ButtonLink href={REPO} variant="ghost" size="pill"><GithubMark size={14} />{short.star}</ButtonLink>
       </header>
       <main>
-        <section className="vx-wrap grid items-end gap-6 v4-air lg:grid-cols-12 lg:gap-12">
+        <section className="vx-wrap grid items-end gap-6 pt-16 pb-10 md:pt-24 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7"><h1 className="v4-hero">Harvey for <em>NBA Analysts</em></h1></div>
           <div className="lg:col-span-5">
             <p className="max-w-[510px] text-[17px] leading-[27px]" style={{ color: "var(--vx-ink2)" }}>Dime is your NBA analyst. It works in your projects, runs your models, and shows its work.</p>
