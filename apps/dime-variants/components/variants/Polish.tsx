@@ -41,7 +41,7 @@ export function Polish({ bg = "grain" }: { bg?: "grain" | "dither" }) {
           </div>
           <HeroWindow />
         </section>
-        <section id="self-host" className="mx-auto flex max-w-[1320px] scroll-mt-24 flex-col items-start justify-between gap-6 px-5 py-14 md:px-6 lg:flex-row lg:items-center">
+        <section id="self-host" className="mx-auto flex max-w-[1320px] scroll-mt-24 flex-col items-center gap-6 px-5 py-14 text-center md:px-6">
           <h2 className="text-[30px] leading-[34px] md:text-[40px] md:leading-[44px]">Coming Soon</h2>
         </section>
       </main>
