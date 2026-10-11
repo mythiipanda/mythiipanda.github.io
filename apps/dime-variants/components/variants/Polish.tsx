@@ -9,7 +9,7 @@ import { CLogo } from "@/components/v/CLogo";
 import HeroWindow from "@/components/dime/HeroWindow";
 import { REPO, short } from "@/lib/copy";
 
-export function Polish() {
+export function Polish({ opt }: { opt?: "a" | "b" | "c" }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const f = () => setScrolled(window.scrollY > 8);
@@ -30,9 +30,15 @@ export function Polish() {
       </header>
       <main>
         <section className="relative mx-auto max-w-[1320px] px-5 pb-12 pt-10 md:px-6 lg:pt-14">
-          <svg aria-hidden="true" className="pointer-events-none absolute -right-[240px] -top-[220px] hidden lg:block" width="520" height="520" viewBox="0 0 520 520" fill="none">
-            <circle cx="260" cy="260" r="259" stroke="#2458F5" strokeOpacity="0.14" strokeWidth="1.5"/>
+          {opt === "a" ? (
+          <svg aria-hidden="true" className="pointer-events-none absolute right-[10px] top-[26px] hidden lg:block" width="150" height="104" viewBox="0 0 150 104" fill="none">
+            <path d="M18 78 C 52 76, 66 60, 78 34" stroke="#2458F5" strokeOpacity="0.4" strokeWidth="1.5" strokeDasharray="5 4" strokeLinecap="round"/>
+            <path d="M78 34 l-9 2 M78 34 l-1 9" stroke="#2458F5" strokeOpacity="0.4" strokeWidth="1.5" strokeLinecap="round"/>
+            <circle cx="16" cy="80" r="5" stroke="#2458F5" strokeOpacity="0.4" strokeWidth="1.5"/>
+            <path d="M108 62 l9 9 M117 62 l-9 9" stroke="#2458F5" strokeOpacity="0.4" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M124 22 l9 9 M133 22 l-9 9" stroke="#2458F5" strokeOpacity="0.4" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
+          ) : null}
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
             <BlurFade className="lg:col-span-7" direction="up" offset={8} duration={0.5}><h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px]">Harvey for NBA Analysts</h1></BlurFade>
             <BlurFade className="lg:col-span-5" direction="up" offset={8} duration={0.5} delay={0.08}><div>
@@ -44,8 +50,14 @@ export function Polish() {
           </div>
           <HeroWindow />
         </section>
+        {opt === "b" ? (
+        <div aria-hidden="true" className="relative mx-auto h-14 max-w-[1320px] px-5 md:px-6">
+          <div className="absolute inset-x-5 top-1/2 h-px bg-[#2458F5] opacity-[0.14] md:inset-x-6" />
+          <div className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#2458F5] opacity-[0.14]" />
+        </div>
+        ) : null}
         <section id="self-host" className="mx-auto flex max-w-[1320px] scroll-mt-24 flex-col items-center gap-6 px-5 py-14 text-center md:px-6">
-          <h2 className="text-[30px] leading-[34px] md:text-[40px] md:leading-[44px]">Coming Soon</h2>
+          <h2 className={`text-[30px] leading-[34px] md:text-[40px] md:leading-[44px] ${opt === "c" ? "italic" : ""}`}>Coming Soon{opt === "c" ? <span className="text-[#2458F5]">.</span> : "."}</h2>
         </section>
       </main>
       <footer className="mx-auto max-w-[1320px] px-5 pb-10 pt-6 md:px-6">
