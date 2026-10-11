@@ -9,7 +9,7 @@ import { CLogo } from "@/components/v/CLogo";
 import HeroWindow from "@/components/dime/HeroWindow";
 import { REPO, short } from "@/lib/copy";
 
-export function Polish({ bg = "grain" }: { bg?: "grain" | "dither" }) {
+export function Polish() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const f = () => setScrolled(window.scrollY > 8);
@@ -19,7 +19,7 @@ export function Polish({ bg = "grain" }: { bg?: "grain" | "dither" }) {
   }, []);
   return (
     <MotionConfig reducedMotion="user">
-    <div id="top" data-v="c" className={`pl min-h-screen overflow-x-clip bg-canvas text-ink ${bg === "grain" ? "pl-grain" : "pl-dither"}`}>
+    <div id="top" data-v="c" className="pl min-h-screen overflow-x-clip bg-canvas text-ink">
       <CLight />
       <header className={`sticky top-0 z-50 h-[58px] border-b bg-canvas transition-[border-color] duration-200 ${scrolled ? "border-line" : "border-transparent"}`}>
         <nav className="mx-auto grid h-full max-w-[1320px] grid-cols-[auto_1fr_auto] items-center gap-8 px-5 md:px-6">
@@ -29,11 +29,15 @@ export function Polish({ bg = "grain" }: { bg?: "grain" | "dither" }) {
         </nav>
       </header>
       <main>
-        <section className="mx-auto max-w-[1320px] px-5 pb-12 pt-10 md:px-6 lg:pt-14">
+        <section className="relative mx-auto max-w-[1320px] px-5 pb-12 pt-10 md:px-6 lg:pt-14">
+          <svg aria-hidden="true" className="pointer-events-none absolute -right-[180px] top-[24px] hidden lg:block" width="520" height="520" viewBox="0 0 520 520" fill="none">
+            <circle cx="260" cy="260" r="259" stroke="#2458F5" strokeOpacity="0.14" strokeWidth="1.5"/>
+            <line x1="260" y1="0" x2="260" y2="520" stroke="#2458F5" strokeOpacity="0.14" strokeWidth="1.5"/>
+          </svg>
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
             <BlurFade className="lg:col-span-7" direction="up" offset={8} duration={0.5}><h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px]">Harvey for NBA Analysts</h1></BlurFade>
             <BlurFade className="lg:col-span-5" direction="up" offset={8} duration={0.5} delay={0.08}><div>
-              <p className="max-w-[510px] text-[17px] leading-[26px] text-ink-2">Dime is your NBA analyst. It works in your projects, runs your models, and shows its work.</p>
+              <p className="max-w-[510px] text-[17px] leading-[26px] text-ink-2">Dime is your NBA analyst. It works in your projects, runs your models, and <span className="pl-hl">shows its work</span>.</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
               </div>

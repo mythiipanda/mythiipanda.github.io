@@ -471,6 +471,7 @@ html[data-theme="dark"] *:hover { scrollbar-color: rgba(255, 255, 255, 0.18) tra
 .v5-tick { height: 10px; background-image: repeating-linear-gradient(90deg, var(--vx-ink3) 0 1px, transparent 1px 64px); opacity: 0.5; }
 .v5-coord { font-family: var(--vx-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--vx-ink3); font-variant-numeric: tabular-nums; }
 .v5 b.num, .v5 .num { font-variant-numeric: tabular-nums; }
-.pl-grain { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E"); }
 .pl footer { padding-top: 1rem; }
-.pl a[target="_blank"][class*="inline-flex"]:hover { background-color: #2458F5; color: #fff; }
+.pl main a[target="_blank"][class*="inline-flex"]:hover { background-color: #1C4ADA; }
+.pl header a[target="_blank"][class*="inline-flex"]:hover { background-color: rgba(36, 88, 245, 0.07); color: #2458F5; }
+.pl .pl-hl { background: rgba(36, 88, 245, 0.13); border-radius: 3px; padding: 0 2px; margin: 0 -2px; }
