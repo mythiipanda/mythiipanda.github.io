@@ -30,9 +30,8 @@ export function Polish() {
       </header>
       <main>
         <section className="relative mx-auto max-w-[1320px] px-5 pb-12 pt-10 md:px-6 lg:pt-14">
-          <svg aria-hidden="true" className="pointer-events-none absolute -right-[180px] top-[24px] hidden lg:block" width="520" height="520" viewBox="0 0 520 520" fill="none">
+          <svg aria-hidden="true" className="pointer-events-none absolute -right-[240px] -top-[220px] hidden lg:block" width="520" height="520" viewBox="0 0 520 520" fill="none">
             <circle cx="260" cy="260" r="259" stroke="#2458F5" strokeOpacity="0.14" strokeWidth="1.5"/>
-            <line x1="260" y1="0" x2="260" y2="520" stroke="#2458F5" strokeOpacity="0.14" strokeWidth="1.5"/>
           </svg>
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
             <BlurFade className="lg:col-span-7" direction="up" offset={8} duration={0.5}><h1 className="text-[44px] leading-[46px] md:text-[72px] md:leading-[74px]">Harvey for NBA Analysts</h1></BlurFade>
