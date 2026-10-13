@@ -15,7 +15,7 @@ import footArt from "./art-foot.jpg";
 import "./redesign.css";
 
 const features = [
-  { ...copy.pillars[0], tab: "notebook" as const, wide: true },
+  { title: "Quick questions in Chat, saved work in Notebooks", text: "Send an answer to a Notebook to keep it.", tab: "notebook" as const, wide: true },
   { ...copy.pillars[1], tab: "skills" as const, wide: false },
   { ...copy.pillars[2], tab: "history" as const, wide: false },
 ];
@@ -102,7 +102,7 @@ export function Redesign() {
             <h1 className="mx-auto max-w-[900px] text-[48px] leading-[48px] md:text-[96px] md:leading-[92px]">Harvey for NBA Analysts</h1>
           </Reveal>
           <Reveal delay={100} className="mt-6">
-            <p className="mx-auto max-w-[560px] text-[17px] leading-[26px] text-ink-2">Dime is your NBA analyst. It works in your projects, runs your models, and <span className="c-hl">shows its work</span>.</p>
+            <p className="mx-auto max-w-[560px] text-[17px] leading-[26px] text-ink-2">Dime is your NBA analyst. It works in your notebooks, runs your models, and <span className="c-hl">shows its work</span>.</p>
           </Reveal>
           <Reveal delay={200} className="mt-8">
             <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
