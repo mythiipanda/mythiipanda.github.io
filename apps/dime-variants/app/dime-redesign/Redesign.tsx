@@ -104,9 +104,12 @@ export function Redesign() {
 
         <section className="mx-auto max-w-[1320px] px-5 py-24 text-center md:px-6 md:py-36">
           <Reveal>
-            <h2 className="mx-auto max-w-[760px] text-balance text-[40px] leading-[42px] md:text-[72px] md:leading-[72px]">NBA research, in your own files.</h2>
+            <h2 className="mx-auto max-w-[900px] text-balance text-[38px] leading-[40px] md:text-[64px] md:leading-[66px]">One agent, one workspace, all your NBA research.</h2>
           </Reveal>
-          <Reveal delay={100} className="mt-10 flex justify-center">
+          <Reveal delay={100} className="mt-5">
+            <p className="mx-auto max-w-[480px] text-[17px] leading-[26px] text-ink-2">You ask. Dime researches and saves the work to your files.</p>
+          </Reveal>
+          <Reveal delay={200} className="mt-8 flex justify-center">
             <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
           </Reveal>
         </section>
