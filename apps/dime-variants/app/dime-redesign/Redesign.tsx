@@ -45,44 +45,6 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-function LitWords({ lines }: { lines: string[] }) {
-  const refs = useRef<(HTMLSpanElement | null)[]>([]);
-  const [lit, setLit] = useState<Record<number, boolean>>({});
-  const words = lines.flatMap((line, li) => line.split(" ").map((w) => ({ w, li })));
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        setLit((prev) => {
-          const next = { ...prev };
-          entries.forEach((e) => {
-            const i = Number((e.target as HTMLElement).dataset.i);
-            next[i] = e.isIntersecting || e.boundingClientRect.top < 0;
-          });
-          return next;
-        });
-      },
-      { rootMargin: "0px 0px -42% 0px" },
-    );
-    refs.current.forEach((n) => n && io.observe(n));
-    return () => io.disconnect();
-  }, []);
-  let prevLine = -1;
-  return (
-    <p className="mx-auto max-w-[780px] text-balance text-[32px] font-medium leading-[38px] tracking-tight md:text-[52px] md:leading-[58px]">
-      {words.map(({ w, li }, i) => {
-        const br = prevLine !== -1 && li !== prevLine;
-        prevLine = li;
-        return (
-          <span key={i}>
-            {br ? <br /> : null}
-            <span ref={(n) => { refs.current[i] = n; }} data-i={i} className={`rd-word ${lit[i] ? "is-lit" : ""}`}>{w}</span>{" "}
-          </span>
-        );
-      })}
-    </p>
-  );
-}
-
 export function Redesign() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -140,8 +102,16 @@ export function Redesign() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-[1320px] px-5 py-28 text-center md:px-6 md:py-40">
-          <LitWords lines={["You ask about a lineup.", "Dime shows the SQL under the answer."]} />
+        <section className="mx-auto max-w-[1320px] px-5 py-24 text-center md:px-6 md:py-36">
+          <Reveal>
+            <h2 className="mx-auto max-w-[760px] text-balance text-[40px] leading-[42px] md:text-[72px] md:leading-[72px]">NBA research, in your own files.</h2>
+          </Reveal>
+          <Reveal delay={100} className="mt-5">
+            <p className="mx-auto max-w-[460px] text-[17px] leading-[26px] text-ink-2">Plain-file Notebooks. One git commit per run.</p>
+          </Reveal>
+          <Reveal delay={200} className="mt-8 flex justify-center">
+            <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
+          </Reveal>
         </section>
 
         <section className="mx-auto flex max-w-[1320px] flex-col items-center px-5 pb-6 text-center md:px-6">
