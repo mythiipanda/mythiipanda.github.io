@@ -3,22 +3,14 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
-import Workbench from "@/components/workbench/Workbench";
 import HeroWindow from "@/components/dime/HeroWindow";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
 import { CLogo } from "@/components/v/CLogo";
 import { CLight } from "@/components/v/CLight";
 import { Page } from "@/components/v/kit";
-import { copy, REPO, short } from "@/lib/copy";
+import { REPO, short } from "@/lib/copy";
 import heroArt from "./art-hero.jpg";
-import footArt from "./art-foot.jpg";
 import "./landing.css";
-
-const features = [
-  { ...copy.pillars[0], tab: "notebook" as const, wide: true },
-  { ...copy.pillars[1], tab: "skills" as const, wide: false },
-  { ...copy.pillars[2], tab: "history" as const, wide: false },
-];
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -82,52 +74,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-[1320px] px-5 pt-24 md:px-6">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {features.map((f, i) => (
-              <Reveal key={f.title} delay={(i % 2) * 100} className={`min-w-0 ${f.wide ? "md:col-span-2" : ""}`}>
-                <div className="rd-card h-full overflow-hidden rounded-[18px] bg-field">
-                  <div className={f.wide ? "grid min-w-0 gap-6 p-6 grid-cols-1 md:grid-cols-[minmax(0,320px)_minmax(0,1fr)] md:gap-10 md:p-10" : "p-6 md:p-8"}>
-                    <div className={f.wide ? "md:pt-4" : ""}>
-                      <h3 className="text-[24px] leading-[28px] md:text-[28px] md:leading-[32px]">{f.title}</h3>
-                      <p className="mt-3 text-[15px] leading-[22px] text-ink-2">{f.text}</p>
-                    </div>
-                    <div className={`rd-embed rd-win overflow-hidden rounded-[12px] bg-canvas ${f.wide ? "h-[400px] md:h-[440px]" : "mt-6 h-[360px] md:h-[400px]"}`}>
-                      <Workbench dime bare tab={f.tab} />
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-[1320px] px-5 py-24 text-center md:px-6 md:py-36">
-          <Reveal>
-            <h2 className="mx-auto max-w-[900px] text-balance text-[38px] leading-[40px] md:text-[64px] md:leading-[66px]">One agent, one workspace, all your NBA research.</h2>
-          </Reveal>
-          <Reveal delay={100} className="mt-5">
-            <p className="mx-auto max-w-[480px] text-[17px] leading-[26px] text-ink-2">You ask. Dime researches and saves the work to your files.</p>
-          </Reveal>
-          <Reveal delay={200} className="mt-8 flex justify-center">
-            <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
-          </Reveal>
-        </section>
-
-        <section className="mx-auto flex max-w-[1320px] flex-col items-center px-5 pb-6 text-center md:px-6">
+        <section className="mx-auto flex max-w-[1320px] flex-col items-center px-5 pb-6 pt-20 text-center md:px-6 md:pt-28">
           <Reveal>
             <h2 className="text-[30px] leading-[34px] md:text-[40px] md:leading-[44px]">Coming Soon<span className="text-[#2458F5]">.</span></h2>
           </Reveal>
         </section>
       </main>
-      <footer className="relative mt-6">
-        <div className="rd-fade-t mx-auto max-w-[1600px]">
-          <Image src={footArt} alt="" className="rd-art rd-art-m" style={{ objectPosition: "60% 50%" }} />
-        </div>
-        <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1320px] items-center justify-between px-5 pb-8 text-[13px] text-[#0b1b4d] md:px-6">
-          <CLogo size={18} />
-          <a href={REPO} className="transition-colors hover:text-[#2458F5]">GitHub</a>
-        </div>
+      <footer className="mx-auto flex max-w-[1320px] items-center justify-between px-5 pb-8 pt-10 text-[13px] text-ink-2 md:px-6">
+        <CLogo size={18} />
+        <a href={REPO} className="transition-colors hover:text-[#2458F5]">GitHub</a>
       </footer>
     </Page>
   );
