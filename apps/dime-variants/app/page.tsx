@@ -15,7 +15,7 @@ import footArt from "./art-foot.jpg";
 import "./landing.css";
 
 const features = [
-  { title: "Quick questions in Chat, saved work in Notebooks", text: "Send an answer to a Notebook to keep it.", tab: "notebook" as const, wide: true },
+  { ...copy.pillars[0], tab: "notebook" as const, wide: true },
   { ...copy.pillars[1], tab: "skills" as const, wide: false },
   { ...copy.pillars[2], tab: "history" as const, wide: false },
 ];
