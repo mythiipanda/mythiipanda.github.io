@@ -1,13 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Geist } from "next/font/google";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "motion/react";
 import HeroWindow from "@/components/dime/HeroWindow";
-import { GithubMark } from "@/components/landing/ui";
+import { ButtonLink, GithubMark } from "@/components/landing/ui";
+import { CLogo } from "@/components/v/CLogo";
+import { CLight } from "@/components/v/CLight";
+import { Page } from "@/components/v/kit";
 import { copy, REPO, short } from "@/lib/copy";
+import heroArt from "./art-hero.jpg";
+import footArt from "./art-foot.jpg";
 import "./redesign.css";
-
-const geist = Geist({ subsets: ["latin"], display: "swap" });
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -57,7 +61,7 @@ function LitWords({ lines }: { lines: string[] }) {
   }, []);
   let prevLine = -1;
   return (
-    <p className="rd-h mx-auto max-w-[680px] text-4xl font-semibold tracking-tight md:text-6xl">
+    <p className="mx-auto max-w-[780px] text-balance text-[32px] font-medium leading-[38px] tracking-tight md:text-[52px] md:leading-[58px]">
       {words.map(({ w, li }, i) => {
         const br = prevLine !== -1 && li !== prevLine;
         prevLine = li;
@@ -72,97 +76,75 @@ function LitWords({ lines }: { lines: string[] }) {
   );
 }
 
-const links = [
-  { label: "Product", href: "#product" },
-  { label: "How it works", href: "#how" },
-  { label: "GitHub", href: REPO },
-];
-
-function Nav() {
-  const [open, setOpen] = useState(false);
-  return (
-    <header className={open ? "rd-open" : ""}>
-      <div className="fixed inset-x-0 top-0 z-50 flex justify-center">
-        <nav aria-label="Primary" className="rd-ease mt-6 flex w-max items-center gap-6 rounded-full bg-[#181818]/80 px-6 py-3 backdrop-blur-3xl transition-all duration-700">
-          <a href="#top" className="text-base font-semibold lowercase">dime.</a>
-          <button type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)} className="relative h-6 w-6">
-            <span className={`rd-bar absolute left-1 right-1 top-2 h-0.5 bg-white ${open ? "translate-y-1 rotate-45" : ""}`} />
-            <span className={`rd-bar absolute bottom-2 left-1 right-1 h-0.5 bg-white ${open ? "-translate-y-1 -rotate-45" : ""}`} />
-          </button>
-        </nav>
-      </div>
-      <div className={`rd-ease fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-black/80 backdrop-blur-3xl transition-all duration-700 ${open ? "visible opacity-100" : "invisible opacity-0"}`}>
-        {links.map((l, i) => (
-          <a key={l.label} href={l.href} onClick={() => setOpen(false)} style={{ transitionDelay: open ? `${100 + i * 50}ms` : "0ms" }} className="rd-link text-4xl font-semibold tracking-tight">
-            {l.label}
-          </a>
-        ))}
-      </div>
-    </header>
-  );
-}
-
 export function Redesign() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 900], [0, 48]);
   return (
-    <div id="top" className={`rd ${geist.className}`}>
-      <a href="#main" className="rd-skip text-sm font-semibold">Skip to content</a>
-      <Nav />
-      <main id="main">
-        <section className="mx-auto flex max-w-[1320px] flex-col items-center px-3 pb-16 pt-24 text-center md:px-6 md:pt-32">
+    <Page v="c">
+      <CLight />
+      <header className="sticky top-0 z-50 h-[58px] bg-canvas/85 backdrop-blur-md">
+        <nav className="mx-auto flex h-full max-w-[1320px] items-center justify-between px-5 md:px-6">
+          <a href="#top" aria-label="dime home"><CLogo /></a>
+          <ButtonLink href={REPO} variant="ghost" size="pill"><GithubMark size={14} /><span className="max-sm:hidden">{short.star}</span><span className="sm:hidden">Star</span></ButtonLink>
+        </nav>
+      </header>
+      <main>
+        <section className="mx-auto max-w-[1320px] px-5 pt-14 text-center md:px-6 md:pt-20">
           <Reveal>
-            <h1 className="rd-grad rd-h mx-auto max-w-[680px] text-5xl font-semibold tracking-tight md:text-7xl">Harvey for NBA Analysts</h1>
+            <h1 className="mx-auto max-w-[900px] text-[48px] leading-[48px] md:text-[96px] md:leading-[92px]">Harvey for NBA Analysts</h1>
           </Reveal>
           <Reveal delay={100} className="mt-6">
-            <p className="rd-p mx-auto max-w-[680px] text-lg text-[#9b9b9b]">Dime is your NBA analyst. It works in your projects, runs your models, and shows its work.</p>
+            <p className="mx-auto max-w-[560px] text-[17px] leading-[26px] text-ink-2">Dime is your NBA analyst. It works in your projects, runs your models, and <span className="c-hl">shows its work</span>.</p>
           </Reveal>
           <Reveal delay={200} className="mt-8">
-            <a href={REPO} className="rd-btn inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-base font-semibold text-black hover:bg-[#e6e6e6]">
-              <GithubMark size={16} />
-              {short.star}
-            </a>
+            <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
           </Reveal>
         </section>
 
-        <section id="product" className="mx-auto max-w-[1320px] scroll-mt-24 px-3 pb-24 md:px-6">
-          <Reveal>
-            <div className="rounded-2xl bg-[#181818] p-2">
-              <div data-v="c" className="overflow-hidden rounded-lg bg-canvas text-ink">
-                <HeroWindow />
-              </div>
-            </div>
-          </Reveal>
+        <section ref={ref} className="relative mt-10 md:mt-6">
+          <motion.div style={{ y }} className="rd-fade-b mx-auto max-w-[1600px]">
+            <Image src={heroArt} alt="" priority className="rd-art rd-art-m md:!h-auto" />
+          </motion.div>
+          <div className="relative z-10 mx-auto -mt-24 max-w-[1320px] px-5 md:-mt-[17vw] md:px-6 xl:-mt-[240px]">
+            <Reveal>
+              <div className="rd-win overflow-hidden rounded-[14px]"><HeroWindow /></div>
+            </Reveal>
+          </div>
         </section>
 
-        <section id="how" className="mx-auto max-w-[1320px] scroll-mt-24 px-3 pb-24 md:px-6">
-          <Reveal>
-            <h2 className="rd-h mx-auto max-w-[680px] text-center text-3xl font-semibold tracking-tight md:text-4xl">Quick answers. Saved work. Every run kept.</h2>
-          </Reveal>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <section className="mx-auto max-w-[1320px] px-5 pt-24 md:px-6">
+          <div className="grid gap-4 md:grid-cols-3">
             {copy.pillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
-                <div className="h-full rounded-2xl bg-[#181818] p-6 transition-colors duration-700 hover:bg-[#1f1f1f]">
-                  <h3 className="rd-h text-xl font-semibold">{p.title}</h3>
-                  <p className="rd-p mt-3 text-base text-[#9b9b9b]">{p.text}</p>
+                <div className="h-full rounded-[14px] bg-field p-6">
+                  <h3 className="text-[20px] leading-[24px]">{p.title}</h3>
+                  <p className="mt-3 text-[15px] leading-[22px] text-ink-2">{p.text}</p>
                 </div>
               </Reveal>
             ))}
           </div>
         </section>
 
-        <section className="mx-auto max-w-[1320px] px-3 py-24 text-center md:px-6 md:py-32">
+        <section className="mx-auto max-w-[1320px] px-5 py-28 text-center md:px-6 md:py-40">
           <LitWords lines={["You ask about a lineup.", "Dime shows the SQL under the answer."]} />
         </section>
 
-        <section className="mx-auto flex max-w-[1320px] flex-col items-center px-3 pb-24 text-center md:px-6">
+        <section className="mx-auto flex max-w-[1320px] flex-col items-center px-5 pb-6 text-center md:px-6">
           <Reveal>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Coming soon</h2>
+            <h2 className="text-[30px] leading-[34px] md:text-[40px] md:leading-[44px]">Coming Soon<span className="text-[#2458F5]">.</span></h2>
           </Reveal>
         </section>
       </main>
-      <footer className="mx-auto flex max-w-[1320px] items-center justify-between px-3 pb-12 text-sm text-[#9b9b9b] md:px-6">
-        <span className="font-semibold lowercase text-white">dime.</span>
-        <a href={REPO} className="transition-colors duration-700 hover:text-white">GitHub</a>
+      <footer className="relative mt-6">
+        <div className="rd-fade-t mx-auto max-w-[1600px]">
+          <Image src={footArt} alt="" className="rd-art rd-art-m" style={{ objectPosition: "60% 50%" }} />
+        </div>
+        <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1320px] items-center justify-between px-5 pb-8 text-[13px] text-ink-2 md:px-6">
+          <CLogo size={18} />
+          <a href={REPO} className="transition-colors hover:text-ink">GitHub</a>
+        </div>
       </footer>
-    </div>
+    </Page>
   );
 }
