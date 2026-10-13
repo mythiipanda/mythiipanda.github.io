@@ -10,7 +10,7 @@ const mono = Martian_Mono({ subsets: ["latin"], variable: "--font-code", axes: [
 
 const url = "https://mythiipanda.github.io/dime-site/";
 const title = "dime. The open-source analyst for NBA data";
-const description = "Dime is your NBA analyst. It works in your projects, runs your models, and shows its work.";
+const description = "Dime is your NBA analyst. It works in your notebooks, runs your models, and shows its work.";
 
 export const metadata: Metadata = {
   title,
