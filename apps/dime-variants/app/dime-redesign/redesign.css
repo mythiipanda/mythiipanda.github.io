@@ -8,3 +8,7 @@
 .rd-fade-t { -webkit-mask-image: linear-gradient(to top, #000 82%, transparent); mask-image: linear-gradient(to top, #000 82%, transparent); }
 .rd-win { box-shadow: 0 0 0 1px rgba(20, 20, 30, 0.04), 0 2px 4px rgba(20, 20, 30, 0.04), 0 24px 64px rgba(20, 20, 30, 0.1); }
 @media (prefers-reduced-motion: reduce) { .rd-reveal, .rd-word { transition: none; } .rd-reveal { opacity: 1; transform: none; filter: none; } }
+.rd-embed [data-dime] > div > div:last-child { display: none; }
+.rd-card { box-shadow: 0 0 0 1px rgba(20, 20, 30, 0.04); }
+@media (max-width: 767px) { .rd-embed { pointer-events: none; } }
+.rd-card, .rd-embed { min-width: 0; max-width: 100%; }

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
+import Workbench from "@/components/workbench/Workbench";
 import HeroWindow from "@/components/dime/HeroWindow";
 import { ButtonLink, GithubMark } from "@/components/landing/ui";
 import { CLogo } from "@/components/v/CLogo";
@@ -12,6 +13,12 @@ import { copy, REPO, short } from "@/lib/copy";
 import heroArt from "./art-hero.jpg";
 import footArt from "./art-foot.jpg";
 import "./redesign.css";
+
+const features = [
+  { ...copy.pillars[0], tab: "notebook" as const, wide: true },
+  { ...copy.pillars[1], tab: "skills" as const, wide: false },
+  { ...copy.pillars[2], tab: "history" as const, wide: false },
+];
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -114,12 +121,19 @@ export function Redesign() {
         </section>
 
         <section className="mx-auto max-w-[1320px] px-5 pt-24 md:px-6">
-          <div className="grid gap-4 md:grid-cols-3">
-            {copy.pillars.map((p, i) => (
-              <Reveal key={p.title} delay={i * 100}>
-                <div className="h-full rounded-[14px] bg-field p-6">
-                  <h3 className="text-[20px] leading-[24px]">{p.title}</h3>
-                  <p className="mt-3 text-[15px] leading-[22px] text-ink-2">{p.text}</p>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {features.map((f, i) => (
+              <Reveal key={f.title} delay={(i % 2) * 100} className={`min-w-0 ${f.wide ? "md:col-span-2" : ""}`}>
+                <div className="rd-card h-full overflow-hidden rounded-[18px] bg-field">
+                  <div className={f.wide ? "grid min-w-0 gap-6 p-6 grid-cols-1 md:grid-cols-[minmax(0,320px)_minmax(0,1fr)] md:gap-10 md:p-10" : "p-6 md:p-8"}>
+                    <div className={f.wide ? "md:pt-4" : ""}>
+                      <h3 className="text-[24px] leading-[28px] md:text-[28px] md:leading-[32px]">{f.title}</h3>
+                      <p className="mt-3 text-[15px] leading-[22px] text-ink-2">{f.text}</p>
+                    </div>
+                    <div className={`rd-embed rd-win overflow-hidden rounded-[12px] bg-canvas ${f.wide ? "h-[400px] md:h-[440px]" : "mt-6 h-[360px] md:h-[400px]"}`}>
+                      <Workbench dime bare tab={f.tab} />
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             ))}
