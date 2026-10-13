@@ -154,9 +154,9 @@ export function Redesign() {
         <div className="rd-fade-t mx-auto max-w-[1600px]">
           <Image src={footArt} alt="" className="rd-art rd-art-m" style={{ objectPosition: "60% 50%" }} />
         </div>
-        <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1320px] items-center justify-between px-5 pb-8 text-[13px] text-ink-2 md:px-6">
+        <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1320px] items-center justify-between px-5 pb-8 text-[13px] text-[#0b1b4d] md:px-6">
           <CLogo size={18} />
-          <a href={REPO} className="transition-colors hover:text-ink">GitHub</a>
+          <a href={REPO} className="transition-colors hover:text-[#2458F5]">GitHub</a>
         </div>
       </footer>
     </Page>

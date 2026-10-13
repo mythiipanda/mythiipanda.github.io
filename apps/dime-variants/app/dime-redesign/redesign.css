@@ -1,4 +1,4 @@
-.rd-reveal { opacity: 0; transform: translateY(24px); filter: blur(6px); transition: opacity 800ms cubic-bezier(0.23, 1, 0.32, 1), transform 800ms cubic-bezier(0.23, 1, 0.32, 1), filter 800ms cubic-bezier(0.23, 1, 0.32, 1); }
+.rd-reveal { opacity: 0; transform: translateY(16px); filter: blur(4px); transition: opacity 560ms cubic-bezier(0.23, 1, 0.32, 1), transform 560ms cubic-bezier(0.23, 1, 0.32, 1), filter 560ms cubic-bezier(0.23, 1, 0.32, 1); }
 .rd-reveal.is-in { opacity: 1; transform: translateY(0); filter: blur(0); }
 .rd-word { opacity: 0.28; transition: opacity 600ms cubic-bezier(0.23, 1, 0.32, 1); }
 .rd-word.is-lit { opacity: 1; }
@@ -12,3 +12,4 @@
 .rd-card { box-shadow: 0 0 0 1px rgba(20, 20, 30, 0.04); }
 @media (max-width: 767px) { .rd-embed { pointer-events: none; } }
 .rd-card, .rd-embed { min-width: 0; max-width: 100%; }
+.rd-card { transition: box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1); } @media (hover: hover) { .rd-card:hover { box-shadow: 0 0 0 1px rgba(36, 88, 245, 0.18); } }
