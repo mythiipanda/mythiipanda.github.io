@@ -106,10 +106,7 @@ export function Redesign() {
           <Reveal>
             <h2 className="mx-auto max-w-[760px] text-balance text-[40px] leading-[42px] md:text-[72px] md:leading-[72px]">NBA research, in your own files.</h2>
           </Reveal>
-          <Reveal delay={100} className="mt-5">
-            <p className="mx-auto max-w-[460px] text-[17px] leading-[26px] text-ink-2">Plain-file Notebooks. One git commit per run.</p>
-          </Reveal>
-          <Reveal delay={200} className="mt-8 flex justify-center">
+          <Reveal delay={100} className="mt-10 flex justify-center">
             <ButtonLink href={REPO} variant="primary"><GithubMark />{short.star}</ButtonLink>
           </Reveal>
         </section>
