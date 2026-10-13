@@ -51,7 +51,7 @@ export default function Home() {
         </nav>
       </header>
       <main>
-        <section className="mx-auto max-w-[1320px] px-5 pt-14 text-center md:px-6 md:pt-20">
+        <section className="mx-auto max-w-[1320px] px-5 pt-6 text-center md:px-6 md:pt-8">
           <Reveal>
             <h1 className="mx-auto max-w-[900px] text-[48px] leading-[48px] md:text-[96px] md:leading-[92px]">Harvey for NBA Analysts</h1>
           </Reveal>
@@ -63,11 +63,11 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <section ref={ref} className="relative mt-10 md:mt-6">
+        <section ref={ref} className="relative mt-6 md:mt-0">
           <motion.div style={{ y }} className="rd-fade-b mx-auto max-w-[1600px]">
             <Image src={heroArt} alt="" priority className="rd-art rd-art-m md:!h-auto" />
           </motion.div>
-          <div className="relative z-10 mx-auto -mt-24 max-w-[1320px] px-5 md:-mt-[17vw] md:px-6 xl:-mt-[240px]">
+          <div className="relative z-10 mx-auto -mt-32 max-w-[1320px] px-5 md:-mt-[31vw] md:px-6 xl:-mt-[420px]">
             <Reveal>
               <div className="rd-win overflow-hidden rounded-[14px]"><HeroWindow /></div>
             </Reveal>
