@@ -67,7 +67,7 @@ export default function Home() {
           <motion.div style={{ y }} className="rd-fade-b mx-auto max-w-[1600px]">
             <Image src={heroArt} alt="" priority className="rd-art rd-art-m md:!h-auto" />
           </motion.div>
-          <div className="relative z-10 mx-auto -mt-32 max-w-[1320px] px-5 md:-mt-[31vw] md:px-6 xl:-mt-[420px]">
+          <div className="relative z-10 mx-auto -mt-[155px] max-w-[1320px] px-5 md:-mt-[min(27.6vw,443px)] md:px-6">
             <Reveal>
               <div className="rd-win overflow-hidden rounded-[14px]"><HeroWindow /></div>
             </Reveal>
