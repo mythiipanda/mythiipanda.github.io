@@ -51,7 +51,7 @@ export default function Home() {
         </nav>
       </header>
       <main>
-        <section className="mx-auto max-w-[1320px] px-5 pt-6 text-center md:px-6 md:pt-8">
+        <section className="mx-auto max-w-[1320px] px-5 pt-3 text-center md:px-6 md:pt-4">
           <Reveal>
             <h1 className="mx-auto max-w-[900px] text-[48px] leading-[48px] md:text-[96px] md:leading-[92px]">Harvey for NBA Analysts</h1>
           </Reveal>
