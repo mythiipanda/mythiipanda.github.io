@@ -199,7 +199,7 @@ export default function CodeBlock({
       </div>
 
       {/* body — equal 12px inset on top / left / right; lines wrap */}
-      <div className="py-3 font-mono text-[12.5px] leading-[1.65] text-ink-2">
+      <div className="py-3 font-mono text-[12.5px] leading-[1.65] text-ink">
         {isDiff ? (
           <div className="relative">
             <span className="pointer-events-none absolute inset-y-0 left-5 w-px bg-line" />
