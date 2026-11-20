@@ -223,7 +223,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-10">
             <div className="dark rounded-md">
-              <CodeBlock wide flat lines={QUICKSTART} code={QUICKSTART.join("\n")} filename="terminal" />
+              <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows · duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
             </div>
             <dl className="m-0">
               {LIMITS.map(([term, detail]) => (
