@@ -175,7 +175,7 @@ export default function Home() {
             <RecordsTable fill />
           </div>
           <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
-          <div className="mt-14 grid gap-8 md:mt-20 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">Coverage</p>
               <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
