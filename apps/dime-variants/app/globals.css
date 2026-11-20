@@ -213,6 +213,20 @@
     }
   }
 
+  .motif {
+    position: relative;
+  }
+  .motif::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(oklch(0.62 0.14 261 / 0.15) 1px, transparent 1.5px);
+    background-size: 15px 15px;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 20%);
+    mask-image: linear-gradient(to bottom, black 0%, transparent 20%);
+    pointer-events: none;
+  }
+
   .link {
     color: var(--color-ink);
     text-decoration: underline;
