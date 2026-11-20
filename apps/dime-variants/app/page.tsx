@@ -25,9 +25,9 @@ const LIMITS = [
   ["Keys", "Chat runs on your own model provider keys."],
 ];
 
-function Head({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
+function Head({ n, title, children, center }: { n: string; title: string; children: React.ReactNode; center?: boolean }) {
   return (
-    <div className="flex max-w-[560px] flex-col gap-5">
+    <div className={`flex max-w-[560px] flex-col gap-5${center ? " mx-auto items-center text-center" : ""}`}>
       <p className="eyebrow">{n}</p>
       <h2 className="title">{title}</h2>
       <p className="lede">{children}</p>
@@ -91,7 +91,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="features" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
+          <Head center n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
           <div className="mt-8 md:mt-14">
             <PlayerCard />
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap py-12 md:py-20">
-          <Head n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or for one player.</Head>
+          <Head center n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or for one player.</Head>
           <div className="exhibit mt-8 p-4 md:mt-14 md:p-8">
             <ShotMap />
           </div>
@@ -109,7 +109,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap py-12 md:py-20">
-          <Head n="03" title="Lineups + clutch">Rank five-man units by net rating, then find who scores in the last five minutes of close games.</Head>
+          <Head center n="03" title="Lineups + clutch">Rank five-man units by net rating, then find who scores in the last five minutes of close games.</Head>
           <div className="mt-8 grid gap-14 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
             <div className="min-w-0">
               <Lineups />
