@@ -185,7 +185,7 @@ const SCENARIOS: Record<string, Scenario> = {
     beat: 900,
     paneTitle: "Shot chart",
     Pane: () => (
-      <div className="mx-auto max-w-[300px] lg:max-w-none">
+      <div className="mx-auto max-w-[276px] lg:max-w-none">
         <ShotMap fill />
         <Provenance rows={[["Table", "silver_hist_shots"], ["Shots", "3,729,459"], ["Seasons", "2009-10 to 2025-26"]]} />
       </div>
