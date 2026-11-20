@@ -5,8 +5,8 @@ const TOP_PTS = CLUTCH[0][4];
 
 function Bar({ share }: { share: number }) {
   return (
-    <span className="block h-1.5 w-full overflow-hidden rounded-full bg-inset" aria-hidden>
-      <span className="block h-full rounded-full bg-accent" style={{ width: `${share * 100}%` }} />
+    <span className="block h-1.5 w-full overflow-hidden bg-inset" aria-hidden>
+      <span className="block h-full bg-accent" style={{ width: `${share * 100}%` }} />
     </span>
   );
 }
