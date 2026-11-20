@@ -19,7 +19,7 @@ const PEAK = Math.max(...LUKA_TREND.map((row) => row[2]));
 
 export function PlayerCard() {
   return (
-    <div className="window dark">
+    <div className="exhibit">
       <div className="flex flex-col gap-5 bg-canvas p-4 font-sans text-[14px] tracking-[-0.01em] text-ink md:gap-6 md:p-7">
         <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px]">How is Luka Dončić&apos;s season going?</p>
         <article className="grid overflow-hidden rounded-[16px] bg-surface shadow-[0_0_0_1px_var(--line)] lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
