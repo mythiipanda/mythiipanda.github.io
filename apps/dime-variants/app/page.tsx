@@ -75,7 +75,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="window window-hero enter mt-12 md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
+          <div className="window window-hero enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
             <DimeHarness />
           </div>
           <p className="label mt-4 text-center">fig. 0 — the answers on this page are scripted; the rows come from the Nov 19, 2026 data pack.</p>
