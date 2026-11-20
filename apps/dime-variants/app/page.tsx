@@ -24,6 +24,10 @@ const LIMITS = [
   ["Keys", "Chat runs on your own model provider keys."],
 ];
 
+function Fig({ n, children }: { n: string; children: React.ReactNode }) {
+  return <figcaption className="label mt-4 text-center">fig. {n} — {children}</figcaption>;
+}
+
 function Head({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-5">
@@ -73,7 +77,7 @@ export default function Home() {
           <div className="window window-hero enter mt-12 md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
             <DimeHarness />
           </div>
-          <p className="label mt-4 text-center">The answers on this page are scripted. The rows come from the Nov 19, 2026 data pack.</p>
+          <p className="label mt-4 text-center">fig. 0 — the answers on this page are scripted; the rows come from the Nov 19, 2026 data pack.</p>
         </section>
 
         <hr className="rule" />
@@ -83,6 +87,7 @@ export default function Home() {
           <div className="mt-10 md:mt-14">
             <PlayerCard />
           </div>
+          <Fig n="1">player card from silver_player_season · silver_advanced · silver_hist_player_seasons.</Fig>
         </section>
 
         <hr className="rule" />
@@ -92,6 +97,7 @@ export default function Home() {
           <div className="exhibit mx-auto mt-10 max-w-[880px] p-5 md:mt-14 md:p-8">
             <ShotMap />
           </div>
+          <Fig n="2">shot density from silver_hist_shots, binned by court location.</Fig>
         </section>
 
         <hr className="rule" />
@@ -104,6 +110,7 @@ export default function Home() {
               <p className="lede max-w-none">Rank five-man units by net rating and see the minutes behind each one.</p>
             </div>
             <Lineups />
+            <Fig n="3">five-man units from silver_hist_lineups.</Fig>
           </div>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-5">
@@ -112,6 +119,7 @@ export default function Home() {
               <p className="lede max-w-none">Find who scores in the last five minutes of close games.</p>
             </div>
             <Clutch />
+            <Fig n="4">clutch scoring from silver_clutch.</Fig>
           </div>
         </section>
 
@@ -137,6 +145,7 @@ export default function Home() {
             </div>
             <CodeBlock wide lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
           </div>
+          <Fig n="5">the tool trace and the SQL behind the answer, from silver_hist_shots.</Fig>
         </section>
 
         <hr className="rule" />
@@ -146,6 +155,7 @@ export default function Home() {
           <div className="exhibit mt-10 flex h-[468px] flex-col md:mt-14">
             <RecordsTable fill />
           </div>
+          <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
         </section>
 
         <hr className="rule" />
