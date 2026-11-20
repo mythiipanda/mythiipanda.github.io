@@ -180,7 +180,7 @@ kbd,
 .window {
   overflow: hidden;
   border-radius: 6px;
-  background: oklch(0.231 0.004 264.487);
+  background: oklch(0.231 0.006 62);
   box-shadow: 0 0 0 1px oklch(0.2 0.01 62 / 0.9);
 }
 
