@@ -173,8 +173,29 @@ export default function Home() {
                 />
               </figure>
             </div>
-            <div className="min-w-0">
+            <div className="flex min-w-0 flex-col bg-surface">
             <CodeBlock wide seam lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
+            <div className="flex min-h-0 flex-1 flex-col border-t border-line">
+              <p className="m-0 px-5 pb-1 pt-3.5 font-mono text-[11.5px] text-ink-3">result · 17 rows</p>
+              <div className="min-h-0 flex-1 overflow-auto px-2 pb-3">
+                <table className="w-full border-collapse font-mono text-[12px] tabular-nums">
+                  <thead>
+                    <tr>
+                      <th className="records-header-cell sticky top-0 bg-surface pb-1 text-left align-bottom"><span className="records-header-button flex items-center font-normal text-ink-3">season</span></th>
+                      <th className="records-header-cell sticky top-0 bg-surface pb-1 text-right align-bottom"><span className="records-header-button flex items-center justify-end font-normal text-ink-3">three_share</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {THREE_SHARE.map(([season, share]) => (
+                      <tr key={season} className="records-row">
+                        <td className="records-cell text-ink-2">{season - 1}–{String(season).slice(2)}</td>
+                        <td className="records-cell text-right text-ink">{share.toFixed(1)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
           </div>
           <Fig n="5">the tool trace and the SQL behind the answer, from silver_hist_shots.</Fig>
