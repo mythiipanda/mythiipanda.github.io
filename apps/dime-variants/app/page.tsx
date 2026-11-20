@@ -58,11 +58,11 @@ export default function Home() {
 
       <main id="top">
         <section className="wrap pb-24 pt-10 md:pb-32 md:pt-16">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-16">
+          <div className="flex max-w-[720px] flex-col gap-8">
             <h1 className="display enter max-w-[12ch]">
               The open-source <em>NBA analyst.</em>
             </h1>
-            <div className="enter flex flex-col gap-6 md:pb-3" style={{ "--i": 1 } as React.CSSProperties}>
+            <div className="enter flex flex-col gap-6" style={{ "--i": 1 } as React.CSSProperties}>
               <p className="lede">Ask a question in plain English. Dime runs it against 17 seasons of NBA data on your machine and shows you the query.</p>
               <div className="flex items-center gap-6">
                 <a href={REPO} className="btn btn-primary">
