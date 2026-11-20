@@ -215,7 +215,7 @@ kbd,
 
 @media (max-width: 1023px) {
   .window-hero {
-    height: min(860px, 86vh);
+    height: min(900px, 90vh);
   }
 }
 
