@@ -80,12 +80,12 @@ const INITIAL_ROWS: RecordRow[] = [
   { id: "pbp", name: "silver_hist_pbp", tags: ["Play-by-play"], last: "3,236,915", strength: "weak", website: "sportsdataverse" },
   { id: "lineups", name: "silver_hist_lineups", tags: ["Lineups"], last: "753,242", strength: "strong", website: "sportsdataverse" },
   { id: "boxscores", name: "silver_boxscores", tags: ["Box scores"], last: "330,485", strength: "weak", website: "nba_api" },
-  { id: "gamelogs", name: "silver_hist_gamelogs", tags: ["Game logs"], last: "43,540", strength: "strong", website: "sportsdataverse" },
+  { id: "gamelogs", name: "silver_hist_gamelogs", tags: ["Game logs"], last: "75,974", strength: "strong", website: "sportsdataverse" },
   { id: "raptor", name: "silver_raptor_player", tags: ["Ratings"], last: "19,159", strength: "none", website: "fivethirtyeight" },
-  { id: "seasons", name: "silver_hist_player_seasons", tags: ["Player seasons"], last: "5,878", strength: "weak", website: "sportsdataverse" },
+  { id: "seasons", name: "silver_hist_player_seasons", tags: ["Player seasons"], last: "13,987", strength: "weak", website: "sportsdataverse" },
   { id: "draft", name: "silver_hist_draft", tags: ["Draft"], last: "1,656", strength: "veryweak", website: "sportsdataverse" },
   { id: "standings", name: "silver_hist_standings", tags: ["Standings"], last: "510", strength: "strong", website: "sportsdataverse" },
-  { id: "salaries", name: "silver_salaries", tags: ["Contracts"], last: "464", strength: "strong", coverage: "2026-27", website: "bref_contracts" },
+  { id: "contracts", name: "silver_contracts", tags: ["Contracts"], last: "3,032", strength: "strong", coverage: "Through 2026-27", website: "huggingface" },
 ];
 
 /* the AI column resolves to fictional competitor pairs */

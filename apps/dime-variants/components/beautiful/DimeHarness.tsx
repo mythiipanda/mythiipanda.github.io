@@ -63,7 +63,7 @@ function Reply({ intro, children }: { intro: string; children?: ReactNode }) {
 /* ── Dime scenarios ───────────────────────────────────────── */
 
 const TRACE = [
-  { primary: "Read", secondary: "silver_salaries", mono: true },
+  { primary: "Read", secondary: "silver_contracts", mono: true },
   { primary: "Write", secondary: "query.sql", mono: true },
   { primary: "Run", secondary: "duckdb · 5 rows", mono: true },
 ];
@@ -100,8 +100,8 @@ function SalaryTable() {
         </tbody>
       </table>
       <div className="flex items-center justify-between border-t border-line px-3.5 py-2 font-mono text-[11px] text-ink-3">
-        <span>silver_salaries</span>
-        <span>5 of 464 rows · bref_contracts</span>
+        <span>silver_contracts</span>
+        <span>5 of 483 rows · 2026-27</span>
       </div>
     </div>
   );
@@ -113,7 +113,7 @@ function SalaryAnswer() {
     <div className="flex flex-col gap-4">
       <ThinkingState variant="Coding" rows={TRACE} active="Querying the warehouse" done="Ran 3 tools" onSettled={() => setSettled(true)} />
       {settled && (
-        <Reply intro="Stephen Curry, at $59.6M. That is 36.0% of the $165.5M cap. The next four are within $1.7M of him.">
+        <Reply intro="Stephen Curry, at $62.6M. That is 37.8% of the $165.5M cap. Three players are tied for third at $58.5M.">
           <SalaryTable />
         </Reply>
       )}
@@ -175,7 +175,7 @@ const SCENARIOS: Record<string, Scenario> = {
     Pane: () => (
       <>
         <CodeBlock wide lines={TS_QUERY.split("\n").map((line) => line.replace(/^ {7}/, "  ").replace(/ {2,}as /, " as "))} code={TS_QUERY} filename="query.sql" />
-        <Provenance rows={[["Table", "silver_salaries"], ["Source", "bref_contracts"], ["Season", "2026-27"], ["Rows read", "464"], ["Pack", "Nov 19, 2026"]]} />
+        <Provenance rows={[["Table", "silver_contracts"], ["Season", "2026-27"], ["Rows read", "483"], ["Pack", "Nov 19, 2026"]]} />
       </>
     ),
     Answer: () => <SalaryAnswer />,

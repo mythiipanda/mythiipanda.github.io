@@ -84,7 +84,7 @@ const SOURCES: Source[] = [
   { key: "possessions", name: "Possessions", desc: "4,482,180 rows", glyph: "layers" },
   { key: "pbp", name: "Play-by-play", desc: "2020-21 to 2024-25", glyph: "layers" },
   { key: "lineups", name: "Lineups", desc: "753,242 rows", glyph: "layers" },
-  { key: "salaries", name: "Salaries", desc: "464 contracts, 2026-27", glyph: "chart" },
+  { key: "contracts", name: "Contracts", desc: "2022-23 to 2026-27", glyph: "chart" },
   { key: "raptor", name: "RAPTOR", desc: "1976-77 to 2021-22", glyph: "chart" },
 ];
 

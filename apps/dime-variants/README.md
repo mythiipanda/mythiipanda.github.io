@@ -21,8 +21,8 @@ Type is Instrument Serif for display, Instrument Sans for everything else, Marti
 
 ## Where things came from
 
-- Salary rows, shot bins, row counts for the four big tables and coverage ranges are in `lib/site.ts` and `lib/shots.ts`, from the Nov 19, 2026 data pack.
-- The warehouse table in `RecordsTable.tsx` lists eleven real tables. Row counts for the seven not in `lib/site.ts` were read from the Sep 30, 2026 public pack.
+- Every fact on the page was read from the Nov 19, 2026 data pack (sha256 `3787644e…`): the salary query in `lib/site.ts` and its five rows, shot bins in `lib/shots.ts`, and the eleven table row counts in `RecordsTable.tsx`.
+- The salary demo reads `silver_contracts`. The earlier `silver_salaries` query named a `SALARY_2026_27` column that the pack does not have.
 - Answers in the harness are scripted, and the page says so under the window.
 
 ## What is still rough

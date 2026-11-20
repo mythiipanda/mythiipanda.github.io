@@ -3,18 +3,19 @@ export const README = `${REPO}#quickstart`;
 export const SITE = "https://mythiipanda.github.io/dime-site/";
 
 export const TS_QUERY = `select PLAYER_NAME, TEAM,
-       round(SALARY_2026_27 / 1000000.0, 1)      as salary_m,
-       round(100.0 * SALARY_2026_27 / 165500000, 1) as cap_pct
-from silver_salaries
-order by SALARY_2026_27 desc
+       round(SALARY / 1000000.0, 1)         as salary_m,
+       round(100.0 * SALARY / 165500000, 1) as cap_pct
+from silver_contracts
+where SEASON_YEAR = 2026
+order by SALARY desc, PLAYER_NAME
 limit 5`;
 
 export const TS_ROWS = [
-  { player: "Stephen Curry", team: "GSW", salary: "59.6", cap: "36.0" },
-  { player: "Nikola Jokić", team: "DEN", salary: "59.0", cap: "35.6" },
-  { player: "Giannis Antetokounmpo", team: "MIL", salary: "58.5", cap: "35.3" },
-  { player: "Jayson Tatum", team: "BOS", salary: "58.4", cap: "35.3" },
-  { player: "Joel Embiid", team: "PHI", salary: "57.9", cap: "35.0" },
+  { player: "Stephen Curry", team: "GSW", salary: "62.6", cap: "37.8" },
+  { player: "Nikola Jokic", team: "DEN", salary: "59.0", cap: "35.7" },
+  { player: "Anthony Davis", team: "WAS", salary: "58.5", cap: "35.3" },
+  { player: "Giannis Antetokounmpo", team: "MIA", salary: "58.5", cap: "35.3" },
+  { player: "Jayson Tatum", team: "BOS", salary: "58.5", cap: "35.3" },
 ];
 
 export const SHARE_QUERY = `select season,
