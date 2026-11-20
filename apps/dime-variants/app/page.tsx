@@ -187,9 +187,9 @@ export default function Home() {
                   </thead>
                   <tbody>
                     {THREE_SHARE.map(([season, share], i) => (
-                      <tr key={season} className={`records-row${i >= 6 ? " hidden md:table-row" : ""}`}>
+                      <tr key={season} className={`records-row${i >= 6 ? " hidden md:table-row" : ""}${i === THREE_SHARE.length - 1 ? " is-selected" : ""}`}>
                         <td className="records-cell text-ink-2">{season - 1}–{String(season).slice(2)}</td>
-                        <td className="records-cell text-right text-ink">{share.toFixed(1)}</td>
+                        <td className="records-cell text-right font-medium text-ink">{share.toFixed(1)}</td>
                       </tr>
                     ))}
                     <tr className="md:hidden">
@@ -219,7 +219,7 @@ export default function Home() {
             </div>
           </div>
           <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
-          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+          <div className="mt-14 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">Coverage</p>
               <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
@@ -244,7 +244,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+          <div className="mt-14 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">Composition</p>
               <p className="lede max-w-none">What the 14.9 million rows are made of.</p>
