@@ -123,7 +123,7 @@ function SalaryAnswer() {
 
 function Provenance({ rows }: { rows: [string, string][] }) {
   return (
-    <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-[12.5px]">
+    <dl className="mt-4 hidden grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-[12.5px] lg:grid">
       {rows.map(([k, v]) => (
         <div key={k} className="contents">
           <dt className="text-ink-3">{k}</dt>
@@ -185,10 +185,10 @@ const SCENARIOS: Record<string, Scenario> = {
     beat: 900,
     paneTitle: "Shot chart",
     Pane: () => (
-      <>
-        <ShotMap />
+      <div className="mx-auto max-w-[276px] lg:max-w-none">
+        <ShotMap fill />
         <Provenance rows={[["Table", "silver_hist_shots"], ["Shots", "3,729,459"], ["Seasons", "2009-10 to 2025-26"]]} />
-      </>
+      </div>
     ),
     Answer: () => (
       <Reply intro="Threes went from 22.3% of all shots to 41.4%. The midrange gave up almost exactly that much. The chart on the right is every shot location in the season you pick.">
@@ -457,7 +457,7 @@ function PaneBody({ beat, children }: { beat: number; children: ReactNode }) {
     );
   }
 
-  return <div style={{ animation: "fade-up 400ms cubic-bezier(0.23,1,0.32,1) both" }}>{children}</div>;
+  return <div className="pb-9 lg:pb-0" style={{ animation: "fade-up 400ms cubic-bezier(0.23,1,0.32,1) both" }}>{children}</div>;
 }
 
 /* ── spreadsheet views + property inspector ───────────────────
@@ -569,7 +569,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
   useEffect(() => {
     if (!active) return;
     const el = scrollRef.current;
-    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    if (el && window.innerWidth >= 1024) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [chat.messages, active]);
 
   /* the composer floats over the thread (ChatGPT-style), so the thread pads its
@@ -602,7 +602,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
       stick = el.scrollHeight - el.scrollTop - el.clientHeight < 120;
     };
     const pin = () => {
-      if (!stick) return;
+      if (!stick || window.innerWidth < 1024) return;
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         el.scrollTop = el.scrollHeight;
@@ -719,7 +719,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
   );
 
   return (
-    <div className="dark flex h-full gap-0 bg-canvas p-2.5 font-sans text-[14px] leading-normal tracking-[-0.01em] text-ink lg:pl-0">
+    <div className="light flex h-full gap-0 bg-canvas p-2.5 font-sans text-[14px] leading-normal tracking-[-0.01em] text-ink lg:pl-0">
       <SidebarNav
         fill
         className="hidden lg:flex"
@@ -733,7 +733,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
 
       <div className="flex min-w-0 flex-1 flex-col gap-2.5">
         {/* panels row — main pane + docked side pane */}
-        <div className="flex min-h-0 flex-1 gap-2.5">
+        <div className="flex min-h-0 flex-1 flex-col gap-2.5 lg:flex-row">
           {workspaceScenario ? (
             <>
               {/* main pane — the live spreadsheet */}
@@ -770,7 +770,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
               {active && paneMsg && paneScenario?.Pane && (
                   <aside
                     key={`${paneMsg.id}-${replay[chat.id] ?? 0}`}
-                    className="light hidden w-[380px] shrink-0 flex-col overflow-hidden rounded-[14px] border border-line bg-page lg:flex"
+                    className="light flex h-[54%] w-full shrink-0 flex-col overflow-hidden rounded-[14px] border border-line bg-page lg:h-auto lg:w-[380px] lg:shrink-0"
                     style={{ animation: "fade-in 300ms ease both" }}
                   >
                     <div className="flex h-11 shrink-0 items-center justify-between border-b border-line px-3 sm:pl-4">

@@ -27,9 +27,9 @@ group by season
 order by season`;
 
 export const COUNTS = [
-  { n: "3,729,459", label: "shots with court coordinates" },
+  { n: "3,729,459", label: "charted shots" },
   { n: "4,482,180", label: "possessions" },
-  { n: "3,236,915", label: "play-by-play events" },
+  { n: "3,236,915", label: "play-by-play" },
   { n: "753,242", label: "lineup rows" },
 ];
 

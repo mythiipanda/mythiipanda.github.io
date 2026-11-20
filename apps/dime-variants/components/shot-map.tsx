@@ -13,8 +13,8 @@ const VIEWS = [
   { key: "luka", label: LUKA.name, bins: LUKA_BINS, stats: [[LUKA.shots.toLocaleString("en-US"), "shots"], [`${LUKA.three.toFixed(1)}%`, "threes"]] },
 ];
 
-const CAP = 70;
-const radius = (f: number) => (f <= 0 ? 0 : Math.max(0.9, HEX * 0.92 * Math.min(1, Math.sqrt(f / CAP))));
+const CAP = 45;
+const radius = (f: number) => (f <= 0 ? 0 : Math.max(1.3, HEX * 1.1 * Math.min(1, Math.sqrt(f / CAP))));
 
 export function Court({ stroke }: { stroke: string }) {
   return (
@@ -29,10 +29,10 @@ export function Court({ stroke }: { stroke: string }) {
   );
 }
 
-export function ShotMap() {
+export function ShotMap({ fill }: { fill?: boolean }) {
   const [view, setView] = useState(VIEWS[1]);
   return (
-    <figure className="m-0">
+    <figure className={`m-0 ${fill ? "lg:flex lg:h-full lg:flex-col" : ""}`}>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div role="group" aria-label="Shots to plot" className="inline-flex max-w-full flex-wrap rounded-[10px] bg-inset p-1">
           {VIEWS.map((v) => (
@@ -41,7 +41,7 @@ export function ShotMap() {
               type="button"
               aria-pressed={view.key === v.key}
               onClick={() => setView(v)}
-              className="num h-11 rounded-[8px] px-4 text-[14px] font-medium text-ink-2 transition-[background-color,color,box-shadow] duration-150 aria-pressed:bg-surface aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_var(--color-line),0_1px_2px_oklch(0_0_0/0.06)]"
+              className="num h-10 rounded-[8px] px-4 text-[14px] font-medium text-ink-2 transition-[background-color,color,box-shadow] duration-150 aria-pressed:bg-surface aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_var(--color-line),0_1px_2px_oklch(0_0_0/0.06)] lg:h-11"
             >
               {v.label}
             </button>
@@ -56,7 +56,7 @@ export function ShotMap() {
           ))}
         </p>
       </div>
-      <svg viewBox="-258 -56 516 392" className="mt-5 block h-auto w-full" role="img" aria-label={`Where shots were taken: ${view.label}. Larger dots mean more shots from that spot.`}>
+      <svg viewBox="-258 -56 516 404" className={`mt-5 block w-full ${fill ? "h-auto lg:min-h-0 lg:flex-1" : "h-auto"}`} role="img" aria-label={`Where shots were taken: ${view.label}. Larger dots mean more shots from that spot.`} preserveAspectRatio={fill ? "xMidYMid slice" : undefined}>
         <Court stroke="var(--line-strong)" />
         <g key={view.key === "luka" ? "luka" : "league"} fill="var(--color-accent)">
           {view.bins.map((bin) => (

@@ -6,7 +6,6 @@ import { PlayerCard } from "@/components/exhibits/player-card";
 import { GithubMark } from "@/components/mark";
 import { ShotMap } from "@/components/shot-map";
 import { CapsuleBars } from "@/components/ingot/capsule-bars";
-import { HatchTrackList } from "@/components/ingot/hatch-track-list";
 import { PillMeter } from "@/components/ingot/pill-meter";
 import { THREE_SHARE } from "@/lib/shots";
 import { COUNTS, COVERAGE, README, REPO, SHARE_QUERY } from "@/lib/site";
@@ -26,19 +25,12 @@ const LIMITS = [
   ["Keys", "Chat runs on your own model provider keys."],
 ];
 
-function Fig({ n, children }: { n: string; children: React.ReactNode }) {
-  return <figcaption className="label mt-4 flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1"><span className="whitespace-nowrap text-accent">fig.&nbsp;{n}</span><span>{children}</span></figcaption>;
-}
-
-function Head({ n, title, meta, children }: { n: string; title: string; meta?: string; children: React.ReactNode }) {
+function Head({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
   return (
-    <div className="flex items-end justify-between gap-8">
-      <div className="flex max-w-[560px] flex-col gap-5">
-        <p className="eyebrow">{n}</p>
-        <h2 className="title">{title}</h2>
-        <p className="lede">{children}</p>
-      </div>
-      {meta ? <p className="label hidden shrink-0 pb-1 text-right md:block">{meta}</p> : null}
+    <div className="flex max-w-[560px] flex-col gap-5">
+      <p className="eyebrow">{n}</p>
+      <h2 className="title">{title}</h2>
+      <p className="lede">{children}</p>
     </div>
   );
 }
@@ -46,12 +38,6 @@ function Head({ n, title, meta, children }: { n: string; title: string; meta?: s
 export default function Home() {
   return (
     <>
-      <div className="border-b border-line">
-        <p className="wrap label flex items-center justify-between py-2">
-          <span>front-office memo</span>
-          <span className="hidden sm:block">nov 19, 2026 data pack</span>
-        </p>
-      </div>
       <header className="wrap flex h-[72px] items-center justify-between">
         <a href="#top" className="font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
           dime<span className="text-accent">.</span>
@@ -68,29 +54,29 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="wrap pb-20 pt-10 md:pb-24 md:pt-16">
-          <div className="flex max-w-[720px] flex-col gap-8">
-            <h1 className="display enter max-w-[12ch]">
+        <section className="wrap relative pb-14 pt-10 md:pb-24 md:pt-[72px]">
+          <div className="hero-grid" aria-hidden="true" />
+          <div className="relative mx-auto flex max-w-[780px] flex-col items-center gap-8 text-center">
+            <h1 className="display enter max-w-[14ch]">
               The open-source <em>NBA analyst.</em>
             </h1>
-            <div className="enter flex flex-col gap-6" style={{ "--i": 1 } as React.CSSProperties}>
-              <p className="lede">Ask a question in plain English. Dime runs it against 17 seasons of NBA data on your machine and shows you the query.</p>
-              <div className="flex items-center gap-6">
+            <div className="enter flex flex-col items-center gap-6" style={{ "--i": 1 } as React.CSSProperties}>
+              <p className="lede mx-auto">Ask a question in plain English. Dime runs it against 17 seasons of NBA data on your machine and shows you the query.</p>
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 <a href={REPO} className="btn btn-primary">
                   <GithubMark size={17} />
                   Get Dime on GitHub
                 </a>
                 <a href="#quickstart" className="btn btn-ghost">Quickstart</a>
+                <a href="#sources" className="hidden min-h-[44px] items-center gap-1.5 text-[15px] font-medium text-ink-3 underline decoration-line-strong underline-offset-[5px] transition-colors hover:text-ink sm:inline-flex">Read the SQL it ran ↓</a>
               </div>
             </div>
           </div>
 
-          <div className="window window-hero enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
-            <DimeHarness />
+          <div className="window window-hero window-light enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
+            <DimeHarness autoplay="shots" />
           </div>
-          <p className="label mt-4 text-center">fig. 0 — the answers on this page are scripted; the rows come from the Nov 19, 2026 data pack.</p>
-
-          <dl className="enter mt-14 grid grid-cols-2 border border-line md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
+          <dl className="enter mt-10 grid grid-cols-2 border border-line md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
             {COUNTS.map((c, i) => (
               <div key={c.n} className={`flex flex-col border-line p-6 text-center md:p-8 ${["border-b border-r md:border-b-0", "border-b md:border-b-0 md:border-r", "border-r", ""][i]}`}>
                 <dd className="order-1 font-serif text-[clamp(1.8rem,3vw,2.6rem)] leading-none tracking-[-0.02em] text-ink">{c.n}</dd>
@@ -102,52 +88,47 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="features" className="wrap scroll-mt-8 py-20 md:py-24">
-          <Head n="01" title="Player cards" meta="fig. 1">Ask about a player and get the season on one card.</Head>
-          <div className="mt-10 md:mt-14">
+        <section id="features" className="wrap scroll-mt-8 py-12 md:py-20">
+          <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,9fr)] md:gap-16">
+            <div className="md:self-center">
+              <Head n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
+            </div>
             <PlayerCard />
           </div>
-          <Fig n="1">player card from silver_player_season · silver_advanced · silver_hist_player_seasons.</Fig>
         </section>
 
         <hr className="rule" />
 
-        <section className="wrap py-20 md:py-24">
-          <Head n="02" title="Shot charts" meta="fig. 2">Plot 3.7 million shots by court location, for the league or for one player.</Head>
-          <div className="exhibit mt-10 p-5 md:mt-14 md:p-8">
+        <section className="wrap py-12 md:py-20">
+          <Head n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or one player.</Head>
+          <div className="exhibit mt-8 p-4 md:mt-14 md:p-8">
             <ShotMap />
           </div>
-          <Fig n="2">shot density from silver_hist_shots, binned by court location.</Fig>
         </section>
 
         <hr className="rule" />
 
-        <section className="wrap grid gap-20 py-20 md:py-24 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
-          <div className="flex min-w-0 flex-col gap-8">
-            <div className="flex flex-col gap-5">
-              <p className="eyebrow">03</p>
-              <h2 className="title">Lineups</h2>
-              <p className="lede max-w-none">Rank five-man units by net rating and see the minutes behind each one.</p>
+        <section className="wrap py-12 md:py-20">
+          <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,9fr)] md:gap-16">
+            <div className="md:self-center">
+              <Head n="03" title="Lineups + clutch">Rank five-man units by net rating, then who scores in the last five minutes of close games.</Head>
             </div>
-            <Lineups />
-            <Fig n="3">five-man units from silver_hist_lineups.</Fig>
-          </div>
-          <div className="flex min-w-0 flex-col gap-8">
-            <div className="flex flex-col gap-5">
-              <p className="eyebrow">04</p>
-              <h2 className="title">Clutch</h2>
-              <p className="lede max-w-none">Find who scores in the last five minutes of close games.</p>
+            <div className="grid min-w-0 gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,3fr)] lg:gap-10">
+              <div className="min-w-0">
+                <Lineups />
+              </div>
+              <div className="min-w-0">
+                <Clutch />
+              </div>
             </div>
-            <Clutch />
-            <Fig n="4">clutch scoring from silver_clutch.</Fig>
           </div>
         </section>
 
         <hr className="rule" />
 
-        <section className="wrap py-20 md:py-24">
-          <Head n="05" title="Sources" meta="fig. 5">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
-          <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
+        <section id="sources" className="wrap scroll-mt-8 py-12 md:py-20">
+          <Head n="04" title="Sources">Open any answer for the SQL Dime ran and the rows it returned.</Head>
+          <div className="mt-8 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
             <div className="flex min-w-0 flex-col gap-7 bg-surface p-6 md:p-9">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
               <ol className="m-0 list-none p-0 font-mono text-[12.5px] leading-[1.7]">
@@ -176,8 +157,8 @@ export default function Home() {
             <div className="flex min-w-0 flex-col bg-surface">
             <CodeBlock wide seam lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
             <div className="flex min-h-0 flex-1 flex-col border-t border-line">
-              <p className="m-0 px-5 pb-1 pt-3.5 font-mono text-[11.5px] text-ink-3">result · 17 rows</p>
-              <div className="min-h-0 flex-1 overflow-auto px-2 pb-3">
+              <p className="m-0 px-4 pb-1 pt-3 font-mono text-[11.5px] text-ink-3 md:px-5 md:pt-3.5">result · 17 rows</p>
+              <div className="min-h-0 flex-1 overflow-auto px-1 pb-2 md:px-2 md:pb-3">
                 <table className="w-full border-collapse font-mono text-[12px] tabular-nums">
                   <thead>
                     <tr>
@@ -187,9 +168,9 @@ export default function Home() {
                   </thead>
                   <tbody>
                     {THREE_SHARE.map(([season, share], i) => (
-                      <tr key={season} className={`records-row${i >= 6 ? " hidden md:table-row" : ""}`}>
+                      <tr key={season} className={`records-row${i >= 6 ? " hidden md:table-row" : ""}${i === THREE_SHARE.length - 1 ? " is-selected" : ""}`}>
                         <td className="records-cell text-ink-2">{season - 1}–{String(season).slice(2)}</td>
-                        <td className="records-cell text-right text-ink">{share.toFixed(1)}</td>
+                        <td className="records-cell text-right font-medium text-ink">{share.toFixed(1)}</td>
                       </tr>
                     ))}
                     <tr className="md:hidden">
@@ -201,21 +182,27 @@ export default function Home() {
             </div>
           </div>
           </div>
-          <Fig n="5">the tool trace and the SQL behind the answer, from silver_hist_shots.</Fig>
         </section>
 
         <hr className="rule" />
 
-        <section id="warehouse" className="wrap scroll-mt-8 py-20 md:py-24">
-          <Head n="06" title="Warehouse" meta="fig. 6 – 7">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
-          <div className="exhibit mt-10 flex h-[468px] min-w-0 flex-col md:mt-14">
-            <RecordsTable fill />
+        <section id="warehouse" className="wrap scroll-mt-8 py-12 md:py-20">
+          <Head n="05" title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
+          <div className="window window-light mt-8 md:mt-14">
+            <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
+              <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-3"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M9 9v11" /></svg>
+              <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
+              <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
+            </div>
+            <div className="light m-1.5 mt-0 flex h-[440px] min-w-0 flex-col overflow-hidden rounded-[2px] md:m-2 md:mt-0">
+              <RecordsTable fill />
+            </div>
           </div>
-          <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
-          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+
+          <div className="mt-8 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">Coverage</p>
-              <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
+              <p className="lede max-w-none">Where each kind of data starts and stops.</p>
             </div>
             <ul className="m-0 flex list-none flex-col gap-7 p-0">
               {COVERAGE.map((c) => (
@@ -237,29 +224,13 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
-            <div className="flex flex-col gap-5">
-              <p className="eyebrow">Composition</p>
-              <p className="lede max-w-none">What the 14.9 million rows are made of.</p>
-            </div>
-            <HatchTrackList
-              color="#2b5ce6"
-              rows={[
-                { label: "Possessions", value: 30, meta: "4.5M" },
-                { label: "Shots with court coordinates", value: 25, meta: "3.7M" },
-                { label: "Play-by-play events", value: 22, meta: "3.2M" },
-                { label: "Lineup rows", value: 5, meta: "753k" },
-              ]}
-            />
-          </div>
-          <Fig n="7">season coverage by data kind and pack composition, 1976-77 through 2026-27.</Fig>
         </section>
 
         <hr className="rule" />
 
-        <section id="quickstart" className="wrap grid scroll-mt-8 gap-12 py-24 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-32">
-          <div className="flex flex-col items-start gap-5">
-            <p className="eyebrow">07</p>
+        <section id="quickstart" className="wrap grid scroll-mt-8 gap-10 py-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-20">
+          <div className="flex flex-col items-start gap-5 md:justify-center">
+            <p className="eyebrow">06</p>
             <h2 className="title">Run it locally</h2>
             <p className="lede">Clone the repo, fetch the data pack and add your own model key.</p>
             <a href={README} className="btn btn-primary">
@@ -298,12 +269,6 @@ export default function Home() {
             <a href={README} className="text-ink-2 transition-colors hover:text-ink">Quickstart</a>
             <a href={`${REPO}/blob/main/LICENSE`} className="text-ink-2 transition-colors hover:text-ink">MIT license</a>
           </nav>
-        </div>
-        <div className="border-t border-line">
-          <div className="wrap flex h-14 flex-wrap items-center justify-between gap-2 text-[12.5px] text-ink-3">
-            <span className="label">Data pack — Nov 19, 2026</span>
-            <span className="label">Open source · bring your own model key</span>
-          </div>
         </div>
       </footer>
     </>
