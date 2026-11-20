@@ -40,6 +40,12 @@ function Head({ n, title, children }: { n: string; title: string; children: Reac
 export default function Home() {
   return (
     <>
+      <div className="border-b border-line">
+        <p className="wrap label flex items-center justify-between py-2">
+          <span>front-office memo</span>
+          <span className="hidden sm:block">nov 19, 2026 data pack</span>
+        </p>
+      </div>
       <header className="wrap flex h-[72px] items-center justify-between">
         <a href="#top" className="font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
           dime<span className="text-accent">.</span>
