@@ -186,7 +186,7 @@ const SCENARIOS: Record<string, Scenario> = {
     paneTitle: "Shot chart",
     Pane: () => (
       <>
-        <ShotMap />
+        <ShotMap fill />
         <Provenance rows={[["Table", "silver_hist_shots"], ["Shots", "3,729,459"], ["Seasons", "2009-10 to 2025-26"]]} />
       </>
     ),

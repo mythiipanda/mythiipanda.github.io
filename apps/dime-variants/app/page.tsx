@@ -75,7 +75,7 @@ export default function Home() {
           </div>
 
           <div className="window window-hero window-light enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
-            <DimeHarness />
+            <DimeHarness autoplay="shots" />
           </div>
           <p className="label mt-4 text-center">the answers here are scripted; the rows are real.</p>
 

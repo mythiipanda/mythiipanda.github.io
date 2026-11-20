@@ -96,8 +96,8 @@ kbd,
 @media (max-width: 767px) {
   .display {
     font-size: clamp(40px, 11vw, 56px);
-    line-height: 0.96;
-    letter-spacing: -0.03em;
+    line-height: 1.0;
+    letter-spacing: -0.024em;
   }
 }
 
