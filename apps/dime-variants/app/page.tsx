@@ -1,6 +1,7 @@
 import { DimeMark, GithubMark } from "@/components/mark";
 import { AskDemo } from "@/components/ask-demo";
 import "@/components/ask-demo.css";
+import { PlayerCard } from "@/components/player-card";
 import { Query, Sql } from "@/components/query";
 import { Court, ShotMap } from "@/components/shot-map";
 import { ALL_BINS, HEX } from "@/lib/shots";
@@ -11,10 +12,10 @@ const LAST = 2026;
 const span = LAST - FIRST + 1;
 
 const LIMITS = [
-  ["Coverage has edges.", "Shots, lineups and possessions start in 2009-10. Play-by-play runs 2020-21 through 2024-25. Ask outside those windows and the answer says so instead of guessing."],
-  ["The warehouse is a data pack, not a live feed.", "The current pack is dated September 30, 2026. Some datasets can fall back to live sources, and that fallback can fail."],
-  ["It can still be wrong.", "A model picks the tables and writes the query. That's why the query and the rows come back with the answer."],
-  ["You bring the model.", "Chat runs on your own API keys for the provider you configure. The server boots without them, but it won't answer questions."],
+  ["coverage edges", "Shots & possessions: 2009-10 → 2025-26 · play-by-play: 2020-21 → 2024-25"],
+  ["data pack", "Refreshed Nov 19, 2026 — a file, not a live feed. Fallbacks can fail."],
+  ["still fallible", "A model writes the query, so the rows ship with the answer."],
+  ["bring a key", "Chat runs on your own provider API keys."],
 ];
 
 export default function Home() {
@@ -41,7 +42,7 @@ export default function Home() {
             </nav>
           </header>
 
-          <main id="top">
+          <div id="top">
             <section className="wrap pt-14 md:pt-20">
               <div className="grid items-end gap-x-16 gap-y-8 lg:grid-cols-[1fr_400px]">
                 <h1 className="display enter max-w-[13ch] text-hero-ink">The NBA analyst that <span className="em">shows its work.</span></h1>
@@ -61,7 +62,7 @@ export default function Home() {
                 </div>
               </div>
             </section>
-          </main>
+          </div>
         </div>
       </div>
 
@@ -73,25 +74,28 @@ export default function Home() {
             <h2 className="title mt-3">Every number has a row behind it.</h2>
             <p className="body mt-5">Every answer carries the table, the season and the fetch date. The numbers in the window are real rows — this is the query that returns them.</p>
           </div>
-          <div className="min-w-0 overflow-hidden rounded-[12px] bg-surface shadow-[inset_0_0_0_1px_var(--color-line)]">
-            <div className="px-5 py-5"><Sql code={TS_QUERY} /></div>
-            <dl className="num m-0 grid grid-cols-2 border-t border-line text-[14px] sm:grid-cols-4">
-              {[
-                ["Table", "silver_advanced"],
-                ["Season", "2025-26"],
-                ["Source", "nba_api"],
-                ["Fetched", "Sep 9, 2026"],
-              ].map(([term, value]) => (
-                <div key={term} className="border-line px-5 py-3.5 max-sm:[&:nth-child(-n+2)]:border-b sm:[&:not(:first-child)]:border-l max-sm:[&:nth-child(even)]:border-l">
-                  <dt className="text-[13px] text-ink-3">{term}</dt>
-                  <dd className="m-0 mt-0.5 truncate font-mono text-[13px] text-ink">{value}</dd>
-                </div>
-              ))}
-            </dl>
+          <div className="min-w-0 space-y-4">
+            <PlayerCard />
+            <div className="overflow-hidden rounded-[12px] bg-surface shadow-[inset_0_0_0_1px_var(--color-line)]">
+              <div className="px-5 py-5"><Sql code={TS_QUERY} /></div>
+              <dl className="num m-0 grid grid-cols-2 border-t border-line text-[14px] sm:grid-cols-4">
+                {[
+                  ["Table", "silver_salaries"],
+                  ["Season", "2026-27"],
+                  ["Source", "bref_contracts"],
+                  ["Fetched", "Nov 19, 2026"],
+                ].map(([term, value]) => (
+                  <div key={term} className="border-line px-5 py-3.5 max-sm:[&:nth-child(-n+2)]:border-b sm:[&:not(:first-child)]:border-l max-sm:[&:nth-child(even)]:border-l">
+                    <dt className="text-[13px] text-ink-3">{term}</dt>
+                    <dd className="m-0 mt-0.5 truncate font-mono text-[13px] text-ink">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </section>
 
-        <section id="warehouse" className="rule scroll-mt-6">
+        <section id="warehouse" className="rule motif scroll-mt-6">
           <div className="wrap grid gap-x-16 gap-y-12 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
             <div>
               <p className="eyebrow">The warehouse</p>
@@ -139,11 +143,11 @@ export default function Home() {
               <h2 className="title mt-3">Where it stops.</h2>
               <p className="body mt-5">Dime is useful because it is narrow.</p>
             </div>
-            <dl className="m-0 grid gap-x-12 gap-y-9 sm:grid-cols-2">
+            <dl className="m-0">
               {LIMITS.map(([term, detail]) => (
-                <div key={term}>
-                  <dt className="text-[17px] font-semibold tracking-[-0.01em]">{term}</dt>
-                  <dd className="body m-0 mt-2 text-[16px]">{detail}</dd>
+                <div key={term} className="grid items-baseline gap-x-8 gap-y-1 border-t border-line py-4 sm:grid-cols-[150px_1fr]">
+                  <dt className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink-3">{term}</dt>
+                  <dd className="m-0 text-[15px] leading-[1.6] text-ink-2">{detail}</dd>
                 </div>
               ))}
             </dl>

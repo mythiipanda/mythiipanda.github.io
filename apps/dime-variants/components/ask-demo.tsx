@@ -5,8 +5,8 @@ import { ArrowUp, ChevronRight, Database, FileCode2, Home, LayoutGrid, Library, 
 import { DimeMark } from "@/components/mark";
 import { TS_ROWS } from "@/lib/site";
 
-const Q = "Who had the best true shooting in 2025-26 with at least 1,500 minutes?";
-const A = "Luke Kennard led at 68.9% on 13.1% usage. Jalen Duren was a tenth of a point behind at 68.8%. 164 players cleared the 1,500-minute floor.";
+const Q = "Who are the highest-paid players in 2026-27?";
+const A = "Stephen Curry tops the 2026-27 list at $59.6M — about 36% of the cap. Nikola Jokić is right behind at $59.0M. 464 contracts are in the warehouse.";
 const WORDS = A.split(" ").length;
 
 const NAV = [
@@ -19,8 +19,8 @@ const NAV = [
 ];
 
 const STEPS = [
-  { icon: Database, verb: "Read schema", detail: "silver_advanced" },
-  { icon: FileCode2, verb: "Wrote SQL", detail: "MIN * GP >= 1500" },
+  { icon: Database, verb: "Read schema", detail: "silver_salaries" },
+  { icon: FileCode2, verb: "Wrote SQL", detail: "SALARY_2026_27 desc" },
   { icon: Database, verb: "Ran on DuckDB", detail: "5 rows" },
 ];
 
@@ -91,11 +91,11 @@ export function AskDemo() {
               ))}
             </div>
             <div className="dd-chats">Chats</div>
-            <div className="dd-chat">Best true shooting, 2025-26</div>
+            <div className="dd-chat">Top salaries, 2026-27</div>
             <div className="dd-chat">Thunder four factors</div>
           </aside>
           <div className="dd-main">
-            <div className="dd-topbar"><span className="dd-title">Best true shooting, 2025-26</span></div>
+            <div className="dd-topbar"><span className="dd-title">Top salaries, 2026-27</span></div>
             <div className="dd-thread">
               <Collapse open={s.sent} reveal="drop" from="below">
                 <div className="dd-q"><Text>{Q}</Text></div>
@@ -118,18 +118,18 @@ export function AskDemo() {
                 <div className="dd-table">
                   <table>
                     <thead>
-                      <tr><th>Player</th><th>Team</th><th>TS%</th><th>USG%</th></tr>
+                      <tr><th>Player</th><th>Team</th><th>Salary</th><th>Cap %</th></tr>
                     </thead>
                     <tbody>
                       {TS_ROWS.slice(0, s.rows).map((row) => (
                         <tr key={row.player}>
-                          <td>{row.player}</td><td>{row.team}</td><td>{row.ts}</td><td>{row.usg}</td>
+                          <td>{row.player}</td><td>{row.team}</td><td>${row.salary}M</td><td>{row.cap}%</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                   <Collapse open={s.sources}>
-                    <div className="dd-src"><ChevronRight size={13} strokeWidth={1.8} />Sources and provenance<span>5 of 164 rows</span></div>
+                    <div className="dd-src"><ChevronRight size={13} strokeWidth={1.8} />Sources and provenance<span>5 of 464 rows</span></div>
                   </Collapse>
                 </div>
               </Collapse>
