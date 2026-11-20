@@ -30,12 +30,15 @@ function Fig({ n, children }: { n: string; children: React.ReactNode }) {
   return <figcaption className="label mt-4 flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1"><span className="whitespace-nowrap text-accent">fig.&nbsp;{n}</span><span>{children}</span></figcaption>;
 }
 
-function Head({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
+function Head({ n, title, meta, children }: { n: string; title: string; meta?: string; children: React.ReactNode }) {
   return (
-    <div className="flex max-w-[560px] flex-col gap-5">
-      <p className="eyebrow">{n}</p>
-      <h2 className="title">{title}</h2>
-      <p className="lede">{children}</p>
+    <div className="flex items-end justify-between gap-8">
+      <div className="flex max-w-[560px] flex-col gap-5">
+        <p className="eyebrow">{n}</p>
+        <h2 className="title">{title}</h2>
+        <p className="lede">{children}</p>
+      </div>
+      {meta ? <p className="label hidden shrink-0 pb-1 text-right md:block">{meta}</p> : null}
     </div>
   );
 }
@@ -100,7 +103,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="features" className="wrap scroll-mt-8 py-20 md:py-24">
-          <Head n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
+          <Head n="01" title="Player cards" meta="fig. 1">Ask about a player and get the season on one card.</Head>
           <div className="mt-10 md:mt-14">
             <PlayerCard />
           </div>
@@ -110,7 +113,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap py-20 md:py-24">
-          <Head n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or for one player.</Head>
+          <Head n="02" title="Shot charts" meta="fig. 2">Plot 3.7 million shots by court location, for the league or for one player.</Head>
           <div className="exhibit mx-auto mt-10 max-w-[880px] p-5 md:mt-14 md:p-8">
             <ShotMap />
           </div>
@@ -143,7 +146,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap py-20 md:py-24">
-          <Head n="05" title="Sources">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
+          <Head n="05" title="Sources" meta="fig. 5">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
           <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
             <div className="flex flex-col gap-7 bg-surface p-6 md:p-9">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
@@ -178,7 +181,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="warehouse" className="wrap scroll-mt-8 py-20 md:py-24">
-          <Head n="06" title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
+          <Head n="06" title="Warehouse" meta="fig. 6 – 7">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
           <div className="exhibit mt-10 flex h-[468px] flex-col md:mt-14">
             <RecordsTable fill />
           </div>
