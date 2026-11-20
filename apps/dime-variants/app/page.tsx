@@ -138,8 +138,8 @@ export default function Home() {
 
         <section className="wrap py-20 md:py-24">
           <Head n="05" title="Sources">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
-          <div className="mt-10 grid items-stretch gap-6 md:mt-14 lg:grid-cols-2 lg:gap-8">
-            <div className="exhibit flex flex-col gap-6 p-5 md:p-7">
+          <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
+            <div className="flex flex-col gap-6 bg-surface p-5 md:p-7">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
               <ToolChips steps={STEPS} diffs={[]} labels={{ header: "4 steps, 17 rows", more: "" }} />
               <figure className="m-0 mt-auto">
@@ -154,7 +154,7 @@ export default function Home() {
                 </figcaption>
               </figure>
             </div>
-            <CodeBlock wide flat lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
+            <CodeBlock wide seam lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
           </div>
           <Fig n="5">the tool trace and the SQL behind the answer, from silver_hist_shots.</Fig>
         </section>

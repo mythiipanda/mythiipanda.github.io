@@ -127,6 +127,8 @@ export type CodeBlockProps = {
   wide?: boolean;
   /** Flat hairline frame instead of the raised card. */
   flat?: boolean;
+  /** No frame at all, for placement inside a shared bordered grid. */
+  seam?: boolean;
   /** Filename shown in the header. */
   filename?: string;
   /** Prominent copy strings. */
@@ -145,6 +147,7 @@ export default function CodeBlock({
   onCopy,
   wide = false,
   flat = false,
+  seam = false,
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const isDiff = variant === "Diff";
@@ -163,7 +166,7 @@ export default function CodeBlock({
   const removed = diff.filter((r) => r.type === "del").length;
 
   return (
-    <div className={`w-full overflow-hidden bg-surface ${flat ? "rounded-[2px] border border-line" : "rounded-card shadow-card"} ${wide ? "" : "max-w-105"}`}>
+    <div className={`w-full overflow-hidden bg-surface ${seam ? "" : flat ? "rounded-[2px] border border-line" : "rounded-card shadow-card"} ${wide ? "" : "max-w-105"}`}>
       {/* header — file · (diff stat | copy) */}
       <div className="flex h-11 items-center gap-2 border-b border-line px-4 text-[12.5px]">
         <span className="inline-flex min-w-0 items-center gap-[7px]">
