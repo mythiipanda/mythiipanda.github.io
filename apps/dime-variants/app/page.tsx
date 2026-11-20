@@ -5,6 +5,9 @@ import { Clutch, Lineups } from "@/components/exhibits/boards";
 import { PlayerCard } from "@/components/exhibits/player-card";
 import { GithubMark } from "@/components/mark";
 import { ShotMap } from "@/components/shot-map";
+import { CapsuleBars } from "@/components/ingot/capsule-bars";
+import { HatchTrackList } from "@/components/ingot/hatch-track-list";
+import { PillMeter } from "@/components/ingot/pill-meter";
 import { THREE_SHARE } from "@/lib/shots";
 import { COUNTS, COVERAGE, README, REPO, SHARE_QUERY } from "@/lib/site";
 
@@ -157,15 +160,13 @@ export default function Home() {
               ))}
             </ol>
               <figure className="m-0 mt-auto border-t border-line pt-6">
-                <ol className="m-0 flex h-24 list-none items-end gap-1 p-0" aria-hidden>
-                  {THREE_SHARE.map(([season, share]) => (
-                    <li key={season} className={`flex-1 rounded-t-[3px] ${season === 2026 ? "bg-accent" : "bg-line-strong"}`} style={{ height: `${(share / 41.4) * 100}%` }} />
-                  ))}
-                </ol>
-                <figcaption className="num mt-3 flex justify-between text-[13px] text-ink-2">
-                  <span><span className="font-medium text-ink">22.3%</span> threes in 2009-10</span>
-                  <span><span className="font-medium text-ink">41.4%</span> in 2025-26</span>
-                </figcaption>
+                <CapsuleBars
+                  data={THREE_SHARE.map(([, share]) => share)}
+                  labels={THREE_SHARE.map(([season]) => `${season - 1}–${String(season).slice(2)}`)}
+                  color="#2b5ce6"
+                  title="3PA share"
+                  unit="%"
+                />
               </figure>
             </div>
             <CodeBlock wide seam lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
@@ -186,27 +187,42 @@ export default function Home() {
               <p className="eyebrow">Coverage</p>
               <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
             </div>
-            <ul className="m-0 flex list-none flex-col border border-line p-0">
+            <ul className="m-0 flex list-none flex-col gap-7 p-0">
               {COVERAGE.map((c) => (
-                <li key={c.name} className="grid grid-cols-1 items-baseline gap-4 border-b border-line px-5 py-4 last:border-b-0 md:grid-cols-[minmax(0,1fr)_112px] md:px-6">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                      <span className="text-[14.5px] font-medium text-ink">{c.name}</span>
-                      <span className="num whitespace-nowrap text-[12.5px] text-ink-3">{c.from}–{c.to}</span>
-                    </div>
-                    <div className="relative h-[3px] w-full bg-line-soft">
-                      <div
-                        className="absolute inset-y-0 bg-ink"
-                        style={{ left: `${((c.from - 1976) / 51) * 100}%`, right: `${((2026 - c.to) / 51) * 100}%` }}
-                      />
-                    </div>
+                <li key={c.name} className="flex flex-col gap-2">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <span className="text-[14.5px] font-medium text-ink">{c.name}</span>
+                    <span className="num whitespace-nowrap text-[12.5px] text-ink-3">{c.label}</span>
                   </div>
-                  <span className="label hidden justify-self-end text-right md:block">{c.label}</span>
+                  <PillMeter
+                    value={c.to - c.from + 1}
+                    max={51}
+                    pills={51}
+                    offset={c.from - 1976}
+                    color="#2b5ce6"
+                    label={c.name}
+                    hideHeader
+                  />
                 </li>
               ))}
             </ul>
           </div>
-          <Fig n="7">season coverage by data kind, 1976-77 through 2026-27.</Fig>
+          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">Composition</p>
+              <p className="lede max-w-none">What the 14.9 million rows are made of.</p>
+            </div>
+            <HatchTrackList
+              color="#2b5ce6"
+              rows={[
+                { label: "Possessions", value: 30, meta: "4.5M" },
+                { label: "Shots with court coordinates", value: 25, meta: "3.7M" },
+                { label: "Play-by-play events", value: 22, meta: "3.2M" },
+                { label: "Lineup rows", value: 5, meta: "753k" },
+              ]}
+            />
+          </div>
+          <Fig n="7">season coverage by data kind and pack composition, 1976-77 through 2026-27.</Fig>
         </section>
 
         <hr className="rule" />

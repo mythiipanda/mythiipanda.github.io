@@ -1,4 +1,6 @@
 @import "./beautiful.css";
+@import "../styles/ingot/loopo.css";
+@import "../styles/ingot/theme.css";
 
 /* Landing layer. beautiful.css is the vendored Beautiful UI foundation
  * (tokens, theme, primitive styles); this file warms the light tokens for
