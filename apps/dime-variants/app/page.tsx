@@ -188,7 +188,7 @@ export default function Home() {
             <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
               <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-3"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M9 9v11" /></svg>
               <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
-              <span className="ml-auto font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
+              <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
             </div>
             <div className="light m-1.5 mt-0 flex h-[440px] min-w-0 flex-col overflow-hidden rounded-[2px] md:m-2 md:mt-0">
               <RecordsTable fill />
