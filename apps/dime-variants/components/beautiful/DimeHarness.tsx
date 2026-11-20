@@ -465,7 +465,7 @@ function PaneBody({ beat, children }: { beat: number; children: ReactNode }) {
  * from the assistant chat to a Property configuration inspector.
  */
 
-export default function DimeHarness({ autoplay = "salaries" }: { autoplay?: ScenarioId | null }) {
+export default function DimeHarness({ autoplay = "shots" }: { autoplay?: ScenarioId | null }) {
   const [chats, setChats] = useState<Chat[]>([{ id: 1, title: null, messages: [] }]);
   const [activeId, setActiveId] = useState(1);
   const [offset, setOffset] = useState(0);
