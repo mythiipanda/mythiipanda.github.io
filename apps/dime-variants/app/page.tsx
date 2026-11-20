@@ -172,11 +172,11 @@ export default function Home() {
             </div>
             <ul className="m-0 flex list-none flex-col border border-line p-0">
               {COVERAGE.map((c) => (
-                <li key={c.name} className="grid grid-cols-[minmax(0,1fr)_112px] items-baseline gap-4 border-b border-line px-5 py-4 last:border-b-0 md:px-6">
+                <li key={c.name} className="grid grid-cols-1 items-baseline gap-4 border-b border-line px-5 py-4 last:border-b-0 md:grid-cols-[minmax(0,1fr)_112px] md:px-6">
                   <div className="flex flex-col gap-2">
-                    <div className="flex items-baseline justify-between gap-4">
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                       <span className="text-[14.5px] font-medium text-ink">{c.name}</span>
-                      <span className="num text-[12.5px] text-ink-3">{c.from} – {c.to}</span>
+                      <span className="num whitespace-nowrap text-[12.5px] text-ink-3">{c.from}–{c.to}</span>
                     </div>
                     <div className="relative h-[3px] w-full bg-line-soft">
                       <div
@@ -185,7 +185,7 @@ export default function Home() {
                       />
                     </div>
                   </div>
-                  <span className="label justify-self-end text-right">{c.label}</span>
+                  <span className="label hidden justify-self-end text-right md:block">{c.label}</span>
                 </li>
               ))}
             </ul>
