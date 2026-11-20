@@ -75,13 +75,13 @@ export default function Home() {
             </h1>
             <div className="enter flex flex-col gap-6" style={{ "--i": 1 } as React.CSSProperties}>
               <p className="lede">Ask a question in plain English. Dime runs it against 17 seasons of NBA data on your machine and shows you the query.</p>
-              <div className="flex items-center gap-6">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a href={REPO} className="btn btn-primary">
                   <GithubMark size={17} />
                   Get Dime on GitHub
                 </a>
                 <a href="#quickstart" className="btn btn-ghost">Quickstart</a>
-                <a href="#sources" className="link hidden text-[14.5px] text-ink-3 transition-colors hover:text-ink sm:block">Read the SQL it ran ↓</a>
+                <a href="#sources" className="hidden min-h-[44px] items-center gap-1.5 text-[15px] font-medium text-ink-3 underline decoration-line-strong underline-offset-[5px] transition-colors hover:text-ink sm:inline-flex">Read the SQL it ran ↓</a>
               </div>
             </div>
           </div>
