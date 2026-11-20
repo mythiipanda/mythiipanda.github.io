@@ -186,12 +186,15 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    {THREE_SHARE.map(([season, share]) => (
-                      <tr key={season} className="records-row">
+                    {THREE_SHARE.map(([season, share], i) => (
+                      <tr key={season} className={`records-row${i >= 6 ? " hidden md:table-row" : ""}`}>
                         <td className="records-cell text-ink-2">{season - 1}–{String(season).slice(2)}</td>
                         <td className="records-cell text-right text-ink">{share.toFixed(1)}</td>
                       </tr>
                     ))}
+                    <tr className="md:hidden">
+                      <td colSpan={2} className="records-cell text-ink-3">+ {THREE_SHARE.length - 6} rows</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
