@@ -1,0 +1,41 @@
+/* Ingot UI — Tailwind v4 theme bridge. Maps --fu-* system tokens to utilities
+   (bg-fu-surface, text-fu-ink, border-fu-line, rounded-fu-md, shadow-fu-card …). */
+@theme inline {
+  --color-fu-page: var(--fu-page);
+  --color-fu-surface: var(--fu-surface);
+  --color-fu-raised: var(--fu-raised);
+  --color-fu-sunken: var(--fu-sunken);
+  --color-fu-hover: var(--fu-hover);
+  --color-fu-line: var(--fu-line);
+  --color-fu-line-strong: var(--fu-line-strong);
+  --color-fu-ink: var(--fu-ink);
+  --color-fu-body: var(--fu-body);
+  --color-fu-muted: var(--fu-muted);
+  --color-fu-faint: var(--fu-faint);
+  --color-fu-accent: var(--fu-accent);
+  --color-fu-accent-soft: var(--fu-accent-soft);
+  --color-fu-accent-ink: var(--fu-accent-ink);
+  --color-fu-series-2: var(--fu-series-2);
+  --color-fu-series-3: var(--fu-series-3);
+  --color-fu-series-4: var(--fu-series-4);
+  --color-fu-positive: var(--fu-positive);
+  --color-fu-positive-soft: var(--fu-positive-soft);
+  --color-fu-negative: var(--fu-negative);
+  --color-fu-negative-soft: var(--fu-negative-soft);
+  --color-fu-warning: var(--fu-warning);
+  --color-fu-warning-soft: var(--fu-warning-soft);
+  --color-fu-positive-text: var(--fu-positive-text);
+  --color-fu-negative-text: var(--fu-negative-text);
+  --color-fu-warning-text: var(--fu-warning-text);
+  --color-fu-accent-text: var(--fu-accent-text);
+  --radius-fu-xs: var(--fu-radius-xs);
+  --radius-fu-sm: var(--fu-radius-sm);
+  --radius-fu-md: var(--fu-radius-md);
+  --radius-fu-lg: var(--fu-radius-lg);
+  --radius-fu-xl: var(--fu-radius-xl);
+  --shadow-fu-card: var(--fu-shadow-card);
+  --shadow-fu-overlay: var(--fu-shadow-overlay);
+  --shadow-fu-button: var(--fu-shadow-button);
+  --font-fu: var(--fu-font);
+  --font-fu-mono: var(--fu-font-mono);
+}

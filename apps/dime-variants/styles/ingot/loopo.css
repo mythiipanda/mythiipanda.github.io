@@ -1,0 +1,45 @@
+/* Loopo — tokens extracted from the Loopo dashboard (1440 design values).
+   Light mode only (dark mode is planned for the first post-launch update). */
+:root,
+[data-system="loopo"] {
+  --fu-font: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif;
+  --fu-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
+  --fu-page: #f5f5f5;
+  --fu-surface: #ffffff;
+  --fu-raised: #fefefe;
+  --fu-sunken: #fafafa;
+  --fu-hover: #f4f4f5;
+  --fu-line: #ececec;
+  --fu-line-strong: #e1e1e1;
+  --fu-ink: #202020;
+  --fu-body: #2d2d2d;
+  --fu-muted: #747474;
+  --fu-faint: #a6a6a6;
+  --fu-accent: #fd4b23;
+  --fu-accent-soft: #fff1ed;
+  --fu-accent-ink: #ffffff;
+  --fu-accent-grad: linear-gradient(180deg, #fd6a48 0%, #fd4b23 100%);
+  --fu-series-2: #4d98fe;
+  --fu-series-3: #ff72ab;
+  --fu-series-4: #f3c83d;
+  --fu-positive: #18b170;
+  --fu-positive-soft: #ebf8f2;
+  --fu-negative: #e5484d;
+  --fu-negative-soft: #fdeeee;
+  --fu-warning: #d99a06;
+  --fu-warning-soft: #fdf6e3;
+  /* Text tones: pass WCAG AA (4.5:1+) on their soft backgrounds and on white. Fills keep the bright tones. */
+  --fu-positive-text: #0f7d4f;
+  --fu-negative-text: #c4282e;
+  --fu-warning-text: #8a6000;
+  --fu-accent-text: #c2361a;
+  --fu-primary-grad: linear-gradient(180deg, #838383 0%, #2d2d2d 100%);
+  --fu-radius-xs: 6px;
+  --fu-radius-sm: 8px;
+  --fu-radius-md: 10px;
+  --fu-radius-lg: 14px;
+  --fu-radius-xl: 22px;
+  --fu-shadow-card: 0 1px 4px rgb(0 0 0 / 0.05);
+  --fu-shadow-overlay: 0 16px 32px -12px rgb(13 13 18 / 0.12), 0 1px 2px rgb(13 13 18 / 0.05);
+  --fu-shadow-button: 0 9px 8px rgb(0 0 0 / 0.04), inset 0 1px 0 rgb(255 255 255 / 0.18);
+}

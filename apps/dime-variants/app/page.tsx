@@ -1,186 +1,309 @@
-import { DimeMark, GithubMark } from "@/components/mark";
-import { AskDemo } from "@/components/ask-demo";
-import "@/components/ask-demo.css";
-import { PlayerCard } from "@/components/player-card";
-import { Query, Sql } from "@/components/query";
-import { Court, ShotMap } from "@/components/shot-map";
-import { ALL_BINS, HEX } from "@/lib/shots";
-import { COUNTS, COVERAGE, README, REPO, SHARE_QUERY, TS_QUERY } from "@/lib/site";
+import DimeHarness from "@/components/beautiful/DimeHarness";
+import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
+import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
+import { Clutch, Lineups } from "@/components/exhibits/boards";
+import { PlayerCard } from "@/components/exhibits/player-card";
+import { GithubMark } from "@/components/mark";
+import { ShotMap } from "@/components/shot-map";
+import { CapsuleBars } from "@/components/ingot/capsule-bars";
+import { HatchTrackList } from "@/components/ingot/hatch-track-list";
+import { PillMeter } from "@/components/ingot/pill-meter";
+import { THREE_SHARE } from "@/lib/shots";
+import { COUNTS, COVERAGE, README, REPO, SHARE_QUERY } from "@/lib/site";
 
-const FIRST = 1977;
-const LAST = 2026;
-const span = LAST - FIRST + 1;
+const STEPS = [
+  { icon: "think", label: "Thinking", chip: "Shot value is in silver_hist_shots…", mono: false, detailMono: false, detail: [{ text: "One row per shot, with its court location." }, { text: "Share is threes over all shots, by season." }] },
+  { icon: "write", label: "Write 7 lines", chip: "three_share.sql", mono: true, detailMono: true, detail: [{ text: "+ from silver_hist_shots", tone: "add" as const }, { text: "+ group by season", tone: "add" as const }] },
+  { icon: "run", label: "Run on the warehouse", chip: "duckdb", mono: true, detailMono: true, detail: [{ text: "✓ 3,729,459 rows read" }, { text: "✓ 17 rows returned" }] },
+  { icon: "read", label: "Check the rows", chip: "2025-26 · 41.4", mono: true, detailMono: false, detail: [{ text: "2009-10 was 22.3." }, { text: "Pack built Nov 19, 2026." }] },
+];
+
+const QUICKSTART = ["git clone https://github.com/mythiipanda/dime", "cd dime", "./scripts/fetch-data.sh"];
 
 const LIMITS = [
-  ["coverage edges", "Shots & possessions: 2009-10 → 2025-26 · play-by-play: 2020-21 → 2024-25"],
-  ["data pack", "Refreshed Nov 19, 2026 — a file, not a live feed. Fallbacks can fail."],
-  ["still fallible", "A model writes the query, so the rows ship with the answer."],
-  ["bring a key", "Chat runs on your own provider API keys."],
+  ["Coverage", "Shots run 2009-10 to 2025-26. Play-by-play stops at 2024-25."],
+  ["Data pack", "Built Nov 19, 2026. It is a file, so it does not update during games."],
+  ["Keys", "Chat runs on your own model provider keys."],
 ];
+
+function Fig({ n, children }: { n: string; children: React.ReactNode }) {
+  return <figcaption className="label mt-4 flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1"><span className="whitespace-nowrap text-accent">fig.&nbsp;{n}</span><span>{children}</span></figcaption>;
+}
+
+function Head({ n, title, meta, children }: { n: string; title: string; meta?: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-end justify-between gap-8">
+      <div className="flex max-w-[560px] flex-col gap-5">
+        <p className="eyebrow">{n}</p>
+        <h2 className="title">{title}</h2>
+        <p className="lede">{children}</p>
+      </div>
+      {meta ? <p className="label hidden shrink-0 pb-1 text-right md:block">{meta}</p> : null}
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <>
-      <div className="hero">
-        <svg viewBox="-258 -56 516 392" preserveAspectRatio="xMidYMid slice" className="pointer-events-none absolute inset-0 size-full" aria-hidden="true">
-          <Court stroke="var(--color-court-line)" />
-          <g fill="var(--color-court-dot)">
-            {ALL_BINS.map((bin) => (
-              <circle key={`${bin[0]}:${bin[1]}`} cx={bin[0]} cy={bin[1]} r={Math.max(0.8, HEX * 0.9 * Math.min(1, Math.sqrt(bin[2] / 70)))} />
-            ))}
-          </g>
-        </svg>
-        <div className="relative">
-          <header className="wrap flex h-16 items-center justify-between">
-            <a href="#top" className="flex h-11 items-center gap-2 text-[17px] font-semibold tracking-[-0.02em] text-hero-ink" aria-label="Dime home">
-              <DimeMark size={20} />Dime
-            </a>
-            <nav className="flex items-center gap-1 text-[15px]" aria-label="Primary">
-              <a href="#warehouse" className="flex h-11 items-center rounded-[8px] px-3 text-hero-ink-2 max-sm:hidden">Data</a>
-              <a href="#run" className="flex h-11 items-center rounded-[8px] px-3 text-hero-ink-2 max-sm:hidden">Quickstart</a>
-              <a href={REPO} className="btn btn-hero ml-2 px-3.5"><GithubMark size={16} />GitHub</a>
-            </nav>
-          </header>
-
-          <div id="top">
-            <section className="wrap pt-14 md:pt-20">
-              <div className="grid items-end gap-x-16 gap-y-8 lg:grid-cols-[1fr_400px]">
-                <h1 className="display enter max-w-[13ch] text-hero-ink">The NBA analyst that <span className="em">shows its work.</span></h1>
-                <div className="enter lg:pb-2" style={{ "--i": 1 } as React.CSSProperties}>
-                  <p className="lede text-hero-ink-2">Ask a basketball question in plain English. Dime writes the SQL, runs it on its own warehouse, and gives you the answer with the rows it came from.</p>
-                  <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
-                    <a href={REPO} className="btn btn-primary"><GithubMark />View on GitHub</a>
-                    <a href="#run" className="link-hero inline-flex h-11 items-center text-[15px]">Read the quickstart</a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="enter mt-14 md:mt-20" style={{ "--i": 2 } as React.CSSProperties}>
-                <div className="mx-auto max-w-[980px]">
-                  <AskDemo />
-                  <p className="mt-5 pb-16 font-mono text-[12px] leading-[1.6] text-court-ink md:pb-20">fig. 1 — 3,729,459 shots in the warehouse, sized by how often the league shoots from each spot.</p>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
+      <div className="border-b border-line">
+        <p className="wrap label flex items-center justify-between py-2">
+          <span>front-office memo</span>
+          <span className="hidden sm:block">nov 19, 2026 data pack</span>
+        </p>
       </div>
+      <header className="wrap flex h-[72px] items-center justify-between">
+        <a href="#top" className="font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+          dime<span className="text-accent">.</span>
+        </a>
+        <nav className="flex items-center gap-7 text-[14.5px] font-medium text-ink-2">
+          <a href="#features" className="hidden transition-colors hover:text-ink sm:block">Features</a>
+          <a href="#warehouse" className="hidden transition-colors hover:text-ink sm:block">Warehouse</a>
+          <a href="#quickstart" className="hidden transition-colors hover:text-ink sm:block">Quickstart</a>
+          <a href={REPO} className="flex items-center gap-2 text-ink transition-colors hover:text-accent">
+            <GithubMark size={17} />
+            GitHub
+          </a>
+        </nav>
+      </header>
 
-      <main>
-
-        <section className="wrap grid gap-x-16 gap-y-10 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
-          <div>
-            <p className="eyebrow">Provenance</p>
-            <h2 className="title mt-3">Every number has a row behind it.</h2>
-            <p className="body mt-5">Every answer carries the table, the season and the fetch date. The numbers in the window are real rows — this is the query that returns them.</p>
-          </div>
-          <div className="min-w-0 space-y-4">
-            <PlayerCard />
-            <div className="overflow-hidden rounded-[12px] bg-surface shadow-[inset_0_0_0_1px_var(--color-line)]">
-              <div className="px-5 py-5"><Sql code={TS_QUERY} /></div>
-              <dl className="num m-0 grid grid-cols-2 border-t border-line text-[14px] sm:grid-cols-4">
-                {[
-                  ["Table", "silver_salaries"],
-                  ["Season", "2026-27"],
-                  ["Source", "bref_contracts"],
-                  ["Fetched", "Nov 19, 2026"],
-                ].map(([term, value]) => (
-                  <div key={term} className="border-line px-5 py-3.5 max-sm:[&:nth-child(-n+2)]:border-b sm:[&:not(:first-child)]:border-l max-sm:[&:nth-child(even)]:border-l">
-                    <dt className="text-[13px] text-ink-3">{term}</dt>
-                    <dd className="m-0 mt-0.5 truncate font-mono text-[13px] text-ink">{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
-        </section>
-
-        <section id="warehouse" className="rule motif scroll-mt-6">
-          <div className="wrap grid gap-x-16 gap-y-12 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
-            <div>
-              <p className="eyebrow">The warehouse</p>
-              <h2 className="title mt-3">17 seasons of shots, possessions and lineups.</h2>
-              <p className="body mt-5">One DuckDB file. Switch years and watch the midrange empty out.</p>
-              <dl className="m-0 mt-10 grid grid-cols-2 gap-x-8 gap-y-7">
-                {COUNTS.map((count) => (
-                  <div key={count.label}>
-                    <dt className="num text-[26px] font-semibold leading-none tracking-[-0.03em]">{count.n}</dt>
-                    <dd className="small m-0 mt-2">{count.label}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-            <div className="min-w-0">
-              <ShotMap />
-              <div className="mt-6"><Query code={SHARE_QUERY} source="silver_hist_shots, 3,729,459 rows" /></div>
-            </div>
-          </div>
-
-          <div className="wrap pb-20 md:pb-28">
-            <h3 className="text-[17px] font-semibold tracking-[-0.01em]">What's covered</h3>
-            <div className="mt-6" role="list">
-              {COVERAGE.map((row) => (
-                <div key={row.name} role="listitem" className="grid items-center gap-x-8 gap-y-2 border-t border-line py-4 md:grid-cols-[280px_1fr_150px]">
-                  <span className="text-[15px] font-medium">{row.name}</span>
-                  <span className="relative h-2 rounded-full bg-inset" aria-hidden="true">
-                    <span className="absolute inset-y-0 rounded-full bg-accent" style={{ left: `${((row.from - FIRST) / span) * 100}%`, width: `${((row.to - row.from + 1) / span) * 100}%` }} />
-                  </span>
-                  <span className="num text-[14px] text-ink-2 md:text-right">{row.label}</span>
-                </div>
-              ))}
-              <div className="num grid border-t border-line pt-3 text-[13px] text-ink-3 md:grid-cols-[280px_1fr_150px] md:gap-x-8" aria-hidden="true">
-                <span />
-                <span className="flex justify-between max-md:hidden"><span>1976-77</span><span>2025-26</span></span>
+      <main id="top">
+        <section className="wrap pb-20 pt-10 md:pb-24 md:pt-16">
+          <div className="flex max-w-[720px] flex-col gap-8">
+            <h1 className="display enter max-w-[12ch]">
+              The open-source <em>NBA analyst.</em>
+            </h1>
+            <div className="enter flex flex-col gap-6" style={{ "--i": 1 } as React.CSSProperties}>
+              <p className="lede">Ask a question in plain English. Dime runs it against 17 seasons of NBA data on your machine and shows you the query.</p>
+              <div className="flex items-center gap-6">
+                <a href={REPO} className="btn btn-primary">
+                  <GithubMark size={17} />
+                  Get Dime on GitHub
+                </a>
+                <a href="#quickstart" className="btn btn-ghost">Quickstart</a>
               </div>
             </div>
           </div>
+
+          <div className="window window-hero enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
+            <DimeHarness />
+          </div>
+          <p className="label mt-4 text-center">fig. 0 — the answers on this page are scripted; the rows come from the Nov 19, 2026 data pack.</p>
+
+          <dl className="enter mt-14 grid grid-cols-2 border border-line md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
+            {COUNTS.map((c, i) => (
+              <div key={c.n} className={`flex flex-col border-line p-6 text-center md:p-8 ${["border-b border-r md:border-b-0", "border-b md:border-b-0 md:border-r", "border-r", ""][i]}`}>
+                <dd className="order-1 font-serif text-[clamp(1.8rem,3vw,2.6rem)] leading-none tracking-[-0.02em] text-ink">{c.n}</dd>
+                <dt className="label order-2 mt-3">{c.label}</dt>
+              </div>
+            ))}
+          </dl>
         </section>
 
-        <section className="rule">
-          <div className="wrap grid gap-x-16 gap-y-10 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
-            <div>
-              <p className="eyebrow">Limits</p>
-              <h2 className="title mt-3">Where it stops.</h2>
-              <p className="body mt-5">Dime is useful because it is narrow.</p>
+        <hr className="rule" />
+
+        <section id="features" className="wrap scroll-mt-8 py-20 md:py-24">
+          <Head n="01" title="Player cards" meta="fig. 1">Ask about a player and get the season on one card.</Head>
+          <div className="mt-10 md:mt-14">
+            <PlayerCard />
+          </div>
+          <Fig n="1">player card from silver_player_season · silver_advanced · silver_hist_player_seasons.</Fig>
+        </section>
+
+        <hr className="rule" />
+
+        <section className="wrap py-20 md:py-24">
+          <Head n="02" title="Shot charts" meta="fig. 2">Plot 3.7 million shots by court location, for the league or for one player.</Head>
+          <div className="exhibit mt-10 p-5 md:mt-14 md:p-8">
+            <ShotMap />
+          </div>
+          <Fig n="2">shot density from silver_hist_shots, binned by court location.</Fig>
+        </section>
+
+        <hr className="rule" />
+
+        <section className="wrap grid gap-20 py-20 md:py-24 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
+          <div className="flex min-w-0 flex-col gap-8">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">03</p>
+              <h2 className="title">Lineups</h2>
+              <p className="lede max-w-none">Rank five-man units by net rating and see the minutes behind each one.</p>
+            </div>
+            <Lineups />
+            <Fig n="3">five-man units from silver_hist_lineups.</Fig>
+          </div>
+          <div className="flex min-w-0 flex-col gap-8">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">04</p>
+              <h2 className="title">Clutch</h2>
+              <p className="lede max-w-none">Find who scores in the last five minutes of close games.</p>
+            </div>
+            <Clutch />
+            <Fig n="4">clutch scoring from silver_clutch.</Fig>
+          </div>
+        </section>
+
+        <hr className="rule" />
+
+        <section className="wrap py-20 md:py-24">
+          <Head n="05" title="Sources" meta="fig. 5">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
+          <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
+            <div className="flex min-w-0 flex-col gap-7 bg-surface p-6 md:p-9">
+              <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
+              <ol className="m-0 list-none p-0 font-mono text-[12.5px] leading-[1.7]">
+              {STEPS.map((row, i) => (
+                <li key={row.label} className="border-b border-line py-2.5 first:pt-0 last:border-0">
+                  <p className="m-0 flex items-baseline gap-3">
+                    <span className="text-ink-3">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="text-ink">{row.label.toLowerCase()}</span>
+                    <span className="truncate text-ink-3">{row.chip}</span>
+                  </p>
+                  <p className="m-0 mt-0.5 pl-7 text-[11.5px] text-ink-2">{row.detail.map((d) => d.text.replace(/^[+✓]\s*/, "")).join(" · ")}</p>
+                </li>
+              ))}
+            </ol>
+              <figure className="m-0 mt-auto border-t border-line pt-6">
+                <CapsuleBars
+                  data={THREE_SHARE.map(([, share]) => share)}
+                  labels={THREE_SHARE.map(([season]) => `’${String(season).slice(2)}`)}
+                  tipLabels={THREE_SHARE.map(([season]) => `${season - 1}–${String(season).slice(2)}`)}
+                  color="#2b5ce6"
+                  title="3PA share"
+                  unit="%"
+                />
+              </figure>
+            </div>
+            <div className="flex min-w-0 flex-col bg-surface">
+            <CodeBlock wide seam lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
+            <div className="flex min-h-0 flex-1 flex-col border-t border-line">
+              <p className="m-0 px-5 pb-1 pt-3.5 font-mono text-[11.5px] text-ink-3">result · 17 rows</p>
+              <div className="min-h-0 flex-1 overflow-auto px-2 pb-3">
+                <table className="w-full border-collapse font-mono text-[12px] tabular-nums">
+                  <thead>
+                    <tr>
+                      <th className="records-header-cell sticky top-0 bg-surface pb-1 text-left align-bottom"><span className="records-header-button flex items-center font-normal text-ink-3">season</span></th>
+                      <th className="records-header-cell sticky top-0 bg-surface pb-1 text-right align-bottom"><span className="records-header-button flex items-center justify-end font-normal text-ink-3">three_share</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {THREE_SHARE.map(([season, share], i) => (
+                      <tr key={season} className={`records-row${i >= 6 ? " hidden md:table-row" : ""}`}>
+                        <td className="records-cell text-ink-2">{season - 1}–{String(season).slice(2)}</td>
+                        <td className="records-cell text-right text-ink">{share.toFixed(1)}</td>
+                      </tr>
+                    ))}
+                    <tr className="md:hidden">
+                      <td colSpan={2} className="records-cell text-ink-3">+ {THREE_SHARE.length - 6} rows</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          </div>
+          <Fig n="5">the tool trace and the SQL behind the answer, from silver_hist_shots.</Fig>
+        </section>
+
+        <hr className="rule" />
+
+        <section id="warehouse" className="wrap scroll-mt-8 py-20 md:py-24">
+          <Head n="06" title="Warehouse" meta="fig. 6 – 7">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
+          <div className="exhibit mt-10 flex h-[468px] min-w-0 flex-col md:mt-14">
+            <RecordsTable fill />
+          </div>
+          <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
+          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">Coverage</p>
+              <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
+            </div>
+            <ul className="m-0 flex list-none flex-col gap-7 p-0">
+              {COVERAGE.map((c) => (
+                <li key={c.name} className="flex flex-col gap-2">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <span className="text-[14.5px] font-medium text-ink">{c.name}</span>
+                    <span className="num whitespace-nowrap text-[12.5px] text-ink-3">{c.label}</span>
+                  </div>
+                  <PillMeter
+                    value={c.to - c.from + 1}
+                    max={51}
+                    pills={51}
+                    offset={c.from - 1976}
+                    color="#2b5ce6"
+                    label={c.name}
+                    hideHeader
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">Composition</p>
+              <p className="lede max-w-none">What the 14.9 million rows are made of.</p>
+            </div>
+            <HatchTrackList
+              color="#2b5ce6"
+              rows={[
+                { label: "Possessions", value: 30, meta: "4.5M" },
+                { label: "Shots with court coordinates", value: 25, meta: "3.7M" },
+                { label: "Play-by-play events", value: 22, meta: "3.2M" },
+                { label: "Lineup rows", value: 5, meta: "753k" },
+              ]}
+            />
+          </div>
+          <Fig n="7">season coverage by data kind and pack composition, 1976-77 through 2026-27.</Fig>
+        </section>
+
+        <hr className="rule" />
+
+        <section id="quickstart" className="wrap grid scroll-mt-8 gap-12 py-24 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-32">
+          <div className="flex flex-col items-start gap-5">
+            <p className="eyebrow">07</p>
+            <h2 className="title">Run it locally</h2>
+            <p className="lede">Clone the repo, fetch the data pack and add your own model key.</p>
+            <a href={README} className="btn btn-primary">
+              <GithubMark size={17} />
+              Read the quickstart
+            </a>
+          </div>
+          <div className="flex flex-col gap-10">
+            <div className="dark rounded-md">
+              <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows · duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
             </div>
             <dl className="m-0">
               {LIMITS.map(([term, detail]) => (
-                <div key={term} className="grid items-baseline gap-x-8 gap-y-1 border-t border-line py-4 sm:grid-cols-[150px_1fr]">
-                  <dt className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink-3">{term}</dt>
-                  <dd className="m-0 text-[15px] leading-[1.6] text-ink-2">{detail}</dd>
+                <div key={term} className="grid grid-cols-[92px_1fr] gap-4 border-t border-line py-3.5 text-[14.5px]">
+                  <dt className="label pt-[3px]">{term}</dt>
+                  <dd className="m-0 text-ink-2">{detail}</dd>
                 </div>
               ))}
             </dl>
           </div>
         </section>
-
-        <section id="run" className="rule scroll-mt-6">
-          <div className="wrap grid gap-x-16 gap-y-10 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
-            <div>
-              <p className="eyebrow">MIT licensed</p>
-              <h2 className="title mt-3">Run it yourself.</h2>
-              <p className="body mt-5">Clone it, fetch the data pack, add your model keys. Node 22.19+, Python 3.12.</p>
-              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
-                <a href={REPO} className="btn btn-quiet"><GithubMark />View on GitHub</a>
-                <a href={README} className="link inline-flex h-11 items-center text-[15px]">Full quickstart in the README</a>
-              </div>
-            </div>
-            <div className="min-w-0 self-start rounded-[12px] bg-surface px-5 py-5 shadow-[inset_0_0_0_1px_var(--color-line)]">
-              <pre className="sql"><code>{"git clone https://github.com/mythiipanda/dime\ncd dime\n./scripts/fetch-data.sh"}</code></pre>
-              <p className="mt-4 border-t border-line pt-4 text-[14px] text-ink-2">Then start the backend and frontend, open localhost:3000 and ask: <span className="text-ink">What are the Thunder's four factors this season?</span></p>
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer className="rule">
-        <div className="wrap flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-6 text-[14px] text-ink-2">
-          <span className="flex items-center gap-2 font-medium text-ink"><DimeMark size={18} />Dime</span>
-          <span className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span>MIT licensed</span>
-            <a href={REPO} className="link inline-flex h-11 items-center">GitHub</a>
-            <a href="https://mythiipanda.github.io/" className="link inline-flex h-11 items-center">Built by Tony Lin</a>
-          </span>
+      <footer className="border-t border-line">
+        <div className="wrap grid gap-10 py-14 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-20">
+          <div className="flex flex-col gap-4">
+            <span className="font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+              dime<span className="text-accent">.</span>
+            </span>
+            <p className="m-0 max-w-[40ch] text-[14.5px] leading-relaxed text-ink-2">
+              An open-source NBA analyst that runs on your machine and shows every row it used.
+            </p>
+          </div>
+          <nav className="flex flex-col gap-3 text-[14px] md:text-right" aria-label="Footer">
+            <a href={REPO} className="text-ink-2 transition-colors hover:text-ink">GitHub — mythiipanda/dime</a>
+            <a href={README} className="text-ink-2 transition-colors hover:text-ink">Quickstart</a>
+            <a href={`${REPO}/blob/main/LICENSE`} className="text-ink-2 transition-colors hover:text-ink">MIT license</a>
+          </nav>
+        </div>
+        <div className="border-t border-line">
+          <div className="wrap flex h-14 flex-wrap items-center justify-between gap-2 text-[12.5px] text-ink-3">
+            <span className="label">Data pack — Nov 19, 2026</span>
+            <span className="label">Open source · bring your own model key</span>
+          </div>
         </div>
       </footer>
     </>
