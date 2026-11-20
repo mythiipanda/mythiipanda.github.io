@@ -770,7 +770,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
               {active && paneMsg && paneScenario?.Pane && (
                   <aside
                     key={`${paneMsg.id}-${replay[chat.id] ?? 0}`}
-                    className="light flex h-[52%] w-full shrink-0 flex-col overflow-hidden rounded-[14px] border border-line bg-page lg:h-auto lg:w-[380px] lg:shrink-0"
+                    className="light flex h-[54%] w-full shrink-0 flex-col overflow-hidden rounded-[14px] border border-line bg-page lg:h-auto lg:w-[380px] lg:shrink-0"
                     style={{ animation: "fade-in 300ms ease both" }}
                   >
                     <div className="flex h-11 shrink-0 items-center justify-between border-b border-line px-3 sm:pl-4">
