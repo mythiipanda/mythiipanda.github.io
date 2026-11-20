@@ -176,8 +176,8 @@ export default function Home() {
             <div className="flex min-w-0 flex-col bg-surface">
             <CodeBlock wide seam lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
             <div className="flex min-h-0 flex-1 flex-col border-t border-line">
-              <p className="m-0 px-5 pb-1 pt-3.5 font-mono text-[11.5px] text-ink-3">result · 17 rows</p>
-              <div className="min-h-0 flex-1 overflow-auto px-2 pb-3">
+              <p className="m-0 px-4 pb-1 pt-3 font-mono text-[11.5px] text-ink-3 md:px-5 md:pt-3.5">result · 17 rows</p>
+              <div className="min-h-0 flex-1 overflow-auto px-1 pb-2 md:px-2 md:pb-3">
                 <table className="w-full border-collapse font-mono text-[12px] tabular-nums">
                   <thead>
                     <tr>
@@ -208,8 +208,10 @@ export default function Home() {
 
         <section id="warehouse" className="wrap scroll-mt-8 py-20 md:py-24">
           <Head n="06" title="Warehouse" meta="fig. 6 – 7">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
-          <div className="exhibit mt-10 flex h-[468px] min-w-0 flex-col md:mt-14">
-            <RecordsTable fill />
+          <div className="window mt-10 md:mt-14">
+            <div className="light m-1.5 flex h-[452px] min-w-0 flex-col overflow-hidden rounded-[2px] md:m-2">
+              <RecordsTable fill />
+            </div>
           </div>
           <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
           <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">

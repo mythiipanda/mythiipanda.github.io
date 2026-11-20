@@ -41,7 +41,7 @@ export function PlayerCard() {
             </dl>
             <dl className="m-0 grid grid-cols-2 gap-x-8">
               {DETAIL.map(([term, value]) => (
-                <div key={term} className="flex items-baseline justify-between border-t border-line py-2.5">
+                <div key={term} className="flex items-baseline justify-between border-t border-line py-3 md:py-2.5">
                   <dt className="text-ink-2">{term}</dt>
                   <dd className="num m-0 font-medium">{value}</dd>
                 </div>
