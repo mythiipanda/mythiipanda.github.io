@@ -113,7 +113,7 @@ export default function Home() {
             <div className="md:self-center">
               <Head n="03" title="Lineups + clutch">Rank five-man units by net rating, then find who scores in the last five minutes of close games.</Head>
             </div>
-            <div className="grid min-w-0 gap-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-10">
+            <div className="grid min-w-0 gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,3fr)] lg:gap-10">
               <div className="min-w-0">
                 <Lineups />
               </div>
