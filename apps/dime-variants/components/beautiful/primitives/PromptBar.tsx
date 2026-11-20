@@ -79,31 +79,31 @@ type Source = {
 };
 
 const SOURCES: Source[] = [
-  { key: "attach", name: "Add photos & files", desc: "Upload from your computer", glyph: "clip", attach: true },
-  { key: "scoop", name: "Scoop Data", desc: "Sales & churn metrics", glyph: "chart" },
-  { key: "flavors", name: "Flavor records", desc: "26 makers, tags, links", glyph: "layers" },
-  { key: "web", name: "Web search", desc: "Real-time news and info", glyph: "globe" },
-  { key: "figma", name: "Figma", desc: "Design-to-code workflows", brand: "figma" },
-  { key: "slack", name: "Slack", desc: "Read and manage Slack", brand: "slack" },
-  { key: "gmail", name: "Gmail", desc: "Read and manage Gmail", brand: "gmail", connect: true },
+  { key: "attach", name: "Add files", desc: "Upload from your computer", glyph: "clip", attach: true },
+  { key: "shots", name: "Shots", desc: "3,729,459 with coordinates", glyph: "chart" },
+  { key: "possessions", name: "Possessions", desc: "4,482,180 rows", glyph: "layers" },
+  { key: "pbp", name: "Play-by-play", desc: "2020-21 to 2024-25", glyph: "layers" },
+  { key: "lineups", name: "Lineups", desc: "753,242 rows", glyph: "layers" },
+  { key: "salaries", name: "Salaries", desc: "464 contracts, 2026-27", glyph: "chart" },
+  { key: "raptor", name: "RAPTOR", desc: "1976-77 to 2021-22", glyph: "chart" },
 ];
 
 const COMMANDS = [
-  { key: "compare", name: "/compare", desc: "Flavor vs. last summer" },
-  { key: "churn-plan", name: "/churn-plan", desc: "Draft a churn schedule" },
-  { key: "restock", name: "/restock", desc: "Build a reorder list" },
-  { key: "draft-email", name: "/draft-email", desc: "Write a supplier email" },
-  { key: "summarize", name: "/summarize", desc: "Digest the thread so far" },
+  { key: "salaries", name: "/salaries", desc: "Top contracts, 2026-27" },
+  { key: "shots", name: "/shots", desc: "Shot selection by season" },
+  { key: "tables", name: "/tables", desc: "List the warehouse tables" },
+  { key: "sql", name: "/sql", desc: "Show the query" },
+  { key: "limits", name: "/limits", desc: "Where the data stops" },
 ];
 
 const MODELS = [
-  { key: "sprinkles-5", name: "Sprinkles 5", tag: "Flagship" },
-  { key: "vanilla-1", name: "Vanilla 1", tag: "Basic" },
-  { key: "freezer-burn", name: "Freezer Burn 0.4", tag: "Stale" },
+  { key: "analyst", name: "Dime analyst", tag: "Default" },
+  { key: "fast", name: "Dime analyst (fast)", tag: "Quick" },
+  { key: "sql", name: "SQL only", tag: "No prose" },
 ];
 
-const FILES = ["flavor-chart.png", "summer-menu.pdf", "pos-export.csv"];
-const DICTATION = "Compare pistachio weekends to last summer";
+const FILES = ["shot-chart.png", "lineups.csv", "box-scores.csv"];
+const DICTATION = "Who is the highest-paid player in 2026-27?";
 
 /* self-running demo: walk the @ menu, then the / menu, and repeat.
  * Any pointer or key interaction hands control to the user. */
@@ -115,7 +115,7 @@ const AUTO_STEPS: {
   model?: string;
   hold: number;
 }[] = [
-  { draft: "", connect: false, model: "vanilla-1", hold: 1100 },
+  { draft: "", connect: false, model: "fast", hold: 1100 },
   { draft: "@", active: 0, hold: 900 },
   { draft: "@", active: 1, hold: 620 },
   { draft: "@", active: 4, hold: 620 },
@@ -128,7 +128,7 @@ const AUTO_STEPS: {
   { draft: "", hold: 800 },
   // open the model picker and upgrade to the flagship → rainbow sweep
   { draft: "", modelOpen: true, hold: 1200 },
-  { draft: "", model: "sprinkles-5", hold: 2400 },
+  { draft: "", model: "analyst", hold: 2400 },
   { draft: "", hold: 900 },
 ];
 
@@ -163,7 +163,7 @@ export default function PromptBar({
   const [dismissed, setDismissed] = useState(false);
   const [plusOpen, setPlusOpen] = useState(false);
   const [modelOpen, setModelOpen] = useState(false);
-  const [model, setModel] = useState(MODELS[1]);
+  const [model, setModel] = useState(MODELS[0]);
   const [attachments, setAttachments] = useState<string[]>([]);
   const [connected, setConnected] = useState(false);
   const [active, setActive] = useState(0);
@@ -304,7 +304,7 @@ export default function PromptBar({
   const selectModel = (next: (typeof MODELS)[number]) => {
     setModel(next);
     setModelOpen(false);
-    if (next.key === "sprinkles-5") celebrate();
+    if (next.key === "analyst") celebrate();
   };
 
   /* autoplay: apply the current step, then advance after its hold */

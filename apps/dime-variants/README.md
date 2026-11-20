@@ -30,4 +30,6 @@ Type is Instrument Serif for display, Instrument Sans for everything else, Marti
 - The harness sidebar and side pane hide below 1024px, so phones see the chat only.
 - Menus that portal to `body` (workspace switcher, column config) render with the light tokens.
 - The column config popover in `RecordsTable` is Beautiful UI's, lightly renamed.
+- The vendored primitives keep Beautiful UI's sample content as prop defaults. The page always passes its own, so none of it renders.
+- The composer's attach and dictation buttons are canned, as in the upstream mockup.
 - No Safari, Firefox or screen-reader pass yet.

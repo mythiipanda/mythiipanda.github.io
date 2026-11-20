@@ -86,7 +86,7 @@ export default function LoadingState({
 }) {
   const elapsed = useElapsed();
   const surfer = variant === "Surfer";
-  const resolvedLabel = label ?? (surfer ? "Subway surfing" : "Churning");
+  const resolvedLabel = label ?? (surfer ? "Running the query" : "Thinking");
   const [videoOk, setVideoOk] = useState(true);
   const { delays, dur, round } = PATTERNS[variant] ?? PATTERNS.Drive;
 
