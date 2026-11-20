@@ -180,7 +180,9 @@ export default function Home() {
             </a>
           </div>
           <div className="flex flex-col gap-10">
-            <CodeBlock wide lines={QUICKSTART} code={QUICKSTART.join("\n")} filename="terminal" />
+            <div className="dark rounded-md">
+              <CodeBlock wide lines={QUICKSTART} code={QUICKSTART.join("\n")} filename="terminal" />
+            </div>
             <dl className="m-0">
               {LIMITS.map(([term, detail]) => (
                 <div key={term} className="grid grid-cols-[92px_1fr] gap-4 border-t border-line py-3.5 text-[14.5px]">
