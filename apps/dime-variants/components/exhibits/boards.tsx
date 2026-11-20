@@ -15,8 +15,8 @@ export function Lineups() {
   return (
     <div className="exhibit">
       <div className="flex items-baseline justify-between gap-4 border-b border-line px-5 py-4 text-[14px] md:px-6">
-        <span className="font-medium text-ink">Net rating</span>
         <span className="label">2025-26 · 200+ minutes · top 5 of {LINEUP_COUNT}</span>
+        <span className="label">net rtg</span>
       </div>
       <ol className="m-0 list-none p-0">
         {LINEUPS.map(([players, team, , minutes, off, def, net], i) => (
@@ -44,8 +44,8 @@ export function Clutch() {
   return (
     <div className="exhibit">
       <div className="flex items-baseline justify-between gap-4 border-b border-line px-5 py-4 text-[14px] md:px-6">
-        <span className="font-medium text-ink">Clutch points</span>
         <span className="label">2025-26 · top 5 of {CLUTCH_COUNT}</span>
+        <span className="label">clutch pts</span>
       </div>
       <ol className="m-0 list-none p-0">
         {CLUTCH.map(([player, team, , minutes, points, fg, plusMinus], i) => (
