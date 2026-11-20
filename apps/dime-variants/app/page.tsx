@@ -1,7 +1,6 @@
 import DimeHarness from "@/components/beautiful/DimeHarness";
 import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
 import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
-import ToolChips from "@/components/beautiful/primitives/ToolChips";
 import { Clutch, Lineups } from "@/components/exhibits/boards";
 import { PlayerCard } from "@/components/exhibits/player-card";
 import { GithubMark } from "@/components/mark";
@@ -141,7 +140,18 @@ export default function Home() {
           <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
             <div className="flex flex-col gap-7 bg-surface p-6 md:p-9">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
-              <ToolChips steps={STEPS} diffs={[]} labels={{ header: "4 steps, 17 rows", more: "" }} />
+              <ol className="m-0 list-none p-0 font-mono text-[12.5px] leading-[1.7]">
+              {STEPS.map((row, i) => (
+                <li key={row.label} className="border-b border-line py-2.5 first:pt-0 last:border-0">
+                  <p className="m-0 flex items-baseline gap-3">
+                    <span className="text-ink-3">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="text-ink">{row.label.toLowerCase()}</span>
+                    <span className="truncate text-ink-3">{row.chip}</span>
+                  </p>
+                  <p className="m-0 mt-0.5 pl-7 text-[11.5px] text-ink-2">{row.detail.map((d) => d.text.replace(/^[+✓]\s*/, "")).join(" · ")}</p>
+                </li>
+              ))}
+            </ol>
               <figure className="m-0 mt-auto">
                 <ol className="m-0 flex h-24 list-none items-end gap-1 p-0" aria-hidden>
                   {THREE_SHARE.map(([season, share]) => (
