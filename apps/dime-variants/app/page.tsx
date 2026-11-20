@@ -24,11 +24,12 @@ const LIMITS = [
   ["Keys", "Chat runs on your own model provider keys."],
 ];
 
-function Head({ title, children }: { title: string; children: React.ReactNode }) {
+function Head({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-16">
+    <div className="flex flex-col gap-5">
+      <p className="eyebrow">{n}</p>
       <h2 className="title">{title}</h2>
-      <p className="lede md:pb-1">{children}</p>
+      <p className="lede">{children}</p>
     </div>
   );
 }
@@ -78,7 +79,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="features" className="wrap scroll-mt-8 py-24 md:py-32">
-          <Head title="Player cards">Ask about a player and get the season on one card.</Head>
+          <Head n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
           <div className="mt-10 md:mt-14">
             <PlayerCard />
           </div>
@@ -87,7 +88,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap py-24 md:py-32">
-          <Head title="Shot charts">Plot 3.7 million shots by court location, for the league or for one player.</Head>
+          <Head n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or for one player.</Head>
           <div className="exhibit mx-auto mt-10 max-w-[880px] p-5 md:mt-14 md:p-8">
             <ShotMap />
           </div>
@@ -97,14 +98,16 @@ export default function Home() {
 
         <section className="wrap grid gap-20 py-24 md:py-32 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">03</p>
               <h2 className="title">Lineups</h2>
               <p className="lede max-w-none">Rank five-man units by net rating and see the minutes behind each one.</p>
             </div>
             <Lineups />
           </div>
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">04</p>
               <h2 className="title">Clutch</h2>
               <p className="lede max-w-none">Find who scores in the last five minutes of close games.</p>
             </div>
@@ -115,7 +118,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap py-24 md:py-32">
-          <Head title="Sources">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
+          <Head n="05" title="Sources">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
           <div className="mt-10 grid items-stretch gap-6 md:mt-14 lg:grid-cols-2 lg:gap-8">
             <div className="exhibit flex flex-col gap-6 p-5 md:p-7">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
@@ -139,7 +142,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="warehouse" className="wrap scroll-mt-8 py-24 md:py-32">
-          <Head title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
+          <Head n="06" title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
           <div className="exhibit mt-10 flex h-[468px] flex-col md:mt-14">
             <RecordsTable fill />
           </div>
@@ -148,7 +151,8 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="quickstart" className="wrap grid scroll-mt-8 gap-12 py-24 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-32">
-          <div className="flex flex-col items-start gap-6">
+          <div className="flex flex-col items-start gap-5">
+            <p className="eyebrow">07</p>
             <h2 className="title">Run it locally</h2>
             <p className="lede">Clone the repo, fetch the data pack and add your own model key.</p>
             <a href={README} className="btn btn-primary">
