@@ -719,7 +719,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
   );
 
   return (
-    <div className="dark flex h-full gap-0 bg-canvas p-2.5 font-sans text-[14px] leading-normal tracking-[-0.01em] text-ink lg:pl-0">
+    <div className="light flex h-full gap-0 bg-canvas p-2.5 font-sans text-[14px] leading-normal tracking-[-0.01em] text-ink lg:pl-0">
       <SidebarNav
         fill
         className="hidden lg:flex"
