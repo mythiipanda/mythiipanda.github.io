@@ -56,7 +56,7 @@ export function ShotMap({ fill }: { fill?: boolean }) {
           ))}
         </p>
       </div>
-      <svg viewBox="-258 -56 516 392" className={`mt-5 block w-full ${fill ? "min-h-0 flex-1" : "h-auto"}`} role="img" aria-label={`Where shots were taken: ${view.label}. Larger dots mean more shots from that spot.`} preserveAspectRatio={fill ? "xMidYMid slice" : undefined}>
+      <svg viewBox="-258 -56 516 404" className={`mt-5 block w-full ${fill ? "min-h-0 flex-1" : "h-auto"}`} role="img" aria-label={`Where shots were taken: ${view.label}. Larger dots mean more shots from that spot.`} preserveAspectRatio={fill ? "xMidYMid slice" : undefined}>
         <Court stroke="var(--line-strong)" />
         <g key={view.key === "luka" ? "luka" : "league"} fill="var(--color-accent)">
           {view.bins.map((bin) => (
