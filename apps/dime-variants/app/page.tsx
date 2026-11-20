@@ -222,11 +222,26 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-line">
-        <div className="wrap flex h-20 items-center justify-between text-[14px] text-ink-3">
-          <span className="font-serif text-[22px] leading-none text-ink">
-            dime<span className="text-accent">.</span>
-          </span>
-          <a href={REPO} className="transition-colors hover:text-ink">github.com/mythiipanda/dime</a>
+        <div className="wrap grid gap-10 py-14 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-20">
+          <div className="flex flex-col gap-4">
+            <span className="font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+              dime<span className="text-accent">.</span>
+            </span>
+            <p className="m-0 max-w-[40ch] text-[14.5px] leading-relaxed text-ink-2">
+              An open-source NBA analyst that runs on your machine and shows every row it used.
+            </p>
+          </div>
+          <nav className="flex flex-col gap-3 text-[14px] md:text-right" aria-label="Footer">
+            <a href={REPO} className="text-ink-2 transition-colors hover:text-ink">GitHub — mythiipanda/dime</a>
+            <a href={README} className="text-ink-2 transition-colors hover:text-ink">Quickstart</a>
+            <a href={`${REPO}/blob/main/LICENSE`} className="text-ink-2 transition-colors hover:text-ink">MIT license</a>
+          </nav>
+        </div>
+        <div className="border-t border-line">
+          <div className="wrap flex h-14 flex-wrap items-center justify-between gap-2 text-[12.5px] text-ink-3">
+            <span className="label">Data pack — Nov 19, 2026</span>
+            <span className="label">Open source · bring your own model key</span>
+          </div>
         </div>
       </footer>
     </>
