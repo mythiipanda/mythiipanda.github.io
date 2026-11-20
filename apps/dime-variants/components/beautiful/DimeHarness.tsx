@@ -123,7 +123,7 @@ function SalaryAnswer() {
 
 function Provenance({ rows }: { rows: [string, string][] }) {
   return (
-    <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-[12.5px]">
+    <dl className="mt-4 hidden grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-[12.5px] lg:grid">
       {rows.map(([k, v]) => (
         <div key={k} className="contents">
           <dt className="text-ink-3">{k}</dt>
@@ -569,7 +569,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
   useEffect(() => {
     if (!active) return;
     const el = scrollRef.current;
-    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    if (el && window.innerWidth >= 1024) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [chat.messages, active]);
 
   /* the composer floats over the thread (ChatGPT-style), so the thread pads its
@@ -602,7 +602,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
       stick = el.scrollHeight - el.scrollTop - el.clientHeight < 120;
     };
     const pin = () => {
-      if (!stick) return;
+      if (!stick || window.innerWidth < 1024) return;
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         el.scrollTop = el.scrollHeight;
@@ -770,7 +770,7 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
               {active && paneMsg && paneScenario?.Pane && (
                   <aside
                     key={`${paneMsg.id}-${replay[chat.id] ?? 0}`}
-                    className="light flex h-[54%] w-full shrink-0 flex-col overflow-hidden rounded-[14px] border border-line bg-page lg:h-auto lg:w-[380px] lg:shrink-0"
+                    className="light flex h-[52%] w-full shrink-0 flex-col overflow-hidden rounded-[14px] border border-line bg-page lg:h-auto lg:w-[380px] lg:shrink-0"
                     style={{ animation: "fade-in 300ms ease both" }}
                   >
                     <div className="flex h-11 shrink-0 items-center justify-between border-b border-line px-3 sm:pl-4">
