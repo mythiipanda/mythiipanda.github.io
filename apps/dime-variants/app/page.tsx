@@ -7,7 +7,7 @@ import { PlayerCard } from "@/components/exhibits/player-card";
 import { GithubMark } from "@/components/mark";
 import { ShotMap } from "@/components/shot-map";
 import { THREE_SHARE } from "@/lib/shots";
-import { README, REPO, SHARE_QUERY } from "@/lib/site";
+import { COUNTS, README, REPO, SHARE_QUERY } from "@/lib/site";
 
 const STEPS = [
   { icon: "think", label: "Thinking", chip: "Shot value is in silver_hist_shots…", mono: false, detailMono: false, detail: [{ text: "One row per shot, with its court location." }, { text: "Share is threes over all shots, by season." }] },
@@ -78,6 +78,15 @@ export default function Home() {
             <DimeHarness />
           </div>
           <p className="label mt-4 text-center">fig. 0 — the answers on this page are scripted; the rows come from the Nov 19, 2026 data pack.</p>
+
+          <dl className="enter mt-14 grid grid-cols-2 border border-line md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
+            {COUNTS.map((c, i) => (
+              <div key={c.n} className={`flex flex-col border-line p-6 text-center md:p-8 ${["border-b border-r md:border-b-0", "border-b md:border-b-0 md:border-r", "border-r", ""][i]}`}>
+                <dd className="order-1 font-serif text-[clamp(1.8rem,3vw,2.6rem)] leading-none tracking-[-0.02em] text-ink">{c.n}</dd>
+                <dt className="label order-2 mt-3">{c.label}</dt>
+              </div>
+            ))}
+          </dl>
         </section>
 
         <hr className="rule" />
