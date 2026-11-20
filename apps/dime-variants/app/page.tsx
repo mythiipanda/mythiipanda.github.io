@@ -170,9 +170,9 @@ export default function Home() {
               <p className="eyebrow">Coverage</p>
               <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
             </div>
-            <ul className="m-0 flex list-none flex-col gap-6 p-0">
+            <ul className="m-0 flex list-none flex-col border border-line p-0">
               {COVERAGE.map((c) => (
-                <li key={c.name} className="grid grid-cols-[minmax(0,1fr)_112px] items-baseline gap-4">
+                <li key={c.name} className="grid grid-cols-[minmax(0,1fr)_112px] items-baseline gap-4 border-b border-line px-5 py-4 last:border-b-0 md:px-6">
                   <div className="flex flex-col gap-2">
                     <div className="flex items-baseline justify-between gap-4">
                       <span className="text-[14.5px] font-medium text-ink">{c.name}</span>
