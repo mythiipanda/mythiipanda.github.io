@@ -27,13 +27,13 @@ export function RankedList({ rows = DEFAULT, color = "#fd4b23", title = "Top cou
       </div>
       <ul className="flex flex-col gap-1">
         {rows.map((r, i) => (
-          <li key={r.label} className={`relative flex ${hasMeta ? "h-12" : "h-9"} items-center overflow-hidden rounded-fu-sm px-2.5 text-[13px]`}>
+          <li key={r.label} className={`relative flex ${hasMeta ? "h-12" : "h-9"} w-full min-w-0 items-center overflow-hidden rounded-fu-sm px-2.5 text-[13px]`}>
             <span
               className="absolute inset-y-0 left-0 rounded-fu-sm"
               style={{ width: (r.value / max) * 100 + "%", background: i === 0 ? mix(color, 0.86) : mix(color, 0.93), boxShadow: "inset 0 0 0 1px " + mix(color, 0.8) }}
             />
             {r.code && <span className="relative mr-2 w-6 font-fu-mono text-[11px] text-fu-muted">{r.code}</span>}
-            <span className="relative min-w-0 flex-1 text-fu-body">
+            <span className="relative min-w-0 max-w-full flex-1 overflow-hidden text-fu-body">
               {hasMeta ? (
                 <span className="block leading-tight">
                   <span className="block truncate">{r.label}</span>

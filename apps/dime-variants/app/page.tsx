@@ -123,7 +123,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap grid gap-20 py-20 md:py-24 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
-          <div className="flex flex-col gap-8">
+          <div className="flex min-w-0 flex-col gap-8">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">03</p>
               <h2 className="title">Lineups</h2>
@@ -132,7 +132,7 @@ export default function Home() {
             <Lineups />
             <Fig n="3">five-man units from silver_hist_lineups.</Fig>
           </div>
-          <div className="flex flex-col gap-8">
+          <div className="flex min-w-0 flex-col gap-8">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">04</p>
               <h2 className="title">Clutch</h2>
@@ -148,7 +148,7 @@ export default function Home() {
         <section className="wrap py-20 md:py-24">
           <Head n="05" title="Sources" meta="fig. 5">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
           <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
-            <div className="flex flex-col gap-7 bg-surface p-6 md:p-9">
+            <div className="flex min-w-0 flex-col gap-7 bg-surface p-6 md:p-9">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
               <ol className="m-0 list-none p-0 font-mono text-[12.5px] leading-[1.7]">
               {STEPS.map((row, i) => (
@@ -173,7 +173,9 @@ export default function Home() {
                 />
               </figure>
             </div>
+            <div className="min-w-0">
             <CodeBlock wide seam lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
+          </div>
           </div>
           <Fig n="5">the tool trace and the SQL behind the answer, from silver_hist_shots.</Fig>
         </section>
@@ -182,7 +184,7 @@ export default function Home() {
 
         <section id="warehouse" className="wrap scroll-mt-8 py-20 md:py-24">
           <Head n="06" title="Warehouse" meta="fig. 6 – 7">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
-          <div className="exhibit mt-10 flex h-[468px] flex-col md:mt-14">
+          <div className="exhibit mt-10 flex h-[468px] min-w-0 flex-col md:mt-14">
             <RecordsTable fill />
           </div>
           <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
