@@ -49,7 +49,7 @@ export function ShotMap() {
         </p>
       </div>
       <svg viewBox="-258 -56 516 392" className="mt-5 block h-auto w-full" role="img" aria-label={`Where NBA shots were taken in ${season.label}. Larger dots mean more shots from that spot.`}>
-        <Court stroke="var(--color-line)" />
+        <Court stroke="var(--line-strong)" />
         <g fill="var(--color-accent)">
           {SEASON_BINS.map((bin) => (
             <circle key={`${bin[0]}:${bin[1]}`} className="dot" cx={bin[0]} cy={bin[1]} r={radius(bin[season.col])} />
