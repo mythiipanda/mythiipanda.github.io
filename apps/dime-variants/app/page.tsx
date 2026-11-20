@@ -26,19 +26,12 @@ const LIMITS = [
   ["Keys", "Chat runs on your own model provider keys."],
 ];
 
-function Fig({ n, children }: { n: string; children: React.ReactNode }) {
-  return <figcaption className="label mt-4 flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1"><span className="whitespace-nowrap text-accent">fig.&nbsp;{n}</span><span>{children}</span></figcaption>;
-}
-
-function Head({ n, title, meta, children }: { n: string; title: string; meta?: string; children: React.ReactNode }) {
+function Head({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
   return (
-    <div className="flex items-end justify-between gap-8">
-      <div className="flex max-w-[560px] flex-col gap-5">
-        <p className="eyebrow">{n}</p>
-        <h2 className="title">{title}</h2>
-        <p className="lede">{children}</p>
-      </div>
-      {meta ? <p className="label hidden shrink-0 pb-1 text-right md:block">{meta}</p> : null}
+    <div className="flex max-w-[560px] flex-col gap-5">
+      <p className="eyebrow">{n}</p>
+      <h2 className="title">{title}</h2>
+      <p className="lede">{children}</p>
     </div>
   );
 }
@@ -89,7 +82,7 @@ export default function Home() {
           <div className="window window-hero enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
             <DimeHarness />
           </div>
-          <p className="label mt-4 text-center">fig. 0 — the answers on this page are scripted; the rows come from the Nov 19, 2026 data pack.</p>
+          <p className="label mt-4 text-center">the answers here are scripted; the rows are real.</p>
 
           <dl className="enter mt-14 grid grid-cols-2 border border-line md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
             {COUNTS.map((c, i) => (
@@ -104,21 +97,19 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="features" className="wrap scroll-mt-8 py-16 md:py-20">
-          <Head n="01" title="Player cards" meta="fig. 1">Ask about a player and get the season on one card.</Head>
+          <Head n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
           <div className="mt-10 md:mt-14">
             <PlayerCard />
           </div>
-          <Fig n="1">player card from silver_player_season · silver_advanced · silver_hist_player_seasons.</Fig>
         </section>
 
         <hr className="rule" />
 
         <section className="wrap py-16 md:py-20">
-          <Head n="02" title="Shot charts" meta="fig. 2">Plot 3.7 million shots by court location, for the league or for one player.</Head>
+          <Head n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or for one player.</Head>
           <div className="exhibit mt-10 p-5 md:mt-14 md:p-8">
             <ShotMap />
           </div>
-          <Fig n="2">shot density from silver_hist_shots, binned by court location.</Fig>
         </section>
 
         <hr className="rule" />
@@ -131,7 +122,6 @@ export default function Home() {
               <p className="lede max-w-none">Rank five-man units by net rating and see the minutes behind each one.</p>
             </div>
             <Lineups />
-            <Fig n="3">five-man units from silver_hist_lineups.</Fig>
           </div>
           <div className="flex min-w-0 flex-col gap-8">
             <div className="flex flex-col gap-5">
@@ -140,14 +130,13 @@ export default function Home() {
               <p className="lede max-w-none">Find who scores in the last five minutes of close games.</p>
             </div>
             <Clutch />
-            <Fig n="4">clutch scoring from silver_clutch.</Fig>
           </div>
         </section>
 
         <hr className="rule" />
 
         <section id="sources" className="wrap scroll-mt-8 py-16 md:py-20">
-          <Head n="05" title="Sources" meta="fig. 5">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
+          <Head n="05" title="Sources">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
           <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
             <div className="flex min-w-0 flex-col gap-7 bg-surface p-6 md:p-9">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
@@ -202,13 +191,12 @@ export default function Home() {
             </div>
           </div>
           </div>
-          <Fig n="5">the tool trace and the SQL behind the answer, from silver_hist_shots.</Fig>
         </section>
 
         <hr className="rule" />
 
         <section id="warehouse" className="wrap scroll-mt-8 py-16 md:py-20">
-          <Head n="06" title="Warehouse" meta="fig. 6 – 7">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
+          <Head n="06" title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
           <div className="window dark mt-10 md:mt-14">
             <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
               <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-3"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M9 9v11" /></svg>
@@ -219,7 +207,7 @@ export default function Home() {
               <RecordsTable fill />
             </div>
           </div>
-          <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
+
           <div className="mt-14 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">Coverage</p>
@@ -260,7 +248,6 @@ export default function Home() {
               ]}
             />
           </div>
-          <Fig n="7">season coverage by data kind and pack composition, 1976-77 through 2026-27.</Fig>
         </section>
 
         <hr className="rule" />
