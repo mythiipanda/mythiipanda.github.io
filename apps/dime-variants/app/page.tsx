@@ -65,7 +65,7 @@ export default function Home() {
                   <GithubMark size={17} />
                   Get Dime on GitHub
                 </a>
-                <a href="#quickstart" className="link">Quickstart</a>
+                <a href="#quickstart" className="btn btn-ghost">Quickstart</a>
               </div>
             </div>
           </div>

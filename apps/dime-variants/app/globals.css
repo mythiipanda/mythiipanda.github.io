@@ -102,6 +102,16 @@ kbd,
   color: var(--ink-2);
 }
 
+.btn-ghost {
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--ink-3);
+  background: var(--surface);
+}
+
 .label {
   font-family: var(--font-mono);
   font-stretch: 88%;
