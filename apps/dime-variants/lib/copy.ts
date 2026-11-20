@@ -8,20 +8,6 @@ export const hero = {
   proof: "3.7M shots · 17 seasons of game logs · MIT",
 };
 
-export const short = {
-  star: "Star on GitHub",
-};
-
-export const trace = {
-  question: "Who had the best true shooting in 2025-26 with 1,500+ minutes?",
-  calls: [
-    { step: "Read skill", detail: "leaderboard" },
-    { step: "Write SQL", detail: "select PLAYER_NAME, TS_PCT, USG_PCT from silver_advanced" },
-    { step: "Run on DuckDB", detail: "5 rows in 41 ms" },
-  ],
-  answer: "Luke Kennard leads at 68.9% on 13.1% usage. Jalen Duren is a tenth of a point behind — 164 players clear the floor.",
-};
-
 export const method = {
   eyebrow: "How it answers",
   title: "Every claim, traceable.",
