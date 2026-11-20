@@ -32,7 +32,7 @@ export function Court({ stroke }: { stroke: string }) {
 export function ShotMap({ fill }: { fill?: boolean }) {
   const [view, setView] = useState(VIEWS[1]);
   return (
-    <figure className={`m-0 ${fill ? "flex h-full flex-col" : ""}`}>
+    <figure className={`m-0 ${fill ? "lg:flex lg:h-full lg:flex-col" : ""}`}>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div role="group" aria-label="Shots to plot" className="inline-flex max-w-full flex-wrap rounded-[10px] bg-inset p-1">
           {VIEWS.map((v) => (
@@ -56,7 +56,7 @@ export function ShotMap({ fill }: { fill?: boolean }) {
           ))}
         </p>
       </div>
-      <svg viewBox="-258 -56 516 404" className={`mt-5 block w-full ${fill ? "min-h-0 flex-1" : "h-auto"}`} role="img" aria-label={`Where shots were taken: ${view.label}. Larger dots mean more shots from that spot.`} preserveAspectRatio={fill ? "xMidYMid slice" : undefined}>
+      <svg viewBox="-258 -56 516 404" className={`mt-5 block w-full ${fill ? "h-auto lg:min-h-0 lg:flex-1" : "h-auto"}`} role="img" aria-label={`Where shots were taken: ${view.label}. Larger dots mean more shots from that spot.`} preserveAspectRatio={fill ? "xMidYMid slice" : undefined}>
         <Court stroke="var(--line-strong)" />
         <g key={view.key === "luka" ? "luka" : "league"} fill="var(--color-accent)">
           {view.bins.map((bin) => (
