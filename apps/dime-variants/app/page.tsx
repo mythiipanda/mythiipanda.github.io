@@ -152,7 +152,7 @@ export default function Home() {
                 </figcaption>
               </figure>
             </div>
-            <CodeBlock wide lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
+            <CodeBlock wide flat lines={SHARE_QUERY.split("\n")} code={SHARE_QUERY} filename="three_share.sql" />
           </div>
           <Fig n="5">the tool trace and the SQL behind the answer, from silver_hist_shots.</Fig>
         </section>
@@ -207,7 +207,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-10">
             <div className="dark rounded-md">
-              <CodeBlock wide lines={QUICKSTART} code={QUICKSTART.join("\n")} filename="terminal" />
+              <CodeBlock wide flat lines={QUICKSTART} code={QUICKSTART.join("\n")} filename="terminal" />
             </div>
             <dl className="m-0">
               {LIMITS.map(([term, detail]) => (
