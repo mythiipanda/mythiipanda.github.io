@@ -189,6 +189,9 @@ kbd,
 
 .window-hero {
   height: min(640px, max(520px, 68vh));
+}
+
+.window-light {
   background: var(--surface);
   box-shadow: 0 0 0 1px var(--line-strong);
 }

@@ -79,7 +79,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="window window-hero enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
+          <div className="window window-hero window-light enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
             <DimeHarness />
           </div>
           <p className="label mt-4 text-center">the answers here are scripted; the rows are real.</p>
@@ -197,7 +197,7 @@ export default function Home() {
 
         <section id="warehouse" className="wrap scroll-mt-8 py-12 md:py-20">
           <Head n="06" title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
-          <div className="window dark mt-8 md:mt-14">
+          <div className="window window-light mt-8 md:mt-14">
             <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
               <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-3"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M9 9v11" /></svg>
               <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
