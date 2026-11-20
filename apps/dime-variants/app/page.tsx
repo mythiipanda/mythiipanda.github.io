@@ -109,13 +109,17 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap py-12 md:py-20">
-          <Head n="03" title="Lineups + clutch">Rank five-man units by net rating, then find who scores in the last five minutes of close games.</Head>
-          <div className="mt-8 grid gap-14 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
-            <div className="min-w-0">
-              <Lineups />
+          <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,9fr)] md:gap-16">
+            <div className="md:self-center">
+              <Head n="03" title="Lineups + clutch">Rank five-man units by net rating, then find who scores in the last five minutes of close games.</Head>
             </div>
-            <div className="min-w-0">
-              <Clutch />
+            <div className="grid min-w-0 gap-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-10">
+              <div className="min-w-0">
+                <Lineups />
+              </div>
+              <div className="min-w-0">
+                <Clutch />
+              </div>
             </div>
           </div>
         </section>
