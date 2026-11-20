@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400..900&family=Archivo+Expanded:wght@500..800&family=JetBrains+Mono:wght@400..700&display=swap');
+*{margin:0;box-sizing:border-box}
+body{background:#f2f2ee;color:#111;font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased}
+.ticker{background:#111;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;padding:9px 0;overflow:hidden;white-space:nowrap}
+.ticker span{display:inline-block;padding:0 28px;color:#d8d8d0}
+.ticker b{color:#7ee787;font-weight:600}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.nav .logo{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:20px;letter-spacing:.02em}
+.nav .logo i{font-style:normal;color:#1f7a3d}
+.btn{background:#111;color:#fff;border-radius:4px;padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-decoration:none}
+.hero{padding:56px 0 64px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1f7a3d;font-weight:600;margin-bottom:18px}
+h1{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:76px;line-height:.94;letter-spacing:-.025em;text-transform:uppercase}
+h1 .g{color:#1f7a3d}
+.lede{margin-top:26px;font-size:17px;line-height:1.5;max-width:540px;color:#44443e}
+.cta{margin-top:34px;display:flex;gap:14px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.08em}
+.cta a:last-child{color:#111;text-decoration:underline;text-underline-offset:4px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #111;margin-top:56px}
+.cell{border-right:1px solid #111;padding:20px}
+.cell:last-child{border-right:0}
+.cell .k{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#77776f}
+.cell .v{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:22px;margin-top:8px;font-variant-numeric:tabular-nums}
+.cell .s{font-size:11px;color:#77776f;margin-top:4px}
+.scorebug{margin-top:64px;border:2px solid #111;background:#fff;box-shadow:8px 8px 0 #111}
+.sb-head{display:flex;justify-content:space-between;align-items:center;background:#111;color:#fff;padding:12px 20px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.sb-head .live{color:#7ee787}
+.sb-q{padding:22px 20px;font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:22px}
+.sb-sql{background:#0d0d0b;color:#b7f0c5;font-family:'JetBrains Mono',monospace;font-size:12px;padding:18px 20px;line-height:1.7}
+.sb-sql .cm{color:#6f6f64}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#77776f;text-align:left;padding:10px 20px;border-bottom:2px solid #111}
+td{padding:10px 20px;border-bottom:1px solid #e4e4de;font-variant-numeric:tabular-nums}
+td.n{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:600}
+tr.hl td{background:#eafaf0;font-weight:700}
+.sb-foot{display:flex;justify-content:space-between;padding:12px 20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:#77776f;border-top:1px solid #e4e4de}
+</style></head><body>
+<div class="ticker"><span>GSW 118 <b>·</b> BOS 112 · FINAL</span><span>OKC +21.4 NET RTG · TOP LINEUP, 2026-27</span><span>silver_salaries: <b>464</b> contracts</span><span>pack refreshed <b>Nov 19, 2026</b></span><span>DEN 104 <b>·</b> MIN 98 · FINAL</span><span>3,729,459 shots on file</span></div>
+<div class="wrap">
+<div class="nav"><span class="logo">DIME<i>.</i></span><span>nba analytics · open warehouse</span><a class="btn" href="#">GITHUB ↗</a></div>
+<div class="hero">
+<p class="eyebrow">The stat sheet that shows its work</p>
+<h1>Numbers you<br>can <span class="g">audit.</span></h1>
+<p class="lede">Ask an NBA question in plain English. Dime writes the SQL, runs it on a downloadable DuckDB warehouse, and shows you every row it used.</p>
+<div class="cta"><a class="btn" href="#">TRY THE DEMO</a><a href="#">Download the data pack</a></div>
+<div class="board">
+<div class="cell"><div class="k">Shots</div><div class="v">3,729,459</div><div class="s">2009-10 → 2026-27</div></div>
+<div class="cell"><div class="k">Possessions</div><div class="v">4,482,180</div><div class="s">every one charted</div></div>
+<div class="cell"><div class="k">Seasons</div><div class="v">17</div><div class="s">incl. current</div></div>
+<div class="cell"><div class="k">Format</div><div class="v">.db</div><div class="s">DuckDB, one file</div></div>
+</div>
+<div class="scorebug">
+<div class="sb-head"><span>ASK · 2026-27</span><span class="live">● verified on warehouse</span></div>
+<div class="sb-q">Who are the highest-paid players in 2026-27?</div>
+<div class="sb-sql"><span class="cm">-- silver_salaries · bref_contracts</span><br>select PLAYER_NAME, TEAM, SALARY_2026_27<br>from silver_salaries order by 3 desc limit 5;</div>
+<table><tr><th>PLAYER</th><th>TEAM</th><th style="text-align:right">SALARY $M</th><th style="text-align:right">CAP %</th></tr>
+<tr class="hl"><td>Stephen Curry</td><td>GSW</td><td class="n">59.6</td><td class="n">36.0</td></tr>
+<tr><td>Nikola Jokić</td><td>DEN</td><td class="n">59.0</td><td class="n">35.6</td></tr>
+<tr><td>Giannis Antetokounmpo</td><td>MIL</td><td class="n">58.5</td><td class="n">35.3</td></tr>
+<tr><td>Jayson Tatum</td><td>BOS</td><td class="n">58.4</td><td class="n">35.3</td></tr></table>
+<div class="sb-foot"><span>source: silver_salaries · 464 rows</span><span>fig. verified · no vibes</span></div>
+</div>
+</div>
+</div>
+<div style="height:80px"></div>
+</body></html>
+<style>
+@media (max-width: 760px){
+  .wrap{padding:0 20px}
+  h1{font-size:44px}
+  .nav{flex-wrap:wrap;gap:10px}
+  .board{grid-template-columns:1fr 1fr}
+  .cell:nth-child(2){border-right:0}
+  .cell:nth-child(-n+2){border-bottom:1px solid #111}
+  .cell .v{font-size:26px}
+  .sb-q{font-size:17px}
+  .sb-sql{font-size:10.5px;overflow-x:auto}
+  table{font-size:11.5px}
+  th,td{padding:8px 12px}
+  .scorebug{box-shadow:5px 5px 0 #111}
+}
+</style>

@@ -6,10 +6,15 @@
     "build": "next build"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "glimm": "^0.4.1",
     "lucide-react": "^1.53.0",
     "next": "^16.4.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "shadow-plugin": "^2.1.1",
+    "tailwind-merge": "^3.7.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",

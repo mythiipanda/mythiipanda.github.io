@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300..800&display=swap');
+*{margin:0;box-sizing:border-box}
+body{background:#0e1a33;color:#f4f1e8;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+.hero{position:relative;min-height:100vh;overflow:hidden;padding:0 48px}
+svg.court{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:28px 0;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.72)}
+.nav b{color:#f4f1e8;font-weight:600}
+.pill{border:1px solid rgba(244,241,232,.4);border-radius:99px;padding:8px 16px;color:#f4f1e8;text-decoration:none}
+.mid{position:relative;max-width:1100px;margin:0 auto;padding:64px 0 40px}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:72px;line-height:.98;letter-spacing:-.02em;max-width:820px}
+h1 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+.lede{margin-top:24px;font-size:17px;line-height:1.5;color:rgba(244,241,232,.7);max-width:520px}
+.cta{margin-top:32px;display:flex;gap:16px;align-items:center}
+.cta a:first-child{background:#f4f1e8;color:#0e1a33;border-radius:99px;padding:13px 24px;text-decoration:none;font-weight:600;font-size:14px}
+.cta a:last-child{color:rgba(244,241,232,.8);font-size:14px;text-decoration:underline;text-underline-offset:4px}
+.win{position:relative;max-width:1100px;margin:48px auto 0;border:1px solid rgba(244,241,232,.22);border-radius:14px;background:#122141;box-shadow:0 40px 80px rgba(0,0,0,.45);overflow:hidden}
+.winbar{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(244,241,232,.14);font-family:'Martian Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:rgba(244,241,232,.6)}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(244,241,232,.25)}
+.winbody{display:grid;grid-template-columns:1fr 300px;gap:0}
+.qa{padding:24px}
+.q{font-size:15px;font-weight:600}
+.steps{margin:16px 0;font-family:'Martian Mono',monospace;font-size:11px;color:rgba(244,241,232,.6);display:grid;gap:8px}
+.steps span::before{content:"▸ ";color:#8fd3a0}
+.ans{font-size:13.5px;line-height:1.55;color:rgba(244,241,232,.85);border-top:1px solid rgba(244,241,232,.12);padding-top:14px}
+table{border-collapse:collapse;width:100%;margin-top:14px;font-size:12.5px}
+th{font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,241,232,.5);text-align:left;padding:6px 10px;border-bottom:1px solid rgba(244,241,232,.2)}
+td{padding:7px 10px;border-bottom:1px solid rgba(244,241,232,.08);font-variant-numeric:tabular-nums}
+td.num{text-align:right;font-family:'Martian Mono',monospace;font-size:11.5px}
+.side{border-left:1px solid rgba(244,241,232,.14);padding:24px;font-size:11.5px;color:rgba(244,241,232,.65);display:grid;gap:12px;align-content:start}
+.side dt{font-family:'Martian Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,232,.45)}
+.side dd{font-family:'Martian Mono',monospace;font-size:11.5px;color:#f4f1e8}
+.cap{position:relative;max-width:1100px;margin:14px auto 0;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(244,241,232,.5);padding-bottom:64px}
+</style></head><body>
+<div class="hero">
+<svg class="court" viewBox="-258 -56 516 392" preserveAspectRatio="xMidYMid slice">
+<g stroke="rgba(244,241,232,.25)" fill="none" stroke-width="1.5"><circle cx="0" cy="168" r="60"/><line x1="-258" y1="168" x2="258" y2="168"/><rect x="-90" y="168" width="180" height="190"/><circle cx="0" cy="168" r="180"/><path d="M-220 168 v60 M220 168 v60"/></g>
+<g fill="rgba(143,211,160,.5)"><circle cx="-180" cy="60" r="3"/><circle cx="-60" cy="40" r="3"/><circle cx="40" cy="80" r="3"/><circle cx="150" cy="30" r="3"/><circle cx="200" cy="110" r="3"/><circle cx="-120" cy="110" r="3"/><circle cx="90" cy="-10" r="3"/><circle cx="-30" cy="-30" r="3"/><circle cx="180" cy="240" r="3"/><circle cx="-160" cy="260" r="3"/></g>
+</svg>
+<div class="nav"><b>DIME</b><span>nba analytics, from a warehouse</span><a class="pill" href="#">GitHub</a></div>
+<div class="mid">
+<h1>Ask it like a scout.<br><em>Check it like an accountant.</em></h1>
+<p class="lede">Dime answers NBA questions with SQL you can read, on a warehouse you can download. Every number links to its rows.</p>
+<div class="cta"><a href="#">Try the demo</a><a href="#">Get the data pack</a></div>
+</div>
+<div class="win">
+<div class="winbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span>dime / ask</span><span style="margin-left:auto">silver_salaries · 2026-27</span></div>
+<div class="winbody">
+<div class="qa">
+<div class="q">Who are the highest-paid players in 2026-27?</div>
+<div class="steps"><span>Read schema · silver_salaries</span><span>Wrote SQL · SALARY_2026_27 desc</span><span>Ran on DuckDB · 5 rows</span></div>
+<div class="ans">Stephen Curry tops the 2026-27 list at $59.6M , about 36% of the cap. Nikola Jokić is right behind at $59.0M.
+<table><tr><th>Player</th><th>Team</th><th style="text-align:right">Salary</th><th style="text-align:right">Cap %</th></tr>
+<tr><td>Stephen Curry</td><td>GSW</td><td class="num">59.6</td><td class="num">36.0</td></tr>
+<tr><td>Nikola Jokić</td><td>DEN</td><td class="num">59.0</td><td class="num">35.6</td></tr>
+<tr><td>Giannis Antetokounmpo</td><td>MIL</td><td class="num">58.5</td><td class="num">35.3</td></tr></table></div>
+</div>
+<div class="side">
+<dt>table</dt><dd>silver_salaries</dd><dt>season</dt><dd>2026-27</dd><dt>source</dt><dd>bref_contracts</dd><dt>fetched</dt><dd>Nov 19, 2026</dd><dt>rows</dt><dd>464 contracts</dd>
+</div>
+</div>
+</div>
+<p class="cap">fig. 1 · a question, its SQL, and the rows it came from. 3,729,459 shots on the floor.</p>
+</div>
+</body></html>

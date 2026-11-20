@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300..700&family=Inter:wght@400..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+*{margin:0;box-sizing:border-box}
+body{background:#faf9f6;color:#1a1a16;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+.nav{display:flex;align-items:baseline;justify-content:space-between;padding:26px 0;border-bottom:1px solid #1a1a16;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.nav a{color:#1a1a16}
+.mast{padding:72px 0 56px;border-bottom:1px solid #d8d5cc}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b6a62;margin-bottom:20px}
+h1{font-family:'Source Serif 4',serif;font-weight:500;font-size:64px;line-height:1.02;letter-spacing:-.015em;max-width:760px}
+.lede{margin-top:22px;font-size:16px;line-height:1.55;color:#55544c;max-width:560px}
+.meta{margin-top:36px;display:flex;gap:36px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b6a62}
+.meta b{color:#1a1a16;font-weight:600}
+.ledger{padding:56px 0}
+h2{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b6a62;font-weight:500;margin-bottom:24px}
+.receipt{border:1px solid #d8d5cc;margin-bottom:14px;background:#fff}
+.r-head{display:grid;grid-template-columns:56px 1fr 140px;align-items:center;border-bottom:1px solid #e8e6de;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b6a62}
+.r-head span{padding:10px 14px}
+.r-head .q{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#1a1a16;letter-spacing:0}
+.r-body{display:grid;grid-template-columns:1fr 260px}
+.r-a{padding:16px;font-size:13.5px;line-height:1.55}
+.r-a table{width:100%;border-collapse:collapse;margin-top:12px;font-size:12px}
+.r-a th{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#8a897f;text-align:left;padding:5px 8px;border-bottom:1px solid #d8d5cc}
+.r-a td{padding:5px 8px;border-bottom:1px solid #f0eee8;font-variant-numeric:tabular-nums}
+.r-a td.n{text-align:right;font-family:'IBM Plex Mono',monospace}
+.r-prov{border-left:1px solid #e8e6de;padding:16px;font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:1.9;color:#6b6a62}
+.r-prov b{color:#1a1a16;font-weight:600}
+.stamp{position:absolute;right:20px;top:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a897f}
+.foot{border-top:1px solid #1a1a16;padding:24px 0 60px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6b6a62}
+</style></head><body>
+<div class="wrap">
+<div class="nav"><span><b>DIME</b> · nba analytics</span><span>vol. 2026-27</span><a href="#">github ↗</a></div>
+<div class="mast">
+<p class="kicker">A data warehouse that answers questions, and shows its work</p>
+<h1>Every number comes with a receipt.</h1>
+<p class="lede">Dime is an NBA analyst that writes its SQL in front of you, runs it on an open DuckDB warehouse, and cites the exact rows behind each claim.</p>
+<div class="meta"><span><b>3,729,459</b> shots</span><span><b>4,482,180</b> possessions</span><span><b>17</b> seasons</span><span>pack refreshed <b>Nov 19, 2026</b></span></div>
+</div>
+<div class="ledger">
+<h2>Receipts · recent answers, with their rows</h2>
+<div class="receipt">
+<div class="r-head"><span>no. 042</span><span class="q">Who are the highest-paid players in 2026-27?</span><span>silver_salaries</span></div>
+<div class="r-body"><div class="r-a">Stephen Curry leads at $59.6M, 36.0% of the $165.5M cap. Jokić follows at $59.0M.
+<table><tr><th>player</th><th>team</th><th style="text-align:right">salary $M</th><th style="text-align:right">cap %</th></tr>
+<tr><td>Stephen Curry</td><td>GSW</td><td class="n">59.6</td><td class="n">36.0</td></tr>
+<tr><td>Nikola Jokić</td><td>DEN</td><td class="n">59.0</td><td class="n">35.6</td></tr></table></div>
+<div class="r-prov">table <b>silver_salaries</b><br>season <b>2026-27</b><br>source <b>bref_contracts</b><br>fetched <b>2026-11-19</b></div></div>
+</div>
+<div class="receipt">
+<div class="r-head"><span>no. 041</span><span class="q">Which lineups have the best net rating this season?</span><span>silver_lineups</span></div>
+<div class="r-body"><div class="r-a">Among lineups with 50+ minutes played, Oklahoma City's starters lead 2026-27 at +21.4 per 100 possessions.
+<table><tr><th>lineup</th><th style="text-align:right">min</th><th style="text-align:right">net rtg</th></tr>
+<tr><td>OKC · SGA / Dort / JDub / Chet / IHart</td><td class="n">212</td><td class="n">+21.4</td></tr></table></div>
+<div class="r-prov">table <b>silver_lineups</b><br>season <b>2026-27</b><br>filter <b>MIN ≥ 50</b><br>note <b>small sample flagged</b></div></div>
+</div>
+<div class="receipt">
+<div class="r-head"><span>no. 040</span><span class="q">How does Boston's shot diet compare to 2015-16?</span><span>silver_hist_shots</span></div>
+<div class="r-body"><div class="r-a">Boston took 47.8% of its shots from three in 2025-26, up from 28.1% a decade earlier.
+<table><tr><th>season</th><th style="text-align:right">3pa rate</th><th style="text-align:right">rim rate</th></tr>
+<tr><td>2015-16</td><td class="n">28.1</td><td class="n">31.4</td></tr>
+<tr><td>2025-26</td><td class="n">47.8</td><td class="n">24.2</td></tr></table></div>
+<div class="r-prov">table <b>silver_hist_shots</b><br>seasons <b>2009-10 → 2026-27</b><br>rows <b>3,729,459</b></div></div>
+</div>
+</div>
+<div class="foot"><span>DIME · built on open data</span><span>duckdb pack · fetch · query · verify</span></div>
+</div>
+</body></html>
+<style>
+@media (max-width: 760px){
+  .wrap{padding:0 20px}
+  .mast{padding:44px 0 36px}
+  h1{font-size:40px}
+  .meta{flex-wrap:wrap;gap:16px}
+  .r-head{grid-template-columns:44px 1fr}
+  .r-head span:last-child{grid-column:1/-1;border-top:1px dashed #e8e6de;padding:6px 14px}
+  .r-body{grid-template-columns:1fr}
+  .r-prov{border-left:0;border-top:1px solid #e8e6de}
+  .foot{flex-direction:column;gap:8px}
+}
+</style>
