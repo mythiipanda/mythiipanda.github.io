@@ -19,8 +19,9 @@ export const TS_ROWS = [
 ];
 
 export const SHARE_QUERY = `select season,
-       round(100.0 * sum(case when shot_value = 3 then 1 else 0 end)
-             / count(*), 1) as three_share
+       round(100.0
+         * sum(case when shot_value = 3 then 1 else 0 end)
+         / count(*), 1) as three_share
 from silver_hist_shots
 group by season
 order by season`;
