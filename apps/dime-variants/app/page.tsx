@@ -29,12 +29,10 @@ function Fig({ n, children }: { n: string; children: React.ReactNode }) {
 
 function Head({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
   return (
-    <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-16">
-      <div className="flex flex-col gap-5">
-        <p className="eyebrow">{n}</p>
-        <h2 className="title">{title}</h2>
-      </div>
-      <p className="lede md:self-end md:justify-self-end">{children}</p>
+    <div className="flex max-w-[560px] flex-col gap-5">
+      <p className="eyebrow">{n}</p>
+      <h2 className="title">{title}</h2>
+      <p className="lede">{children}</p>
     </div>
   );
 }
