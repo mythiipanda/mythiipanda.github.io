@@ -114,7 +114,7 @@ export default function Home() {
 
         <section className="wrap py-20 md:py-24">
           <Head n="02" title="Shot charts" meta="fig. 2">Plot 3.7 million shots by court location, for the league or for one player.</Head>
-          <div className="exhibit mx-auto mt-10 max-w-[880px] p-5 md:mt-14 md:p-8">
+          <div className="exhibit mt-10 p-5 md:mt-14 md:p-8">
             <ShotMap />
           </div>
           <Fig n="2">shot density from silver_hist_shots, binned by court location.</Fig>
