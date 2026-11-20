@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { LUKA, LUKA_BINS } from "@/lib/exhibits";
 import { HEX, SEASON_BINS, THREE_SHARE } from "@/lib/shots";
 
-const SEASONS = [
-  { key: 2010, label: "2009-10", col: 2 },
-  { key: 2026, label: "2025-26", col: 3 },
-] as const;
+const share = (season: number) => THREE_SHARE.find((row) => row[0] === season)!;
+const league = (col: 2 | 3) => SEASON_BINS.map((bin) => [bin[0], bin[1], bin[col]] as [number, number, number]);
+
+const VIEWS = [
+  { key: "2010", label: "League 2009-10", bins: league(2), stats: [[`${share(2010)[1].toFixed(1)}%`, "threes"], [`${share(2010)[2].toFixed(1)}%`, "midrange"]] },
+  { key: "2026", label: "League 2025-26", bins: league(3), stats: [[`${share(2026)[1].toFixed(1)}%`, "threes"], [`${share(2026)[2].toFixed(1)}%`, "midrange"]] },
+  { key: "luka", label: LUKA.name, bins: LUKA_BINS, stats: [[LUKA.shots.toLocaleString("en-US"), "shots"], [`${LUKA.three.toFixed(1)}%`, "threes"]] },
+];
 
 const CAP = 70;
 const radius = (f: number) => (f <= 0 ? 0 : Math.max(0.9, HEX * 0.92 * Math.min(1, Math.sqrt(f / CAP))));
@@ -25,34 +30,37 @@ export function Court({ stroke }: { stroke: string }) {
 }
 
 export function ShotMap() {
-  const [season, setSeason] = useState<(typeof SEASONS)[number]>(SEASONS[1]);
-  const share = THREE_SHARE.find((row) => row[0] === season.key)!;
+  const [view, setView] = useState(VIEWS[1]);
   return (
     <figure className="m-0">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div role="group" aria-label="Season" className="inline-flex rounded-[10px] bg-inset p-1">
-          {SEASONS.map((s) => (
+        <div role="group" aria-label="Shots to plot" className="inline-flex max-w-full flex-wrap rounded-[10px] bg-inset p-1">
+          {VIEWS.map((v) => (
             <button
-              key={s.key}
+              key={v.key}
               type="button"
-              aria-pressed={season.key === s.key}
-              onClick={() => setSeason(s)}
+              aria-pressed={view.key === v.key}
+              onClick={() => setView(v)}
               className="num h-11 rounded-[8px] px-4 text-[14px] font-medium text-ink-2 transition-[background-color,color,box-shadow] duration-150 aria-pressed:bg-surface aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_var(--color-line),0_1px_2px_oklch(0_0_0/0.06)]"
             >
-              {s.label}
+              {v.label}
             </button>
           ))}
         </div>
         <p className="num text-[14px] text-ink-2" aria-live="polite">
-          <span className="font-medium text-ink">{share[1].toFixed(1)}%</span> threes ·{" "}
-          <span className="font-medium text-ink">{share[2].toFixed(1)}%</span> midrange
+          {view.stats.map(([value, unit], i) => (
+            <span key={unit}>
+              {i > 0 && " · "}
+              <span className="font-medium text-ink">{value}</span> {unit}
+            </span>
+          ))}
         </p>
       </div>
-      <svg viewBox="-258 -56 516 392" className="mt-5 block h-auto w-full" role="img" aria-label={`Where NBA shots were taken in ${season.label}. Larger dots mean more shots from that spot.`}>
-        <Court stroke="var(--color-line)" />
-        <g fill="var(--color-accent)">
-          {SEASON_BINS.map((bin) => (
-            <circle key={`${bin[0]}:${bin[1]}`} className="dot" cx={bin[0]} cy={bin[1]} r={radius(bin[season.col])} />
+      <svg viewBox="-258 -56 516 392" className="mt-5 block h-auto w-full" role="img" aria-label={`Where shots were taken: ${view.label}. Larger dots mean more shots from that spot.`}>
+        <Court stroke="var(--line-strong)" />
+        <g key={view.key === "luka" ? "luka" : "league"} fill="var(--color-accent)">
+          {view.bins.map((bin) => (
+            <circle key={`${bin[0]}:${bin[1]}`} className="dot" cx={bin[0]} cy={bin[1]} r={radius(bin[2])} />
           ))}
         </g>
       </svg>
