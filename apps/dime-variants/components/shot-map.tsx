@@ -41,7 +41,7 @@ export function ShotMap({ fill }: { fill?: boolean }) {
               type="button"
               aria-pressed={view.key === v.key}
               onClick={() => setView(v)}
-              className="num h-11 rounded-[8px] px-4 text-[14px] font-medium text-ink-2 transition-[background-color,color,box-shadow] duration-150 aria-pressed:bg-surface aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_var(--color-line),0_1px_2px_oklch(0_0_0/0.06)]"
+              className="num h-10 rounded-[8px] px-4 text-[14px] font-medium text-ink-2 transition-[background-color,color,box-shadow] duration-150 aria-pressed:bg-surface aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_var(--color-line),0_1px_2px_oklch(0_0_0/0.06)] lg:h-11"
             >
               {v.label}
             </button>
