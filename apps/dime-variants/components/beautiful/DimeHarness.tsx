@@ -185,10 +185,10 @@ const SCENARIOS: Record<string, Scenario> = {
     beat: 900,
     paneTitle: "Shot chart",
     Pane: () => (
-      <>
+      <div className="mx-auto max-w-[300px] lg:max-w-none">
         <ShotMap fill />
         <Provenance rows={[["Table", "silver_hist_shots"], ["Shots", "3,729,459"], ["Seasons", "2009-10 to 2025-26"]]} />
-      </>
+      </div>
     ),
     Answer: () => (
       <Reply intro="Threes went from 22.3% of all shots to 41.4%. The midrange gave up almost exactly that much. The chart on the right is every shot location in the season you pick.">
