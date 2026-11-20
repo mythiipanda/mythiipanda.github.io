@@ -39,12 +39,6 @@ function Head({ n, title, children }: { n: string; title: string; children: Reac
 export default function Home() {
   return (
     <>
-      <div className="border-b border-line">
-        <p className="wrap label flex items-center justify-between py-2">
-          <span>front-office memo</span>
-          <span className="hidden sm:block">nov 19, 2026 data pack</span>
-        </p>
-      </div>
       <header className="wrap flex h-[72px] items-center justify-between">
         <a href="#top" className="font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
           dime<span className="text-accent">.</span>
@@ -293,12 +287,6 @@ export default function Home() {
             <a href={README} className="text-ink-2 transition-colors hover:text-ink">Quickstart</a>
             <a href={`${REPO}/blob/main/LICENSE`} className="text-ink-2 transition-colors hover:text-ink">MIT license</a>
           </nav>
-        </div>
-        <div className="border-t border-line">
-          <div className="wrap flex h-14 flex-wrap items-center justify-between gap-2 text-[12.5px] text-ink-3">
-            <span className="label">Data pack — Nov 19, 2026</span>
-            <span className="label">Open source · bring your own model key</span>
-          </div>
         </div>
       </footer>
     </>
