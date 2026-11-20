@@ -49,19 +49,21 @@ const TAG_PALETTE: Record<string, TagColor> = {
   pink: { base: "oklch(0.67 0.19 3)" },
 };
 
+const TAG_NEUTRAL: TagColor = { base: "oklch(0.60 0.012 70)" };
+
 const TAG_COLORS: Record<string, TagColor> = {
-  Shots: TAG_PALETTE.orange,
-  Coordinates: TAG_PALETTE.cyan,
-  Possessions: TAG_PALETTE.purple,
-  "Play-by-play": TAG_PALETTE.lime,
-  Lineups: TAG_PALETTE.amber,
-  "Box scores": TAG_PALETTE.green,
-  "Game logs": TAG_PALETTE.yellow,
-  Ratings: TAG_PALETTE.magenta,
-  "Player seasons": TAG_PALETTE.cyan,
-  Draft: TAG_PALETTE.pink,
-  Standings: TAG_PALETTE.red,
-  Contracts: TAG_PALETTE.green,
+  Shots: TAG_NEUTRAL,
+  Coordinates: TAG_NEUTRAL,
+  Possessions: TAG_NEUTRAL,
+  "Play-by-play": TAG_NEUTRAL,
+  Lineups: TAG_NEUTRAL,
+  "Box scores": TAG_NEUTRAL,
+  "Game logs": TAG_NEUTRAL,
+  Ratings: TAG_NEUTRAL,
+  "Player seasons": TAG_NEUTRAL,
+  Draft: TAG_NEUTRAL,
+  Standings: TAG_NEUTRAL,
+  Contracts: TAG_NEUTRAL,
 };
 
 export type RecordRow = {
