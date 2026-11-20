@@ -89,8 +89,10 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="features" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
-          <div className="mt-8 md:mt-14">
+          <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,9fr)] md:gap-16">
+            <div className="md:self-center">
+              <Head n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
+            </div>
             <PlayerCard />
           </div>
         </section>
