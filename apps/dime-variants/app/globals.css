@@ -116,7 +116,7 @@ kbd,
 .label {
   font-family: var(--font-mono);
   font-stretch: 88%;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.02em;
   color: var(--ink-2);
 }
