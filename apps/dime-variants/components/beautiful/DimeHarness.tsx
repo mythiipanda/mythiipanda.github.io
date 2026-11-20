@@ -457,7 +457,7 @@ function PaneBody({ beat, children }: { beat: number; children: ReactNode }) {
     );
   }
 
-  return <div style={{ animation: "fade-up 400ms cubic-bezier(0.23,1,0.32,1) both" }}>{children}</div>;
+  return <div className="pb-5 lg:pb-0" style={{ animation: "fade-up 400ms cubic-bezier(0.23,1,0.32,1) both" }}>{children}</div>;
 }
 
 /* ── spreadsheet views + property inspector ───────────────────
