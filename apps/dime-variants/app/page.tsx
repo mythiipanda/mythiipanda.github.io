@@ -59,7 +59,7 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="wrap pb-24 pt-10 md:pb-32 md:pt-16">
+        <section className="wrap pb-20 pt-10 md:pb-24 md:pt-16">
           <div className="flex max-w-[720px] flex-col gap-8">
             <h1 className="display enter max-w-[12ch]">
               The open-source <em>NBA analyst.</em>
@@ -93,7 +93,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="features" className="wrap scroll-mt-8 py-24 md:py-32">
+        <section id="features" className="wrap scroll-mt-8 py-20 md:py-24">
           <Head n="01" title="Player cards">Ask about a player and get the season on one card.</Head>
           <div className="mt-10 md:mt-14">
             <PlayerCard />
@@ -103,7 +103,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section className="wrap py-24 md:py-32">
+        <section className="wrap py-20 md:py-24">
           <Head n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or for one player.</Head>
           <div className="exhibit mx-auto mt-10 max-w-[880px] p-5 md:mt-14 md:p-8">
             <ShotMap />
@@ -113,7 +113,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section className="wrap grid gap-20 py-24 md:py-32 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
+        <section className="wrap grid gap-20 py-20 md:py-24 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">03</p>
@@ -136,7 +136,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section className="wrap py-24 md:py-32">
+        <section className="wrap py-20 md:py-24">
           <Head n="05" title="Sources">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
           <div className="mt-10 grid items-stretch gap-6 md:mt-14 lg:grid-cols-2 lg:gap-8">
             <div className="exhibit flex flex-col gap-6 p-5 md:p-7">
@@ -161,7 +161,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="warehouse" className="wrap scroll-mt-8 py-24 md:py-32">
+        <section id="warehouse" className="wrap scroll-mt-8 py-20 md:py-24">
           <Head n="06" title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
           <div className="exhibit mt-10 flex h-[468px] flex-col md:mt-14">
             <RecordsTable fill />
