@@ -225,7 +225,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="quickstart" className="wrap grid scroll-mt-8 gap-10 py-16 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-32">
-          <div className="flex flex-col items-start gap-5">
+          <div className="flex flex-col items-start gap-5 md:justify-center">
             <p className="eyebrow">06</p>
             <h2 className="title">Run it locally</h2>
             <p className="lede">Clone the repo, fetch the data pack and add your own model key.</p>
