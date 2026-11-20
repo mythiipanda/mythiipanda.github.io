@@ -108,6 +108,7 @@ kbd,
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.05;
   letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
 .display em,
@@ -123,6 +124,7 @@ kbd,
   font-size: 19px;
   line-height: 1.6;
   color: var(--ink-2);
+  text-wrap: pretty;
 }
 
 .btn-ghost {
