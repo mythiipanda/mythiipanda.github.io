@@ -139,7 +139,7 @@ export default function Home() {
         <section className="wrap py-20 md:py-24">
           <Head n="05" title="Sources">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
           <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
-            <div className="flex flex-col gap-6 bg-surface p-5 md:p-7">
+            <div className="flex flex-col gap-7 bg-surface p-6 md:p-9">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
               <ToolChips steps={STEPS} diffs={[]} labels={{ header: "4 steps, 17 rows", more: "" }} />
               <figure className="m-0 mt-auto">
