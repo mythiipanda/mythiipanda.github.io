@@ -49,8 +49,7 @@ export function PlayerCard() {
             </dl>
           </div>
           <figure className="m-0 flex flex-col border-t border-line p-5 md:p-7 lg:border-l lg:border-t-0">
-            <figcaption className="text-ink-2">Points per game, by season</figcaption>
-            <ol className="m-0 mt-6 flex min-h-[200px] flex-1 list-none items-end gap-2 p-0 md:gap-3">
+            <ol className="m-0 mt-2 flex min-h-[200px] flex-1 list-none items-end gap-2 p-0 md:gap-3">
               {LUKA_TREND.map(([season, team, ppg], i) => (
                 <li key={season} className="flex h-full flex-1 flex-col justify-end gap-2">
                   <span className="num text-center text-[12.5px] font-medium">{ppg.toFixed(1)}</span>
@@ -65,10 +64,8 @@ export function PlayerCard() {
                 </li>
               ))}
             </ol>
-            <p className="label m-0 mt-5">Dallas through 2023-24, Lakers since</p>
           </figure>
         </article>
-        <p className="label m-0">silver_player_season · silver_advanced · silver_hist_player_seasons</p>
       </div>
     </div>
   );

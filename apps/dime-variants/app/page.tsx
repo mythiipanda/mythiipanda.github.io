@@ -76,8 +76,6 @@ export default function Home() {
           <div className="window window-hero window-light enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
             <DimeHarness autoplay="shots" />
           </div>
-          <p className="label mt-4 text-center">the answers here are scripted; the rows are real.</p>
-
           <dl className="enter mt-10 grid grid-cols-2 border border-line md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
             {COUNTS.map((c, i) => (
               <div key={c.n} className={`flex flex-col border-line p-6 text-center md:p-8 ${["border-b border-r md:border-b-0", "border-b md:border-b-0 md:border-r", "border-r", ""][i]}`}>
