@@ -20,7 +20,7 @@ export function Lineups() {
       </div>
       <ol className="m-0 list-none p-0">
         {LINEUPS.map(([players, team, , minutes, off, def, net], i) => (
-          <li key={players} className="grid grid-cols-[28px_minmax(0,1fr)_76px] items-center gap-3 border-b border-line px-5 py-4 last:border-0 md:px-6">
+          <li key={players} className="grid grid-cols-[28px_minmax(0,1fr)_minmax(24px,1fr)_76px] items-center gap-3 border-b border-line px-5 py-4 last:border-0 md:px-6">
             <span className="num text-[13px] text-ink-3">{i + 1}</span>
             <div className="min-w-0">
               <p className="m-0 text-[14.5px] leading-snug text-ink">
@@ -29,6 +29,7 @@ export function Lineups() {
               </p>
               <p className="num m-0 mt-1 text-[13px] text-ink-3">{minutes} min · {off.toFixed(1)} off · {def.toFixed(1)} def</p>
             </div>
+            <span className="hidden h-px self-center border-b border-dotted border-line-strong md:block" aria-hidden />
             <div className="flex flex-col items-end gap-2">
               <span className="num text-[18px] font-semibold tracking-[-0.02em] text-ink">+{net.toFixed(1)}</span>
               <Bar share={net / TOP_NET} />
@@ -49,7 +50,7 @@ export function Clutch() {
       </div>
       <ol className="m-0 list-none p-0">
         {CLUTCH.map(([player, team, , minutes, points, fg, plusMinus], i) => (
-          <li key={player} className="grid grid-cols-[28px_minmax(0,1fr)_64px] items-center gap-3 border-b border-line px-5 py-4 last:border-0 md:px-6">
+          <li key={player} className="grid grid-cols-[28px_minmax(0,1fr)_minmax(24px,1fr)_64px] items-center gap-3 border-b border-line px-5 py-4 last:border-0 md:px-6">
             <span className="num text-[13px] text-ink-3">{i + 1}</span>
             <div className="min-w-0">
               <p className="m-0 truncate text-[14.5px] text-ink">{player}</p>
@@ -57,6 +58,7 @@ export function Clutch() {
                 {team} · {minutes} min · {fg.toFixed(1)}% FG · {plusMinus > 0 ? "+" : plusMinus < 0 ? "−" : ""}{Math.abs(plusMinus)}
               </p>
             </div>
+            <span className="hidden h-px self-center border-b border-dotted border-line-strong md:block" aria-hidden />
             <div className="flex flex-col items-end gap-2">
               <span className="num text-[18px] font-semibold tracking-[-0.02em] text-ink">{points}</span>
               <Bar share={points / TOP_PTS} />
