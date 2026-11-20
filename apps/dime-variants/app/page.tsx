@@ -24,7 +24,7 @@ const LIMITS = [
 ];
 
 function Fig({ n, children }: { n: string; children: React.ReactNode }) {
-  return <figcaption className="label mt-4 flex items-baseline justify-center gap-2"><span className="text-accent">fig. {n}</span><span>{children}</span></figcaption>;
+  return <figcaption className="label mt-4 flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1"><span className="whitespace-nowrap text-accent">fig.&nbsp;{n}</span><span>{children}</span></figcaption>;
 }
 
 function Head({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
