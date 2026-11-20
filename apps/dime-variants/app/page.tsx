@@ -162,7 +162,8 @@ export default function Home() {
               <figure className="m-0 mt-auto border-t border-line pt-6">
                 <CapsuleBars
                   data={THREE_SHARE.map(([, share]) => share)}
-                  labels={THREE_SHARE.map(([season]) => `${season - 1}–${String(season).slice(2)}`)}
+                  labels={THREE_SHARE.map(([season]) => `’${String(season).slice(2)}`)}
+                  tipLabels={THREE_SHARE.map(([season]) => `${season - 1}–${String(season).slice(2)}`)}
                   color="#2b5ce6"
                   title="3PA share"
                   unit="%"

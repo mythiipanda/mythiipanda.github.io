@@ -8,13 +8,14 @@ const DEFAULT = [42, 55, 48, 63, 58, 71, 66, 79, 74, 88, 82, 94];
 export interface CapsuleBarsProps {
   data?: number[];
   labels?: string[];
+  tipLabels?: string[];
   color?: string;
   title?: string;
   unit?: string;
 }
 
 /** Capsules in full-height pale tracks; the focused period is saturated, the rest tint + hatch. */
-export function CapsuleBars({ data = DEFAULT, labels = MONTHS, color = "#fd4b23", title = "Revenue", unit = "k" }: CapsuleBarsProps) {
+export function CapsuleBars({ data = DEFAULT, labels = MONTHS, tipLabels, color = "#fd4b23", title = "Revenue", unit = "k" }: CapsuleBarsProps) {
   const ids = useChartIds();
   const [focus, setFocus] = useState(data.length - 1);
   const W = 560;
@@ -24,7 +25,7 @@ export function CapsuleBars({ data = DEFAULT, labels = MONTHS, color = "#fd4b23"
   const max = Math.max(...data) * 1.08;
   return (
     <div className="relative w-full pt-16">
-      <TipCard className="absolute left-0 top-0" title={labels[focus]} rows={[{ label: title, value: data[focus] + unit, color }]} />
+      <TipCard className="absolute left-0 top-0" title={(tipLabels ?? labels)[focus]} rows={[{ label: title, value: data[focus] + unit, color }]} />
       <svg viewBox={"0 0 " + W + " " + (H + 24)} className="w-full overflow-visible" role="img" aria-label={title + " by month"}>
         <ChartDefs ids={ids} colors={{ a: color }} />
         {data.map((v, i) => {
