@@ -7,7 +7,7 @@ import { PlayerCard } from "@/components/exhibits/player-card";
 import { GithubMark } from "@/components/mark";
 import { ShotMap } from "@/components/shot-map";
 import { THREE_SHARE } from "@/lib/shots";
-import { COUNTS, README, REPO, SHARE_QUERY } from "@/lib/site";
+import { COUNTS, COVERAGE, README, REPO, SHARE_QUERY } from "@/lib/site";
 
 const STEPS = [
   { icon: "think", label: "Thinking", chip: "Shot value is in silver_hist_shots…", mono: false, detailMono: false, detail: [{ text: "One row per shot, with its court location." }, { text: "Share is threes over all shots, by season." }] },
@@ -165,6 +165,32 @@ export default function Home() {
             <RecordsTable fill />
           </div>
           <Fig n="6">table list and row counts from the Nov 19, 2026 pack.</Fig>
+          <div className="mt-14 grid gap-8 md:mt-20 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">Coverage</p>
+              <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
+            </div>
+            <ul className="m-0 flex list-none flex-col gap-6 p-0">
+              {COVERAGE.map((c) => (
+                <li key={c.name} className="grid grid-cols-[minmax(0,1fr)_112px] items-baseline gap-4">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <span className="text-[14.5px] font-medium text-ink">{c.name}</span>
+                      <span className="num text-[12.5px] text-ink-3">{c.from} – {c.to}</span>
+                    </div>
+                    <div className="relative h-[3px] w-full bg-line-soft">
+                      <div
+                        className="absolute inset-y-0 bg-ink"
+                        style={{ left: `${((c.from - 1976) / 51) * 100}%`, right: `${((2026 - c.to) / 51) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                  <span className="label justify-self-end text-right">{c.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Fig n="7">season coverage by data kind, 1976-77 through 2026-27.</Fig>
         </section>
 
         <hr className="rule" />
