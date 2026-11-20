@@ -81,6 +81,7 @@ export default function Home() {
                   Get Dime on GitHub
                 </a>
                 <a href="#quickstart" className="btn btn-ghost">Quickstart</a>
+                <a href="#sources" className="link hidden text-[14.5px] text-ink-3 transition-colors hover:text-ink sm:block">Read the SQL it ran ↓</a>
               </div>
             </div>
           </div>
@@ -102,7 +103,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="features" className="wrap scroll-mt-8 py-20 md:py-24">
+        <section id="features" className="wrap scroll-mt-8 py-16 md:py-20">
           <Head n="01" title="Player cards" meta="fig. 1">Ask about a player and get the season on one card.</Head>
           <div className="mt-10 md:mt-14">
             <PlayerCard />
@@ -112,7 +113,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section className="wrap py-20 md:py-24">
+        <section className="wrap py-16 md:py-20">
           <Head n="02" title="Shot charts" meta="fig. 2">Plot 3.7 million shots by court location, for the league or for one player.</Head>
           <div className="exhibit mt-10 p-5 md:mt-14 md:p-8">
             <ShotMap />
@@ -122,7 +123,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section className="wrap grid gap-20 py-20 md:py-24 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
+        <section className="wrap grid gap-20 py-16 md:py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
           <div className="flex min-w-0 flex-col gap-8">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">03</p>
@@ -145,7 +146,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section className="wrap py-20 md:py-24">
+        <section id="sources" className="wrap scroll-mt-8 py-16 md:py-20">
           <Head n="05" title="Sources" meta="fig. 5">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
           <div className="mt-10 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
             <div className="flex min-w-0 flex-col gap-7 bg-surface p-6 md:p-9">
@@ -206,7 +207,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="warehouse" className="wrap scroll-mt-8 py-20 md:py-24">
+        <section id="warehouse" className="wrap scroll-mt-8 py-16 md:py-20">
           <Head n="06" title="Warehouse" meta="fig. 6 – 7">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
           <div className="window dark mt-10 md:mt-14">
             <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
