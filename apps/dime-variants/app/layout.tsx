@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans, Instrument_Serif, Martian_Mono } from "next/font/google";
 import "./globals.css";
 
-const sans = Inter({ subsets: ["latin"], variable: "--font-inter", axes: ["opsz"], display: "swap" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
+const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display", axes: ["opsz", "wdth"], display: "swap" });
+const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-serif", display: "swap" });
+const sans = Instrument_Sans({ subsets: ["latin"], variable: "--font-body", axes: ["wdth"], display: "swap" });
+const mono = Martian_Mono({ subsets: ["latin"], variable: "--font-code", axes: ["wdth"], display: "swap" });
 
 const url = "https://mythiipanda.github.io/dime-site/";
 const title = "Dime: the NBA analyst that shows its work";
@@ -24,7 +26,7 @@ export const viewport: Viewport = { colorScheme: "light", width: "device-width",
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${display.variable} ${serif.variable} ${sans.variable} ${mono.variable}`}>
       <body>{children}</body>
     </html>
   );

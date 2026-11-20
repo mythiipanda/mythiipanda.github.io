@@ -1,7 +1,8 @@
 import { DimeMark, GithubMark } from "@/components/mark";
-import { ProductWindow } from "@/components/product-window";
+import { AskDemo } from "@/components/ask-demo";
+import "@/components/ask-demo.css";
 import { Query, Sql } from "@/components/query";
-import { ShotMap } from "@/components/shot-map";
+import { Court, ShotMap } from "@/components/shot-map";
 import { ALL_BINS, HEX } from "@/lib/shots";
 import { COUNTS, COVERAGE, README, REPO, SHARE_QUERY, TS_QUERY } from "@/lib/site";
 
@@ -19,52 +20,58 @@ const LIMITS = [
 export default function Home() {
   return (
     <>
-      <header className="wrap flex h-16 items-center justify-between">
-        <a href="#top" className="flex h-11 items-center gap-2 text-[17px] font-semibold tracking-[-0.02em]" aria-label="Dime home">
-          <DimeMark size={20} />Dime
-        </a>
-        <nav className="flex items-center gap-1 text-[15px]" aria-label="Primary">
-          <a href="#warehouse" className="flex h-11 items-center rounded-[8px] px-3 text-ink-2 max-sm:hidden">Data</a>
-          <a href="#run" className="flex h-11 items-center rounded-[8px] px-3 text-ink-2 max-sm:hidden">Quickstart</a>
-          <a href={REPO} className="btn btn-quiet ml-2 px-3.5"><GithubMark size={16} />GitHub</a>
-        </nav>
-      </header>
+      <div className="hero">
+        <svg viewBox="-258 -56 516 392" preserveAspectRatio="xMidYMid slice" className="pointer-events-none absolute inset-0 size-full" aria-hidden="true">
+          <Court stroke="var(--color-court-line)" />
+          <g fill="var(--color-court-dot)">
+            {ALL_BINS.map((bin) => (
+              <circle key={`${bin[0]}:${bin[1]}`} cx={bin[0]} cy={bin[1]} r={Math.max(0.8, HEX * 0.9 * Math.min(1, Math.sqrt(bin[2] / 70)))} />
+            ))}
+          </g>
+        </svg>
+        <div className="relative">
+          <header className="wrap flex h-16 items-center justify-between">
+            <a href="#top" className="flex h-11 items-center gap-2 text-[17px] font-semibold tracking-[-0.02em] text-hero-ink" aria-label="Dime home">
+              <DimeMark size={20} />Dime
+            </a>
+            <nav className="flex items-center gap-1 text-[15px]" aria-label="Primary">
+              <a href="#warehouse" className="flex h-11 items-center rounded-[8px] px-3 text-hero-ink-2 max-sm:hidden">Data</a>
+              <a href="#run" className="flex h-11 items-center rounded-[8px] px-3 text-hero-ink-2 max-sm:hidden">Quickstart</a>
+              <a href={REPO} className="btn btn-hero ml-2 px-3.5"><GithubMark size={16} />GitHub</a>
+            </nav>
+          </header>
 
-      <main id="top">
-        <section className="wrap pt-12 md:pt-20">
-          <div className="grid items-end gap-x-16 gap-y-8 lg:grid-cols-[1fr_400px]">
-            <h1 className="display enter max-w-[13ch]">The NBA analyst that shows its work.</h1>
-            <div className="enter lg:pb-2" style={{ "--i": 1 } as React.CSSProperties}>
-              <p className="lede">Ask a basketball question in plain English. Dime writes the SQL, runs it on its own warehouse, and gives you the answer with the rows it came from.</p>
-              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
-                <a href={REPO} className="btn btn-primary"><GithubMark />View on GitHub</a>
-                <a href="#run" className="link inline-flex h-11 items-center text-[15px]">Read the quickstart</a>
+          <main id="top">
+            <section className="wrap pt-14 md:pt-20">
+              <div className="grid items-end gap-x-16 gap-y-8 lg:grid-cols-[1fr_400px]">
+                <h1 className="display enter max-w-[13ch] text-hero-ink">The NBA analyst that <span className="em">shows its work.</span></h1>
+                <div className="enter lg:pb-2" style={{ "--i": 1 } as React.CSSProperties}>
+                  <p className="lede text-hero-ink-2">Ask a basketball question in plain English. Dime writes the SQL, runs it on its own warehouse, and gives you the answer with the rows it came from.</p>
+                  <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+                    <a href={REPO} className="btn btn-primary"><GithubMark />View on GitHub</a>
+                    <a href="#run" className="link-hero inline-flex h-11 items-center text-[15px]">Read the quickstart</a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div className="enter relative mt-12 overflow-hidden rounded-[20px] bg-court md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
-            <svg viewBox="-258 -26 516 400" preserveAspectRatio="xMidYMin slice" className="absolute inset-0 size-full" aria-hidden="true">
-              <g fill="var(--color-court-dot)">
-                {ALL_BINS.map((bin) => (
-                  <circle key={`${bin[0]}:${bin[1]}`} cx={bin[0]} cy={bin[1]} r={Math.max(0.8, HEX * 0.9 * Math.min(1, Math.sqrt(bin[2] / 70)))} />
-                ))}
-              </g>
-            </svg>
-            <div className="relative px-4 pb-5 pt-24 sm:px-10 sm:pb-6 md:px-16 md:pt-40">
-              <div className="mx-auto max-w-[980px]">
-                <ProductWindow />
-                <p className="num mt-5 text-[13px] leading-[1.5] text-court-ink sm:mt-6">Behind the window: all 3,729,459 shots in the warehouse, sized by how often the league shoots from each spot.</p>
+              <div className="enter mt-14 md:mt-20" style={{ "--i": 2 } as React.CSSProperties}>
+                <div className="mx-auto max-w-[980px]">
+                  <AskDemo />
+                  <p className="mt-5 pb-16 font-mono text-[12px] leading-[1.6] text-court-ink md:pb-20">fig. 1 — 3,729,459 shots in the warehouse, sized by how often the league shoots from each spot.</p>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
+          </main>
+        </div>
+      </div>
+
+      <main>
 
         <section className="wrap grid gap-x-16 gap-y-10 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
           <div>
-            <h2 className="title">Every number has a row behind it.</h2>
-            <p className="body mt-5">Dime doesn't recall stats from memory. It queries a DuckDB warehouse and keeps the table, season and fetch date attached to each result, so you can check a figure before you repeat it.</p>
-            <p className="body mt-4">The numbers in the window above are real rows from the warehouse. This is the query that returns them.</p>
+            <p className="eyebrow">Provenance</p>
+            <h2 className="title mt-3">Every number has a row behind it.</h2>
+            <p className="body mt-5">Every answer carries the table, the season and the fetch date. The numbers in the window are real rows — this is the query that returns them.</p>
           </div>
           <div className="min-w-0 overflow-hidden rounded-[12px] bg-surface shadow-[inset_0_0_0_1px_var(--color-line)]">
             <div className="px-5 py-5"><Sql code={TS_QUERY} /></div>
@@ -87,8 +94,9 @@ export default function Home() {
         <section id="warehouse" className="rule scroll-mt-6">
           <div className="wrap grid gap-x-16 gap-y-12 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
             <div>
-              <h2 className="title">17 seasons of shots, possessions and lineups.</h2>
-              <p className="body mt-5">The warehouse ships as one DuckDB file. The map shows where the league shot from in a single season. Switch years and watch the midrange empty out.</p>
+              <p className="eyebrow">The warehouse</p>
+              <h2 className="title mt-3">17 seasons of shots, possessions and lineups.</h2>
+              <p className="body mt-5">One DuckDB file. Switch years and watch the midrange empty out.</p>
               <dl className="m-0 mt-10 grid grid-cols-2 gap-x-8 gap-y-7">
                 {COUNTS.map((count) => (
                   <div key={count.label}>
@@ -127,8 +135,9 @@ export default function Home() {
         <section className="rule">
           <div className="wrap grid gap-x-16 gap-y-10 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
             <div>
-              <h2 className="title">Where it stops.</h2>
-              <p className="body mt-5">Dime is useful because it is narrow. These are the edges you should know about before you trust it with a decision.</p>
+              <p className="eyebrow">Limits</p>
+              <h2 className="title mt-3">Where it stops.</h2>
+              <p className="body mt-5">Dime is useful because it is narrow.</p>
             </div>
             <dl className="m-0 grid gap-x-12 gap-y-9 sm:grid-cols-2">
               {LIMITS.map(([term, detail]) => (
@@ -144,8 +153,9 @@ export default function Home() {
         <section id="run" className="rule scroll-mt-6">
           <div className="wrap grid gap-x-16 gap-y-10 py-20 md:py-28 lg:grid-cols-[400px_1fr]">
             <div>
-              <h2 className="title">Run it yourself.</h2>
-              <p className="body mt-5">Dime is MIT licensed. Clone it, fetch the data pack and add your model keys. You need Node 22.19 or later and Python 3.12.</p>
+              <p className="eyebrow">MIT licensed</p>
+              <h2 className="title mt-3">Run it yourself.</h2>
+              <p className="body mt-5">Clone it, fetch the data pack, add your model keys. Node 22.19+, Python 3.12.</p>
               <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
                 <a href={REPO} className="btn btn-quiet"><GithubMark />View on GitHub</a>
                 <a href={README} className="link inline-flex h-11 items-center text-[15px]">Full quickstart in the README</a>
