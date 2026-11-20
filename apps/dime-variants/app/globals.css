@@ -213,6 +213,12 @@ kbd,
   height: min(640px, max(520px, 68vh));
 }
 
+@media (max-width: 1023px) {
+  .window-hero {
+    height: min(860px, 86vh);
+  }
+}
+
 .window-light {
   background: var(--surface);
   box-shadow: 0 0 0 1px var(--line-strong);
