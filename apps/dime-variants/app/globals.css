@@ -185,7 +185,7 @@ kbd,
 }
 
 .window-hero {
-  height: min(760px, max(560px, 78vh));
+  height: min(640px, max(520px, 68vh));
 }
 
 .exhibit {
