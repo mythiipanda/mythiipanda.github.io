@@ -156,7 +156,7 @@ export default function Home() {
                 </li>
               ))}
             </ol>
-              <figure className="m-0 mt-auto">
+              <figure className="m-0 mt-auto border-t border-line pt-6">
                 <ol className="m-0 flex h-24 list-none items-end gap-1 p-0" aria-hidden>
                   {THREE_SHARE.map(([season, share]) => (
                     <li key={season} className={`flex-1 rounded-t-[3px] ${season === 2026 ? "bg-accent" : "bg-line-strong"}`} style={{ height: `${(share / 41.4) * 100}%` }} />
