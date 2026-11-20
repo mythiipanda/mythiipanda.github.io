@@ -55,14 +55,15 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="wrap pb-14 pt-8 md:pb-24 md:pt-16">
-          <div className="flex max-w-[720px] flex-col gap-8">
-            <h1 className="display enter max-w-[12ch]">
+        <section className="wrap relative pb-14 pt-10 md:pb-24 md:pt-[72px]">
+          <div className="hero-grid" aria-hidden="true" />
+          <div className="relative mx-auto flex max-w-[780px] flex-col items-center gap-8 text-center">
+            <h1 className="display enter max-w-[14ch]">
               The open-source <em>NBA analyst.</em>
             </h1>
-            <div className="enter flex flex-col gap-6" style={{ "--i": 1 } as React.CSSProperties}>
-              <p className="lede">Ask a question in plain English. Dime runs it against 17 seasons of NBA data on your machine and shows you the query.</p>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <div className="enter flex flex-col items-center gap-6" style={{ "--i": 1 } as React.CSSProperties}>
+              <p className="lede mx-auto">Ask a question in plain English. Dime runs it against 17 seasons of NBA data on your machine and shows you the query.</p>
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 <a href={REPO} className="btn btn-primary">
                   <GithubMark size={17} />
                   Get Dime on GitHub
