@@ -195,7 +195,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
+          <div className="mt-8 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">Coverage</p>
               <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
@@ -224,7 +224,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="quickstart" className="wrap grid scroll-mt-8 gap-10 py-16 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-32">
+        <section id="quickstart" className="wrap grid scroll-mt-8 gap-10 py-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-20">
           <div className="flex flex-col items-start gap-5 md:justify-center">
             <p className="eyebrow">06</p>
             <h2 className="title">Run it locally</h2>
