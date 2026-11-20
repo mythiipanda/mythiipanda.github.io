@@ -100,7 +100,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section className="wrap py-12 md:py-20">
-          <Head n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or for one player.</Head>
+          <Head n="02" title="Shot charts">Plot 3.7 million shots by court location, for the league or one player.</Head>
           <div className="exhibit mt-8 p-4 md:mt-14 md:p-8">
             <ShotMap />
           </div>
@@ -111,7 +111,7 @@ export default function Home() {
         <section className="wrap py-12 md:py-20">
           <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,9fr)] md:gap-16">
             <div className="md:self-center">
-              <Head n="03" title="Lineups + clutch">Rank five-man units by net rating, then find who scores in the last five minutes of close games.</Head>
+              <Head n="03" title="Lineups + clutch">Rank five-man units by net rating, then who scores in the last five minutes of close games.</Head>
             </div>
             <div className="grid min-w-0 gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,3fr)] lg:gap-10">
               <div className="min-w-0">
@@ -127,7 +127,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="sources" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head n="04" title="Sources">Open any answer to read the SQL Dime ran and the rows it returned.</Head>
+          <Head n="04" title="Sources">Open any answer for the SQL Dime ran and the rows it returned.</Head>
           <div className="mt-8 grid items-stretch gap-px overflow-hidden rounded-[2px] border border-line bg-line md:mt-14 lg:grid-cols-2">
             <div className="flex min-w-0 flex-col gap-7 bg-surface p-6 md:p-9">
               <p className="m-0 max-w-[85%] self-end rounded-[16px] rounded-br-[6px] bg-hover-2 px-4 py-2.5 text-[14.5px] text-ink">How has shot selection changed since 2009-10?</p>
@@ -202,7 +202,7 @@ export default function Home() {
           <div className="mt-8 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
             <div className="flex flex-col gap-5">
               <p className="eyebrow">Coverage</p>
-              <p className="lede max-w-none">Where the seasons start and stop for each kind of data.</p>
+              <p className="lede max-w-none">Where each kind of data starts and stops.</p>
             </div>
             <ul className="m-0 flex list-none flex-col gap-7 p-0">
               {COVERAGE.map((c) => (
