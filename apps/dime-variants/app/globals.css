@@ -96,9 +96,10 @@ kbd,
 
 .lede {
   margin: 0;
-  max-width: 34ch;
-  font-size: 18px;
-  line-height: 1.45;
+  max-width: 36ch;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.5;
   color: var(--ink-2);
 }
 
