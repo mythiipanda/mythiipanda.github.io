@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { Check, Download, Pin, Scale, Search } from "lucide-react";
-import { ActionPill, Card, Cell, Headshot, Pill } from "./app-shell";
+import { Check, Download, Pin } from "lucide-react";
+import { ActionPill, Card, Cell, Headshot } from "./app-shell";
 import { CLUTCH, CLUTCH_COUNT, LINEUPS, LINEUP_COUNT } from "@/lib/exhibits";
 
 function K({ children }: { children: ReactNode }) {
@@ -66,11 +66,10 @@ function NotebookPane() {
       <div className="mx-auto flex h-full max-w-[640px] flex-col gap-3 overflow-hidden">
         <Cell n={1} kind="ask" meta={<span className="font-mono text-[11px]">11:42</span>}>
           <p className="text-[13.5px] leading-6 text-ink">
-            Who leads the league in true shooting among rotation players?{" "}
-            <Pill>@silver_advanced</Pill> <Pill>/leaderboard</Pill>
+            Who leads the league in true shooting among rotation players?
           </p>
         </Cell>
-        <Cell n={2} kind="sql" meta={<ActionPill icon={<Check size={12} />}>5 rows · 41 ms</ActionPill>}>
+        <Cell n={2} kind="sql">
           <pre className="font-mono text-[12px] leading-6 text-ink-2">
             <K>select</K> PLAYER_NAME, TEAM, {"\n"}
             {"       "}TS_PCT, USG_PCT {"\n"}
@@ -115,13 +114,13 @@ function NotebookPane() {
 function BoardsPane() {
   return (
       <div className="grid h-full grid-cols-1 gap-3 overflow-hidden md:grid-cols-2">
-        <Card title="Five-man net rating" source="silver_lineups · min 200 poss" wide>
+        <Card title="Five-man net rating" wide>
           <Bars
             max={28}
             rows={LINEUPS.map(([names, team, gp, poss, ortg, drtg, net]) => [`${names.split(" - ")[0]} +4 · ${team}`, net] as [string, number])}
           />
         </Card>
-        <Card title="Clutch scoring" source="silver_boxscores · ≤5 pts, 4Q/OT">
+        <Card title="Clutch scoring">
           <MiniTable
             head={["player", "pts", "fg%", "gp"]}
             rows={CLUTCH.slice(0, 4).map(([name, team, gp, pts, fga, fg, pm]) => [name, String(pts), fg.toFixed(1), String(gp)])}
@@ -139,7 +138,7 @@ function BoardsPane() {
           <div className="col-span-2 rounded-[12px] bg-surface p-4 shadow-[0_0_0_1px_var(--line)]">
             <div className="flex items-baseline justify-between">
               <span className="num text-[22px] font-medium tabular-nums text-ink">{LINEUP_COUNT}</span>
-              <span className="font-mono text-[11px] text-ink-3">lineups ≥ 200 poss</span>
+              <span className="font-mono text-[11px] text-ink-3">qualified lineups</span>
             </div>
             <div className="mt-3 flex h-10 items-end gap-[3px]">
               {LINEUPS.map((l, i) => (
@@ -276,8 +275,7 @@ function TradesPane() {
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[12px]">
           <span className="text-ink-2">out <span className="tabular-nums text-ink">$58.5M</span></span>
           <span className="text-ink-2">in <span className="tabular-nums text-ink">$58.5M</span></span>
-          <span className="text-ink-2">match <span className="tabular-nums text-ink">100.0%</span></span>
-          <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] text-ink-2"><Check size={12} className="text-accent-ink" />both below second apron</span>
+          <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] text-ink-2"><Check size={12} className="text-accent-ink" />legal</span>
         </div>
       </div>
     </>
@@ -295,16 +293,12 @@ function ReportPane() {
         <div className="min-w-0 flex-1 overflow-hidden px-4 py-4 md:px-8 md:py-6">
           <div className="mx-auto max-w-[560px]">
             <h3 className="text-[17px] font-semibold text-ink">Midseason efficiency review</h3>
-            <div className="mt-1 flex items-center gap-2 font-mono text-[11px] text-ink-3">
-              <span>generated from true-shooting</span>
-              <span>·</span>
-              <span>4 sources</span>
-            </div>
+
             <p className="mt-4 text-[13.5px] leading-7 text-ink-2">
-              Among <span className="font-medium text-ink">164 rotation players</span> (≥1,500 minutes), Luke Kennard leads the league at <span className="font-mono text-[13px] font-medium text-ink">68.9%</span> true shooting, edging Jalen Duren (<span className="font-mono text-[13px] text-ink">68.8%</span>) on a third of the usage. <Pill>silver_advanced</Pill>
+              Among <span className="font-medium text-ink">164 rotation players</span> (≥1,500 minutes), Luke Kennard leads the league at <span className="font-mono text-[13px] font-medium text-ink">68.9%</span> true shooting, edging Jalen Duren (<span className="font-mono text-[13px] text-ink">68.8%</span>) on a third of the usage.
             </p>
             <p className="mt-3 text-[13.5px] leading-7 text-ink-2">
-              Nikola Jokić remains the workload outlier — top-five efficiency (<span className="font-mono text-[13px] text-ink">67.0%</span>) at <span className="font-mono text-[13px] text-ink">28.9%</span> usage, nearly double every other name on the board. <Pill>silver_advanced</Pill>
+              Nikola Jokić remains the workload outlier — top-five efficiency (<span className="font-mono text-[13px] text-ink">67.0%</span>) at <span className="font-mono text-[13px] text-ink">28.9%</span> usage, nearly double every other name on the board.
             </p>
             <div className="mt-4 rounded-[10px] bg-field p-3.5">
               <MiniTable
@@ -317,7 +311,7 @@ function ReportPane() {
               />
             </div>
             <p className="mt-4 text-[13.5px] leading-7 text-ink-2">
-              The clutch pool stands at <span className="font-mono text-[13px] text-ink">492 qualified players</span>; Shai Gilgeous-Alexander tops it at 175 points on 51.5% shooting. <Pill>silver_boxscores</Pill>
+              The clutch pool stands at <span className="font-mono text-[13px] text-ink">492 qualified players</span>; Shai Gilgeous-Alexander tops it at 175 points on 51.5% shooting.
             </p>
           </div>
         </div>
@@ -349,14 +343,7 @@ export const PANES = [
     label: "Scouting",
     active: "explore",
     crumb: "scouting / efficiency-board",
-    actions: (
-      <>
-        <span className="hidden h-7 items-center gap-2 rounded-full bg-field px-3 font-mono text-[11px] text-ink-3 shadow-[0_0_0_1px_var(--line)] sm:inline-flex">
-          <Search size={12} /> min 1,500 min
-        </span>
-        <ActionPill>2 comparing</ActionPill>
-      </>
-    ),
+    actions: <ActionPill>2 comparing</ActionPill>,
     paneClass: "flex flex-col px-0 py-0",
     body: <ScoutPane />,
   },
@@ -365,7 +352,7 @@ export const PANES = [
     label: "Trades",
     active: "trades",
     crumb: "trades / giannis-ad",
-    actions: <ActionPill icon={<Scale size={12} />}>legal · within 125%</ActionPill>,
+    actions: <ActionPill icon={<Check size={12} />}>legal</ActionPill>,
     paneClass: "flex flex-col px-3 py-4 md:px-5 md:py-5",
     body: <TradesPane />,
   },
