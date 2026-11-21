@@ -319,10 +319,15 @@ const ARTIFACT_META: Record<string, { title: string; kind: string }> = {
   report: { title: "midseason review", kind: "report" },
 };
 
-function ArtifactPanel({ skeleton = false, kind = "board" }: { skeleton?: boolean; kind?: string }) {
+function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean }) {
   const meta = ARTIFACT_META[kind] ?? ARTIFACT_META.board;
+  const outer = framed
+    ? "flex w-full flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line"
+    : wide
+      ? "hidden w-[58%] min-w-[400px] shrink-0 flex-col border-l border-line bg-surface md:flex"
+      : "hidden w-[46%] min-w-[360px] max-w-[440px] shrink-0 flex-col border-l border-line bg-surface md:flex";
   return (
-    <section className="hidden w-[46%] min-w-[360px] max-w-[440px] shrink-0 flex-col border-l border-line bg-surface md:flex">
+    <section className={outer}>
       <div className="flex h-11 shrink-0 items-center gap-2 border-b border-line px-4">
         <PinIcon className="size-3.5 shrink-0 text-icon-muted" />
         <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{meta.title}</span>
@@ -436,7 +441,7 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNo
   },
 };
 
-function ThreadLane({ pending = false, kind = "board" }: { pending?: boolean; kind?: string }) {
+function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }: { pending?: boolean; kind?: string; inlineArtifact?: boolean }) {
   const t = THREADS[kind] ?? THREADS.board;
   return (
     <div className="mx-auto flex w-full max-w-[46rem] flex-col gap-3 px-5 py-5">
@@ -456,20 +461,26 @@ function ThreadLane({ pending = false, kind = "board" }: { pending?: boolean; ki
       {!pending && (
         <div className="mt-1 text-sm leading-7 text-ink-2">
           {t.a}
-          <div className="mt-3">
-            <span className="inline-flex h-8 items-center gap-2 rounded-md bg-surface px-2.5 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line">
-              <PinIcon className="size-3 text-accent-ink" />
-              {t.link}
-              <ArrowRightIcon className="size-3 text-icon-muted" />
-            </span>
-          </div>
+          {inlineArtifact ? (
+            <div className="mt-3 max-w-[560px]">
+              <ArtifactPanel kind={kind} framed />
+            </div>
+          ) : (
+            <div className="mt-3">
+              <span className="inline-flex h-8 items-center gap-2 rounded-md bg-surface px-2.5 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line">
+                <PinIcon className="size-3 text-accent-ink" />
+                {t.link}
+                <ArrowRightIcon className="size-3 text-icon-muted" />
+              </span>
+            </div>
+          )}
         </div>
       )}
     </div>
   );
 }
 
-export function ChatWindow({ state = "split", artifact = "board", rail = true }: { state?: "home" | "split" | "pending"; artifact?: string; rail?: boolean }) {
+export function ChatWindow({ state = "split", artifact = "board", rail = true, layout = "split" }: { state?: "home" | "split" | "pending"; artifact?: string; rail?: boolean; layout?: "split" | "inline" | "focus" }) {
   const isHome = state === "home";
   return (
     <div className="flex h-full min-h-0 w-full bg-canvas text-ink">
@@ -518,7 +529,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true }:
             <>
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="min-h-0 flex-1 overflow-hidden">
-                  <ThreadLane pending={state === "pending"} kind={artifact} />
+                  <ThreadLane pending={state === "pending"} kind={artifact} inlineArtifact={layout === "inline"} />
                 </div>
                 <div className="shrink-0 px-5 pb-4">
                   <div className="mx-auto w-full max-w-[46rem]">
@@ -526,7 +537,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true }:
                   </div>
                 </div>
               </div>
-              <ArtifactPanel skeleton={state === "pending"} kind={artifact} />
+              {layout !== "inline" && <ArtifactPanel skeleton={state === "pending"} kind={artifact} wide={layout === "focus"} />}
             </>
           )}
         </div>
