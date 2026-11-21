@@ -26,35 +26,35 @@ function ScoutPane() {
   return (
     <>
       <div className="min-h-0 flex-1 overflow-hidden">
-        <Table variant="default" size="default" scrollFade={false}>
+        <Table variant="default" size="xs" scrollFade={false}>
           <TableHeader>
             <TableRow>
-              <TableHead className="h-9 w-8 px-3 text-[11px]">#</TableHead>
-              <TableSortHead id="player" sort={sort} onSort={toggle} title="player" className="h-9 px-3" />
-              <TableSortHead id="team" sort={sort} onSort={toggle} title="team" className="h-9 px-3" />
-              <TableSortHead id="ts" sort={sort} onSort={toggle} title="ts%" align="end" className="h-9 px-3" />
-              <TableSortHead id="usg" sort={sort} onSort={toggle} title="usg%" align="end" className="h-9 px-3" />
-              <TableHead className="hidden h-9 px-3 text-[11px] lg:table-cell">trend</TableHead>
-              <TableSortHead id="age" sort={sort} onSort={toggle} title="age" align="end" className="hidden h-9 px-3 lg:table-cell" />
+              <TableHead className="w-8 px-3 text-[11px]">#</TableHead>
+              <TableSortHead id="player" sort={sort} onSort={toggle} title="player" className="px-3" />
+              <TableSortHead id="team" sort={sort} onSort={toggle} title="team" className="px-3" />
+              <TableSortHead id="ts" sort={sort} onSort={toggle} title="ts%" align="end" className="px-3" />
+              <TableSortHead id="usg" sort={sort} onSort={toggle} title="usg%" align="end" className="px-3" />
+              <TableHead className="hidden px-3 text-[11px] lg:table-cell">trend</TableHead>
+              <TableSortHead id="age" sort={sort} onSort={toggle} title="age" align="end" className="hidden px-3 lg:table-cell" />
             </TableRow>
           </TableHeader>
           <TableBody>
             {rows.map((p, i) => (
-              <TableRow key={p.name} className={`rise-in ${i < 2 ? "bg-accent-tint/60" : ""}`} style={{ animationDelay: `${i * 55}ms` }}>
-                <TableCell className="h-11 w-8 px-3 font-mono text-[12px] text-ink-3">
+              <TableRow key={p.name} className="rise-in" style={{ animationDelay: `${i * 55}ms` }}>
+                <TableCell className="w-8 px-3 font-mono text-[12px] text-ink-3">
                   <span className={`inline-flex h-5 w-5 items-center justify-center rounded-[5px] ${i < 2 ? "bg-accent/15 font-medium text-accent-ink" : ""}`}>{i + 1}</span>
                 </TableCell>
-                <TableCell className="h-11 px-3">
-                  <span className="flex items-center gap-2.5">
-                    <Headshot src={p.img} alt={p.name} size={26} />
+                <TableCell className="px-3">
+                  <span className="flex h-8 items-center gap-2">
+                    <Headshot src={p.img} alt={p.name} size={18} />
                     <span className="truncate text-[13px] font-medium text-ink">{p.name}</span>
                   </span>
                 </TableCell>
-                <TableCell className="h-11 px-3 font-mono text-[12px] text-ink-2">{p.team}</TableCell>
-                <TableCell align="end" className="h-11 px-3 font-mono text-[12.5px] font-medium text-ink">{p.ts}</TableCell>
-                <TableCell align="end" className="h-11 px-3 font-mono text-[12.5px] text-ink-2">{p.usg}</TableCell>
-                <TableCell className="hidden h-11 px-3 lg:table-cell"><Spark points={p.trend} w={60} h={18} /></TableCell>
-                <TableCell align="end" className="hidden h-11 px-3 font-mono text-[12.5px] text-ink-2 lg:table-cell">{p.age}</TableCell>
+                <TableCell className="px-3 font-mono text-[12px] text-ink-2">{p.team}</TableCell>
+                <TableCell align="end" className="px-3 text-[12.5px] tabular-nums text-ink">{p.ts}</TableCell>
+                <TableCell align="end" className="px-3 text-[12.5px] tabular-nums text-ink-3">{p.usg}</TableCell>
+                <TableCell className="hidden px-3 lg:table-cell"><Spark points={p.trend} w={60} h={16} /></TableCell>
+                <TableCell align="end" className="hidden px-3 text-[12.5px] tabular-nums text-ink-3 lg:table-cell">{p.age}</TableCell>
               </TableRow>
             ))}
           </TableBody>
