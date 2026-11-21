@@ -90,6 +90,13 @@ const INITIAL_ROWS: RecordRow[] = [
   { id: "contracts", name: "silver_contracts", tags: ["Contracts"], last: "3,032", strength: "strong", coverage: "Through 2026-27", website: "huggingface" },
 ];
 
+const SOURCE_URLS: Record<string, string> = {
+  sportsdataverse: "https://github.com/sportsdataverse",
+  nba_api: "https://github.com/swar/nba_api",
+  fivethirtyeight: "https://github.com/fivethirtyeight/data",
+  huggingface: "https://huggingface.co/datasets/mythiix/dime-warehouse",
+};
+
 /* the AI column resolves to fictional competitor pairs */
 const AI_LABEL = "Join keys";
 const COMPETITOR_POOL = [
@@ -663,11 +670,11 @@ export default function RecordsTable({ rows = INITIAL_ROWS, fill = false }: { ro
               const selectedRow = selected.has(row.id);
               const strength = STRENGTH[row.strength];
               return <tr key={row.id} className={`records-row ${selectedRow ? "is-selected" : ""}`}>
-                <td className={`records-cell records-sticky-cell records-company-cell ${prop?.col === "Table" ? "is-colsel" : ""}`}><span className="records-rownum">{index + 1}</span><Checkbox checked={selectedRow} onChange={() => toggleRow(row.id)} label={`Select ${row.name}`} /><span className="records-company-mark">{row.name.replace(/^silver_(hist_)?/, "").slice(0, 1).toUpperCase()}</span><a href="#" onClick={(event) => event.preventDefault()} title={row.name} className="records-company-name">{row.name}</a></td>
+                <td className={`records-cell records-sticky-cell records-company-cell ${prop?.col === "Table" ? "is-colsel" : ""}`}><span className="records-rownum">{index + 1}</span><Checkbox checked={selectedRow} onChange={() => toggleRow(row.id)} label={`Select ${row.name}`} /><span className="records-company-mark">{row.name.replace(/^silver_(hist_)?/, "").slice(0, 1).toUpperCase()}</span><span title={row.name} className="records-company-name">{row.name}</span></td>
                 <td className={`records-cell ${prop?.col === "Kind" ? "is-colsel" : ""}`}>{isCalc("Kind", index) ? <CalcCell /> : <TagList tags={row.tags} />}</td>
                 <td className={`records-cell ${row.last === "No contact" ? "records-muted" : ""} ${prop?.col === "Rows" ? "is-colsel" : ""}`}>{isCalc("Rows", index) ? <CalcCell /> : row.last}</td>
                 <td className={`records-cell ${prop?.col === "Coverage" ? "is-colsel" : ""}`}>{isCalc("Coverage", index) ? <CalcCell /> : <span className="records-strength"><span className="records-strength-dot" style={{ background: strength.color }} />{row.coverage ?? strength.label}</span>}</td>
-                <td className={`records-cell ${prop?.col === "Source" ? "is-colsel" : ""}`}>{isCalc("Source", index) ? <CalcCell /> : row.website ? <span className="records-link" title={row.website}><span className="records-link-label">{row.website}</span></span> : <span className="records-muted">—</span>}</td>
+                <td className={`records-cell ${prop?.col === "Source" ? "is-colsel" : ""}`}>{isCalc("Source", index) ? <CalcCell /> : row.website ? <a href={SOURCE_URLS[row.website]} target="_blank" rel="noreferrer" className="records-link" title={row.website} onClick={(event) => event.stopPropagation()}><span className="records-link-label">{row.website}</span></a> : <span className="records-muted">—</span>}</td>
                 {aiAdded && (
                   <td className={`records-cell ${prop?.col === AI_LABEL ? "is-colsel" : ""}`}>
                     {calc?.col === AI_LABEL ? (index < calc.resolved ? competitorsFor(index) : <CalcCell />) : aiDone ? competitorsFor(index) : <span className="records-muted">—</span>}
