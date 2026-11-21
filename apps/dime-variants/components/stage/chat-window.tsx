@@ -546,9 +546,10 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
     setSentQ(text);
     setPending(true);
     setPendingSticky(false);
-    setView("board");
+    const t = text.toLowerCase();
+    setView(/trade|apron|deal/.test(t) ? "trade" : /report|morning|packet/.test(t) ? "report" : "board");
   };
-  const crumb = isHome ? "Home" : pending ? (sentQ ?? "season: mid points") : (THREADS[view] ?? THREADS.board).link;
+  const crumb = isHome ? "Home" : sentQ ?? (THREADS[view] ?? THREADS.board).link;
   return (
     <div className="flex h-full min-h-0 w-full bg-canvas text-ink">
       {rail && (
