@@ -72,18 +72,21 @@ export default function Home() {
               <UiClip cover src="/dime-site/clips/chats.mp4" poster="/dime-site/clips/chats-poster.jpg" label="Dime's sidebar: switching between a midseason review, a trade check and the leaders board" />
             </div>
           </div>
-          <div className="mt-4 grid gap-4 md:mt-10 md:grid-cols-2">
-            {(["notebook", "scouting"] as const).map((id) => {
-              const pane = PANES.find((p) => p.id === id)!;
-              return (
-                <div key={id} className="h-[240px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line">
-                  <div className="flex h-11 items-center gap-2 border-b border-line px-4">
-                    <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{pane.crumb.split(" / ")[1]}</span>
+          <div className="mt-4 grid gap-4 md:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+            <UiClip cover src="/dime-site/clips/tabs.mp4" poster="/dime-site/clips/tabs-poster.jpg" label="Dime's artifact panel: switching between leaders, trade and review tabs, then sorting a column" />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {(["notebook", "scouting"] as const).map((id) => {
+                const pane = PANES.find((p) => p.id === id)!;
+                return (
+                  <div key={id} className="h-[240px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line">
+                    <div className="flex h-11 items-center gap-2 border-b border-line px-4">
+                      <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{pane.crumb.split(" / ")[1]}</span>
+                    </div>
+                    <div className="h-[calc(100%-45px)] overflow-hidden">{pane.body}</div>
                   </div>
-                  <div className="h-[calc(100%-45px)] overflow-hidden">{pane.body}</div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </section>
 
