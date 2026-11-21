@@ -115,7 +115,7 @@ export default function DiffTable({
                   style={{ background: out ? "var(--red-tint)" : undefined }}
                 >
                   <td
-                    className="primitive-table-cell text-[13px] font-medium tabular-nums transition-colors duration-200"
+                    className="primitive-table-cell min-w-0 break-words text-[13px] font-medium tabular-nums transition-colors duration-200"
                     style={{ color: out ? "var(--red)" : "var(--ink)" }}
                   >
                     {row.id}
@@ -174,7 +174,7 @@ export default function DiffTable({
                       }`}
                       style={{ background: edits[row.key] ? "var(--green-tint)" : undefined }}
                     >
-                      <span className="primitive-table-cell text-[13px] font-medium tabular-nums transition-colors duration-200" style={{ color: edits[row.key] ? "var(--green)" : "var(--ink-3)" }}>
+                      <span className="primitive-table-cell min-w-0 break-words text-[13px] font-medium tabular-nums transition-colors duration-200" style={{ color: edits[row.key] ? "var(--green)" : "var(--ink-3)" }}>
                         {row.id}
                       </span>
                       <span className="primitive-table-cell">
