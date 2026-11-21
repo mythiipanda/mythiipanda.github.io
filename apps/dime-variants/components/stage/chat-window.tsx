@@ -323,10 +323,10 @@ const ARTIFACT_META: Record<string, { title: string; kind: string }> = {
   report: { title: "midseason review", kind: "report" },
 };
 
-function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean }) {
+export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean }) {
   const meta = ARTIFACT_META[kind] ?? ARTIFACT_META.board;
   const outer = framed
-    ? "flex w-full flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line"
+    ? "flex h-full w-full flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line"
     : wide
       ? "hidden w-[58%] min-w-[400px] shrink-0 flex-col border-l border-line bg-surface md:flex"
       : "hidden w-[46%] min-w-[360px] max-w-[440px] shrink-0 flex-col border-l border-line bg-surface md:flex";

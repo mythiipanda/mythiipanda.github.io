@@ -2,7 +2,7 @@ import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
 import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
-import { ChatWindow } from "@/components/stage/chat-window";
+import { ChatWindow, ArtifactPanel } from "@/components/stage/chat-window";
 import { COUNTS, COVERAGE, README, REPO } from "@/lib/site";
 
 const QUICKSTART = ["git clone https://github.com/mythiipanda/dime", "cd dime", "./scripts/fetch-data.sh"];
@@ -13,13 +13,6 @@ const LIMITS = [
   ["Keys", "Chat runs on your own model provider keys."],
 ];
 
-const SURFACES = [
-  ["Notebooks", "Ask in English; the SQL, rows and chart stay as cells."],
-  ["Boards", "Pin any artifact into a live dashboard."],
-  ["Scouting", "Ranked boards over the real tables, with faces."],
-  ["Trades", "Build a deal; the cap math stays live."],
-  ["Reports", "Memos with every number cited to its table."],
-];
 
 function Head({ n, title, children }: { n: string; title: string; children?: React.ReactNode }) {
   return (
@@ -86,15 +79,14 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="platform" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head n="01" title="One platform for NBA work" />
-          <ul className="m-0 mt-8 flex list-none flex-col p-0 md:mt-14">
-            {SURFACES.map(([name, line], i) => (
-              <li key={name} className={`grid grid-cols-[120px_1fr] items-baseline gap-4 border-t border-line py-4 md:grid-cols-[200px_1fr] md:py-5 ${i === SURFACES.length - 1 ? "border-b" : ""}`}>
-                <span className="text-[15px] font-medium text-ink">{name}</span>
-                <span className="text-[14.5px] text-ink-2">{line}</span>
-              </li>
+          <Head n="01" title="Artifacts, not answers" />
+          <div className="mt-8 grid gap-4 md:mt-14 md:grid-cols-3">
+            {(["board", "trade", "report"] as const).map((k) => (
+              <div key={k} className="h-[320px] overflow-hidden">
+                <ArtifactPanel kind={k} framed />
+              </div>
             ))}
-          </ul>
+          </div>
         </section>
 
         <hr className="rule" />
