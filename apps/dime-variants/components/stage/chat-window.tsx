@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { Headshot } from "./app-shell";
 import DiffTable from "../beautiful/primitives/DiffTable";
-import { Spark } from "./stills";
 import ToolChips, { type ToolStep } from "../beautiful/primitives/ToolChips";
 import ThinkingState from "../beautiful/primitives/ThinkingState";
 import ApprovalCard from "../beautiful/primitives/ApprovalCard";
@@ -42,8 +41,8 @@ function Composer({ focused = false }: { focused?: boolean }) {
     <PromptBar
       variant="Rounded"
       demo={false}
-      tall={focused}
-      placeholder="Ask anything. @ players, / boards, $ trades"
+      tall
+      placeholder={focused ? "Ask anything. @ players, / boards, $ trades" : "Ask anything"}
     />
   );
 }
@@ -210,7 +209,6 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
               <TableSortHead id="player" sort={sort} onSort={toggleSort} title="player" className="text-[11px]" />
               <TableSortHead id="ts" sort={sort} onSort={toggleSort} title="ts%" align="end" className="text-[11px]" />
               <TableSortHead id="usg" sort={sort} onSort={toggleSort} title="usg%" align="end" className="text-[11px]" />
-              <TableHead className="text-[11px]">trend</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -232,27 +230,20 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
                     <TableCell align="end">
                       <span className="inline-block h-2.5 w-8 animate-pulse rounded bg-field" />
                     </TableCell>
-                    <TableCell>
-                      <span className="inline-block h-4 w-14 animate-pulse rounded bg-field" />
-                    </TableCell>
                   </TableRow>
                 ))
               : boardRows.map((p, i) => (
                   <TableRow key={p.name} className={i === 0 ? "bg-accent-tint/50" : ""}>
                     <TableCell>
-                      <span className="flex items-center gap-2.5">
-                        <Headshot src={p.img} alt={p.name} size={24} />
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-[13px] font-medium leading-4 text-ink">{p.name}</span>
-                          <span className="block text-[11px] leading-4 text-secondary-label">{p.team}</span>
-                        </span>
+                      <span className="flex h-9 items-center gap-2.5">
+                        <Headshot src={p.img} alt={p.name} size={22} />
+                        <span className="truncate text-[13px] font-medium text-ink">{p.name}</span>
+                        <span className="shrink-0 font-mono text-[11px] text-ink-3">{p.team}</span>
                       </span>
                     </TableCell>
-                    <TableCell align="end" className="font-mono text-[13px] font-medium text-ink">{p.ts}</TableCell>
-                    <TableCell align="end" className="font-mono text-[13px] text-ink-2">{p.usg}</TableCell>
-                    <TableCell>
-                      <Spark points={p.trend} w={56} h={18} />
-                    </TableCell>
+                    <TableCell align="end" className="font-mono text-[13px] font-medium tabular-nums text-ink">{p.ts}</TableCell>
+                    <TableCell align="end" className="font-mono text-[13px] tabular-nums text-ink-2">{p.usg}</TableCell>
+
                   </TableRow>
                 ))}
           </TableBody>
@@ -363,7 +354,7 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
         />
       ) : (
         <ToolChips
-          className="min-h-0 max-w-none"
+          className="max-w-none"
           steps={t.steps}
           diffs={[]}
           labels={{ header: `${t.steps.length} tool calls` }}

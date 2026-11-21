@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Headshot } from "./app-shell";
-import { Spark } from "./stills";
+import { Spark } from "./viz";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableSortHead, type TableSort } from "../beautiful/primitives/Table";
 
 const SCOUT = [
