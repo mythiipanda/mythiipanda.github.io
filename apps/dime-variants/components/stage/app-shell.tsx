@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import SidebarNav, { type SidebarRecent } from "../beautiful/primitives/SidebarNav";
 import PromptBar from "../beautiful/primitives/PromptBar";
-import { IconSettingsGear1 } from "../beautiful/icons";
 
 const RECENTS: SidebarRecent[] = [
   { id: "c1", label: "true shooting leaders", time: "11:42" },
@@ -42,8 +41,10 @@ export function AppShell({
         recents={RECENTS}
         activeTitle="true shooting leaders"
         activeNav={NAV_MAP[active] ?? "home"}
-        footerLabel="Settings"
-        footerIcon={<IconSettingsGear1 size={15} />}
+        onNavigate={(key) => {
+          const sel = key === "warehouse" ? "#warehouse" : key === "home" ? "#top" : "#platform";
+          document.querySelector(sel)?.scrollIntoView({ behavior: "smooth" });
+        }}
       />
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-[52px] shrink-0 items-center gap-3 border-b border-line pl-3 pr-3 md:pl-5 md:pr-5">

@@ -33,21 +33,28 @@ import StreamingText, { type StreamingSource, type StreamingToken } from "../bea
 import { Kbd } from "../beautiful/primitives/Kbd";
 import { Button } from "../beautiful/primitives/Button";
 import PanelTabs, { PanelIconButton, type PanelTab } from "../beautiful/primitives/PanelTabs";
-import { IconSettingsGear1 } from "../beautiful/icons";
 
 const CHATS: SidebarRecent[] = [
   { id: "c1", label: "true shooting leaders", time: "11:42" },
   { id: "c2", label: "giannis-ad trade check", status: { label: "Approval", icon: "approval" } },
-  { id: "c3", label: "bench scoring, last 20", status: { label: "Done", icon: "done" } },
+  { id: "c3", label: "midseason review", status: { label: "Done", icon: "done" } },
   { id: "c4", label: "season: mid points", status: { label: "Working", icon: "working", dur: "4m" } },
 ];
 
-function Composer({ focused = false }: { focused?: boolean }) {
+const CHAT_VIEWS: Record<string, { view: string; q?: string }> = {
+  c1: { view: "board" },
+  c2: { view: "trade" },
+  c3: { view: "report" },
+  c4: { view: "pending", q: "Who gained the most mid-range points since November?" },
+};
+
+function Composer({ focused = false, onSend }: { focused?: boolean; onSend?: (text: string) => void }) {
   return (
     <PromptBar
       variant="Rounded"
       demo={false}
       tall
+      onSend={onSend}
       placeholder={focused ? "Ask anything. @ players, / boards, $ trades" : "Ask anything"}
     />
   );
@@ -69,7 +76,7 @@ const PROMPT_CHIPS = [
   { label: "morning report", prompt: "Build this morning's league report", icon: HouseIcon },
 ];
 
-function HomeCanvas() {
+function HomeCanvas({ onSend }: { onSend?: (text: string) => void }) {
   return (
     <div className="flex h-full min-h-0 flex-col items-center justify-center px-6">
       <span className="flex size-12 items-center justify-center rounded-full bg-surface shadow-[0_0_0_1px_var(--line)]">
@@ -81,7 +88,7 @@ function HomeCanvas() {
         Ask Dime anything.
       </h2>
       <div className="mt-7 w-full max-w-[520px]">
-        <Composer focused />
+        <Composer focused onSend={onSend} />
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
           {PROMPT_CHIPS.map((c) => (
             <Button key={c.label} variant="secondary" size="xs" onClick={() => fillComposer(c.prompt)}>
@@ -188,7 +195,7 @@ const ARTIFACT_TABS: PanelTab[] = ["board", "trade", "report"].map((id) => ({
   icon: ARTIFACT_META[id].icon,
 }));
 
-function PanelStateView({ icon: Icon, title, hint, action }: { icon: PanelTab["icon"]; title: string; hint: string; action?: string }) {
+function PanelStateView({ icon: Icon, title, hint, action, onAction }: { icon: PanelTab["icon"]; title: string; hint: string; action?: string; onAction?: () => void }) {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-1 px-4 py-8">
       <span className="mb-1.5 flex size-8 items-center justify-center rounded-lg bg-inset text-ink-3 ring-1 ring-inset ring-line">
@@ -197,7 +204,7 @@ function PanelStateView({ icon: Icon, title, hint, action }: { icon: PanelTab["i
       <span className="text-[13px] font-medium text-ink">{title}</span>
       <span className="text-[12px] text-ink-3">{hint}</span>
       {action && (
-        <Button variant="secondary" size="xs" className="mt-2">
+        <Button variant="secondary" size="xs" className="mt-2" onClick={onAction}>
           {action}
         </Button>
       )}
@@ -205,10 +212,20 @@ function PanelStateView({ icon: Icon, title, hint, action }: { icon: PanelTab["i
   );
 }
 
-export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false, panelState, extraTabs }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean; panelState?: "empty" | "error"; extraTabs?: PanelTab[] }) {
+export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false, panelState, extraTabs, pending = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean; panelState?: "empty" | "error"; extraTabs?: PanelTab[]; pending?: boolean }) {
   const [open, setOpen] = useState(kind);
+  const [retried, setRetried] = useState(false);
+  const [retrying, setRetrying] = useState(false);
+  const retry = () => {
+    setRetrying(true);
+    setTimeout(() => {
+      setRetrying(false);
+      setRetried(true);
+    }, 900);
+  };
   const meta = ARTIFACT_META[open];
   const known = Boolean(meta);
+  const showContent = !panelState || retried;
   const [sort, setSort] = useState<TableSort>({ id: "ts", desc: true });
   const [sel, setSel] = useState<string | null>(null);
   const toggleSort = (id: string) =>
@@ -267,12 +284,12 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         {(panelState === "empty" || (!panelState && !known)) && (
           <PanelStateView icon={InboxIcon} title="No artifacts open" hint="Answers can be pinned here" />
         )}
-        {panelState === "error" && (
-          <PanelStateView icon={TriangleAlertIcon} title="Couldn't load this artifact" hint="The query failed to run" action="Retry" />
+        {panelState === "error" && !retried && !retrying && (
+          <PanelStateView icon={TriangleAlertIcon} title="Couldn't load this artifact" hint="The query failed to run" action="Retry" onAction={retry} />
         )}
-        {!panelState && known && open === "trade" && <TradeArtifact />}
-        {!panelState && known && open === "report" && <ReportArtifact />}
-        {!panelState && known && open === "board" && (
+        {!pending && showContent && known && open === "trade" && <TradeArtifact />}
+        {!pending && showContent && known && open === "report" && <ReportArtifact />}
+        {(pending || (showContent && known && open === "board")) && (
         <Table variant="default" size="xs" scrollFade stickyHeader containerClassName="h-full" className="[--table-hover:var(--hover-2)]">
           <TableHeader>
             <TableRow>
@@ -282,7 +299,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
             </TableRow>
           </TableHeader>
           <TableBody>
-            {skeleton
+            {skeleton || retrying || pending
               ? boardRows.slice(0, 3).map((p) => (
                   <TableRow key={p.name}>
                     <TableCell>
@@ -413,16 +430,17 @@ const THREADS: Record<string, { q: string; steps: ToolStep[]; link: string }> = 
   },
 };
 
-function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }: { pending?: boolean; kind?: string; inlineArtifact?: boolean }) {
+function ThreadLane({ pending = false, kind = "board", inlineArtifact = false, sentQ }: { pending?: boolean; kind?: string; inlineArtifact?: boolean; sentQ?: string | null }) {
   const t = THREADS[kind] ?? THREADS.board;
+  const q = sentQ ?? t.q;
   return (
     <div className="mx-auto flex h-full w-full max-w-[46rem] flex-col justify-end gap-2.5 px-5 py-4" style={{ maskImage: "linear-gradient(to bottom, transparent, black 6%)", WebkitMaskImage: "linear-gradient(to bottom, transparent, black 6%)" }}>
       <div className="group flex flex-col items-end">
         <span className="min-w-0 max-w-[80%] rounded-2xl bg-message-surface px-3 py-2 text-[15px] leading-6 text-ink">
-          {t.q}
+          {q}
         </span>
         <span className="flex items-center gap-2 pe-1 pt-0.5 text-xs tabular-nums text-secondary-label opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          <span className="cursor-pointer hover:underline" onClick={() => navigator.clipboard?.writeText(t.q)}>
+          <span className="cursor-pointer hover:underline" onClick={() => navigator.clipboard?.writeText(q)}>
             copy
           </span>
         </span>
@@ -432,7 +450,7 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
           variant="Steps"
           active="Working"
           done="Working"
-          rows={t.steps.map((s) => ({ primary: s.label.replace(/^(Query|Resolve|Check|Draft)/, "$1ing"), secondary: s.chip }))}
+          rows={sentQ ? [{ primary: "Planning the query" }, { primary: "Querying the warehouse" }] : t.steps.map((s) => ({ primary: s.label.replace(/^(Query|Resolve|Check|Draft)/, "$1ing"), secondary: s.chip }))}
         />
       ) : (
         <ToolChips
@@ -480,7 +498,41 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
 }
 
 export function ChatWindow({ state = "split", artifact = "board", rail = true, layout = "split" }: { state?: "home" | "split" | "pending"; artifact?: string; rail?: boolean; layout?: "split" | "inline" | "focus" }) {
-  const isHome = state === "home";
+  const [view, setView] = useState(state === "home" ? "home" : artifact);
+  const [pending, setPending] = useState(state === "pending");
+  const [sentQ, setSentQ] = useState<string | null>(null);
+  const [activeChat, setActiveChat] = useState<string | null>(state === "home" ? null : "c1");
+  const isHome = view === "home";
+  const pickRecent = (id: string) => {
+    const v = CHAT_VIEWS[id];
+    if (!v) return;
+    setActiveChat(id);
+    setSentQ(v.q ?? null);
+    setPending(v.view === "pending");
+    setView(v.view === "pending" ? "board" : v.view);
+  };
+  const newChat = () => {
+    setActiveChat(null);
+    setSentQ(null);
+    setPending(false);
+    setView("home");
+  };
+  const navigate = (key: string) => {
+    if (key === "home") {
+      newChat();
+      return;
+    }
+    if (key === "chats") return;
+    const sel = key === "warehouse" ? "#warehouse" : "#platform";
+    document.querySelector(sel)?.scrollIntoView({ behavior: "smooth" });
+  };
+  const send = (text: string) => {
+    setActiveChat(null);
+    setSentQ(text);
+    setPending(true);
+    setView("board");
+  };
+  const crumb = isHome ? "Home" : pending ? (sentQ ?? "season: mid points") : (THREADS[view] ?? THREADS.board).link;
   return (
     <div className="flex h-full min-h-0 w-full bg-canvas text-ink">
       {rail && (
@@ -488,10 +540,11 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
           fill
           className="hidden border-r border-sidebar-border bg-sidebar lg:flex"
           recents={CHATS}
-          activeTitle={isHome ? null : "true shooting leaders"}
+          activeTitle={activeChat ? CHATS.find((c) => c.id === activeChat)?.label : null}
           activeNav={isHome ? "home" : "chats"}
-          footerLabel="Settings"
-          footerIcon={<IconSettingsGear1 size={15} />}
+          onPick={pickRecent}
+          onNewChat={newChat}
+          onNavigate={navigate}
         />
       )}
       <div className="flex min-w-0 flex-1 flex-col">
@@ -499,11 +552,15 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
           {!rail && (
             <>
               <span className="font-serif text-[16px] text-ink">dime.</span>
-              <span className="inline-flex h-7 max-w-[320px] flex-1 items-center gap-2 rounded-md bg-field px-2.5 text-[13px] text-secondary-label ring-1 ring-inset ring-line">
+              <button
+                type="button"
+                onClick={() => document.querySelector<HTMLTextAreaElement>("textarea")?.focus()}
+                className="inline-flex h-7 max-w-[320px] flex-1 items-center gap-2 rounded-md bg-field px-2.5 text-left text-[13px] text-secondary-label ring-1 ring-inset ring-line"
+              >
                 <SearchIcon className="size-3.5 text-icon-muted" />
                 Search or ask
                 <Kbd variant="outline" className="ml-auto">⌘K</Kbd>
-              </span>
+              </button>
             </>
           )}
           <nav className="min-w-0">
@@ -514,7 +571,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
                 <>
                   <li className="text-secondary-label">Chats</li>
                   <li className="text-icon-muted">/</li>
-                  <li className="min-w-0 truncate font-medium text-ink">{(THREADS[artifact] ?? THREADS.board).link}</li>
+                  <li className="min-w-0 truncate font-medium text-ink">{crumb}</li>
                 </>
               )}
             </ol>
@@ -527,20 +584,20 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
         </div>
         <div className="flex min-h-0 flex-1 overflow-hidden">
           {isHome ? (
-            <HomeCanvas />
+            <HomeCanvas onSend={send} />
           ) : (
             <>
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="min-h-0 flex-1 overflow-hidden">
-                  <ThreadLane pending={state === "pending"} kind={artifact} inlineArtifact={layout === "inline"} />
+                  <ThreadLane pending={pending} kind={view} inlineArtifact={layout === "inline"} sentQ={sentQ} />
                 </div>
                 <div className="shrink-0 px-5 pb-4">
                   <div className="mx-auto w-full max-w-[46rem]">
-                    <Composer />
+                    <Composer onSend={send} />
                   </div>
                 </div>
               </div>
-              {layout !== "inline" && <ArtifactPanel skeleton={state === "pending"} kind={artifact} wide={layout === "focus"} />}
+              {layout !== "inline" && <ArtifactPanel key={view} pending={pending} kind={view} wide={layout === "focus"} />}
             </>
           )}
         </div>

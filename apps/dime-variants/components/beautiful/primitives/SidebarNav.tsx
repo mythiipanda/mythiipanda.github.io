@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { IconBoard, IconDatabase, IconNotebook, IconReport, IconArrowBoxLeft, IconCheckmark1Small, IconChevronDownSmall, IconCrossSmall, IconEditBig, IconHome, IconMagnifyingGlass, IconPlusMedium, IconPopsicle2, IconSettingsGear1, IconSidebarLeftArrow, IconUserAdd } from "@/components/beautiful/icons";
+import { IconBoard, IconDatabase, IconNotebook, IconReport, IconCheckmark1Small, IconChevronDownSmall, IconCrossSmall, IconEditBig, IconHome, IconMagnifyingGlass, IconPopsicle2, IconSidebarLeftArrow } from "@/components/beautiful/icons";
 import GlideMenu from "@/components/beautiful/primitives/GlideMenu";
 
 /* ─────────────────────────────────────────────────────────
@@ -151,33 +151,7 @@ function WorkspaceMenu({
           <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-ink">{WORKSPACE.name}</span>
           <span className="shrink-0 text-ink"><IconCheckmark1Small size={18} /></span>
         </button>
-        <div className="my-1 h-px bg-line" />
-        {[
-          { label: "New workspace", icon: <IconPlusMedium size={16} /> },
-          { label: "Workspace settings", icon: <IconSettingsGear1 size={16} /> },
-          { label: "Invite team members", icon: <IconUserAdd size={16} /> },
-        ].map((item) => (
-          <button
-            key={item.label}
-            data-menu-row
-            type="button"
-            onClick={onClose}
-            className="relative z-10 flex h-9 w-full items-center gap-1.5 rounded-[8px] px-2 text-left"
-          >
-            <span className="flex size-5 shrink-0 items-center justify-center text-ink-2">{item.icon}</span>
-            <span className="min-w-0 flex-1 truncate text-[13.5px] text-ink">{item.label}</span>
-          </button>
-        ))}
-        <div className="my-1 h-px bg-line" />
-        <button
-          data-menu-row
-          type="button"
-          onClick={onClose}
-          className="relative z-10 flex h-9 w-full items-center gap-1.5 rounded-[8px] px-2 text-left"
-        >
-          <span className="flex size-5 shrink-0 items-center justify-center text-ink-2"><IconArrowBoxLeft size={16} /></span>
-          <span className="min-w-0 flex-1 truncate text-[13.5px] text-ink">Sign out</span>
-        </button>
+
       </GlideMenu>
     </div>,
     document.body,
@@ -192,7 +166,7 @@ export default function SidebarNav({
   onPick,
   activeNav,
   onNavigate,
-  footerLabel = "Upgrade",
+  footerLabel,
   footerIcon,
   onFooterClick,
   recents = DEFAULT_RECENTS,
@@ -439,16 +413,18 @@ export default function SidebarNav({
           </GlideGroup>
         </div>
 
-        <div className="sidebar-copy mx-2 mt-3 w-[208px] border-t border-line pt-3">
-          <button
-            type="button"
-            onClick={onFooterClick ?? onNewChat}
-            className="flex h-8 w-full items-center justify-center gap-1.5 rounded-control bg-hover-2 text-[12.5px] font-medium text-ink transition-[background-color,transform] duration-150 hover:bg-line-strong active:scale-[0.98]"
-          >
-            {footerIcon}
-            {footerLabel}
-          </button>
-        </div>
+        {footerLabel && (
+          <div className="sidebar-copy mx-2 mt-3 w-[208px] border-t border-line pt-3">
+            <button
+              type="button"
+              onClick={onFooterClick ?? onNewChat}
+              className="flex h-8 w-full items-center justify-center gap-1.5 rounded-control bg-hover-2 text-[12.5px] font-medium text-ink transition-[background-color,transform] duration-150 hover:bg-line-strong active:scale-[0.98]"
+            >
+              {footerIcon}
+              {footerLabel}
+            </button>
+          </div>
+        )}
       </div>
     </aside>
   );
