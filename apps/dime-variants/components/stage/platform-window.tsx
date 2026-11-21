@@ -6,7 +6,7 @@ import { PANES } from "./stills";
 
 const CYCLE_MS = 5000;
 
-export function PlatformWindow() {
+export function PlatformWindow({ variant = "tabs" }: { variant?: "tabs" | "rail" }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -17,6 +17,36 @@ export function PlatformWindow() {
   }, [paused]);
 
   const pane = PANES[index];
+
+  if (variant === "rail") {
+    return (
+      <div className="flex h-full min-h-0">
+        <div className="flex w-[132px] shrink-0 flex-col gap-0.5 border-r border-line bg-field px-2 py-3">
+          {PANES.map((s, k) => (
+            <button
+              key={s.id}
+              onClick={() => {
+                setIndex(k);
+                setPaused(true);
+              }}
+              className={`flex h-8 items-center rounded-[7px] px-2.5 text-left text-[12.5px] font-medium ${
+                k === index ? "bg-hover-2 text-ink" : "text-ink-3 hover:text-ink-2"
+              }`}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
+        <div className="min-w-0 flex-1">
+          <AppShell active={pane.active} crumb={pane.crumb} actions={pane.actions} paneClass={pane.paneClass}>
+            <div key={pane.id} className="pane-in flex h-full min-h-0 flex-col">
+              {pane.body}
+            </div>
+          </AppShell>
+        </div>
+      </div>
+    );
+  }
 
   const tabs = (
     <div role="tablist" aria-label="Workspace surfaces" className="flex h-full items-stretch overflow-x-auto">
