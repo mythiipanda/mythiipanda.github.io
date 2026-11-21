@@ -1,11 +1,10 @@
-import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
-import { GithubMark } from "@/components/mark";
-import { PillMeter } from "@/components/ingot/pill-meter";
-import { ArtifactPanel } from "@/components/stage/chat-window";
+import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
+import { DimeMark, GithubMark } from "@/components/mark";
 import UiClip from "@/components/stage/UiClip";
-import DimeTerm from "@/components/stage/demos/DimeTerm";
 import { PANES } from "@/components/stage/stills";
-import { COVERAGE, README, REPO } from "@/lib/site";
+import { README, REPO } from "@/lib/site";
+
+const QUICKSTART = ["git clone https://github.com/mythiipanda/dime", "cd dime", "./scripts/fetch-data.sh"];
 
 
 
@@ -22,7 +21,8 @@ export default function Home() {
   return (
     <>
       <header className="wrap flex h-[72px] items-center justify-between">
-        <a href="#top" className="font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+        <a href="#top" className="flex items-center gap-2.5 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+          <DimeMark size={22} />
           dime<span className="text-accent">.</span>
         </a>
         <nav className="flex items-center gap-7 text-[14.5px] font-medium text-ink-2">
@@ -69,11 +69,7 @@ export default function Home() {
               <UiClip src="/dime-site/clips/trade-full.mp4" poster="/dime-site/clips/trade-poster.jpg" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
             </div>
             <div className="grid min-w-0 gap-4 lg:translate-y-8">
-              {(["trade", "report"] as const).map((k) => (
-                <div key={k} className="h-[220px] min-w-0 overflow-hidden">
-                  <ArtifactPanel kind={k} framed />
-                </div>
-              ))}
+              <UiClip cover src="/dime-site/clips/chats.mp4" poster="/dime-site/clips/chats-poster.jpg" label="Dime's sidebar: switching between a midseason review, a trade check and the leaders board" />
             </div>
           </div>
           <div className="mt-4 grid gap-4 md:mt-10 md:grid-cols-2">
@@ -101,33 +97,8 @@ export default function Home() {
               <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
               <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
             </div>
-            <div className="light grid min-w-0 overflow-hidden md:grid-cols-[minmax(0,1fr)_300px]">
-              <div className="h-[460px] min-w-0"><RecordsTable fill /></div>
-              <div className="flex h-[460px] min-w-0 flex-col gap-6 overflow-y-auto border-t border-line p-5 md:border-l md:border-t-0">
-                <div className="flex flex-col gap-1.5">
-                  <span className="text-[13px] font-medium text-ink">Coverage</span>
-                  <span className="text-[12.5px] leading-relaxed text-ink-3">Where each kind of data starts and stops.</span>
-                </div>
-                <ul className="m-0 flex list-none flex-col gap-5 p-0">
-                  {COVERAGE.map((c) => (
-                    <li key={c.name} className="flex flex-col gap-2">
-                      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                        <span className="text-[13px] font-medium text-ink">{c.name}</span>
-                        <span className="num whitespace-nowrap text-[11.5px] text-ink-3">{c.label}</span>
-                      </div>
-                      <PillMeter
-                        value={c.to - c.from + 1}
-                        max={51}
-                        pills={51}
-                        offset={c.from - 1976}
-                        color="#2b5ce6"
-                        label={c.name}
-                        hideHeader
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="light h-[300px] min-w-0 overflow-hidden md:h-[460px]">
+              <video className="block h-full w-full object-cover object-top" src="/dime-site/clips/warehouse.mp4" poster="/dime-site/clips/warehouse-poster.jpg" autoPlay muted loop playsInline preload="metadata" aria-label="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" title="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" />
             </div>
           </div>
         </section>
@@ -144,8 +115,8 @@ export default function Home() {
             </a>
           </div>
           <div className="flex flex-col gap-10">
-            <div className="min-w-0">
-              <DimeTerm />
+            <div className="dark rounded-md">
+              <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables \u00b7 14.9M rows \u00b7 duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
             </div>
           </div>
         </section>
