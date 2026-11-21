@@ -698,6 +698,69 @@ export default function Variants() {
           </div>
         </div>
       </Variant>
+
+      {/* ============ "Show the work" section shotgun ============ */}
+
+      {/* SW-A — one wide live panel: visitors drive the tabs themselves */}
+      <Variant id="SW-A">
+        <div className="wrap section-pad">
+          <div className="flex flex-col gap-2">
+            <span className="eyebrow">01</span>
+            <h2 className="display max-w-[16ch] text-[clamp(30px,4.6vw,56px)]">Show the work</h2>
+          </div>
+          <div className="mx-auto mt-10 h-[460px] max-w-[880px]">
+            <ArtifactPanel kind="board" framed />
+          </div>
+          <div className="mx-auto mt-4 grid max-w-[880px] gap-4 md:grid-cols-2">
+            {(["notebook", "scouting"] as const).map((id) => {
+              const pane = PANES.find((p) => p.id === id)!;
+              return (
+                <div key={id} className="h-[240px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line">
+                  <div className="flex h-11 items-center gap-2 border-b border-line px-4">
+                    <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{pane.crumb.split(" / ")[1]}</span>
+                  </div>
+                  <div className="h-[calc(100%-45px)] overflow-hidden">{pane.body}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </Variant>
+
+      {/* SW-B — asymmetric: hero still + offset stack of the other two */}
+      <Variant id="SW-B">
+        <div className="wrap section-pad">
+          <div className="flex flex-col gap-2">
+            <span className="eyebrow">01</span>
+            <h2 className="display max-w-[16ch] text-[clamp(30px,4.6vw,56px)]">Show the work</h2>
+          </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+            <div className="h-[460px]">
+              <ArtifactPanel kind="board" framed />
+            </div>
+            <div className="grid gap-4 md:translate-y-8">
+              {(["trade", "report"] as const).map((k) => (
+                <div key={k} className="h-[220px] overflow-hidden">
+                  <ArtifactPanel kind={k} framed />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-4 grid gap-4 md:mt-10 md:grid-cols-2">
+            {(["notebook", "scouting"] as const).map((id) => {
+              const pane = PANES.find((p) => p.id === id)!;
+              return (
+                <div key={id} className="h-[240px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line">
+                  <div className="flex h-11 items-center gap-2 border-b border-line px-4">
+                    <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{pane.crumb.split(" / ")[1]}</span>
+                  </div>
+                  <div className="h-[calc(100%-45px)] overflow-hidden">{pane.body}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </Variant>
     </main>
   );
 }
