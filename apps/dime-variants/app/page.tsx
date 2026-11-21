@@ -81,18 +81,23 @@ export default function Home() {
 
         <section id="platform" className="wrap scroll-mt-8 py-12 md:py-20">
           <Head n="01" title="Show the work" />
-          <div className="mt-8 grid gap-4 md:mt-14 md:grid-cols-3">
-            {(["board", "trade", "report"] as const).map((k) => (
-              <div key={k} className="h-[320px] overflow-hidden">
-                <ArtifactPanel kind={k} framed />
-              </div>
-            ))}
+          <div className="mt-8 grid gap-4 md:mt-14 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+            <div className="h-[460px] min-w-0">
+              <ArtifactPanel kind="board" framed />
+            </div>
+            <div className="grid min-w-0 gap-4 md:translate-y-8">
+              {(["trade", "report"] as const).map((k) => (
+                <div key={k} className="h-[220px] min-w-0 overflow-hidden">
+                  <ArtifactPanel kind={k} framed />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="mt-4 grid gap-4 md:mt-10 md:grid-cols-2">
             {(["notebook", "scouting"] as const).map((id) => {
               const pane = PANES.find((p) => p.id === id)!;
               return (
-                <div key={id} className="h-[320px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line">
+                <div key={id} className="h-[240px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line">
                   <div className="flex h-11 items-center gap-2 border-b border-line px-4">
                     <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{pane.crumb.split(" / ")[1]}</span>
                   </div>
