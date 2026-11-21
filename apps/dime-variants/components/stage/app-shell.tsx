@@ -265,7 +265,6 @@ export function Headshot({ src, alt, size = 26 }: { src: string; alt: string; si
       alt={alt}
       width={size}
       height={size}
-      loading="lazy"
       className="shrink-0 rounded-full bg-hover-2 object-cover object-top ring-1 ring-ink/10"
       style={{ width: size, height: size }}
     />
