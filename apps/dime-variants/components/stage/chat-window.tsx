@@ -149,8 +149,9 @@ function Composer({ focused = false }: { focused?: boolean }) {
           <DatabaseIcon className="size-3 text-icon-muted" />
           warehouse
         </span>
-        <span className="ml-auto inline-flex h-6 items-center rounded-md px-1.5 text-[11px] font-medium text-secondary-label">
+        <span className="ml-auto inline-flex h-6 cursor-pointer items-center gap-0.5 rounded-md bg-field px-1.5 text-[11px] font-medium text-ink-2 ring-1 ring-inset ring-line transition-colors hover:bg-hover hover:text-ink">
           auto
+          <ChevronDownIcon className="size-3 text-icon-muted" />
         </span>
         <span aria-hidden className="flex size-8 items-center justify-center rounded-full bg-accent text-surface">
           <ArrowUpIcon className="size-3.5" />
