@@ -251,7 +251,7 @@ function ReportPane() {
               Among <span className="font-medium text-ink">164 rotation players</span> (≥1,500 minutes), Luke Kennard leads the league at <span className="font-mono text-[13px] font-medium text-ink">68.9%</span> true shooting<Cite>1</Cite>, edging Jalen Duren (<span className="font-mono text-[13px] text-ink">68.8%</span>) on a third of the usage.
             </p>
             <p className="rise-in mt-3 text-[13.5px] leading-7 text-ink-2" style={{ animationDelay: "120ms" }}>
-              Nikola Jokić remains the workload outlier — top-five efficiency (<span className="font-mono text-[13px] text-ink">67.0%</span>) at <span className="font-mono text-[13px] text-ink">28.9%</span> usage, nearly double every other name on the board.<Cite>2</Cite>
+              Nikola Jokić remains the workload outlier, top-five efficiency (<span className="font-mono text-[13px] text-ink">67.0%</span>) at <span className="font-mono text-[13px] text-ink">28.9%</span> usage, nearly double every other name on the board.<Cite>2</Cite>
             </p>
             <div className="rise-in mt-4 rounded-[10px] bg-field p-3.5" style={{ animationDelay: "180ms" }}>
               <div className="mb-2 text-[11px] font-medium text-secondary-label">exhibit 1 · true-shooting leaders</div>
