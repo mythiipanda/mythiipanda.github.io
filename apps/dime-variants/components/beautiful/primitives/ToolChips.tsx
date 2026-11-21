@@ -166,7 +166,7 @@ export default function ToolChips({
     });
 
   return (
-    <div className={`min-h-[220px] w-full max-w-80 pb-1${className ? ` ${className}` : ""}`}>
+    <div className={`w-full max-w-80 pb-1${className ? ` ${className}` : ""}`}>
       {/* collapsed run header */}
       <button
         type="button"
