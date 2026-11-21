@@ -101,7 +101,7 @@ export default function Home() {
               <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
             </div>
             <div className="light h-[300px] min-w-0 overflow-hidden md:h-[460px]">
-              <video className="block h-full w-full object-cover object-top" src="/dime-site/clips/warehouse.mp4" poster="/dime-site/clips/warehouse-poster.jpg" autoPlay muted loop playsInline preload="metadata" aria-label="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" title="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" />
+              <UiClip cover flat src="/dime-site/clips/warehouse.mp4" poster="/dime-site/clips/warehouse-poster.jpg" label="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" />
             </div>
           </div>
         </section>
