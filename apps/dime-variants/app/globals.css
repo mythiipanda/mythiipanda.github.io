@@ -24,7 +24,32 @@
   --accent: oklch(0.535 0.187 255.6);
   --accent-ink: oklch(0.48 0.18 256);
   --accent-tint: oklch(0.94 0.03 253);
+
+  /* t3code workspace tokens, warm-mapped to the paper palette. */
+  --control-radius: 0.5rem;
+  --sidebar: oklch(0.946 0.009 85);
+  --sidebar-foreground: var(--ink);
+  --sidebar-muted-foreground: var(--ink-3);
+  --sidebar-border: var(--line);
+  --sidebar-row-hover: oklch(0.965 0.008 85);
+  --sidebar-row-active: var(--surface);
+  --sidebar-row-selected: var(--surface);
+  --secondary-label: var(--ink-3);
+  --icon-muted: var(--ink-3);
+  --shadow-composer: 0 1px 2px rgb(0 0 0 / 5%);
 }
+
+.bg-sidebar { background-color: var(--sidebar); }
+.text-sidebar-foreground { color: var(--sidebar-foreground); }
+.border-sidebar-border { border-color: var(--sidebar-border); }
+.bg-sidebar-border\/50 { background-color: color-mix(in srgb, var(--sidebar-border) 50%, transparent); }
+.ring-sidebar-border\/70 { --tw-ring-color: color-mix(in srgb, var(--sidebar-border) 70%, transparent); }
+.bg-sidebar-row-hover { background-color: var(--sidebar-row-hover); }
+.hover\:bg-sidebar-row-hover:hover { background-color: var(--sidebar-row-hover); }
+.bg-sidebar-row-active { background-color: var(--sidebar-row-active); }
+.text-secondary-label { color: var(--secondary-label); }
+.text-icon-muted { color: var(--icon-muted); }
+.shadow-composer { box-shadow: var(--shadow-composer); }
 
 html {
   scroll-behavior: smooth;

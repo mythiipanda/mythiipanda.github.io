@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowLeftRight, Check, Download, Pin } from "@/components/icons";
+import { ArrowLeftRightIcon, CheckIcon, DownloadIcon, PinIcon } from "lucide-react";
 import { ActionPill, Card, Cell, Headshot } from "./app-shell";
 import { CLUTCH, CLUTCH_COUNT, LINEUPS, LINEUP_COUNT } from "@/lib/exhibits";
 
@@ -66,7 +66,7 @@ function MiniTable({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
       <thead>
         <tr>
           {head.map((h, i) => (
-            <th key={h} className={`h-7 border-b border-line px-2 font-mono text-[11px] font-normal text-ink-3 ${i > 1 ? "text-right" : "text-left"}`}>
+            <th key={h} className={`h-7 border-b border-line px-2 text-[11px] font-medium text-secondary-label ${i > 1 ? "text-right" : "text-left"}`}>
               {h}
             </th>
           ))}
@@ -110,7 +110,7 @@ function NotebookPane() {
   return (
       <div className="mx-auto flex h-full max-w-[640px] flex-col gap-3 overflow-hidden">
         <Rise delay={0}>
-        <Cell n={1} kind="ask" meta={<span className="font-mono text-[11px]">11:42</span>}>
+        <Cell n={1} kind="ask" meta={<span className="tabular-nums">11:42</span>}>
           <p className="text-[13.5px] leading-6 text-ink">
             Who leads the league in true shooting among rotation players?
           </p>
@@ -140,7 +140,7 @@ function NotebookPane() {
         </Cell>
         </Rise>
         <Rise delay={140}>
-        <Cell n={3} kind="chart" meta={<ActionPill icon={<Pin size={11} />}>pinned</ActionPill>}>
+        <Cell n={3} kind="chart" meta={<ActionPill icon={PinIcon}>pinned</ActionPill>}>
           <Bars
             max={70}
             rows={[
@@ -210,7 +210,7 @@ function BoardsPane() {
           <div className="rounded-[12px] bg-surface p-4 shadow-[0_0_0_1px_var(--line)]">
             <div className="flex items-baseline justify-between">
               <span className="num text-[22px] font-medium tabular-nums text-ink">{LINEUP_COUNT}</span>
-              <span className="font-mono text-[11px] text-ink-3">qualified lineups</span>
+              <span className="text-[11px] font-medium text-secondary-label">qualified lineups</span>
             </div>
             <div className="mt-3 flex h-10 items-end gap-[3px]">
               {LINEUPS.map((l, i) => (
@@ -244,7 +244,7 @@ function ScoutPane() {
           <thead>
             <tr>
               {["#", "player", "team", "ts%", "usg%", "trend", "age"].map((h, i) => (
-                <th key={h} className={`h-9 border-b border-line px-3 font-mono text-[11px] font-normal text-ink-3 ${i === 3 || i === 4 ? "text-right" : "text-left"} ${i >= 5 ? "hidden lg:table-cell" : ""}`}>
+                <th key={h} className={`h-9 border-b border-line px-3 text-[11px] font-medium text-secondary-label ${i === 3 || i === 4 ? "text-right" : "text-left"} ${i >= 5 ? "hidden lg:table-cell" : ""}`}>
                   {h}
                 </th>
               ))}
@@ -273,7 +273,7 @@ function ScoutPane() {
         </table>
       </div>
       <div className="rise-in shrink-0 border-t border-line bg-surface px-4 py-3" style={{ animationDelay: "320ms" }}>
-        <div className="mb-2 font-mono text-[11px] text-ink-3">compare</div>
+        <div className="mb-2 text-[11px] font-medium text-secondary-label">compare</div>
         <div className="grid grid-cols-2 gap-4">
           {[SCOUT[0], SCOUT[4]].map((p) => (
             <div key={p.name} className="flex items-center gap-3">
@@ -286,7 +286,7 @@ function ScoutPane() {
                     ["USG", parseFloat(p.usg), 30],
                   ].map(([l, v, m]) => (
                     <div key={l as string} className="flex items-center gap-2">
-                      <span className="w-7 font-mono text-[10px] text-ink-3">{l}</span>
+                      <span className="w-7 text-[10px] font-medium text-secondary-label">{l}</span>
                       <div className="h-[5px] flex-1 rounded-full bg-field">
                         <div className="h-full rounded-full bg-accent" style={{ width: `${((v as number) / (m as number)) * 100}%` }} />
                       </div>
@@ -308,7 +308,7 @@ function TradesPane() {
     <>
       <div className="relative grid min-h-0 flex-1 content-start grid-cols-1 gap-3 overflow-hidden md:grid-cols-2">
         <span className="pop-in absolute left-1/2 top-[46%] z-10 hidden size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-surface shadow-[0_0_0_1px_var(--line)] md:flex" style={{ animationDelay: "420ms" }}>
-          <ArrowLeftRight size={14} className="text-accent-ink" />
+          <ArrowLeftRightIcon className="size-3.5 text-accent-ink" />
         </span>
         {[
           { team: "MIA", label: "receives", rows: [["Anthony Davis", "davis", "58.5", "35.3"]], picks: [] as string[], sends: "Giannis Antetokounmpo" },
@@ -317,7 +317,7 @@ function TradesPane() {
           <div key={side.team} className="rise-in overflow-hidden rounded-[12px] bg-surface shadow-[0_0_0_1px_var(--line)]" style={{ animationDelay: `${si * 90}ms` }}>
             <div className="flex h-10 items-center justify-between border-b border-line px-4">
               <span className="font-mono text-[13px] font-medium text-ink">{side.team}</span>
-              <span className="font-mono text-[11px] text-ink-3">{side.label}</span>
+              <span className="text-[11px] font-medium text-secondary-label">{side.label}</span>
             </div>
             <div className="p-3">
               {side.rows.map(([name, img, sal, cap]) => (
@@ -327,24 +327,24 @@ function TradesPane() {
                     <div className="truncate text-[13px] font-medium text-ink">{name}</div>
                     <div className="font-mono text-[11px] text-ink-3">${sal}M · {cap}% of cap</div>
                   </div>
-                  <span className="font-mono text-[11px] text-ink-2">in</span>
+                  <span className="text-[11px] font-medium text-secondary-label">in</span>
                 </div>
               ))}
               {side.picks.map((p) => (
                 <div key={p} className="flex items-center gap-3 px-2 py-2">
-                  <span className="flex size-[34px] items-center justify-center rounded-full bg-field font-mono text-[11px] text-ink-2 shadow-[0_0_0_1px_var(--line)]">pick</span>
+                  <span className="flex size-[34px] items-center justify-center rounded-full bg-field text-[10px] font-medium text-secondary-label ring-1 ring-inset ring-line">pick</span>
                   <span className="flex-1 text-[12.5px] text-ink-2">{p}</span>
-                  <span className="font-mono text-[11px] text-ink-2">in</span>
+                  <span className="text-[11px] font-medium text-secondary-label">in</span>
                 </div>
               ))}
               <div className="mt-1 flex items-center gap-3 border-t border-line px-2 py-2">
-                <span className="w-[34px] text-center font-mono text-[11px] text-ink-3">out</span>
+                <span className="w-[34px] text-center text-[11px] font-medium text-secondary-label">out</span>
                 <span className="flex-1 truncate text-[12.5px] text-ink-2">{side.sends} · $58.5M</span>
               </div>
             </div>
             <div className="border-t border-line px-4 py-2.5">
               <div className="flex items-center gap-2">
-                <span className="w-16 font-mono text-[10.5px] text-ink-3">cap hit</span>
+                <span className="w-16 text-[11px] font-medium text-secondary-label">cap hit</span>
                 <div className="h-[6px] flex-1 rounded-full bg-field">
                   <div className="bar-grow h-full rounded-full bg-accent/70" style={{ width: "35.3%", animationDelay: "500ms" }} />
                 </div>
@@ -358,7 +358,7 @@ function TradesPane() {
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[12px]">
           <span className="text-ink-2">out <span className="tabular-nums text-ink">$58.5M</span></span>
           <span className="text-ink-2">in <span className="tabular-nums text-ink">$58.5M</span></span>
-          <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] text-ink-2"><span className="pop-in inline-flex" style={{ animationDelay: "600ms" }}><Check size={12} className="text-accent-ink" /></span>legal</span>
+          <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] text-ink-2"><span className="pop-in inline-flex" style={{ animationDelay: "600ms" }}><CheckIcon className="size-3 text-accent-ink" /></span>legal</span>
         </div>
       </div>
     </>
@@ -381,7 +381,7 @@ function ReportPane() {
             <div className="h-1 flex-1 overflow-hidden rounded-full bg-field">
               <div className="bar-grow h-full w-2/5 rounded-full bg-accent" style={{ animationDelay: "300ms" }} />
             </div>
-            <span className="font-mono text-[10px] text-ink-3">40%</span>
+            <span className="font-mono text-[10px] tabular-nums text-secondary-label">40%</span>
           </div>
           {["Summary", "True shooting", "Clutch pool", "Method"].map((s, i) => (
             <div key={s} className={`mx-2 flex h-8 items-center gap-2 rounded-[8px] px-2.5 text-[12.5px] ${i === 0 ? "bg-hover-2 text-ink" : "text-ink-2"}`}>
@@ -401,7 +401,7 @@ function ReportPane() {
               Nikola Jokić remains the workload outlier — top-five efficiency (<span className="font-mono text-[13px] text-ink">67.0%</span>) at <span className="font-mono text-[13px] text-ink">28.9%</span> usage, nearly double every other name on the board.<Cite>2</Cite>
             </p>
             <div className="rise-in mt-4 rounded-[10px] bg-field p-3.5" style={{ animationDelay: "180ms" }}>
-              <div className="mb-2 font-mono text-[10.5px] text-ink-3">exhibit 1 · true-shooting leaders</div>
+              <div className="mb-2 text-[11px] font-medium text-secondary-label">exhibit 1 · true-shooting leaders</div>
               <MiniTable
                 head={["player", "team", "ts%", "usg%"]}
                 rows={[
@@ -426,7 +426,7 @@ export const PANES = [
     label: "Notebook",
     active: "notebook",
     crumb: "notebooks / true-shooting",
-    actions: <ActionPill icon={<Check size={12} />}>saved</ActionPill>,
+    actions: <ActionPill icon={CheckIcon}>saved</ActionPill>,
     paneClass: "px-3 py-4 md:px-5 md:py-5",
     body: <NotebookPane />,
   },
@@ -435,7 +435,7 @@ export const PANES = [
     label: "Board",
     active: "boards",
     crumb: "boards / lineup-study",
-    actions: <ActionPill icon={<Pin size={11} />}>4 pinned</ActionPill>,
+    actions: <ActionPill icon={PinIcon}>4 pinned</ActionPill>,
     paneClass: "px-3 py-4 md:px-5 md:py-5",
     body: <BoardsPane />,
   },
@@ -453,7 +453,7 @@ export const PANES = [
     label: "Trades",
     active: "trades",
     crumb: "trades / giannis-ad",
-    actions: <ActionPill icon={<Check size={12} />}>legal</ActionPill>,
+    actions: <ActionPill icon={CheckIcon}>legal</ActionPill>,
     paneClass: "flex flex-col px-3 py-4 md:px-5 md:py-5",
     body: <TradesPane />,
   },
@@ -464,7 +464,7 @@ export const PANES = [
     crumb: "reports / midseason-review",
     actions: (
       <span className="inline-flex h-7 items-center gap-1.5 rounded-full bg-ink px-3 text-[12px] font-medium text-surface">
-        <Download size={12} /> export
+        <DownloadIcon className="size-3" /> export
       </span>
     ),
     paneClass: "px-0 py-0",
