@@ -31,6 +31,18 @@ function Tab({
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onSelect?.(tab.id);
+          return;
+        }
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft" || e.key === "Home" || e.key === "End") {
+          e.preventDefault();
+          const list = e.currentTarget.parentElement?.querySelectorAll<HTMLElement>('[role="tab"]');
+          if (!list?.length) return;
+          const items = [...list];
+          const i = items.indexOf(e.currentTarget);
+          const next = e.key === "Home" ? items[0]
+            : e.key === "End" ? items[items.length - 1]
+            : items[(i + (e.key === "ArrowRight" ? 1 : items.length - 1)) % items.length];
+          next?.focus();
         }
       }}
       className={cn(
