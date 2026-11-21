@@ -3,6 +3,7 @@ import {
   ArrowRightIcon,
   ArrowUpIcon,
   CheckIcon,
+  CircleAlertIcon,
   ChevronDownIcon,
   ChevronRightIcon,
   DatabaseIcon,
@@ -24,11 +25,11 @@ import { Spark } from "./stills";
 import ToolChips, { type ToolStep } from "../beautiful/primitives/ToolChips";
 import ThinkingState from "../beautiful/primitives/ThinkingState";
 
-const CHATS = [
+const CHATS: { id: string; label: string; trail?: string; status?: { label: string; icon: string; dur?: string } }[] = [
   { id: "c1", label: "true shooting leaders", trail: "11:42" },
-  { id: "c2", label: "giannis-ad trade check", trail: "Tue" },
-  { id: "c3", label: "bench scoring, last 20", trail: "Mon" },
-  { id: "c4", label: "season: mid points", trail: "Sun" },
+  { id: "c2", label: "giannis-ad trade check", status: { label: "Approval", icon: "approval" } },
+  { id: "c3", label: "bench scoring, last 20", status: { label: "Done", icon: "done" } },
+  { id: "c4", label: "season: mid points", status: { label: "Working", icon: "working", dur: "4m" } },
 ];
 
 const LIBRARY = [
@@ -51,17 +52,25 @@ function Shelf({ label, count }: { label: string; count: number }) {
   );
 }
 
+const STATUS_TONES: Record<string, { icon: React.ComponentType<{ className?: string }>; cls: string }> = {
+  working: { icon: Loader2Icon, cls: "text-accent-ink" },
+  approval: { icon: CircleAlertIcon, cls: "text-orange" },
+  done: { icon: CheckIcon, cls: "text-green" },
+};
+
 function Row({
   icon: Icon,
   label,
   active,
   trail,
+  status,
   tall,
 }: {
   icon?: React.ComponentType<{ className?: string }>;
   label: string;
   active?: boolean;
   trail?: string;
+  status?: { label: string; icon: string; dur?: string };
   tall?: boolean;
 }) {
   return (
@@ -82,7 +91,15 @@ function Row({
       <span className={`min-w-0 flex-1 truncate ${active ? "font-medium" : "text-ink/75 group-hover/sidebar-row:text-ink"}`}>
         {label}
       </span>
-      {trail ? <span className="shrink-0 text-xs tabular-nums text-secondary-label">{trail}</span> : null}
+      {status && STATUS_TONES[status.icon] ? (
+        <span className={`inline-flex shrink-0 items-center gap-1 text-xs font-medium ${STATUS_TONES[status.icon].cls}`}>
+          {(() => { const S = STATUS_TONES[status.icon].icon; return <S aria-hidden className="size-3.5" />; })()}
+          {status.label}
+          {status.dur ? <span className="tabular-nums">{status.dur}</span> : null}
+        </span>
+      ) : trail ? (
+        <span className="shrink-0 text-xs tabular-nums text-secondary-label">{trail}</span>
+      ) : null}
     </span>
   );
 }
@@ -112,7 +129,7 @@ function Rail({ active }: { active: string }) {
         <Row icon={SquarePenIcon} label="New chat" />
         <Shelf label="Chats" count={CHATS.length} />
         {CHATS.map((r) => (
-          <Row key={r.id} label={r.label} trail={r.trail} active={active === r.id} tall />
+          <Row key={r.id} label={r.label} trail={r.trail} status={r.status} active={active === r.id} tall />
         ))}
         <Shelf label="Library" count={LIBRARY.length} />
         {LIBRARY.map((r) => (
