@@ -84,7 +84,7 @@ const PROMPT_CHIPS = [
 
 function HomeCanvas({ onSend }: { onSend?: (text: string) => void }) {
   return (
-    <div className="flex h-full min-h-0 flex-col items-center justify-center px-6">
+    <div className="flex h-full min-h-0 w-full flex-col items-center justify-center px-6">
       <h2 className="text-center font-serif text-[26px] leading-tight tracking-[-0.01em] text-ink">
         Ask Dime anything.
       </h2>
