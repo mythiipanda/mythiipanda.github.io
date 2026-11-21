@@ -11,9 +11,9 @@ const garamond = EB_Garamond({ subsets: ["latin"], variable: "--font-garamond", 
 const newsreader = Newsreader({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-news", display: "swap" });
 
 const url = "https://mythiipanda.github.io/dime-site/";
-const title = "Dime: the NBA analyst that shows its work";
+const title = "Dime: the open-source NBA analyst";
 const description =
-  "Ask a basketball question in plain English. Dime writes the SQL, runs it on its own warehouse, and gives you the answer with the rows it came from. Open source.";
+  "A front-office workspace on your machine. Ask in plain English; Dime writes the SQL, runs it on 17 seasons of data, and keeps the work.";
 
 export const metadata: Metadata = {
   title,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export const viewport: Viewport = { colorScheme: "light", width: "device-width", initialScale: 1, themeColor: "#f7f4ee" };
+export const viewport: Viewport = { colorScheme: "light", width: "device-width", initialScale: 1, themeColor: "#fcfcfc" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
