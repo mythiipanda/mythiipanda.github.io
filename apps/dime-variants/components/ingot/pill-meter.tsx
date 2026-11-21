@@ -24,16 +24,12 @@ export function PillMeter({ value, max = 100, pills = 24, offset = 0, color = "#
           </span>
         </div>
       )}
-      <div className="flex h-7 gap-[3px]" role="meter" aria-valuenow={value} aria-valuemin={0} aria-valuemax={max} aria-label={label}>
+      <div className="flex h-1.5 gap-px" role="meter" aria-valuenow={value} aria-valuemin={0} aria-valuemax={max} aria-label={label}>
         {Array.from({ length: pills }, (_, i) => (
           <span
             key={i}
             className="flex-1 rounded-full"
-            style={
-              i >= offset && i < offset + on
-                ? { background: "linear-gradient(" + mix(color, 0.13) + "," + color + ")", boxShadow: "inset 0 0 0 1px " + mix(color, 0.22, "#000000") + "55, inset 0 1px 0 #ffffff4d" }
-                : { background: mix(color, 0.84) }
-            }
+            style={i >= offset && i < offset + on ? { background: color } : { background: mix(color, 0.88) }}
           />
         ))}
       </div>

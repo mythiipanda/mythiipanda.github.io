@@ -20,6 +20,8 @@ import {
   PlusIcon,
   SearchIcon,
   TableIcon,
+  InboxIcon,
+  TriangleAlertIcon,
 } from "lucide-react";
 import { Headshot } from "./app-shell";
 import DiffTable from "../beautiful/primitives/DiffTable";
@@ -91,7 +93,7 @@ function HomeCanvas() {
 
 function CiteChip({ children }: { children: ReactNode }) {
   return (
-    <sup className="ml-0.5 inline-flex h-4 items-center rounded-sm border border-accent/40 bg-accent/10 px-1 font-mono text-[9.5px] font-medium leading-none text-accent-ink">
+    <sup className="ml-0.5 inline-flex h-4 items-center rounded-[3px] bg-accent/10 px-1 font-mono text-[9.5px] font-medium leading-none text-accent-ink">
       {children}
     </sup>
   );
@@ -179,7 +181,24 @@ const ARTIFACT_TABS: PanelTab[] = ["board", "trade", "report"].map((id) => ({
   icon: ARTIFACT_META[id].icon,
 }));
 
-export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean }) {
+function PanelStateView({ icon: Icon, title, hint, action }: { icon: PanelTab["icon"]; title: string; hint: string; action?: string }) {
+  return (
+    <div className="flex h-full flex-col items-center justify-center gap-1 px-4 py-8">
+      <span className="mb-1.5 flex size-8 items-center justify-center rounded-lg bg-inset text-ink-3 ring-1 ring-inset ring-line">
+        <Icon className="size-4" />
+      </span>
+      <span className="text-[13px] font-medium text-ink">{title}</span>
+      <span className="text-[12px] text-ink-3">{hint}</span>
+      {action && (
+        <Button variant="secondary" size="xs" className="mt-2">
+          {action}
+        </Button>
+      )}
+    </div>
+  );
+}
+
+export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false, panelState }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean; panelState?: "empty" | "error" }) {
   const [open, setOpen] = useState(kind);
   const meta = ARTIFACT_META[open] ?? ARTIFACT_META.board;
   const [sort, setSort] = useState<TableSort>({ id: "ts", desc: true });
@@ -222,9 +241,15 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         </span>
       </div>
       <div className="relative min-h-0 flex-1 overflow-hidden">
-        {open === "trade" && <TradeArtifact />}
-        {open === "report" && <ReportArtifact />}
-        {open === "board" && (
+        {panelState === "empty" && (
+          <PanelStateView icon={InboxIcon} title="No artifacts open" hint="Answers can be pinned here" />
+        )}
+        {panelState === "error" && (
+          <PanelStateView icon={TriangleAlertIcon} title="Couldn't load this artifact" hint="The query failed to run" action="Retry" />
+        )}
+        {!panelState && open === "trade" && <TradeArtifact />}
+        {!panelState && open === "report" && <ReportArtifact />}
+        {!panelState && open === "board" && (
         <Table variant="default" size="xs" scrollFade={false} stickyHeader containerClassName="h-full">
           <TableHeader>
             <TableRow>

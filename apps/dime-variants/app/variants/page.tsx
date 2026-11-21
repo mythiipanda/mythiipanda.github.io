@@ -5,7 +5,7 @@ import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
 import { PlatformWindow } from "@/components/stage/platform-window";
-import { ChatWindow } from "@/components/stage/chat-window";
+import { ArtifactPanel, ChatWindow } from "@/components/stage/chat-window";
 import { Bars, MiniTable, PANES, Ring, Spark } from "@/components/stage/stills";
 import { COUNTS, COVERAGE, README, REPO } from "@/lib/site";
 
@@ -670,6 +670,23 @@ export default function Variants() {
           </div>
           <div className="mx-auto mt-14 max-w-[1120px] rounded-[16px] bg-canvas shadow-[0_1px_2px_rgba(20,20,25,0.05),0_16px_48px_-16px_rgba(20,20,25,0.2),0_0_0_1px_var(--line)]">
             <Shell><ChatWindow state="split" artifact="trade" layout="focus" /></Shell>
+          </div>
+        </div>
+      </Variant>
+
+      {/* CH-I — panel states: loading / empty / error */}
+      <Variant id="CH-I">
+        <div className="wrap section-pad">
+          <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-5 md:grid-cols-3">
+            <div className="h-[420px]">
+              <ArtifactPanel skeleton framed />
+            </div>
+            <div className="h-[420px]">
+              <ArtifactPanel panelState="empty" framed />
+            </div>
+            <div className="h-[420px]">
+              <ArtifactPanel panelState="error" framed />
+            </div>
           </div>
         </div>
       </Variant>
