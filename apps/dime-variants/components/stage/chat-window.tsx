@@ -174,6 +174,7 @@ const ARTIFACT_META: Record<string, { title: string; kind: string }> = {
 export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean }) {
   const meta = ARTIFACT_META[kind] ?? ARTIFACT_META.board;
   const [sort, setSort] = useState<TableSort>({ id: "ts", desc: true });
+  const [sel, setSel] = useState<string | null>("Luke Kennard");
   const toggleSort = (id: string) =>
     setSort((cur) => (cur?.id === id ? (cur.desc ? { id, desc: false } : undefined) : { id, desc: true }));
   const boardRows = [...SCOUT_ROWS].sort((a, b) => {
@@ -232,8 +233,12 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
                     </TableCell>
                   </TableRow>
                 ))
-              : boardRows.map((p, i) => (
-                  <TableRow key={p.name} className={i === 0 ? "bg-accent-tint/50" : ""}>
+              : boardRows.map((p) => (
+                  <TableRow
+                    key={p.name}
+                    onClick={() => setSel((cur) => (cur === p.name ? null : p.name))}
+                    className={`cursor-pointer ${sel === p.name ? "bg-accent-tint/60 hover:bg-accent-tint/60" : ""}`}
+                  >
                     <TableCell>
                       <span className="flex h-9 items-center gap-2.5">
                         <Headshot src={p.img} alt={p.name} size={22} />
