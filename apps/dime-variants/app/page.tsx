@@ -3,6 +3,7 @@ import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
 import { ChatWindow, ArtifactPanel } from "@/components/stage/chat-window";
+import { PANES } from "@/components/stage/stills";
 import { COUNTS, COVERAGE, README, REPO } from "@/lib/site";
 
 const QUICKSTART = ["git clone https://github.com/mythiipanda/dime", "cd dime", "./scripts/fetch-data.sh"];
@@ -86,6 +87,20 @@ export default function Home() {
                 <ArtifactPanel kind={k} framed />
               </div>
             ))}
+          </div>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {(["notebook", "scouting"] as const).map((id) => {
+              const pane = PANES.find((p) => p.id === id)!;
+              return (
+                <div key={id} className="h-[320px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line">
+                  <div className="flex h-11 items-center gap-2 border-b border-line px-4">
+                    <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{pane.crumb.split(" / ")[1]}</span>
+                    <span className="shrink-0 text-[11px] text-secondary-label">{pane.label.toLowerCase()}</span>
+                  </div>
+                  <div className="h-[calc(100%-45px)] overflow-hidden">{pane.body}</div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
