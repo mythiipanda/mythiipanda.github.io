@@ -20,6 +20,9 @@ function Head({ title, children }: { title: string; children?: React.ReactNode }
 export default function Home() {
   return (
     <>
+      <a href="#platform" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-[14px] focus:text-canvas">
+        Skip to content
+      </a>
       <header className="wrap flex h-[72px] items-center justify-between">
         <a href="#top" className="flex items-center gap-2.5 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
           <DimeMark size={22} />
