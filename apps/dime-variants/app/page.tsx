@@ -15,10 +15,9 @@ const LIMITS = [
 ];
 
 
-function Head({ n, title, children }: { n: string; title: string; children?: React.ReactNode }) {
+function Head({ title, children }: { title: string; children?: React.ReactNode }) {
   return (
     <div className="flex max-w-[560px] flex-col gap-5">
-      <p className="eyebrow">{n}</p>
       <h2 className="title">{title}</h2>
       {children && <p className="lede">{children}</p>}
     </div>
@@ -80,7 +79,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="platform" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head n="01" title="Show the work" />
+          <Head title="Show the work" />
           <div className="mt-8 grid gap-4 md:mt-14 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="h-[460px] min-w-0">
               <ArtifactPanel kind="board" framed />
@@ -111,7 +110,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="warehouse" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head n="02" title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
+          <Head title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
           <div className="window window-light mt-8 md:mt-14">
             <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
               <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-3"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M9 9v11" /></svg>
@@ -154,7 +153,6 @@ export default function Home() {
 
         <section id="quickstart" className="wrap grid scroll-mt-8 gap-10 py-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-20">
           <div className="flex flex-col items-start gap-5 md:justify-center">
-            <p className="eyebrow">03</p>
             <h2 className="title">Run it locally</h2>
             <p className="lede">Clone the repo, fetch the data pack and add your own model key.</p>
             <a href={README} className="inline-flex h-11 select-none items-center justify-center gap-2 rounded-full bg-ink px-5 text-[15px] font-medium leading-none text-canvas shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] transition-[transform,background-color,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.96]">
