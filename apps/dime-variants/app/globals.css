@@ -405,3 +405,34 @@ kbd,
 @media (min-width: 768px) {
   .ty-s1 .section-pad { padding-block: 128px; }
 }
+
+/* benji.org-measured minimalist scrollbar: transparent until the scroller is
+ * hovered, then a 6px soft thumb. */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 100px;
+}
+*:hover::-webkit-scrollbar-thumb {
+  background: rgb(0 0 0 / 0.15);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgb(0 0 0 / 0.25);
+}
+.dark:hover::-webkit-scrollbar-thumb,
+.dark *:hover::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.18);
+}
+.dark *::-webkit-scrollbar-thumb:hover,
+.dark::-webkit-scrollbar-thumb:hover {
+  background: rgb(255 255 255 / 0.28);
+}
+html {
+  scrollbar-width: thin;
+}
