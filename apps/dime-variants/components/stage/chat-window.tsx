@@ -416,7 +416,7 @@ const THREADS: Record<string, { q: string; steps: ToolStep[]; link: string }> = 
 function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }: { pending?: boolean; kind?: string; inlineArtifact?: boolean }) {
   const t = THREADS[kind] ?? THREADS.board;
   return (
-    <div className="mx-auto flex h-full w-full max-w-[46rem] flex-col justify-end gap-2.5 px-5 py-4">
+    <div className="mx-auto flex h-full w-full max-w-[46rem] flex-col justify-end gap-2.5 px-5 py-4" style={{ maskImage: "linear-gradient(to bottom, transparent, black 6%)", WebkitMaskImage: "linear-gradient(to bottom, transparent, black 6%)" }}>
       <div className="group flex flex-col items-end">
         <span className="min-w-0 max-w-[80%] rounded-2xl bg-message-surface px-3 py-2 text-[15px] leading-6 text-ink">
           {t.q}
