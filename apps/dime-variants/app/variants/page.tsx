@@ -258,7 +258,7 @@ export default function Variants() {
           <div className="mt-10 grid gap-3 md:grid-cols-2">
             <div className="window window-light">
               <div className="flex h-10 items-center px-4 font-mono text-[12px] text-ink-2">warehouse.duckdb</div>
-              <div className="light m-1.5 mt-0 h-[300px] overflow-hidden rounded-[8px]">
+              <div className="light h-[300px] overflow-hidden">
                 <RecordsTable fill />
               </div>
             </div>
@@ -324,7 +324,7 @@ export default function Variants() {
               <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
               <span className="ml-auto shrink-0 font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
             </div>
-            <div className="light m-1.5 mt-0 h-[360px] overflow-hidden rounded-[8px]">
+            <div className="light h-[360px] overflow-hidden">
               <RecordsTable fill />
             </div>
           </div>
@@ -770,7 +770,7 @@ export default function Variants() {
               <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
               <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
             </div>
-            <div className="light m-1.5 mt-0 grid min-w-0 overflow-hidden rounded-[8px] md:m-2 md:mt-0 md:grid-cols-[minmax(0,8fr)_minmax(0,4fr)]">
+            <div className="light grid min-w-0 overflow-hidden md:grid-cols-[minmax(0,8fr)_minmax(0,4fr)]">
               <div className="h-[460px] min-w-0"><RecordsTable fill /></div>
               <div className="flex h-[460px] min-w-0 flex-col gap-6 overflow-y-auto border-t border-line p-5 md:border-l md:border-t-0">
                 <div className="flex flex-col gap-1.5">
@@ -818,6 +818,33 @@ export default function Variants() {
               ))}
             </ul>
           </div>
+        </div>
+      </Variant>
+
+      {/* QS-A — stepped setup: numbered rows carry the commands, no terminal chrome */}
+      <Variant id="QS-A">
+        <div className="wrap section-pad">
+          <div className="flex flex-col gap-4">
+            <h2 className="title">Run it locally</h2>
+            <p className="lede">Clone the repo, fetch the data pack and add your own model key.</p>
+          </div>
+          <ol className="m-0 mt-12 grid list-none gap-0 p-0 md:grid-cols-3 md:gap-10">
+            {[
+              { n: "1", cmd: "git clone mythiipanda/dime", note: "The repo holds the app, the analyst and the data pipeline." },
+              { n: "2", cmd: "./scripts/fetch-data.sh", note: "One DuckDB file: 58 tables, 14.9 million rows, 2009-10 to 2025-26." },
+              { n: "3", cmd: "export ANTHROPIC_API_KEY=...", note: "Chat runs on your own model provider keys." },
+            ].map((s) => (
+              <li key={s.n} className="flex flex-col gap-3 border-t border-line py-6">
+                <span className="num text-[12px] text-ink-3">{s.n}</span>
+                <code className="w-fit rounded-md bg-field px-2.5 py-1.5 font-mono text-[13px] text-ink">{s.cmd}</code>
+                <span className="text-[13.5px] leading-relaxed text-ink-2">{s.note}</span>
+              </li>
+            ))}
+          </ol>
+          <a href={README} className="mt-10 inline-flex h-11 w-fit select-none items-center justify-center gap-2 rounded-full bg-ink px-5 text-[15px] font-medium leading-none text-canvas shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] transition-[transform,background-color,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.96]">
+            <GithubMark size={17} />
+            Read the quickstart
+          </a>
         </div>
       </Variant>
     </main>

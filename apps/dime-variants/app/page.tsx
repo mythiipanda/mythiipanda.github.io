@@ -62,7 +62,7 @@ export default function Home() {
           </div>
 
           <div className="window window-hero window-light enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
-            <div className="light m-1.5 mt-0 h-[500px] min-w-0 overflow-hidden rounded-[8px] md:m-2 md:mt-0 md:h-[620px]">
+            <div className="light h-[500px] min-w-0 overflow-hidden md:h-[620px]">
               <ChatWindow state="split" artifact="board" />
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function Home() {
               <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
               <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
             </div>
-            <div className="light m-1.5 mt-0 grid min-w-0 overflow-hidden rounded-[8px] md:m-2 md:mt-0 md:grid-cols-[minmax(0,1fr)_300px]">
+            <div className="light grid min-w-0 overflow-hidden md:grid-cols-[minmax(0,1fr)_300px]">
               <div className="h-[460px] min-w-0"><RecordsTable fill /></div>
               <div className="flex h-[460px] min-w-0 flex-col gap-6 overflow-y-auto border-t border-line p-5 md:border-l md:border-t-0">
                 <div className="flex flex-col gap-1.5">
