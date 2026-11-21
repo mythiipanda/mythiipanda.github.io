@@ -13,6 +13,12 @@
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--page);color:var(--ink);font:400 15px/1.4 "Geist Variable",Geist,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
 ::selection{background:var(--ink);color:var(--page)}
+:root{scrollbar-width:thin;scrollbar-color:var(--soft) transparent}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--soft);border:2px solid var(--page);border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:var(--ink)}
+::-webkit-scrollbar-corner{background:transparent}
 main{width:var(--col);max-width:calc(100% - 48px);margin:0 auto;padding:clamp(48px,14vh,128px) 0 96px;display:flex;flex-direction:column;gap:var(--s-5)}
 h1,h2,p,ul{margin:0;padding:0;font:inherit}
 p{text-wrap:pretty}
