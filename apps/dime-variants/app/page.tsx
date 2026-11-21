@@ -71,7 +71,7 @@ export default function Home() {
               <UiClip anchor="45%" zoom src="/dime-site/clips/trade-full.mp4" poster="/dime-site/clips/trade-poster.jpg" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
             </div>
             <div className="grid min-w-0 gap-4 lg:translate-y-8">
-              <UiClip cover src="/dime-site/clips/chats.mp4" poster="/dime-site/clips/chats-poster.jpg" label="Dime's sidebar: switching between a midseason review, a trade check and the leaders board" />
+              <UiClip cover src="/dime-site/clips/pending.mp4" poster="/dime-site/clips/pending-poster.jpg" label="Dime answering in the background: a working thread shows skeletons, then resolves to the leaders board" />
             </div>
           </div>
           <div className="mt-4 grid gap-4 md:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
