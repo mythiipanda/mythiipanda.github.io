@@ -91,7 +91,7 @@ function HomeCanvas() {
   );
 }
 
-function CiteChip({ children }: { children: ReactNode }) {
+export function CiteChip({ children }: { children: ReactNode }) {
   return (
     <sup className="ml-0.5 inline-flex h-4 items-center rounded-[3px] bg-accent/10 px-1 font-mono text-[9.5px] font-medium leading-none text-accent-ink">
       {children}
@@ -198,9 +198,10 @@ function PanelStateView({ icon: Icon, title, hint, action }: { icon: PanelTab["i
   );
 }
 
-export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false, panelState }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean; panelState?: "empty" | "error" }) {
+export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false, panelState, extraTabs }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean; panelState?: "empty" | "error"; extraTabs?: PanelTab[] }) {
   const [open, setOpen] = useState(kind);
-  const meta = ARTIFACT_META[open] ?? ARTIFACT_META.board;
+  const meta = ARTIFACT_META[open];
+  const known = Boolean(meta);
   const [sort, setSort] = useState<TableSort>({ id: "ts", desc: true });
   const [sel, setSel] = useState<string | null>(null);
   const toggleSort = (id: string) =>
@@ -220,7 +221,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
   return (
     <section className={outer}>
       <PanelTabs
-        tabs={ARTIFACT_TABS}
+        tabs={extraTabs ? [...ARTIFACT_TABS, ...extraTabs] : ARTIFACT_TABS}
         activeId={open}
         onSelect={setOpen}
         afterTabs={<PanelIconButton icon={PlusIcon} label="open artifact" />}
@@ -232,8 +233,8 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         }
       />
       <div className="flex h-9 shrink-0 items-center gap-2 border-b border-line px-3">
-        <meta.icon className="size-3.5 shrink-0 text-icon-muted" />
-        <span className="min-w-0 flex-1 truncate text-[12.5px] font-medium text-ink">{meta.title}</span>
+        {meta && <meta.icon className="size-3.5 shrink-0 text-icon-muted" />}
+        <span className="min-w-0 flex-1 truncate text-[12.5px] font-medium text-ink">{meta?.title ?? open}</span>
         <span className="flex shrink-0 items-center gap-0.5">
           <PanelIconButton icon={CopyIcon} label="copy" />
           <PanelIconButton icon={DownloadIcon} label="export" />
@@ -241,15 +242,15 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         </span>
       </div>
       <div className="relative min-h-0 flex-1 overflow-hidden">
-        {panelState === "empty" && (
+        {(panelState === "empty" || (!panelState && !known)) && (
           <PanelStateView icon={InboxIcon} title="No artifacts open" hint="Answers can be pinned here" />
         )}
         {panelState === "error" && (
           <PanelStateView icon={TriangleAlertIcon} title="Couldn't load this artifact" hint="The query failed to run" action="Retry" />
         )}
-        {!panelState && open === "trade" && <TradeArtifact />}
-        {!panelState && open === "report" && <ReportArtifact />}
-        {!panelState && open === "board" && (
+        {!panelState && known && open === "trade" && <TradeArtifact />}
+        {!panelState && known && open === "report" && <ReportArtifact />}
+        {!panelState && known && open === "board" && (
         <Table variant="default" size="xs" scrollFade stickyHeader containerClassName="h-full">
           <TableHeader>
             <TableRow>
@@ -283,7 +284,14 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
                   <TableRow
                     key={p.name}
                     onClick={() => setSel((cur) => (cur === p.name ? null : p.name))}
-                    className={`cursor-pointer ${sel === p.name ? "bg-accent-tint/60 hover:bg-accent-tint/60" : ""}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setSel((cur) => (cur === p.name ? null : p.name));
+                      }
+                    }}
+                    tabIndex={0}
+                    className={`cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent ${sel === p.name ? "bg-accent-tint/60 hover:bg-accent-tint/60" : ""}`}
                   >
                     <TableCell>
                       <span className="flex h-8 items-center gap-2">

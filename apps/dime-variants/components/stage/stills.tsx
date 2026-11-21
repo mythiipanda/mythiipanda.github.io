@@ -7,14 +7,15 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 import CodeBlock from "../beautiful/primitives/CodeBlock";
 import { Spark, Ring, Rise } from "./viz";
 import { CLUTCH, CLUTCH_COUNT, LINEUPS, LINEUP_COUNT } from "@/lib/exhibits";
+import { CiteChip } from "./chat-window";
 
 function MiniTable({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
   return (
-    <Table variant="default" size="sm" scrollFade={false}>
+    <Table variant="default" size="xs" scrollFade={false}>
       <TableHeader>
         <TableRow>
           {head.map((h, i) => (
-            <TableHead key={h} align={i > 1 ? "end" : "start"} className="h-7 px-2 text-[11px]">
+            <TableHead key={h} align={i > 1 ? "end" : "start"} className="text-[11px]">
               {h}
             </TableHead>
           ))}
@@ -24,7 +25,7 @@ function MiniTable({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
         {rows.map((r, i) => (
           <TableRow key={i}>
             {r.map((c, j) => (
-              <TableCell key={j} align={j > 1 ? "end" : "start"} className={`px-2 text-[12.5px] ${j > 1 ? "font-mono tabular-nums" : ""}`}>
+              <TableCell key={j} align={j > 1 ? "end" : "start"} className={`text-[12.5px] ${j > 1 ? "font-mono tabular-nums" : ""}`}>
                 {c}
               </TableCell>
             ))}
@@ -218,14 +219,6 @@ function TradesPane() {
   );
 }
 
-function Cite({ children }: { children: ReactNode }) {
-  return (
-    <sup className="ml-0.5 inline-flex h-4 items-center rounded-[4px] bg-accent-tint px-1 font-mono text-[9.5px] font-medium leading-none text-accent-ink">
-      {children}
-    </sup>
-  );
-}
-
 function ReportPane() {
   return (
       <div className="flex h-full min-h-0">
@@ -248,10 +241,10 @@ function ReportPane() {
             <h3 className="text-[17px] font-semibold text-ink">Midseason efficiency review</h3>
 
             <p className="rise-in mt-4 text-[13.5px] leading-7 text-ink-2" style={{ animationDelay: "60ms" }}>
-              Among <span className="font-medium text-ink">164 rotation players</span> (≥1,500 minutes), Luke Kennard leads the league at <span className="font-mono text-[13px] font-medium text-ink">68.9%</span> true shooting<Cite>1</Cite>, edging Jalen Duren (<span className="font-mono text-[13px] text-ink">68.8%</span>) on a third of the usage.
+              Among <span className="font-medium text-ink">164 rotation players</span> (≥1,500 minutes), Luke Kennard leads the league at <span className="font-mono text-[13px] font-medium text-ink">68.9%</span> true shooting<CiteChip>1</CiteChip>, edging Jalen Duren (<span className="font-mono text-[13px] text-ink">68.8%</span>) on a third of the usage.
             </p>
             <p className="rise-in mt-3 text-[13.5px] leading-7 text-ink-2" style={{ animationDelay: "120ms" }}>
-              Nikola Jokić remains the workload outlier, top-five efficiency (<span className="font-mono text-[13px] text-ink">67.0%</span>) at <span className="font-mono text-[13px] text-ink">28.9%</span> usage, nearly double every other name on the board.<Cite>2</Cite>
+              Nikola Jokić remains the workload outlier, top-five efficiency (<span className="font-mono text-[13px] text-ink">67.0%</span>) at <span className="font-mono text-[13px] text-ink">28.9%</span> usage, nearly double every other name on the board.<CiteChip>2</CiteChip>
             </p>
             <div className="rise-in mt-4 rounded-[10px] bg-field p-3.5" style={{ animationDelay: "180ms" }}>
               <div className="mb-2 text-[11px] font-medium text-secondary-label">exhibit 1 · true-shooting leaders</div>
@@ -265,7 +258,7 @@ function ReportPane() {
               />
             </div>
             <p className="rise-in mt-4 text-[13.5px] leading-7 text-ink-2" style={{ animationDelay: "240ms" }}>
-              The clutch pool stands at <span className="font-mono text-[13px] text-ink">492 qualified players</span>; Shai Gilgeous-Alexander tops it at 175 points on 51.5% shooting.<Cite>3</Cite>
+              The clutch pool stands at <span className="font-mono text-[13px] text-ink">492 qualified players</span>; Shai Gilgeous-Alexander tops it at 175 points on 51.5% shooting.<CiteChip>3</CiteChip>
             </p>
           </div>
         </div>
@@ -321,4 +314,4 @@ export const PANES = [
   },
 ];
 
-export { Bars, MiniTable, Spark, Ring, Rise, Cite };
+export { Bars, MiniTable, Spark, Ring, Rise };

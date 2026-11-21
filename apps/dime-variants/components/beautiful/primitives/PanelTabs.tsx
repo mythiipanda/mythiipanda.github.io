@@ -23,9 +23,18 @@ function Tab({
   return (
     <div
       data-active-tab={active || undefined}
+      role="tab"
+      aria-selected={active}
+      tabIndex={0}
       onClick={() => onSelect?.(tab.id)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect?.(tab.id);
+        }
+      }}
       className={cn(
-        "group/tab flex h-6 max-w-36 shrink-0 cursor-pointer items-center gap-0.5 rounded-md pr-2 pl-1.5 text-xs",
+        "group/tab flex h-6 max-w-36 shrink-0 cursor-pointer items-center gap-0.5 rounded-md pr-2 pl-1.5 text-xs focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-accent",
         active ? "bg-hover text-ink" : "text-secondary-label hover:bg-hover-2 hover:text-ink",
       )}
     >
@@ -57,7 +66,7 @@ export default function PanelTabs({
   return (
     <div className={cn("flex h-9 shrink-0 items-center gap-1 border-b border-line pl-2 pr-2", className)}>
       {leading}
-      <div className="flex h-full min-w-0 flex-1 items-center gap-1 overflow-x-auto">
+      <div role="tablist" className="flex h-full min-w-0 flex-1 items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {tabs.map((tab) => (
           <Tab key={tab.id} tab={tab} active={tab.id === activeId} onSelect={onSelect} />
         ))}
