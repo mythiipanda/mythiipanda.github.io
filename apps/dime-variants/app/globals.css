@@ -37,6 +37,9 @@
   --secondary-label: var(--ink-3);
   --icon-muted: var(--ink-3);
   --shadow-composer: 0 1px 2px rgb(0 0 0 / 5%);
+  /* t3code message-surface recipe: one step greyer than --field so a user
+     turn stands off the near-white canvas without a border. */
+  --message-surface: color-mix(in oklab, var(--hover-2) 55%, var(--field));
 }
 
 .bg-sidebar { background-color: var(--sidebar); }
@@ -50,6 +53,7 @@
 .text-secondary-label { color: var(--secondary-label); }
 .text-icon-muted { color: var(--icon-muted); }
 .shadow-composer { box-shadow: var(--shadow-composer); }
+.bg-message-surface { background-color: var(--message-surface); }
 
 html {
   scroll-behavior: smooth;

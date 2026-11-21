@@ -38,8 +38,8 @@ const LIBRARY = [
 
 function Shelf({ label, count }: { label: string; count: number }) {
   return (
-    <div className="relative mx-0.5 mt-2 h-7 first:mt-0">
-      <span className="flex h-7 w-full items-center gap-2 rounded-md px-2 text-left text-xs font-medium text-secondary-label">
+    <div className="relative mx-0.5 mt-2 h-8 first:mt-0">
+      <span className="flex h-8 w-full items-center gap-2 rounded-md px-2 text-left text-xs font-medium text-secondary-label">
         <span className="min-w-0 truncate">{label}</span>
         <span aria-hidden className="invisible h-px min-w-2 flex-1 bg-sidebar-border/50" />
         <span className="font-normal tabular-nums">{count}</span>
@@ -54,15 +54,17 @@ function Row({
   label,
   active,
   trail,
+  tall,
 }: {
   icon?: React.ComponentType<{ className?: string }>;
   label: string;
   active?: boolean;
   trail?: string;
+  tall?: boolean;
 }) {
   return (
     <span
-      className={`group/sidebar-row relative flex h-8 w-full cursor-pointer items-center gap-2.5 rounded-md px-2.5 text-left text-sm select-none ${
+      className={`group/sidebar-row relative flex ${tall ? "h-9" : "h-8"} w-full cursor-pointer items-center gap-2.5 rounded-md px-2.5 text-left text-sm select-none ${
         active
           ? "bg-sidebar-row-active text-ink ring-1 ring-inset ring-sidebar-border/70"
           : "text-sidebar-foreground hover:bg-sidebar-row-hover"
@@ -96,10 +98,10 @@ function Rail({ active }: { active: string }) {
         </span>
       </div>
       <div className="px-2 pb-1">
-        <span className="flex h-8 w-full items-center gap-2 rounded-md bg-field px-2.5 ring-1 ring-inset ring-line">
-          <SearchIcon className="size-3.5 shrink-0 text-icon-muted" />
-          <span className="min-w-0 flex-1 truncate text-sm text-secondary-label">Search or ask</span>
-          <kbd className="shrink-0 font-mono text-[10px] text-icon-muted">⌘K</kbd>
+        <span className="flex h-8 w-full items-center gap-2 rounded-md bg-field px-2 py-1.5 ring-1 ring-inset ring-line">
+          <SearchIcon className="size-4 shrink-0 text-icon-muted" />
+          <span className="min-w-0 flex-1 truncate text-sm font-medium text-secondary-label">Search or ask</span>
+          <kbd className="inline-flex h-5 min-w-5 shrink-0 items-center justify-center rounded bg-ink/[0.07] px-1 font-sans text-xs font-medium text-secondary-label">⌘K</kbd>
         </span>
       </div>
       <div className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-hidden px-2 pt-1 pb-6 [mask-image:linear-gradient(to_bottom,black_calc(100%-24px),transparent)]">
@@ -107,7 +109,7 @@ function Rail({ active }: { active: string }) {
         <Row icon={SquarePenIcon} label="New chat" />
         <Shelf label="Chats" count={CHATS.length} />
         {CHATS.map((r) => (
-          <Row key={r.id} label={r.label} trail={r.trail} active={active === r.id} />
+          <Row key={r.id} label={r.label} trail={r.trail} active={active === r.id} tall />
         ))}
         <Shelf label="Library" count={LIBRARY.length} />
         {LIBRARY.map((r) => (
@@ -131,7 +133,7 @@ function Rail({ active }: { active: string }) {
 
 function Composer({ focused = false }: { focused?: boolean }) {
   return (
-    <div className={`rounded-xl bg-surface p-2 ring-1 ring-inset shadow-composer ${focused ? "ring-accent/40" : "ring-line"}`}>
+    <div className={`rounded-2xl bg-surface p-2 ring-1 ring-inset shadow-composer ${focused ? "ring-accent/40" : "ring-line"}`}>
       <div className="flex items-center gap-2 px-2 pt-1">
         <span className="min-w-0 flex-1 truncate text-sm text-secondary-label">
           Ask about a player, lineup, trade, or trend…
@@ -215,7 +217,7 @@ function ToolRow({ label, trail, pending = false }: { label: string; trail: stri
 
 function CiteChip({ children }: { children: ReactNode }) {
   return (
-    <sup className="ml-0.5 inline-flex h-4 items-center rounded-[4px] bg-accent-tint px-1 font-mono text-[9.5px] font-medium leading-none text-accent-ink">
+    <sup className="ml-0.5 inline-flex h-4 items-center rounded-sm border border-accent/40 bg-accent/10 px-1 font-mono text-[9.5px] font-medium leading-none text-accent-ink">
       {children}
     </sup>
   );
@@ -433,7 +435,7 @@ function ThreadLane({ pending = false, kind = "board" }: { pending?: boolean; ki
   return (
     <div className="mx-auto flex w-full max-w-[46rem] flex-col gap-3 px-5 py-5">
       <div className="flex justify-end">
-        <span className="max-w-[85%] rounded-xl bg-field px-3.5 py-2 text-[13.5px] leading-6 text-ink ring-1 ring-inset ring-line">
+        <span className="max-w-[85%] rounded-xl bg-message-surface px-3.5 py-2 text-[13.5px] leading-6 text-ink">
           {t.q}
         </span>
       </div>
