@@ -56,7 +56,7 @@ export default function Home() {
           </div>
 
           <div className="enter mt-10 md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
-            <UiClip src="/dime-site/clips/hero-full.mp4" poster="/dime-site/clips/hero-poster.jpg" />
+            <UiClip src="/dime-site/clips/hero-full.mp4" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
           </div>
         </section>
 
@@ -66,7 +66,7 @@ export default function Home() {
           <Head title="Every answer shows its work">Boards, trade checks and notebooks. Every claim cites the rows it ran on.</Head>
           <div className="mt-8 grid gap-4 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="min-w-0">
-              <UiClip src="/dime-site/clips/trade-full.mp4" poster="/dime-site/clips/trade-poster.jpg" />
+              <UiClip src="/dime-site/clips/trade-full.mp4" poster="/dime-site/clips/trade-poster.jpg" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
             </div>
             <div className="grid min-w-0 gap-4 lg:translate-y-8">
               {(["trade", "report"] as const).map((k) => (

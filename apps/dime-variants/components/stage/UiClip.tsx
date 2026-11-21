@@ -1,4 +1,4 @@
-export default function UiClip({ src, poster, className = "" }: { src: string; poster?: string; className?: string }) {
+export default function UiClip({ src, poster, label, className = "" }: { src: string; poster?: string; label?: string; className?: string }) {
   return (
     <div className={`h-[300px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line shadow-[0_20px_50px_-24px_rgb(0_0_0/0.18)] md:h-auto ${className}`}>
       <video
@@ -10,6 +10,8 @@ export default function UiClip({ src, poster, className = "" }: { src: string; p
         loop
         playsInline
         preload="metadata"
+        aria-label={label}
+        title={label}
       />
     </div>
   );
