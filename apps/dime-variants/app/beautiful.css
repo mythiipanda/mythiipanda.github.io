@@ -749,8 +749,8 @@ a:focus-visible .animated-underline::after {
   max-height: 438px;
   overflow: auto;
   overscroll-behavior: none;
+  scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;
-  scrollbar-gutter: stable;
 }
 
 .records-scroll:focus-visible {

@@ -85,12 +85,7 @@ const PROMPT_CHIPS = [
 function HomeCanvas({ onSend }: { onSend?: (text: string) => void }) {
   return (
     <div className="flex h-full min-h-0 flex-col items-center justify-center px-6">
-      <span className="flex size-12 items-center justify-center rounded-full bg-surface shadow-[0_0_0_1px_var(--line)]">
-        <span className="font-serif text-[20px] leading-none tracking-[-0.02em] text-ink">
-          d<span className="text-accent">.</span>
-        </span>
-      </span>
-      <h2 className="mt-5 text-center font-serif text-[26px] leading-tight tracking-[-0.01em] text-ink">
+      <h2 className="text-center font-serif text-[26px] leading-tight tracking-[-0.01em] text-ink">
         Ask Dime anything.
       </h2>
       <div className="mt-7 w-full max-w-[520px]">

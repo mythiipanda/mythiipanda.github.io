@@ -1,8 +1,20 @@
 export function DimeMark({ size = 20 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="9.25" stroke="currentColor" strokeWidth="1.9" />
-      <path d="M12 2.75v18.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+    <svg width={size} height={size} viewBox="230 195 570 570" fill="none" aria-hidden="true">
+      <defs>
+        <clipPath id="dime-bowl">
+          <circle cx="478" cy="573" r="176" />
+        </clipPath>
+      </defs>
+      <path fill="#2458F5" d="M577 300 L718 210 L718 748 L577 748 Z" />
+      <path fill="#2458F5" fillRule="evenodd" d="M478 397 a176 176 0 1 0 0 352 a176 176 0 1 0 0 -352 Z M478 467 a106 106 0 1 1 0 212 a106 106 0 1 1 0 -212 Z" />
+      <g stroke="#2458F5" strokeWidth="16" fill="none" clipPath="url(#dime-bowl)">
+        <path d="M495 565 C505 495 510 445 522 398" />
+        <path d="M495 565 C435 555 372 545 312 560" />
+        <path d="M495 565 C528 548 562 525 592 488" />
+        <path d="M495 565 C548 590 575 620 605 700" />
+        <path d="M495 565 C478 645 462 705 452 748" />
+      </g>
     </svg>
   );
 }
