@@ -138,7 +138,7 @@ function Composer({ focused = false }: { focused?: boolean }) {
       <div className="flex items-center gap-2 px-2 pt-1">
         {focused && <span aria-hidden className="h-4 w-px shrink-0 animate-pulse bg-ink/70" />}
         <span className="min-w-0 flex-1 truncate text-sm text-secondary-label">
-          Ask about a player, lineup, trade, or trend…
+          Ask anything — @ players, / boards, $ trades
         </span>
       </div>
       <div className="mt-2 flex items-center gap-2 px-1 pb-1">
@@ -152,7 +152,7 @@ function Composer({ focused = false }: { focused?: boolean }) {
         <span className="ml-auto inline-flex h-6 items-center rounded-md px-1.5 text-[11px] font-medium text-secondary-label">
           auto
         </span>
-        <span aria-hidden className="flex size-8 items-center justify-center rounded-full bg-ink text-surface">
+        <span aria-hidden className="flex size-8 items-center justify-center rounded-full bg-accent text-surface">
           <ArrowUpIcon className="size-3.5" />
         </span>
       </div>
