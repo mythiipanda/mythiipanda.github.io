@@ -135,6 +135,7 @@ function Composer({ focused = false }: { focused?: boolean }) {
   return (
     <div className={`rounded-2xl bg-surface p-2 ring-1 ring-inset shadow-composer ${focused ? "ring-accent/40" : "ring-line"}`}>
       <div className="flex items-center gap-2 px-2 pt-1">
+        {focused && <span aria-hidden className="h-4 w-px shrink-0 animate-pulse bg-ink/70" />}
         <span className="min-w-0 flex-1 truncate text-sm text-secondary-label">
           Ask about a player, lineup, trade, or trend…
         </span>
@@ -177,7 +178,7 @@ function HomeCanvas() {
         Ask the warehouse anything.
       </h2>
       <div className="mt-7 w-full max-w-[520px]">
-        <Composer />
+        <Composer focused />
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
           {PROMPT_CHIPS.map((c) => (
             <span
@@ -310,6 +311,9 @@ const SCOUT_ROWS = [
   { img: "/dime-site/headshots/ayton.png", name: "Deandre Ayton", team: "LAL", ts: "67.6", usg: "16.4", trend: [64.0, 65.5, 66.9, 66.2, 67.1, 67.6] },
   { img: "/dime-site/headshots/queta.png", name: "Neemias Queta", team: "BOS", ts: "67.4", usg: "14.5", trend: [62.6, 64.9, 65.8, 66.0, 66.8, 67.4] },
   { img: "/dime-site/headshots/jokic.png", name: "Nikola Jokić", team: "DEN", ts: "67.0", usg: "28.9", trend: [65.8, 66.4, 66.1, 67.2, 66.6, 67.0] },
+  { img: "/dime-site/headshots/sga.png", name: "Shai Gilgeous-Alexander", team: "OKC", ts: "63.7", usg: "31.4", trend: [60.1, 61.9, 62.4, 63.0, 63.2, 63.7] },
+  { img: "/dime-site/headshots/giannis.png", name: "Giannis Antetokounmpo", team: "MIL", ts: "62.5", usg: "30.6", trend: [61.8, 62.2, 61.5, 62.8, 62.0, 62.5] },
+  { img: "/dime-site/headshots/curry.png", name: "Stephen Curry", team: "GSW", ts: "61.8", usg: "29.4", trend: [60.5, 62.0, 61.2, 62.6, 61.4, 61.8] },
 ];
 
 const ARTIFACT_META: Record<string, { title: string; kind: string }> = {
@@ -336,7 +340,7 @@ function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide 
           export
         </span>
       </div>
-      <div className="min-h-0 flex-1 overflow-hidden">
+      <div className="relative min-h-0 flex-1 overflow-hidden">
         {kind === "trade" && <TradeArtifact />}
         {kind === "report" && <ReportArtifact />}
         {kind === "board" && (
@@ -398,6 +402,7 @@ function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide 
           </tbody>
         </table>
         )}
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-surface to-transparent" />
       </div>
     </section>
   );
