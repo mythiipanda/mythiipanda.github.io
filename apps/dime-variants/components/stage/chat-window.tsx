@@ -3,18 +3,23 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import {
+  ArrowLeftRightIcon,
   ArrowRightIcon,
   ArrowUpIcon,
   CheckIcon,
   ChevronDownIcon,
+  CopyIcon,
   DatabaseIcon,
   DownloadIcon,
   FileTextIcon,
   HouseIcon,
+  Maximize2Icon,
   MessageSquareIcon,
+  PanelRightIcon,
   PinIcon,
   PlusIcon,
   SearchIcon,
+  TableIcon,
 } from "lucide-react";
 import { Headshot } from "./app-shell";
 import DiffTable from "../beautiful/primitives/DiffTable";
@@ -27,6 +32,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableSor
 import StreamingText, { type StreamingSource, type StreamingToken } from "../beautiful/primitives/StreamingText";
 import { Kbd } from "../beautiful/primitives/Kbd";
 import { Button } from "../beautiful/primitives/Button";
+import PanelTabs, { PanelIconButton, type PanelTab } from "../beautiful/primitives/PanelTabs";
 import { IconSettingsGear1 } from "../beautiful/icons";
 
 const CHATS: SidebarRecent[] = [
@@ -165,14 +171,21 @@ const SCOUT_ROWS = [
   { img: "/dime-site/headshots/curry.png", name: "Stephen Curry", team: "GSW", ts: "61.8", usg: "29.4", trend: [60.5, 62.0, 61.2, 62.6, 61.4, 61.8] },
 ];
 
-const ARTIFACT_META: Record<string, { title: string; kind: string }> = {
-  board: { title: "true shooting leaders", kind: "board" },
-  trade: { title: "giannis ↔ davis", kind: "trade check" },
-  report: { title: "midseason review", kind: "report" },
+const ARTIFACT_META: Record<string, { title: string; kind: string; icon: PanelTab["icon"] }> = {
+  board: { title: "true shooting leaders", kind: "board", icon: TableIcon },
+  trade: { title: "giannis ↔ davis", kind: "trade check", icon: ArrowLeftRightIcon },
+  report: { title: "midseason review", kind: "report", icon: FileTextIcon },
 };
 
+const ARTIFACT_TABS: PanelTab[] = ["board", "trade", "report"].map((id) => ({
+  id,
+  title: ARTIFACT_META[id].title,
+  icon: ARTIFACT_META[id].icon,
+}));
+
 export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean }) {
-  const meta = ARTIFACT_META[kind] ?? ARTIFACT_META.board;
+  const [open, setOpen] = useState(kind);
+  const meta = ARTIFACT_META[open] ?? ARTIFACT_META.board;
   const [sort, setSort] = useState<TableSort>({ id: "ts", desc: true });
   const [sel, setSel] = useState<string | null>("Luke Kennard");
   const toggleSort = (id: string) =>
@@ -191,17 +204,31 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
       : "hidden w-[46%] min-w-[360px] max-w-[440px] shrink-0 flex-col border-l border-line bg-surface md:flex";
   return (
     <section className={outer}>
-      <div className="flex h-11 shrink-0 items-center gap-2 border-b border-line px-4">
-        <PinIcon className="size-3.5 shrink-0 text-icon-muted" />
-        <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{meta.title}</span>
-        <Button variant="quiet" size="xs" className="rounded-md" aria-label="export">
-          <DownloadIcon className="size-3.5 text-icon-muted" />
-        </Button>
+      <PanelTabs
+        tabs={ARTIFACT_TABS}
+        activeId={open}
+        onSelect={setOpen}
+        afterTabs={<PanelIconButton icon={PlusIcon} label="open artifact" />}
+        trailing={
+          <>
+            <PanelIconButton icon={Maximize2Icon} label="expand" />
+            <PanelIconButton icon={PanelRightIcon} label="toggle panel" />
+          </>
+        }
+      />
+      <div className="flex h-9 shrink-0 items-center gap-2 border-b border-line px-3">
+        <meta.icon className="size-3.5 shrink-0 text-icon-muted" />
+        <span className="min-w-0 flex-1 truncate text-[12.5px] font-medium text-ink">{meta.title}</span>
+        <span className="flex shrink-0 items-center gap-0.5">
+          <PanelIconButton icon={CopyIcon} label="copy" />
+          <PanelIconButton icon={DownloadIcon} label="export" />
+          <PanelIconButton icon={MessageSquareIcon} label="chat about" />
+        </span>
       </div>
       <div className="relative min-h-0 flex-1 overflow-hidden">
-        {kind === "trade" && <TradeArtifact />}
-        {kind === "report" && <ReportArtifact />}
-        {kind === "board" && (
+        {open === "trade" && <TradeArtifact />}
+        {open === "report" && <ReportArtifact />}
+        {open === "board" && (
         <Table variant="default" size="sm" scrollFade={false} stickyHeader containerClassName="h-full">
           <TableHeader>
             <TableRow>
