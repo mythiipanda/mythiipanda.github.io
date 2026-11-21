@@ -66,7 +66,7 @@ export default function Home() {
               <ChatWindow state="split" artifact="board" />
             </div>
           </div>
-          <dl className="enter mt-10 grid grid-cols-2 border border-line md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
+          <dl className="enter mt-10 grid grid-cols-2 md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
             {COUNTS.map((c, i) => (
               <div key={c.n} className={`flex flex-col border-line p-6 text-center md:p-8 ${["border-b border-r md:border-b-0", "border-b md:border-b-0 md:border-r", "border-r", ""][i]}`}>
                 <dd className="order-1 font-serif text-[clamp(1.8rem,3vw,2.6rem)] leading-none tracking-[-0.02em] text-ink">{c.n}</dd>
