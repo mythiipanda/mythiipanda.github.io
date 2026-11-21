@@ -5,6 +5,7 @@ import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
 import { PlatformWindow } from "@/components/stage/platform-window";
+import { ChatWindow } from "@/components/stage/chat-window";
 import { Bars, MiniTable, PANES, Ring, Spark } from "@/components/stage/stills";
 import { COUNTS, COVERAGE, README, REPO } from "@/lib/site";
 
@@ -555,6 +556,50 @@ export default function Variants() {
                 Get Dime on GitHub
               </a>
             </div>
+          </div>
+        </div>
+      </Variant>
+
+      {/* ============ chat-first IA shotgun ============ */}
+
+      {/* CH-A — Notion-home: centered ask canvas, prompt chips, provenance strip */}
+      <Variant id="CH-A">
+        <div className="wrap section-pad">
+          <div className="mx-auto flex max-w-[720px] flex-col items-center gap-7 text-center">
+            <h1 className="display enter max-w-[15ch]">The open-source <em>NBA analyst.</em></h1>
+            <p className="lede mx-auto max-w-[46ch]">{LEAD}</p>
+            <CTAs />
+          </div>
+          <div className="mx-auto mt-14 max-w-[1120px] rounded-[16px] bg-canvas shadow-[0_1px_2px_rgba(20,20,25,0.05),0_16px_48px_-16px_rgba(20,20,25,0.2),0_0_0_1px_var(--line)]">
+            <Shell><ChatWindow state="home" /></Shell>
+          </div>
+        </div>
+      </Variant>
+
+      {/* CH-B — Harvey split: thread lane left, artifact panel right (lead) */}
+      <Variant id="CH-B">
+        <div className="wrap section-pad">
+          <div className="mx-auto flex max-w-[720px] flex-col items-center gap-7 text-center">
+            <h1 className="display enter max-w-[15ch]">The open-source <em>NBA analyst.</em></h1>
+            <p className="lede mx-auto max-w-[46ch]">{LEAD}</p>
+            <CTAs />
+          </div>
+          <div className="mx-auto mt-14 max-w-[1120px] rounded-[16px] bg-canvas shadow-[0_1px_2px_rgba(20,20,25,0.05),0_16px_48px_-16px_rgba(20,20,25,0.2),0_0_0_1px_var(--line)]">
+            <Shell><ChatWindow state="split" /></Shell>
+          </div>
+        </div>
+      </Variant>
+
+      {/* CH-C — mid-flight: question sent, tools running, panel loading */}
+      <Variant id="CH-C">
+        <div className="wrap section-pad">
+          <div className="mx-auto flex max-w-[720px] flex-col items-center gap-7 text-center">
+            <h1 className="display enter max-w-[15ch]">The open-source <em>NBA analyst.</em></h1>
+            <p className="lede mx-auto max-w-[46ch]">{LEAD}</p>
+            <CTAs />
+          </div>
+          <div className="mx-auto mt-14 max-w-[1120px] rounded-[16px] bg-canvas shadow-[0_1px_2px_rgba(20,20,25,0.05),0_16px_48px_-16px_rgba(20,20,25,0.2),0_0_0_1px_var(--line)]">
+            <Shell><ChatWindow state="pending" /></Shell>
           </div>
         </div>
       </Variant>
