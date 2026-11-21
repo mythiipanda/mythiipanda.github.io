@@ -356,9 +356,13 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
   const t = THREADS[kind] ?? THREADS.board;
   return (
     <div className="mx-auto flex h-full w-full max-w-[46rem] flex-col justify-end gap-2.5 px-5 py-4">
-      <div className="flex justify-end">
-        <span className="max-w-[85%] rounded-xl bg-message-surface px-3.5 py-2 text-[15px] leading-6 text-ink">
+      <div className="group flex flex-col items-end">
+        <span className="min-w-0 max-w-[80%] rounded-2xl bg-message-surface px-3 py-2 text-[15px] leading-6 text-ink">
           {t.q}
+        </span>
+        <span className="flex items-center gap-2 pe-1 pt-0.5 text-xs tabular-nums text-secondary-label opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          <span className="cursor-pointer hover:underline">copy</span>
+          <span className="cursor-pointer hover:underline">edit</span>
         </span>
       </div>
       {pending ? (

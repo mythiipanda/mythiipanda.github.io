@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ArrowLeftRightIcon, CheckIcon, DownloadIcon, PinIcon } from "lucide-react";
 import { ActionPill, Card, Cell, Headshot } from "./app-shell";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../beautiful/primitives/Table";
 import { CLUTCH, CLUTCH_COUNT, LINEUPS, LINEUP_COUNT } from "@/lib/exhibits";
 
 function Spark({ points, w = 76, h = 22 }: { points: number[]; w?: number; h?: number }) {
@@ -52,38 +53,30 @@ function K({ children }: { children: ReactNode }) {
   return <span className="text-accent-ink">{children}</span>;
 }
 
-function Td({ children, right, mono }: { children: ReactNode; right?: boolean; mono?: boolean }) {
-  return (
-    <td className={`h-8 border-b border-line px-2 text-[12.5px] last:border-b-0 ${right ? "text-right" : ""} ${mono ? "font-mono tabular-nums" : ""}`}>
-      {children}
-    </td>
-  );
-}
-
 function MiniTable({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
   return (
-    <table className="w-full border-collapse">
-      <thead>
-        <tr>
+    <Table variant="default" size="sm" scrollFade={false}>
+      <TableHeader>
+        <TableRow>
           {head.map((h, i) => (
-            <th key={h} className={`h-7 border-b border-line px-2 text-[11px] font-medium text-secondary-label ${i > 1 ? "text-right" : "text-left"}`}>
+            <TableHead key={h} align={i > 1 ? "end" : "start"} className="h-7 px-2 text-[11px]">
               {h}
-            </th>
+            </TableHead>
           ))}
-        </tr>
-      </thead>
-      <tbody>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {rows.map((r, i) => (
-          <tr key={i}>
+          <TableRow key={i}>
             {r.map((c, j) => (
-              <Td key={j} right={j > 1} mono={j > 1}>
+              <TableCell key={j} align={j > 1 ? "end" : "start"} className={`px-2 text-[12.5px] ${j > 1 ? "font-mono tabular-nums" : ""}`}>
                 {c}
-              </Td>
+              </TableCell>
             ))}
-          </tr>
+          </TableRow>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }
 
@@ -240,37 +233,37 @@ function ScoutPane() {
   return (
     <>
       <div className="min-h-0 flex-1 overflow-hidden">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
+        <Table variant="default" size="default" scrollFade={false}>
+          <TableHeader>
+            <TableRow>
               {["#", "player", "team", "ts%", "usg%", "trend", "age"].map((h, i) => (
-                <th key={h} className={`h-9 border-b border-line px-3 text-[11px] font-medium text-secondary-label ${i === 3 || i === 4 ? "text-right" : "text-left"} ${i >= 5 ? "hidden lg:table-cell" : ""}`}>
+                <TableHead key={h} align={i === 3 || i === 4 || i === 6 ? "end" : "start"} className={`h-9 px-3 text-[11px] ${i >= 5 ? "hidden lg:table-cell" : ""}`}>
                   {h}
-                </th>
+                </TableHead>
               ))}
-            </tr>
-          </thead>
-          <tbody>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {SCOUT.map((p, i) => (
-              <tr key={p.name} className={`rise-in transition-colors hover:bg-hover-2/40 ${i < 2 ? "bg-accent-tint/60" : ""}`} style={{ animationDelay: `${i * 55}ms` }}>
-                <td className="h-11 w-8 border-b border-line px-3 font-mono text-[12px] tabular-nums text-ink-3">
+              <TableRow key={p.name} className={`rise-in ${i < 2 ? "bg-accent-tint/60" : ""}`} style={{ animationDelay: `${i * 55}ms` }}>
+                <TableCell className="h-11 w-8 px-3 font-mono text-[12px] text-ink-3">
                   <span className={`inline-flex h-5 w-5 items-center justify-center rounded-[5px] ${i < 2 ? "bg-accent/15 font-medium text-accent-ink" : ""}`}>{i + 1}</span>
-                </td>
-                <td className="h-11 border-b border-line px-3">
+                </TableCell>
+                <TableCell className="h-11 px-3">
                   <span className="flex items-center gap-2.5">
                     <Headshot src={p.img} alt={p.name} size={26} />
                     <span className="truncate text-[13px] font-medium text-ink">{p.name}</span>
                   </span>
-                </td>
-                <td className="h-11 border-b border-line px-3 font-mono text-[12px] text-ink-2">{p.team}</td>
-                <td className="h-11 border-b border-line px-3 text-right font-mono text-[12.5px] font-medium tabular-nums text-ink">{p.ts}</td>
-                <td className="h-11 border-b border-line px-3 text-right font-mono text-[12.5px] tabular-nums text-ink-2">{p.usg}</td>
-                <td className="hidden h-11 border-b border-line px-3 lg:table-cell"><Spark points={p.trend} w={60} h={18} /></td>
-                <td className="hidden h-11 border-b border-line px-3 text-right font-mono text-[12.5px] tabular-nums text-ink-2 lg:table-cell">{p.age}</td>
-              </tr>
+                </TableCell>
+                <TableCell className="h-11 px-3 font-mono text-[12px] text-ink-2">{p.team}</TableCell>
+                <TableCell align="end" className="h-11 px-3 font-mono text-[12.5px] font-medium text-ink">{p.ts}</TableCell>
+                <TableCell align="end" className="h-11 px-3 font-mono text-[12.5px] text-ink-2">{p.usg}</TableCell>
+                <TableCell className="hidden h-11 px-3 lg:table-cell"><Spark points={p.trend} w={60} h={18} /></TableCell>
+                <TableCell align="end" className="hidden h-11 px-3 font-mono text-[12.5px] text-ink-2 lg:table-cell">{p.age}</TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
       <div className="rise-in shrink-0 border-t border-line bg-surface px-4 py-3" style={{ animationDelay: "320ms" }}>
         <div className="mb-2 text-[11px] font-medium text-secondary-label">compare</div>
