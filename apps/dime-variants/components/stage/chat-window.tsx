@@ -140,7 +140,7 @@ function ReportArtifact() {
       </p>
       <div className="mt-3 rounded-lg bg-field p-3">
         <div className="mb-2 text-[11px] font-medium text-secondary-label">exhibit 1</div>
-        <Table variant="default" size="sm" scrollFade={false} containerClassName="overflow-visible">
+        <Table variant="default" size="xs" scrollFade={false} containerClassName="overflow-visible">
           <TableBody>
             {SCOUT_ROWS.slice(0, 3).map((p) => (
               <TableRow key={p.name} className="bg-transparent hover:bg-transparent">
@@ -225,7 +225,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         {open === "trade" && <TradeArtifact />}
         {open === "report" && <ReportArtifact />}
         {open === "board" && (
-        <Table variant="default" size="sm" scrollFade={false} stickyHeader containerClassName="h-full">
+        <Table variant="default" size="xs" scrollFade={false} stickyHeader containerClassName="h-full">
           <TableHeader>
             <TableRow>
               <TableSortHead id="player" sort={sort} onSort={toggleSort} title="player" className="text-[11px]" />
@@ -238,11 +238,11 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
               ? boardRows.slice(0, 3).map((p) => (
                   <TableRow key={p.name}>
                     <TableCell>
-                      <span className="flex items-center gap-2.5">
-                        <span className="size-6 animate-pulse rounded-full bg-field" />
+                      <span className="flex h-8 items-center gap-2">
+                        <span className="size-[18px] animate-pulse rounded-full bg-field" />
                         <span className="flex flex-col gap-1">
-                          <span className="h-2.5 w-20 animate-pulse rounded bg-field" />
-                          <span className="h-2 w-8 animate-pulse rounded bg-field" />
+                          <span className="h-2 w-20 animate-pulse rounded bg-field" />
+                          <span className="h-1.5 w-8 animate-pulse rounded bg-field" />
                         </span>
                       </span>
                     </TableCell>
@@ -261,8 +261,8 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
                     className={`cursor-pointer ${sel === p.name ? "bg-accent-tint/60 hover:bg-accent-tint/60" : ""}`}
                   >
                     <TableCell>
-                      <span className="flex h-10 items-center gap-2.5">
-                        <Headshot src={p.img} alt={p.name} size={22} />
+                      <span className="flex h-8 items-center gap-2">
+                        <Headshot src={p.img} alt={p.name} size={18} />
                         <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{p.name}</span>
                         <span className="w-8 shrink-0 text-right font-mono text-[11px] text-ink-3">{p.team}</span>
                       </span>

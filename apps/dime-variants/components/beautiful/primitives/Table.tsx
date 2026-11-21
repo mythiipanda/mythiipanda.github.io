@@ -43,13 +43,14 @@ const VARIANTS: Record<string, string> = {
 };
 
 const SIZES: Record<string, string> = {
+  xs: "[--table-cell-px:--spacing(2.5)] [--table-cell-py:--spacing(1)] [--table-head-h:--spacing(6.5)]",
   sm: "[--table-cell-px:--spacing(2.5)] [--table-cell-py:--spacing(1.5)] [--table-head-h:--spacing(8)]",
   default: "[--table-cell-px:--spacing(3)] [--table-cell-py:--spacing(2.5)] [--table-head-h:--spacing(10)]",
 };
 
 type TableProps = React.ComponentProps<"table"> & {
   variant?: "default" | "surface";
-  size?: "sm" | "default";
+  size?: "xs" | "sm" | "default";
   wrap?: boolean;
   scrollFade?: boolean;
   stickyHeader?: boolean;
