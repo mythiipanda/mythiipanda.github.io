@@ -315,11 +315,7 @@ export const PANES = [
     label: "Report",
     active: "reports",
     crumb: "reports / midseason-review",
-    actions: (
-      <span className="inline-flex h-7 items-center gap-1.5 rounded-full bg-ink px-3 text-[12px] font-medium text-surface">
-        <DownloadIcon className="size-3" /> export
-      </span>
-    ),
+    actions: <ActionPill icon={DownloadIcon}>export</ActionPill>,
     paneClass: "px-0 py-0",
     body: <ReportPane />,
   },
