@@ -228,7 +228,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
     setAdded((a) => [...a, { id, title: `untitled-${added.length + 1}.md`, icon: FileTextIcon }]);
     setOpen(id);
   };
-  const copyTitle = () => navigator.clipboard?.writeText(meta?.title ?? open);
+  const copyTitle = () => navigator.clipboard?.writeText(meta?.title ?? tabs.find((t) => t.id === open)?.title ?? open);
   const exportCsv = () => {
     const csv = "player,team,ts,usg\n" + SCOUT_ROWS.map((p) => `${p.name},${p.team},${p.ts},${p.usg}`).join("\n");
     const a = document.createElement("a");
@@ -256,10 +256,10 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
       />
       <div className="flex h-9 shrink-0 items-center gap-2 border-b border-line px-3">
         {meta && <meta.icon className="size-3.5 shrink-0 text-icon-muted" />}
-        <span className="min-w-0 flex-1 truncate text-[12.5px] font-medium text-ink">{meta?.title ?? open}</span>
+        <span className="min-w-0 flex-1 truncate text-[12.5px] font-medium text-ink">{meta?.title ?? tabs.find((t) => t.id === open)?.title ?? open}</span>
         <span className="flex shrink-0 items-center gap-0.5">
           <PanelIconButton icon={CopyIcon} label="copy title" onClick={copyTitle} />
-          <PanelIconButton icon={DownloadIcon} label="export csv" onClick={exportCsv} />
+          {known && <PanelIconButton icon={DownloadIcon} label="export csv" onClick={exportCsv} />}
           <PanelIconButton icon={MessageSquareIcon} label="chat about" onClick={askAbout} />
         </span>
       </div>
