@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowLeftRight, Check, Download, Pin } from "lucide-react";
+import { ArrowLeftRight, Check, Download, Pin } from "@/components/icons";
 import { ActionPill, Card, Cell, Headshot } from "./app-shell";
 import { CLUTCH, CLUTCH_COUNT, LINEUPS, LINEUP_COUNT } from "@/lib/exhibits";
 

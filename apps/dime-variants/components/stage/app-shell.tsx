@@ -12,7 +12,7 @@ import {
   Pin,
   ArrowLeftRight,
   FileText,
-} from "lucide-react";
+} from "@/components/icons";
 
 const NAV = [
   { id: "chat", label: "Chat", icon: MessageSquare },

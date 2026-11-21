@@ -1,11 +1,11 @@
-import { Check, ChevronDown, Database, House, LogOut, PanelLeft, Plus, Search, Settings, SquarePen, UserPlus, X } from "lucide-react";
+import { Check, ChevronDown, Database, House, LogOut, PanelLeft, Plus, Search, Settings, SquarePen, UserPlus, X } from "@/components/icons";
 import { DimeMark } from "@/components/mark";
 
 type IconProps = { size?: number; className?: string };
 
 const wrap = (Icon: typeof Check) =>
   function Wrapped({ size = 16, className }: IconProps) {
-    return <Icon size={size} strokeWidth={1.75} className={className} aria-hidden="true" />;
+    return <Icon size={size} className={className} aria-hidden="true" />;
   };
 
 export const IconArrowBoxLeft = wrap(LogOut);

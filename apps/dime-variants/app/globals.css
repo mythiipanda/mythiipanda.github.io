@@ -269,3 +269,76 @@ kbd,
   scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;
 }
+
+/* typography shotgun — verbatim metrics lifted from reference sites */
+.ty-linear .display,
+.ty-linear .title {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 510;
+  letter-spacing: -0.022em;
+  line-height: 1;
+}
+.ty-linear .display { font-size: clamp(40px, 4.9vw, 64px); }
+.ty-linear .title { font-size: clamp(32px, 3.4vw, 48px); text-wrap: balance; }
+.ty-linear .display em,
+.ty-linear .title em { font-style: normal; }
+.ty-linear .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+}
+.ty-linear .btn { font-size: 13px; height: 40px; }
+
+.ty-notion .display,
+.ty-notion .title {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.048em;
+  line-height: 1.04;
+}
+.ty-notion .display { font-size: clamp(52px, 6.7vw, 96px); }
+.ty-notion .title { font-size: clamp(36px, 3.8vw, 54px); letter-spacing: -0.035em; text-wrap: balance; }
+.ty-notion .display em,
+.ty-notion .title em { font-style: normal; }
+.ty-notion .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.ty-notion .btn { font-size: 16px; height: 48px; }
+
+.ty-cursor .display,
+.ty-cursor .title {
+  font-family: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  line-height: 1.15;
+}
+.ty-cursor .display { font-size: clamp(36px, 4.4vw, 60px); }
+.ty-cursor .title { font-size: clamp(30px, 3.2vw, 44px); text-wrap: balance; }
+.ty-cursor .display em,
+.ty-cursor .title em { font-style: normal; }
+.ty-cursor .lede {
+  font-family: var(--font-garamond), ui-serif, Georgia, serif;
+  font-size: 21px;
+  line-height: 1.45;
+  letter-spacing: normal;
+}
+
+.ty-harvey .display,
+.ty-harvey .title {
+  font-family: var(--font-news), ui-serif, Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.0125em;
+  line-height: 1.05;
+}
+.ty-harvey .display { font-size: clamp(46px, 5vw, 72px); }
+.ty-harvey .title { font-size: clamp(32px, 3.6vw, 44px); text-wrap: balance; }
+.ty-harvey .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: normal;
+}

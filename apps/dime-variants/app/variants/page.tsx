@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { BarChart3, Database, FileText, MessageSquare, MoveRight, SquareTerminal } from "lucide-react";
+import { BarChart3, Database, FileText, MessageSquare, MoveRight, SquareTerminal } from "@/components/icons";
 import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
 import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
@@ -392,6 +392,70 @@ export default function Variants() {
               <GithubMark size={17} />
               Get Dime on GitHub
             </a>
+          </div>
+        </div>
+      </Variant>
+
+      {/* T1 — linear.app type system: Inter, 64px display, -0.022em tracking, 510 weight */}
+      <Variant id="T1">
+        <div className="ty-linear">
+          <div className="wrap pb-24 pt-20 md:pt-28">
+            <div className="mx-auto flex max-w-[760px] flex-col items-center gap-8 text-center">
+              <h1 className="display enter max-w-[16ch]">The open-source NBA analyst.</h1>
+              <p className="lede mx-auto max-w-[52ch]">{LEAD}</p>
+              <CTAs />
+            </div>
+            <div className="mx-auto mt-16 max-w-[1120px] rounded-[12px] bg-canvas shadow-[0_0_0_1px_var(--line),0_8px_32px_-12px_rgba(20,20,25,0.18)]">
+              <Shell><PlatformWindow /></Shell>
+            </div>
+          </div>
+        </div>
+      </Variant>
+
+      {/* T2 — notion.com type system: Inter, 96px display, -0.048em tracking, 600 weight */}
+      <Variant id="T2">
+        <div className="ty-notion">
+          <div className="wrap pb-24 pt-16 md:pt-24">
+            <div className="mx-auto flex max-w-[860px] flex-col items-center gap-9 text-center">
+              <h1 className="display enter max-w-[15ch]">The open-source NBA analyst.</h1>
+              <p className="lede mx-auto max-w-[54ch]">{LEAD}</p>
+              <CTAs />
+            </div>
+            <div className="mx-auto mt-14 max-w-[1120px] rounded-[10px] bg-canvas shadow-[0_0_0_1px_var(--line)]">
+              <Shell><PlatformWindow /></Shell>
+            </div>
+          </div>
+        </div>
+      </Variant>
+
+      {/* T3 — cursor.com type system: grotesk display + garamond lede, left-aligned */}
+      <Variant id="T3">
+        <div className="ty-cursor">
+          <div className="wrap pb-20 pt-14 md:pt-20">
+            <div className="flex max-w-[680px] flex-col items-start gap-7">
+              <h1 className="display enter max-w-[18ch]">The open-source NBA analyst.</h1>
+              <p className="lede max-w-[48ch]">{LEAD}</p>
+              <CTAs />
+            </div>
+            <div className="window window-light mt-12">
+              <Shell><PlatformWindow /></Shell>
+            </div>
+          </div>
+        </div>
+      </Variant>
+
+      {/* T4 — harvey.ai type system: serif display 72px, airy spacing, minimal frame */}
+      <Variant id="T4">
+        <div className="ty-harvey">
+          <div className="wrap pb-32 pt-24 md:pt-36">
+            <div className="mx-auto flex max-w-[780px] flex-col items-center gap-10 text-center">
+              <h1 className="display enter max-w-[16ch]">The open-source NBA analyst.</h1>
+              <p className="lede mx-auto max-w-[54ch]">{LEAD}</p>
+              <CTAs />
+            </div>
+            <div className="mx-auto mt-20 max-w-[1120px] overflow-hidden rounded-[8px] bg-canvas shadow-[0_0_0_1px_var(--line)]">
+              <Shell><PlatformWindow /></Shell>
+            </div>
           </div>
         </div>
       </Variant>
