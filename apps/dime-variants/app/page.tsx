@@ -32,7 +32,7 @@ export default function Home() {
           dime<span className="text-accent">.</span>
         </a>
         <nav className="flex items-center gap-7 text-[14.5px] font-medium text-ink-2">
-          <a href="#platform" className="hidden transition-colors hover:text-ink sm:block">Platform</a>
+          <a href="#platform" className="hidden transition-colors hover:text-ink sm:block">Artifacts</a>
           <a href="#warehouse" className="hidden transition-colors hover:text-ink sm:block">Warehouse</a>
           <a href="#quickstart" className="hidden transition-colors hover:text-ink sm:block">Quickstart</a>
           <a href={REPO} className="flex items-center gap-2 text-ink transition-colors hover:text-accent">
@@ -79,7 +79,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="platform" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head n="01" title="Artifacts, not answers" />
+          <Head n="01" title="Show the work" />
           <div className="mt-8 grid gap-4 md:mt-14 md:grid-cols-3">
             {(["board", "trade", "report"] as const).map((k) => (
               <div key={k} className="h-[320px] overflow-hidden">
@@ -170,7 +170,7 @@ export default function Home() {
             </p>
           </div>
           <nav className="flex flex-col gap-3 text-[14px] md:text-right" aria-label="Footer">
-            <a href={REPO} className="text-ink-2 transition-colors hover:text-ink">GitHub — mythiipanda/dime</a>
+            <a href={REPO} className="text-ink-2 transition-colors hover:text-ink">GitHub · mythiipanda/dime</a>
             <a href={README} className="text-ink-2 transition-colors hover:text-ink">Quickstart</a>
             <a href={`${REPO}/blob/main/LICENSE`} className="text-ink-2 transition-colors hover:text-ink">MIT license</a>
           </nav>

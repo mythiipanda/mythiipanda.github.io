@@ -24,7 +24,7 @@ import { Spark } from "./stills";
 
 const CHATS = [
   { id: "c1", label: "true shooting leaders", trail: "11:42" },
-  { id: "c2", label: "giannis–ad trade check", trail: "Tue" },
+  { id: "c2", label: "giannis-ad trade check", trail: "Tue" },
   { id: "c3", label: "bench scoring, last 20", trail: "Mon" },
   { id: "c4", label: "season: mid points", trail: "Sun" },
 ];
@@ -118,15 +118,9 @@ function Rail({ active }: { active: string }) {
         ))}
       </div>
       <div className="mx-2 mt-2 border-t border-sidebar-border/60 px-0 py-2">
-        <div className="flex items-center gap-0.5">
-          <span className="flex size-8 items-center justify-center rounded-lg text-icon-muted">
-            <SettingsIcon className="size-4" />
-          </span>
-          <span className="ml-auto flex h-8 items-center gap-1.5 rounded-lg px-2 text-xs text-secondary-label">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
-            synced
-          </span>
-        </div>
+        <span className="flex size-8 items-center justify-center rounded-lg text-icon-muted">
+          <SettingsIcon className="size-4" />
+        </span>
       </div>
     </aside>
   );
@@ -138,7 +132,7 @@ function Composer({ focused = false }: { focused?: boolean }) {
       <div className="flex items-center gap-2 px-2 pt-1">
         {focused && <span aria-hidden className="h-4 w-px shrink-0 animate-pulse bg-ink/70" />}
         <span className="min-w-0 flex-1 truncate text-sm text-secondary-label">
-          Ask anything — @ players, / boards, $ trades
+          Ask anything. @ players, / boards, $ trades
         </span>
       </div>
       <div className="mt-2 flex items-center gap-2 px-1 pb-1">
@@ -193,11 +187,8 @@ function HomeCanvas() {
           ))}
         </div>
       </div>
-      <div className="mt-8 flex items-center gap-2 text-xs text-secondary-label">
-        <DatabaseIcon className="size-3.5 text-icon-muted" />
-        <span>Answers come from your warehouse</span>
-        <span className="tabular-nums text-icon-muted">·</span>
-        <span className="tabular-nums">58 tables · 14.9M rows</span>
+      <div className="mt-8 text-xs text-secondary-label">
+        <span className="tabular-nums">58 tables · 14.9M rows on disk</span>
       </div>
     </div>
   );
@@ -286,7 +277,7 @@ function ReportArtifact() {
         on nearly twice the usage.
       </p>
       <p className="mt-2.5 text-[13px] leading-6 text-ink-2">
-        Nikola Jokić remains the workload outlier — top-five efficiency at{" "}
+        Nikola Jokić remains the workload outlier, top-five efficiency at{" "}
         <span className="font-mono text-[12px] text-ink">28.9%</span> usage.<CiteChip>2</CiteChip>
       </p>
       <div className="mt-3 rounded-lg bg-field p-3">
@@ -417,18 +408,18 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNo
     a: (
       <>
         Among <span className="font-medium text-ink">164 rotation players</span>, <span className="font-medium text-ink">Luke Kennard</span> leads at{" "}
-        <span className="font-mono text-[13px] text-ink">68.9%</span> true shooting<CiteChip>1</CiteChip> — Jalen Duren is second at{" "}
+        <span className="font-mono text-[13px] text-ink">68.9%</span> true shooting<CiteChip>1</CiteChip>. Jalen Duren is second at{" "}
         <span className="font-mono text-[13px] text-ink">68.8</span> on nearly twice the usage.<CiteChip>2</CiteChip>
       </>
     ),
     link: "true shooting leaders",
   },
   trade: {
-    q: "Giannis for Anthony Davis straight up — does it clear the cap?",
+    q: "Giannis for Anthony Davis straight up. Does it clear the cap?",
     tools: [["Resolved salaries", "Resolving salaries"], ["Checked apron rules", "Checking apron rules"]],
     a: (
       <>
-        It clears. <span className="font-mono text-[13px] text-ink">$58.5M ↔ $58.5M</span> is an even swap<CiteChip>1</CiteChip> —
+        It clears. <span className="font-mono text-[13px] text-ink">$58.5M ↔ $58.5M</span> is an even swap<CiteChip>1</CiteChip>.
         Miami lands at <span className="font-mono text-[13px] text-ink">35.3%</span> cap hit, inside the apron.<CiteChip>2</CiteChip>
       </>
     ),
@@ -439,7 +430,7 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNo
     tools: [["Queried player stats", "Querying player stats"], ["Drafted midseason review", "Drafting midseason review"]],
     a: (
       <>
-        Drafted a one-page review — <span className="font-medium text-ink">Kennard, Duren, Ayton</span> headline it,
+        Drafted a one-page review. <span className="font-medium text-ink">Kennard, Duren, Ayton</span> headline it,
         every number cites its table<CiteChip>1</CiteChip>. Ready to export.<CiteChip>2</CiteChip>
       </>
     ),
