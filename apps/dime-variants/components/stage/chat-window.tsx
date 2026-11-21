@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import {
   ArrowLeftRightIcon,
@@ -500,7 +500,13 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false, s
 export function ChatWindow({ state = "split", artifact = "board", rail = true, layout = "split" }: { state?: "home" | "split" | "pending"; artifact?: string; rail?: boolean; layout?: "split" | "inline" | "focus" }) {
   const [view, setView] = useState(state === "home" ? "home" : artifact);
   const [pending, setPending] = useState(state === "pending");
+  const [pendingSticky, setPendingSticky] = useState(state === "pending");
   const [sentQ, setSentQ] = useState<string | null>(null);
+  useEffect(() => {
+    if (!pending || pendingSticky) return;
+    const t = setTimeout(() => setPending(false), 2600);
+    return () => clearTimeout(t);
+  }, [pending, pendingSticky]);
   const [activeChat, setActiveChat] = useState<string | null>(state === "home" ? null : "c1");
   const isHome = view === "home";
   const pickRecent = (id: string) => {
@@ -509,6 +515,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
     setActiveChat(id);
     setSentQ(v.q ?? null);
     setPending(v.view === "pending");
+    setPendingSticky(v.view === "pending");
     setView(v.view === "pending" ? "board" : v.view);
   };
   const newChat = () => {
@@ -530,6 +537,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
     setActiveChat(null);
     setSentQ(text);
     setPending(true);
+    setPendingSticky(false);
     setView("board");
   };
   const crumb = isHome ? "Home" : pending ? (sentQ ?? "season: mid points") : (THREADS[view] ?? THREADS.board).link;
