@@ -4,6 +4,7 @@ import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
 import { ArtifactPanel } from "@/components/stage/chat-window";
 import DimeAsk from "@/components/stage/demos/DimeAsk";
+import DimeTrade from "@/components/stage/demos/DimeTrade";
 import { PANES } from "@/components/stage/stills";
 import { COVERAGE, README, REPO } from "@/lib/site";
 
@@ -66,8 +67,8 @@ export default function Home() {
         <section id="platform" className="wrap scroll-mt-8 py-12 md:py-20">
           <Head title="Every answer shows its work">Boards, trade checks and notebooks. Every claim cites the rows it ran on.</Head>
           <div className="mt-8 grid gap-4 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
-            <div className="h-[460px] min-w-0">
-              <ArtifactPanel kind="board" framed />
+            <div className="min-w-0">
+              <DimeTrade />
             </div>
             <div className="grid min-w-0 gap-4 lg:translate-y-8">
               {(["trade", "report"] as const).map((k) => (
