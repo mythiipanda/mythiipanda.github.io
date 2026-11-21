@@ -46,7 +46,7 @@ function Tab({
         }
       }}
       className={cn(
-        "group/tab flex h-6 max-w-36 shrink-0 cursor-pointer items-center gap-0.5 rounded-md pr-2 pl-1.5 text-xs focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-accent",
+        "group/tab flex h-6 max-w-36 shrink-0 cursor-pointer items-center gap-1.5 rounded-md pr-2 pl-1.5 text-xs focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-accent",
         active ? "bg-hover text-ink" : "text-secondary-label hover:bg-hover-2 hover:text-ink",
       )}
     >
@@ -76,7 +76,7 @@ export default function PanelTabs({
   className?: string;
 }) {
   return (
-    <div className={cn("flex h-9 shrink-0 items-center gap-1 border-b border-line pl-2 pr-2", className)}>
+    <div className={cn("flex h-9 shrink-0 items-center gap-1 border-b border-line pl-1.5 pr-2", className)}>
       {leading}
       <div role="tablist" className="flex h-full min-w-0 flex-1 items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {tabs.map((tab) => (
