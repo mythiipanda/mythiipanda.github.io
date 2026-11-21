@@ -62,7 +62,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="platform" className="wrap scroll-mt-8 py-12 md:py-20">
+        <section id="platform" className="wrap scroll-mt-8 py-14 md:py-24">
           <Head title="Every answer shows its work">Boards, trade checks and notebooks. Every claim cites the rows it ran on.</Head>
           <div className="mt-8 grid gap-4 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="min-w-0">
@@ -92,7 +92,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="warehouse" className="wrap scroll-mt-8 py-12 md:py-20">
+        <section id="warehouse" className="wrap scroll-mt-8 py-14 md:py-24">
           <Head title="17 seasons in one file">58 tables, 14.9 million rows, on your disk. Shots, play-by-play, lineups, salaries and trades.</Head>
           <div className="window window-light mt-8 md:mt-14">
             <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
@@ -108,7 +108,7 @@ export default function Home() {
 
         <hr className="rule" />
 
-        <section id="quickstart" className="wrap grid scroll-mt-8 gap-10 py-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-20">
+        <section id="quickstart" className="wrap grid scroll-mt-8 gap-10 py-14 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-20 md:py-24">
           <div className="flex flex-col items-start gap-5 md:justify-center">
             <h2 className="title">Run it locally</h2>
             <p className="lede">Clone the repo, fetch the data pack and add your own model key.</p>
