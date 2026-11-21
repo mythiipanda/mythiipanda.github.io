@@ -360,16 +360,16 @@ const tblImg = (rows: string) =>
 
 const STREAM_SOURCES: Record<string, StreamingSource[]> = {
   board: [
-    { name: "Player seasons", domain: "silver_hist_player_seasons", href: "#", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
-    { name: "Shot zones", domain: "silver_hist_shots", href: "#", image: tblImg('<path d="M16 44l10-12 8 6 14-16"/>') },
+    { name: "Player seasons", domain: "silver_hist_player_seasons", href: "#warehouse", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
+    { name: "Shot zones", domain: "silver_hist_shots", href: "#warehouse", image: tblImg('<path d="M16 44l10-12 8 6 14-16"/>') },
   ],
   trade: [
-    { name: "Contracts", domain: "silver_contracts", href: "#", image: tblImg('<path d="M20 44V28M32 44V20M44 44V32"/>') },
-    { name: "Apron rules", domain: "cba_2023", href: "#", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
+    { name: "Contracts", domain: "silver_contracts", href: "#warehouse", image: tblImg('<path d="M20 44V28M32 44V20M44 44V32"/>') },
+    { name: "Apron rules", domain: "cba_2023", href: "#warehouse", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
   ],
   report: [
-    { name: "Player seasons", domain: "silver_hist_player_seasons", href: "#", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
-    { name: "Game logs", domain: "silver_hist_gamelogs", href: "#", image: tblImg('<path d="M16 44l10-12 8 6 14-16"/>') },
+    { name: "Player seasons", domain: "silver_hist_player_seasons", href: "#warehouse", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
+    { name: "Game logs", domain: "silver_hist_gamelogs", href: "#warehouse", image: tblImg('<path d="M16 44l10-12 8 6 14-16"/>') },
   ],
 };
 
