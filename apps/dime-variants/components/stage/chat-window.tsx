@@ -438,7 +438,7 @@ const THREADS: Record<string, { q: string; steps: ToolStep[]; link: string }> = 
   },
 };
 
-function ThreadLane({ pending = false, kind = "board", inlineArtifact = false, sentQ }: { pending?: boolean; kind?: string; inlineArtifact?: boolean; sentQ?: string | null }) {
+function ThreadLane({ pending = false, kind = "board", inlineArtifact = false, sentQ, onApprovalDone }: { pending?: boolean; kind?: string; inlineArtifact?: boolean; sentQ?: string | null; onApprovalDone?: () => void }) {
   const t = THREADS[kind] ?? THREADS.board;
   const q = sentQ ?? t.q;
   return (
@@ -491,6 +491,7 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false, s
                   { q: "Flag anything else for review?", type: "check", options: ["notify the beat writer", "add to morning packet"] },
                 ]}
                 labels={{ send: "Pin", sentMessage: "Pinned to board" }}
+                onSubmitted={onApprovalDone}
               />
             </div>
           ) : (
@@ -510,6 +511,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
   const [pending, setPending] = useState(state === "pending");
   const [pendingSticky, setPendingSticky] = useState(state === "pending");
   const [sentQ, setSentQ] = useState<string | null>(null);
+  const [approvalDone, setApprovalDone] = useState(false);
   useEffect(() => {
     if (!pending || pendingSticky) return;
     const t = setTimeout(() => setPending(false), 2600);
@@ -556,7 +558,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
         <SidebarNav
           fill
           className="hidden border-r border-sidebar-border bg-sidebar lg:flex"
-          recents={CHATS}
+          recents={approvalDone ? CHATS.map((c) => (c.id === "c2" ? { ...c, status: { label: "Done", icon: "done" } } : c)) : CHATS}
           activeTitle={activeChat ? CHATS.find((c) => c.id === activeChat)?.label : null}
           activeNav={isHome ? "home" : "chats"}
           onPick={pickRecent}
@@ -606,7 +608,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
             <>
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="min-h-0 flex-1 overflow-hidden">
-                  <ThreadLane pending={pending} kind={view} inlineArtifact={layout === "inline"} sentQ={sentQ} />
+                  <ThreadLane pending={pending} kind={view} inlineArtifact={layout === "inline"} sentQ={sentQ} onApprovalDone={() => setApprovalDone(true)} />
                 </div>
                 <div className="shrink-0 px-5 pb-4">
                   <div className="mx-auto w-full max-w-[46rem]">
