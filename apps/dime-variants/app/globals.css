@@ -163,7 +163,7 @@ kbd,
 }
 
 .btn-ghost {
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   color: var(--ink);
 }
 
@@ -256,7 +256,7 @@ kbd,
 
 .window-light {
   background: var(--surface);
-  box-shadow: 0 0 0 1px var(--line-strong);
+  box-shadow: 0 0 0 1px var(--line), 0 8px 28px -12px rgb(0 0 0 / 0.08);
 }
 
 .exhibit {

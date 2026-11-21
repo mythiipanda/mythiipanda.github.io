@@ -63,7 +63,7 @@
    * (--shadow-xs…lg come from shadow-plugin/unprefixed) so every surface reads
    * consistently across the app. */
   --shadow-hairline: 0 0 0 1px var(--line);
-  --shadow-btn: 0 0 0 1px var(--line-strong), var(--shadow-xs);
+  --shadow-btn: 0 0 0 1px var(--line), var(--shadow-xs);
   --shadow-card: 0 0 0 1px var(--line), var(--shadow-sm);
   --shadow-raised: 0 0 0 1px var(--line), var(--shadow-md);
   --shadow-overlay: 0 0 0 1px var(--line), var(--shadow-lg);
@@ -152,7 +152,7 @@
   --tooltip-muted: oklch(0.731 0.008 260.731);
   --tooltip-border: oklch(0.356 0.007 264.474);
   --shadow-hairline: 0 0 0 1px var(--line);
-  --shadow-btn: 0 0 0 1px var(--line-strong), var(--shadow-xs);
+  --shadow-btn: 0 0 0 1px var(--line), var(--shadow-xs);
   --shadow-card: 0 0 0 1px var(--line), var(--shadow-sm);
   --shadow-raised: 0 0 0 1px var(--line), var(--shadow-md);
   --shadow-overlay: 0 0 0 1px var(--line), var(--shadow-lg);
