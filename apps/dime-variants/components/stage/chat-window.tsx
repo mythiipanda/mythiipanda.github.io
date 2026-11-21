@@ -250,7 +250,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         {!panelState && open === "trade" && <TradeArtifact />}
         {!panelState && open === "report" && <ReportArtifact />}
         {!panelState && open === "board" && (
-        <Table variant="default" size="xs" scrollFade={false} stickyHeader containerClassName="h-full">
+        <Table variant="default" size="xs" scrollFade stickyHeader containerClassName="h-full">
           <TableHeader>
             <TableRow>
               <TableSortHead id="player" sort={sort} onSort={toggleSort} title="player" className="text-[11px]" />

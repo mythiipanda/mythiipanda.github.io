@@ -44,7 +44,7 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="wrap relative pb-14 pt-10 md:pb-24 md:pt-[72px]">
+        <section className="wrap relative overflow-x-clip pb-14 pt-10 md:pb-24 md:pt-[72px]">
           <div className="hero-grid" aria-hidden="true" />
           <div className="relative mx-auto flex max-w-[780px] flex-col items-center gap-8 text-center">
             <h1 className="display enter max-w-[14ch]">
