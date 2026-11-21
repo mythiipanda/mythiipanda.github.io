@@ -3,7 +3,6 @@ import {
   ArrowRightIcon,
   ArrowUpIcon,
   CheckIcon,
-  CircleAlertIcon,
   ChevronDownIcon,
   ChevronRightIcon,
   DatabaseIcon,
@@ -12,139 +11,24 @@ import {
   HouseIcon,
   Loader2Icon,
   MessageSquareIcon,
-  NotebookPenIcon,
-  PanelLeftIcon,
   PinIcon,
   PlusIcon,
   SearchIcon,
-  SettingsIcon,
-  SquarePenIcon,
 } from "lucide-react";
 import { Headshot } from "./app-shell";
 import { Spark } from "./stills";
 import ToolChips, { type ToolStep } from "../beautiful/primitives/ToolChips";
 import ThinkingState from "../beautiful/primitives/ThinkingState";
 import ApprovalCard from "../beautiful/primitives/ApprovalCard";
+import SidebarNav, { type SidebarRecent } from "../beautiful/primitives/SidebarNav";
+import { IconSettingsGear1 } from "../beautiful/icons";
 
-const CHATS: { id: string; label: string; trail?: string; status?: { label: string; icon: string; dur?: string } }[] = [
-  { id: "c1", label: "true shooting leaders", trail: "11:42" },
+const CHATS: SidebarRecent[] = [
+  { id: "c1", label: "true shooting leaders", time: "11:42" },
   { id: "c2", label: "giannis-ad trade check", status: { label: "Approval", icon: "approval" } },
   { id: "c3", label: "bench scoring, last 20", status: { label: "Done", icon: "done" } },
   { id: "c4", label: "season: mid points", status: { label: "Working", icon: "working", dur: "4m" } },
 ];
-
-const LIBRARY = [
-  { id: "l1", label: "notebooks", icon: NotebookPenIcon, trail: "3" },
-  { id: "l2", label: "boards", icon: PinIcon, trail: "4" },
-  { id: "l3", label: "warehouse", icon: DatabaseIcon, trail: "58" },
-  { id: "l4", label: "reports", icon: FileTextIcon, trail: "6" },
-];
-
-function Shelf({ label, count }: { label: string; count: number }) {
-  return (
-    <div className="relative mx-0.5 mt-2 h-8 first:mt-0">
-      <span className="flex h-8 w-full items-center gap-2 rounded-md px-2 text-left text-xs font-medium text-secondary-label">
-        <span className="min-w-0 truncate">{label}</span>
-        <span aria-hidden className="invisible h-px min-w-2 flex-1 bg-sidebar-border/50" />
-        <span className="font-normal tabular-nums">{count}</span>
-        <ChevronDownIcon aria-hidden className="size-3 shrink-0" />
-      </span>
-    </div>
-  );
-}
-
-const STATUS_TONES: Record<string, { icon: React.ComponentType<{ className?: string }>; cls: string }> = {
-  working: { icon: Loader2Icon, cls: "text-accent-ink" },
-  approval: { icon: CircleAlertIcon, cls: "text-orange" },
-  done: { icon: CheckIcon, cls: "text-green" },
-};
-
-function Row({
-  icon: Icon,
-  label,
-  active,
-  trail,
-  status,
-  tall,
-}: {
-  icon?: React.ComponentType<{ className?: string }>;
-  label: string;
-  active?: boolean;
-  trail?: string;
-  status?: { label: string; icon: string; dur?: string };
-  tall?: boolean;
-}) {
-  return (
-    <span
-      tabIndex={0}
-      className={`group/sidebar-row relative flex ${tall ? "h-9" : "h-8"} w-full cursor-pointer items-center gap-2.5 rounded-md px-2.5 text-left text-sm select-none outline-none focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-accent ${
-        active
-          ? "bg-sidebar-row-active text-ink ring-1 ring-inset ring-sidebar-border/70"
-          : "text-sidebar-foreground hover:bg-sidebar-row-hover"
-      }`}
-    >
-      {Icon && (
-        <Icon
-          aria-hidden
-          className={`size-4 shrink-0 transition-colors ${active ? "text-ink" : "text-icon-muted group-hover/sidebar-row:text-ink"}`}
-        />
-      )}
-      <span className={`min-w-0 flex-1 truncate ${active ? "font-medium" : "text-ink/75 group-hover/sidebar-row:text-ink"}`}>
-        {label}
-      </span>
-      {status && STATUS_TONES[status.icon] ? (
-        <span className={`inline-flex shrink-0 items-center gap-1 text-xs font-medium ${STATUS_TONES[status.icon].cls}`}>
-          {(() => { const S = STATUS_TONES[status.icon].icon; return <S aria-hidden className="size-3.5" />; })()}
-          {status.label}
-          {status.dur ? <span className="tabular-nums">{status.dur}</span> : null}
-        </span>
-      ) : trail ? (
-        <span className="shrink-0 text-xs tabular-nums text-secondary-label">{trail}</span>
-      ) : null}
-    </span>
-  );
-}
-
-function Rail({ active }: { active: string }) {
-  return (
-    <aside className="hidden w-[212px] shrink-0 flex-col border-r border-sidebar-border bg-sidebar lg:flex">
-      <div className="flex h-[52px] shrink-0 items-center pr-3">
-        <div className="ml-3 flex h-8 min-w-0 flex-1 items-center">
-          <span className="font-serif text-[16px] leading-none tracking-[-0.02em] text-ink">
-            dime<span className="text-accent">.</span>
-          </span>
-        </div>
-        <span className="flex size-7 items-center justify-center rounded-md text-icon-muted">
-          <PanelLeftIcon className="size-4" />
-        </span>
-      </div>
-      <div className="px-2 pb-1">
-        <span className="flex h-8 w-full items-center gap-2 rounded-md bg-field px-2 py-1.5 ring-1 ring-inset ring-line">
-          <SearchIcon className="size-4 shrink-0 text-icon-muted" />
-          <span className="min-w-0 flex-1 truncate text-sm font-medium text-secondary-label">Search or ask</span>
-          <kbd className="inline-flex h-5 min-w-5 shrink-0 items-center justify-center rounded bg-ink/[0.07] px-1 font-sans text-xs font-medium text-secondary-label">⌘K</kbd>
-        </span>
-      </div>
-      <div className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-hidden px-2 pt-1 pb-6 [mask-image:linear-gradient(to_bottom,black_calc(100%-24px),transparent)]">
-        <Row icon={HouseIcon} label="Home" active={active === "home"} />
-        <Row icon={SquarePenIcon} label="New chat" />
-        <Shelf label="Chats" count={CHATS.length} />
-        {CHATS.map((r) => (
-          <Row key={r.id} label={r.label} trail={r.trail} status={r.status} active={active === r.id} tall />
-        ))}
-        <Shelf label="Library" count={LIBRARY.length} />
-        {LIBRARY.map((r) => (
-          <Row key={r.id} icon={r.icon} label={r.label} trail={r.trail} />
-        ))}
-      </div>
-      <div className="mx-2 mt-2 border-t border-sidebar-border/60 px-0 py-2">
-        <span className="flex size-8 items-center justify-center rounded-lg text-icon-muted">
-          <SettingsIcon className="size-4" />
-        </span>
-      </div>
-    </aside>
-  );
-}
 
 function Composer({ focused = false }: { focused?: boolean }) {
   return (
@@ -530,7 +414,17 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
   const isHome = state === "home";
   return (
     <div className="flex h-full min-h-0 w-full bg-canvas text-ink">
-      {rail && <Rail active={isHome ? "home" : "c1"} />}
+      {rail && (
+        <SidebarNav
+          fill
+          className="hidden border-r border-sidebar-border bg-sidebar lg:flex"
+          recents={CHATS}
+          activeTitle={isHome ? null : "true shooting leaders"}
+          activeNav={isHome ? "home" : "chats"}
+          footerLabel="Settings"
+          footerIcon={<IconSettingsGear1 size={15} />}
+        />
+      )}
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-[52px] shrink-0 items-center gap-3 border-b border-line pl-3 pr-3 md:pl-5 md:pr-5">
           {!rail && (

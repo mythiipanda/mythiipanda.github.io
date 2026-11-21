@@ -1,4 +1,4 @@
-import { Check, ChevronDown, Database, House, LogOut, PanelLeft, Plus, Search, Settings, SquarePen, UserPlus, X } from "@/components/icons";
+import { Check, ChevronDown, Database, FileText, House, LogOut, NotebookPen, PanelLeft, Pin, Plus, Search, Settings, SquarePen, UserPlus, X } from "@/components/icons";
 import { DimeMark } from "@/components/mark";
 
 type IconProps = { size?: number; className?: string };
@@ -20,6 +20,9 @@ export const IconSettingsGear1 = wrap(Settings);
 export const IconSidebarLeftArrow = wrap(PanelLeft);
 export const IconUserAdd = wrap(UserPlus);
 export const IconDatabase = wrap(Database);
+export const IconNotebook = wrap(NotebookPen);
+export const IconBoard = wrap(Pin);
+export const IconReport = wrap(FileText);
 export function IconPopsicle2({ size = 18 }: IconProps) {
   return <DimeMark size={size} />;
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { IconDatabase, IconArrowBoxLeft, IconCheckmark1Small, IconChevronDownSmall, IconCrossSmall, IconEditBig, IconHome, IconMagnifyingGlass, IconPlusMedium, IconPopsicle2, IconSettingsGear1, IconSidebarLeftArrow, IconUserAdd } from "@/components/beautiful/icons";
+import { IconBoard, IconDatabase, IconNotebook, IconReport, IconArrowBoxLeft, IconCheckmark1Small, IconChevronDownSmall, IconCrossSmall, IconEditBig, IconHome, IconMagnifyingGlass, IconPlusMedium, IconPopsicle2, IconSettingsGear1, IconSidebarLeftArrow, IconUserAdd } from "@/components/beautiful/icons";
 import GlideMenu from "@/components/beautiful/primitives/GlideMenu";
 
 /* ─────────────────────────────────────────────────────────
@@ -16,13 +16,18 @@ const WORKSPACE = { key: "dime", name: "Dime", monogram: "D" };
 
 const NAV_ITEMS: { key: string; label: string; icon: ReactNode; count?: string }[] = [
   { key: "home", label: "Home", icon: <IconHome size={18} /> },
-  { key: "invite", label: "Warehouse", icon: <IconDatabase size={18} /> },
+  { key: "notebooks", label: "Notebooks", icon: <IconNotebook size={18} />, count: "3" },
+  { key: "boards", label: "Boards", icon: <IconBoard size={18} />, count: "4" },
+  { key: "warehouse", label: "Warehouse", icon: <IconDatabase size={18} />, count: "58" },
+  { key: "reports", label: "Reports", icon: <IconReport size={18} />, count: "6" },
 ];
 
 export type SidebarRecent = {
   id: string;
   label: string;
   prompt?: string;
+  time?: string;
+  status?: { label: string; icon: string; dur?: string };
 };
 
 const DEFAULT_RECENTS: SidebarRecent[] = [];
@@ -404,6 +409,27 @@ export default function SidebarNav({
                   <span className={`sidebar-copy min-w-0 flex-1 truncate text-[14px] font-medium ${active ? "text-ink" : "text-ink-2"}`}>
                     {item.label}
                   </span>
+                  {item.status ? (
+                    <span className={`sidebar-copy inline-flex shrink-0 items-center gap-1 text-[12px] font-medium ${
+                      item.status.icon === "approval"
+                        ? "text-orange"
+                        : item.status.icon === "done"
+                          ? "text-green"
+                          : "text-accent-ink"
+                    }`}>
+                      {item.status.icon === "approval" ? (
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r="0.5" fill="currentColor"/></svg>
+                      ) : item.status.icon === "done" ? (
+                        <IconCheckmark1Small size={13} />
+                      ) : (
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="animate-spin"><path d="M21 12a9 9 0 1 1-6.2-8.56"/></svg>
+                      )}
+                      {item.status.label}
+                      {item.status.dur && <span className="tabular-nums opacity-70">{item.status.dur}</span>}
+                    </span>
+                  ) : item.time ? (
+                    <span className="sidebar-copy shrink-0 text-[12px] tabular-nums text-ink-3">{item.time}</span>
+                  ) : null}
                 </button>
               );
             })}
