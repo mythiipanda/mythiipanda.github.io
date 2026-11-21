@@ -603,6 +603,34 @@ export default function Variants() {
           </div>
         </div>
       </Variant>
+
+      {/* CH-D — split with trade-check artifact in the panel */}
+      <Variant id="CH-D">
+        <div className="wrap section-pad">
+          <div className="mx-auto flex max-w-[720px] flex-col items-center gap-7 text-center">
+            <h1 className="display enter max-w-[15ch]">The open-source <em>NBA analyst.</em></h1>
+            <p className="lede mx-auto max-w-[46ch]">{LEAD}</p>
+            <CTAs />
+          </div>
+          <div className="mx-auto mt-14 max-w-[1120px] rounded-[16px] bg-canvas shadow-[0_1px_2px_rgba(20,20,25,0.05),0_16px_48px_-16px_rgba(20,20,25,0.2),0_0_0_1px_var(--line)]">
+            <Shell><ChatWindow state="split" artifact="trade" /></Shell>
+          </div>
+        </div>
+      </Variant>
+
+      {/* CH-E — split with cited report memo in the panel */}
+      <Variant id="CH-E">
+        <div className="wrap section-pad">
+          <div className="mx-auto flex max-w-[720px] flex-col items-center gap-7 text-center">
+            <h1 className="display enter max-w-[15ch]">The open-source <em>NBA analyst.</em></h1>
+            <p className="lede mx-auto max-w-[46ch]">{LEAD}</p>
+            <CTAs />
+          </div>
+          <div className="mx-auto mt-14 max-w-[1120px] rounded-[16px] bg-canvas shadow-[0_1px_2px_rgba(20,20,25,0.05),0_16px_48px_-16px_rgba(20,20,25,0.2),0_0_0_1px_var(--line)]">
+            <Shell><ChatWindow state="split" artifact="report" /></Shell>
+          </div>
+        </div>
+      </Variant>
     </main>
   );
 }
