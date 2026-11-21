@@ -121,7 +121,7 @@ function NotebookPane() {
 function StatCard({ value, label, delay, children }: { value: ReactNode; label: string; delay: number; children?: ReactNode }) {
   return (
     <Rise delay={delay}>
-      <div className="h-full rounded-[12px] bg-surface p-4 shadow-[0_0_0_1px_var(--line)] transition-transform duration-200 ease-out hover:-translate-y-0.5">
+      <div className="h-full rounded-[12px] bg-surface p-4 shadow-[0_0_0_1px_var(--line)]">
         <div className="flex items-center justify-between gap-3">
           <div>
             <div className="num text-[26px] font-medium tabular-nums text-ink">{value}</div>
