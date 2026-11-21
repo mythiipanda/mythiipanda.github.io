@@ -481,7 +481,7 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false, s
             labels={{ sources: "2 sources" }}
           />
           {inlineArtifact ? (
-            <div className="mt-3 max-w-[560px]">
+            <div className="mx-auto mt-3 w-full max-w-[600px]">
               <ArtifactPanel kind={kind} framed />
             </div>
           ) : kind === "trade" ? (

@@ -59,7 +59,7 @@ export default function Home() {
           </div>
 
           <div className="enter mt-10 md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
-            <UiClip anchor="58%" src="/dime-site/clips/hero-full.mp4" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
+            <UiClip anchor="58%" zoom src="/dime-site/clips/hero-full.mp4" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
           </div>
         </section>
 
@@ -69,7 +69,7 @@ export default function Home() {
           <Head title="Every answer shows its work">Boards, trade checks and notebooks. Every claim cites the rows it ran on.</Head>
           <div className="mt-8 grid gap-4 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="min-w-0">
-              <UiClip src="/dime-site/clips/trade-full.mp4" poster="/dime-site/clips/trade-poster.jpg" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
+              <UiClip anchor="45%" zoom src="/dime-site/clips/trade-full.mp4" poster="/dime-site/clips/trade-poster.jpg" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
             </div>
             <div className="grid min-w-0 gap-4 lg:translate-y-8">
               <UiClip cover src="/dime-site/clips/chats.mp4" poster="/dime-site/clips/chats-poster.jpg" label="Dime's sidebar: switching between a midseason review, a trade check and the leaders board" />
