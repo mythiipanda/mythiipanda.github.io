@@ -4,7 +4,6 @@ import { useState } from "react";
 import type { ReactNode } from "react";
 import {
   ArrowLeftRightIcon,
-  ArrowRightIcon,
   ArrowUpIcon,
   CheckIcon,
   ChevronDownIcon,
@@ -15,7 +14,6 @@ import {
   HouseIcon,
   Maximize2Icon,
   MessageSquareIcon,
-  PanelRightIcon,
   PinIcon,
   PlusIcon,
   SearchIcon,
@@ -213,32 +211,47 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
     const vb: string | number = key === "player" ? b.name : Number(b[key]);
     return (typeof va === "string" ? va.localeCompare(vb as string) : (va as number) - (vb as number)) * (sort.desc ? -1 : 1);
   });
+  const [added, setAdded] = useState<PanelTab[]>([]);
+  const [expanded, setExpanded] = useState(false);
+  const tabs = [...ARTIFACT_TABS, ...added, ...(extraTabs ?? [])];
+  const addTab = () => {
+    const id = `draft-${added.length + 1}`;
+    setAdded((a) => [...a, { id, title: `untitled-${added.length + 1}.md`, icon: FileTextIcon }]);
+    setOpen(id);
+  };
+  const copyTitle = () => navigator.clipboard?.writeText(meta?.title ?? open);
+  const exportCsv = () => {
+    const csv = "player,team,ts,usg\n" + SCOUT_ROWS.map((p) => `${p.name},${p.team},${p.ts},${p.usg}`).join("\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    a.download = `${open}.csv`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+  const askAbout = () => document.querySelector<HTMLTextAreaElement>("textarea")?.focus();
   const outer = framed
     ? "flex h-full w-full flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line"
-    : wide
+    : expanded || wide
       ? "hidden w-[58%] min-w-[400px] shrink-0 flex-col border-l border-line bg-surface md:flex"
       : "hidden w-[46%] min-w-[360px] max-w-[440px] shrink-0 flex-col border-l border-line bg-surface md:flex";
   return (
     <section className={outer}>
       <PanelTabs
-        tabs={extraTabs ? [...ARTIFACT_TABS, ...extraTabs] : ARTIFACT_TABS}
+        tabs={tabs}
         activeId={open}
         onSelect={setOpen}
-        afterTabs={<PanelIconButton icon={PlusIcon} label="open artifact" />}
+        afterTabs={<PanelIconButton icon={PlusIcon} label="open artifact" onClick={addTab} />}
         trailing={
-          <>
-            <PanelIconButton icon={Maximize2Icon} label="expand" />
-            <PanelIconButton icon={PanelRightIcon} label="toggle panel" />
-          </>
+          <PanelIconButton icon={Maximize2Icon} label={expanded ? "shrink" : "expand"} onClick={() => setExpanded((e) => !e)} />
         }
       />
       <div className="flex h-9 shrink-0 items-center gap-2 border-b border-line px-3">
         {meta && <meta.icon className="size-3.5 shrink-0 text-icon-muted" />}
         <span className="min-w-0 flex-1 truncate text-[12.5px] font-medium text-ink">{meta?.title ?? open}</span>
         <span className="flex shrink-0 items-center gap-0.5">
-          <PanelIconButton icon={CopyIcon} label="copy" />
-          <PanelIconButton icon={DownloadIcon} label="export" />
-          <PanelIconButton icon={MessageSquareIcon} label="chat about" />
+          <PanelIconButton icon={CopyIcon} label="copy title" onClick={copyTitle} />
+          <PanelIconButton icon={DownloadIcon} label="export csv" onClick={exportCsv} />
+          <PanelIconButton icon={MessageSquareIcon} label="chat about" onClick={askAbout} />
         </span>
       </div>
       <div className="relative min-h-0 flex-1 overflow-hidden">
@@ -251,7 +264,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         {!panelState && known && open === "trade" && <TradeArtifact />}
         {!panelState && known && open === "report" && <ReportArtifact />}
         {!panelState && known && open === "board" && (
-        <Table variant="default" size="xs" scrollFade stickyHeader containerClassName="h-full">
+        <Table variant="default" size="xs" scrollFade stickyHeader containerClassName="h-full" className="[--table-hover:var(--hover-2)]">
           <TableHeader>
             <TableRow>
               <TableSortHead id="player" sort={sort} onSort={toggleSort} title="player" className="text-[11px]" />
@@ -400,8 +413,9 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
           {t.q}
         </span>
         <span className="flex items-center gap-2 pe-1 pt-0.5 text-xs tabular-nums text-secondary-label opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          <span className="cursor-pointer hover:underline">copy</span>
-          <span className="cursor-pointer hover:underline">edit</span>
+          <span className="cursor-pointer hover:underline" onClick={() => navigator.clipboard?.writeText(t.q)}>
+            copy
+          </span>
         </span>
       </div>
       {pending ? (
@@ -427,6 +441,14 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
             content={STREAMS[kind]?.content ?? STREAMS.board.content}
             sources={STREAM_SOURCES[kind] ?? STREAM_SOURCES.board}
             followUps={STREAMS[kind]?.followUps ?? []}
+            onFollowUp={(text) => {
+              const ta = document.querySelector<HTMLTextAreaElement>("textarea");
+              if (!ta) return;
+              const set = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, "value")!.set!;
+              set.call(ta, text);
+              ta.dispatchEvent(new Event("input", { bubbles: true }));
+              ta.focus();
+            }}
             labels={{ sources: "2 sources" }}
           />
           {inlineArtifact ? (
@@ -444,12 +466,9 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
               />
             </div>
           ) : (
-            <div className="mt-3">
-              <Button variant="secondary" size="sm" className="rounded-md">
-                <PinIcon className="size-3 text-accent-ink" />
-                {t.link}
-                <ArrowRightIcon className="size-3 text-icon-muted" />
-              </Button>
+            <div className="mt-3 flex h-8 w-fit items-center gap-1.5 rounded-md bg-surface px-2.5 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line">
+              <PinIcon className="size-3 text-accent-ink" />
+              {t.link}
             </div>
           )}
         </div>
