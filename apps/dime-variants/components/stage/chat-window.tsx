@@ -27,6 +27,7 @@ import PromptBar from "../beautiful/primitives/PromptBar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableSortHead, type TableSort } from "../beautiful/primitives/Table";
 import StreamingText, { type StreamingSource, type StreamingToken } from "../beautiful/primitives/StreamingText";
 import { Kbd } from "../beautiful/primitives/Kbd";
+import { Button } from "../beautiful/primitives/Button";
 import { IconSettingsGear1 } from "../beautiful/icons";
 
 const CHATS: SidebarRecent[] = [
@@ -69,13 +70,10 @@ function HomeCanvas() {
         <Composer focused />
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
           {PROMPT_CHIPS.map((c) => (
-            <span
-              key={c.label}
-              className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-full bg-surface px-3 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line transition-colors hover:bg-hover hover:text-ink"
-            >
+            <Button key={c.label} variant="secondary" size="xs">
               <c.icon className="size-3 text-icon-muted" />
               {c.label}
-            </span>
+            </Button>
           ))}
         </div>
       </div>
@@ -197,10 +195,10 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         <PinIcon className="size-3.5 shrink-0 text-icon-muted" />
         <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{meta.title}</span>
         <span className="shrink-0 text-[11px] text-secondary-label">{meta.kind}</span>
-        <span className="ml-1 inline-flex h-6 cursor-pointer items-center gap-1 rounded-md px-1.5 text-[11px] font-medium text-ink-2 ring-1 ring-inset ring-line transition-colors hover:bg-hover hover:text-ink">
+        <Button variant="secondary" size="xs" className="ml-1 rounded-md">
           <DownloadIcon className="size-3 text-icon-muted" />
           export
-        </span>
+        </Button>
       </div>
       <div className="relative min-h-0 flex-1 overflow-hidden">
         {kind === "trade" && <TradeArtifact />}
@@ -397,11 +395,11 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
             </div>
           ) : (
             <div className="mt-3">
-              <span className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-md bg-surface px-2.5 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line transition-colors hover:bg-hover hover:text-ink">
+              <Button variant="secondary" size="sm" className="rounded-md">
                 <PinIcon className="size-3 text-accent-ink" />
                 {t.link}
                 <ArrowRightIcon className="size-3 text-icon-muted" />
-              </span>
+              </Button>
             </div>
           )}
         </div>
