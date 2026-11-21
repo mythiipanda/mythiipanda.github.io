@@ -19,6 +19,7 @@ body{margin:0;background:var(--page);color:var(--ink);font:400 15px/1.4 "Geist V
 ::-webkit-scrollbar-thumb{background:var(--soft);border:2px solid var(--page);border-radius:8px}
 ::-webkit-scrollbar-thumb:hover{background:var(--ink)}
 ::-webkit-scrollbar-corner{background:transparent}
+::-webkit-scrollbar-button{display:none;width:0;height:0}
 main{width:var(--col);max-width:calc(100% - 48px);margin:0 auto;padding:clamp(48px,14vh,128px) 0 96px;display:flex;flex-direction:column;gap:var(--s-5)}
 h1,h2,p,ul{margin:0;padding:0;font:inherit}
 p{text-wrap:pretty}
