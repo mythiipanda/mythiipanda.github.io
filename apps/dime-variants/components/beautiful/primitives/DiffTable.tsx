@@ -72,7 +72,7 @@ export default function DiffTable({
 
   return (
     <div className="w-full">
-      <div className="relative overflow-hidden rounded-card bg-surface shadow-card">
+      <div className="@container relative overflow-hidden rounded-card bg-surface shadow-card">
         <div className="primitive-card-bar flex items-center justify-between border-b border-line">
           <span className="text-[12.5px] font-medium text-ink">{title}</span>
           {settled && !accepted && <span className="text-[11px] text-ink-3">Click changed rows to toggle</span>}
@@ -122,11 +122,11 @@ export default function DiffTable({
                   </td>
                   <td className="primitive-table-cell">
                     <span
-                      className="inline-flex h-5.5 items-center gap-1.5 rounded-full bg-inset px-2 text-[11.5px] font-medium shadow-hairline transition-opacity duration-200"
+                      className="inline-flex h-5.5 items-center gap-1.5 rounded-full bg-inset px-2 text-[11.5px] font-medium shadow-hairline transition-opacity duration-200 @max-[340px]:px-1"
                       style={{ opacity: out ? 0.55 : 1 }}
                     >
                       <span className={`size-1.5 rounded-full ${DOT[row.dept] ?? "bg-ink-3"}`} />
-                      <span className="text-ink-2">{row.dept}</span>
+                      <span className="text-ink-2 @max-[340px]:hidden">{row.dept}</span>
                     </span>
                   </td>
                   <td
@@ -178,9 +178,9 @@ export default function DiffTable({
                         {row.id}
                       </span>
                       <span className="primitive-table-cell">
-                        <span className="inline-flex h-5.5 items-center gap-1.5 rounded-full bg-surface px-2 text-[11.5px] font-medium shadow-hairline">
+                        <span className="inline-flex h-5.5 items-center gap-1.5 rounded-full bg-surface px-2 text-[11.5px] font-medium shadow-hairline @max-[340px]:px-1">
                           <span className="size-1.5 rounded-full bg-green" />
-                          <span className="text-ink-2">{row.dept}</span>
+                          <span className="text-ink-2 @max-[340px]:hidden">{row.dept}</span>
                         </span>
                       </span>
                       <span className="primitive-table-cell text-[13px] transition-colors duration-200" style={{ color: edits[row.key] ? "var(--green)" : "var(--ink-3)" }}>
