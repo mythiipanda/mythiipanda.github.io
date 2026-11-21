@@ -80,11 +80,11 @@ export default function Home() {
 
         <section id="platform" className="wrap scroll-mt-8 py-12 md:py-20">
           <Head title="Show the work" />
-          <div className="mt-8 grid gap-4 md:mt-14 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+          <div className="mt-8 grid gap-4 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="h-[460px] min-w-0">
               <ArtifactPanel kind="board" framed />
             </div>
-            <div className="grid min-w-0 gap-4 md:translate-y-8">
+            <div className="grid min-w-0 gap-4 lg:translate-y-8">
               {(["trade", "report"] as const).map((k) => (
                 <div key={k} className="h-[220px] min-w-0 overflow-hidden">
                   <ArtifactPanel kind={k} framed />
