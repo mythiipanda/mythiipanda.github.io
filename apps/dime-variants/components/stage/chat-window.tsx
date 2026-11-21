@@ -150,7 +150,7 @@ function Composer({ focused = false }: { focused?: boolean }) {
         <span className="ml-auto inline-flex h-6 items-center rounded-md px-1.5 text-[11px] font-medium text-secondary-label">
           auto
         </span>
-        <span aria-hidden className="flex size-7 items-center justify-center rounded-md bg-ink text-surface">
+        <span aria-hidden className="flex size-8 items-center justify-center rounded-full bg-ink text-surface">
           <ArrowUpIcon className="size-3.5" />
         </span>
       </div>
