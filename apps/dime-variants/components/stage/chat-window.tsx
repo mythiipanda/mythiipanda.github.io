@@ -438,7 +438,7 @@ function ThreadLane({ pending = false, kind = "board" }: { pending?: boolean; ki
   return (
     <div className="mx-auto flex w-full max-w-[46rem] flex-col gap-3 px-5 py-5">
       <div className="flex justify-end">
-        <span className="max-w-[85%] rounded-xl bg-message-surface px-3.5 py-2 text-[13.5px] leading-6 text-ink">
+        <span className="max-w-[85%] rounded-xl bg-message-surface px-3.5 py-2 text-sm leading-6 text-ink">
           {t.q}
         </span>
       </div>
@@ -451,7 +451,7 @@ function ThreadLane({ pending = false, kind = "board" }: { pending?: boolean; ki
         )}
       </div>
       {!pending && (
-        <div className="mt-1 text-[13.5px] leading-7 text-ink-2">
+        <div className="mt-1 text-sm leading-7 text-ink-2">
           {t.a}
           <div className="mt-3">
             <span className="inline-flex h-8 items-center gap-2 rounded-md bg-surface px-2.5 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line">
