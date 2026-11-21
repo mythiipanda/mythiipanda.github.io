@@ -1588,3 +1588,24 @@ th.is-colsel .records-header-icon {
     transition-duration: 0.01ms !important;
   }
 }
+
+@keyframes pane-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pane-in {
+  animation: pane-in 0.28s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pane-in {
+    animation: none;
+  }
+}

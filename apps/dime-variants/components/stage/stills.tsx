@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Check, Download, Pin, Scale, Search } from "lucide-react";
-import { ActionPill, AppShell, Card, Cell, Headshot, Pill } from "./app-shell";
+import { ActionPill, Card, Cell, Headshot, Pill } from "./app-shell";
 import { CLUTCH, CLUTCH_COUNT, LINEUPS, LINEUP_COUNT } from "@/lib/exhibits";
 
 function K({ children }: { children: ReactNode }) {
@@ -61,14 +61,8 @@ function Bars({ rows, max, unit }: { rows: [string, number][]; max: number; unit
   );
 }
 
-export function NotebookStill() {
+function NotebookPane() {
   return (
-    <AppShell
-      active="notebook"
-      crumb="notebooks / true-shooting"
-      actions={<ActionPill icon={<Check size={12} />}>saved</ActionPill>}
-      paneClass="px-3 py-4 md:px-5 md:py-5"
-    >
       <div className="mx-auto flex h-full max-w-[640px] flex-col gap-3 overflow-hidden">
         <Cell n={1} kind="ask" meta={<span className="font-mono text-[11px]">11:42</span>}>
           <p className="text-[13.5px] leading-6 text-ink">
@@ -115,18 +109,11 @@ export function NotebookStill() {
           </p>
         </Cell>
       </div>
-    </AppShell>
   );
 }
 
-export function BoardsStill() {
+function BoardsPane() {
   return (
-    <AppShell
-      active="boards"
-      crumb="boards / lineup-study"
-      actions={<ActionPill icon={<Pin size={11} />}>4 pinned</ActionPill>}
-      paneClass="px-3 py-4 md:px-5 md:py-5"
-    >
       <div className="grid h-full grid-cols-1 gap-3 overflow-hidden md:grid-cols-2">
         <Card title="Five-man net rating" source="silver_lineups · min 200 poss" wide>
           <Bars
@@ -162,7 +149,6 @@ export function BoardsStill() {
           </div>
         </div>
       </div>
-    </AppShell>
   );
 }
 
@@ -174,21 +160,9 @@ const SCOUT = [
   { img: "/dime-site/headshots/jokic.png", name: "Nikola Jokić", team: "DEN", pos: "C", ts: "67.0", usg: "28.9", age: 30 },
 ];
 
-export function ScoutStill() {
+function ScoutPane() {
   return (
-    <AppShell
-      active="explore"
-      crumb="scouting / efficiency-board"
-      actions={
-        <>
-          <span className="hidden h-7 items-center gap-2 rounded-full bg-field px-3 font-mono text-[11px] text-ink-3 shadow-[0_0_0_1px_var(--line)] sm:inline-flex">
-            <Search size={12} /> min 1,500 min
-          </span>
-          <ActionPill>2 comparing</ActionPill>
-        </>
-      }
-      paneClass="flex flex-col px-0 py-0"
-    >
+    <>
       <div className="min-h-0 flex-1 overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
@@ -246,18 +220,13 @@ export function ScoutStill() {
           ))}
         </div>
       </div>
-    </AppShell>
+    </>
   );
 }
 
-export function TradesStill() {
+function TradesPane() {
   return (
-    <AppShell
-      active="trades"
-      crumb="trades / giannis-ad"
-      actions={<ActionPill icon={<Scale size={12} />}>legal · within 125%</ActionPill>}
-      paneClass="flex flex-col px-3 py-4 md:px-5 md:py-5"
-    >
+    <>
       <div className="grid min-h-0 flex-1 content-start grid-cols-1 gap-3 overflow-hidden md:grid-cols-2">
         {[
           { team: "MIA", label: "receives", rows: [["Anthony Davis", "davis", "58.5", "35.3"]], picks: [] as string[], sends: "Giannis Antetokounmpo" },
@@ -311,22 +280,12 @@ export function TradesStill() {
           <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] text-ink-2"><Check size={12} className="text-accent-ink" />both below second apron</span>
         </div>
       </div>
-    </AppShell>
+    </>
   );
 }
 
-export function ReportStill() {
+function ReportPane() {
   return (
-    <AppShell
-      active="reports"
-      crumb="reports / midseason-review"
-      actions={
-        <span className="inline-flex h-7 items-center gap-1.5 rounded-full bg-ink px-3 text-[12px] font-medium text-surface">
-          <Download size={12} /> export
-        </span>
-      }
-      paneClass="px-0 py-0"
-    >
       <div className="flex h-full min-h-0">
         <div className="hidden w-44 shrink-0 border-r border-line py-4 md:block">
           {["Summary", "True shooting", "Clutch pool", "Method"].map((s, i) => (
@@ -363,6 +322,64 @@ export function ReportStill() {
           </div>
         </div>
       </div>
-    </AppShell>
   );
 }
+
+export const PANES = [
+  {
+    id: "notebook",
+    label: "Notebook",
+    active: "notebook",
+    crumb: "notebooks / true-shooting",
+    actions: <ActionPill icon={<Check size={12} />}>saved</ActionPill>,
+    paneClass: "px-3 py-4 md:px-5 md:py-5",
+    body: <NotebookPane />,
+  },
+  {
+    id: "boards",
+    label: "Board",
+    active: "boards",
+    crumb: "boards / lineup-study",
+    actions: <ActionPill icon={<Pin size={11} />}>4 pinned</ActionPill>,
+    paneClass: "px-3 py-4 md:px-5 md:py-5",
+    body: <BoardsPane />,
+  },
+  {
+    id: "scouting",
+    label: "Scouting",
+    active: "explore",
+    crumb: "scouting / efficiency-board",
+    actions: (
+      <>
+        <span className="hidden h-7 items-center gap-2 rounded-full bg-field px-3 font-mono text-[11px] text-ink-3 shadow-[0_0_0_1px_var(--line)] sm:inline-flex">
+          <Search size={12} /> min 1,500 min
+        </span>
+        <ActionPill>2 comparing</ActionPill>
+      </>
+    ),
+    paneClass: "flex flex-col px-0 py-0",
+    body: <ScoutPane />,
+  },
+  {
+    id: "trades",
+    label: "Trades",
+    active: "trades",
+    crumb: "trades / giannis-ad",
+    actions: <ActionPill icon={<Scale size={12} />}>legal · within 125%</ActionPill>,
+    paneClass: "flex flex-col px-3 py-4 md:px-5 md:py-5",
+    body: <TradesPane />,
+  },
+  {
+    id: "report",
+    label: "Report",
+    active: "reports",
+    crumb: "reports / midseason-review",
+    actions: (
+      <span className="inline-flex h-7 items-center gap-1.5 rounded-full bg-ink px-3 text-[12px] font-medium text-surface">
+        <Download size={12} /> export
+      </span>
+    ),
+    paneClass: "px-0 py-0",
+    body: <ReportPane />,
+  },
+];

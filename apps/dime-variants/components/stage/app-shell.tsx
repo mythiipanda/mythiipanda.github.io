@@ -89,6 +89,7 @@ function Sidebar({ active }: { active: string }) {
 export function AppShell({
   active,
   crumb,
+  tabs,
   actions,
   children,
   composer = false,
@@ -96,6 +97,7 @@ export function AppShell({
 }: {
   active: string;
   crumb: string;
+  tabs?: ReactNode;
   actions?: ReactNode;
   children: ReactNode;
   composer?: boolean;
@@ -105,9 +107,9 @@ export function AppShell({
     <div className="flex h-full min-h-0 w-full bg-canvas text-ink">
       <Sidebar active={active} />
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="flex h-11 shrink-0 items-center justify-between gap-3 border-b border-line px-3 md:px-4">
-          <span className="truncate font-mono text-[12px] text-ink-2">{crumb}</span>
-          <div className="flex shrink-0 items-center gap-2">{actions}</div>
+        <div className="flex h-11 shrink-0 items-center justify-between gap-3 border-b border-line">
+          {tabs ?? <span className="truncate px-3 font-mono text-[12px] text-ink-2 md:px-4">{crumb}</span>}
+          <div className="flex shrink-0 items-center gap-2 px-3 md:px-4">{actions}</div>
         </div>
         <div className={`min-h-0 flex-1 overflow-hidden ${paneClass}`}>{children}</div>
         {composer && (
