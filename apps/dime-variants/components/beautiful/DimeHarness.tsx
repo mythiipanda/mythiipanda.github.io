@@ -776,15 +776,6 @@ export default function DimeHarness({ autoplay = "shots" }: { autoplay?: Scenari
                     <div className="flex h-11 shrink-0 items-center justify-between border-b border-line px-3 sm:pl-4">
                       <span className="text-[13px] font-semibold text-ink">{paneScenario.paneTitle}</span>
                       <div className="flex items-center gap-0.5 text-ink-3">
-                        <button type="button" aria-label="Previous" className="flex size-6 items-center justify-center rounded-[6px] transition-colors duration-100 hover:bg-hover hover:text-ink">
-                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M15 6l-6 6 6 6" /></svg>
-                        </button>
-                        <button type="button" aria-label="Next" className="flex size-6 items-center justify-center rounded-[6px] transition-colors duration-100 hover:bg-hover hover:text-ink">
-                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M9 6l6 6-6 6" /></svg>
-                        </button>
-                        <button type="button" aria-label="Pane options" className="flex size-6 items-center justify-center rounded-[6px] transition-colors duration-100 hover:bg-hover hover:text-ink">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden><circle cx="5" cy="12" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="19" cy="12" r="1.6" /></svg>
-                        </button>
                         <button
                           type="button"
                           aria-label="Close pane"

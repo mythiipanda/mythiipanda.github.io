@@ -63,7 +63,7 @@
    * (--shadow-xs…lg come from shadow-plugin/unprefixed) so every surface reads
    * consistently across the app. */
   --shadow-hairline: 0 0 0 1px var(--line);
-  --shadow-btn: 0 0 0 1px var(--line-strong), var(--shadow-xs);
+  --shadow-btn: 0 0 0 1px var(--line), var(--shadow-xs);
   --shadow-card: 0 0 0 1px var(--line), var(--shadow-sm);
   --shadow-raised: 0 0 0 1px var(--line), var(--shadow-md);
   --shadow-overlay: 0 0 0 1px var(--line), var(--shadow-lg);
@@ -152,7 +152,7 @@
   --tooltip-muted: oklch(0.731 0.008 260.731);
   --tooltip-border: oklch(0.356 0.007 264.474);
   --shadow-hairline: 0 0 0 1px var(--line);
-  --shadow-btn: 0 0 0 1px var(--line-strong), var(--shadow-xs);
+  --shadow-btn: 0 0 0 1px var(--line), var(--shadow-xs);
   --shadow-card: 0 0 0 1px var(--line), var(--shadow-sm);
   --shadow-raised: 0 0 0 1px var(--line), var(--shadow-md);
   --shadow-overlay: 0 0 0 1px var(--line), var(--shadow-lg);
@@ -192,7 +192,7 @@
   --shadow-overlay: var(--shadow-overlay);
 
   /* type */
-  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif-face), ui-serif, Georgia, serif;
   --font-mono: var(--font-code), ui-monospace, "SF Mono", monospace;
 
@@ -584,7 +584,7 @@ a:focus-visible .animated-underline::after {
   justify-content: space-between;
   gap: 12px;
   padding: 8px 10px;
-  border-bottom: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line);
   background: var(--surface);
 }
 
@@ -697,7 +697,7 @@ a:focus-visible .animated-underline::after {
   left: 0;
   width: 190px;
   padding: 6px;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius-card);
   background: var(--surface);
   box-shadow: var(--shadow-overlay);
@@ -1192,7 +1192,7 @@ th.is-colsel .records-header-icon {
   height: 23px;
   align-items: center;
   flex-shrink: 0;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: 6px;
   padding: 0 7px;
   color: var(--ink-3);
@@ -1202,7 +1202,7 @@ th.is-colsel .records-header-icon {
 }
 
 .records-more-tag {
-  border-color: var(--line-strong);
+  border-color: var(--line);
   color: var(--ink-3);
   background: var(--inset);
 }
@@ -1586,5 +1586,95 @@ th.is-colsel .records-header-icon {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes pane-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pane-in {
+  animation: pane-in 0.28s ease-out both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.45s var(--ease-out-strong) both;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.bar-grow {
+  transform-origin: left center;
+  animation: bar-grow 0.7s var(--ease-out-strong) both;
+}
+
+@keyframes bar-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.bar-grow-y {
+  transform-origin: center bottom;
+  animation: bar-grow-y 0.7s var(--ease-out-strong) both;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pop-in {
+  animation: pop-in 0.3s var(--ease-out-strong) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pane-in,
+  .rise-in,
+  .bar-grow,
+  .bar-grow-y,
+  .pop-in {
+    animation: none;
+  }
+}
+
+@media (max-width: 989px) {
+  .records-scroll {
+    mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
   }
 }

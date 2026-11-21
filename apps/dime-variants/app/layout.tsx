@@ -1,15 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Sans, Instrument_Serif, Martian_Mono } from "next/font/google";
+import { EB_Garamond, Instrument_Sans, Instrument_Serif, Inter, Martian_Mono, Newsreader, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-serif-face", display: "swap" });
 const sans = Instrument_Sans({ subsets: ["latin"], variable: "--font-body", axes: ["wdth"], display: "swap" });
 const mono = Martian_Mono({ subsets: ["latin"], variable: "--font-code", axes: ["wdth"], display: "swap" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap" });
+const garamond = EB_Garamond({ subsets: ["latin"], variable: "--font-garamond", display: "swap" });
+const newsreader = Newsreader({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-news", display: "swap" });
 
 const url = "https://mythiipanda.github.io/dime-site/";
-const title = "Dime: the NBA analyst that shows its work";
+const title = "Dime: the open-source NBA analyst";
 const description =
-  "Ask a basketball question in plain English. Dime writes the SQL, runs it on its own warehouse, and gives you the answer with the rows it came from. Open source.";
+  "A front-office workspace on your machine. Ask in plain English; Dime writes the SQL, runs it on 17 seasons of data, and keeps the work.";
 
 export const metadata: Metadata = {
   title,
@@ -21,11 +25,11 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export const viewport: Viewport = { colorScheme: "light", width: "device-width", initialScale: 1, themeColor: "#f7f4ee" };
+export const viewport: Viewport = { colorScheme: "light", width: "device-width", initialScale: 1, themeColor: "#fcfcfc" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable} ${inter.variable} ${grotesk.variable} ${garamond.variable} ${newsreader.variable}`}>
       <body>{children}</body>
     </html>
   );

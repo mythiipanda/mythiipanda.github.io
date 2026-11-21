@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { IconDatabase, IconArrowBoxLeft, IconCheckmark1Small, IconChevronDownSmall, IconCrossSmall, IconEditBig, IconHome, IconMagnifyingGlass, IconPlusMedium, IconPopsicle2, IconSettingsGear1, IconSidebarLeftArrow, IconUserAdd } from "@/components/beautiful/icons";
+import { IconBoard, IconDatabase, IconNotebook, IconReport, IconCheckmark1Small, IconChevronDownSmall, IconCrossSmall, IconEditBig, IconHome, IconMagnifyingGlass, IconPopsicle2, IconSidebarLeftArrow } from "@/components/beautiful/icons";
 import GlideMenu from "@/components/beautiful/primitives/GlideMenu";
 
 /* ─────────────────────────────────────────────────────────
@@ -16,13 +16,18 @@ const WORKSPACE = { key: "dime", name: "Dime", monogram: "D" };
 
 const NAV_ITEMS: { key: string; label: string; icon: ReactNode; count?: string }[] = [
   { key: "home", label: "Home", icon: <IconHome size={18} /> },
-  { key: "invite", label: "Warehouse", icon: <IconDatabase size={18} /> },
+  { key: "notebooks", label: "Notebooks", icon: <IconNotebook size={18} />, count: "3" },
+  { key: "boards", label: "Boards", icon: <IconBoard size={18} />, count: "4" },
+  { key: "warehouse", label: "Warehouse", icon: <IconDatabase size={18} />, count: "58" },
+  { key: "reports", label: "Reports", icon: <IconReport size={18} />, count: "6" },
 ];
 
 export type SidebarRecent = {
   id: string;
   label: string;
   prompt?: string;
+  time?: string;
+  status?: { label: string; icon: string; dur?: string };
 };
 
 const DEFAULT_RECENTS: SidebarRecent[] = [];
@@ -146,33 +151,7 @@ function WorkspaceMenu({
           <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-ink">{WORKSPACE.name}</span>
           <span className="shrink-0 text-ink"><IconCheckmark1Small size={18} /></span>
         </button>
-        <div className="my-1 h-px bg-line" />
-        {[
-          { label: "New workspace", icon: <IconPlusMedium size={16} /> },
-          { label: "Workspace settings", icon: <IconSettingsGear1 size={16} /> },
-          { label: "Invite team members", icon: <IconUserAdd size={16} /> },
-        ].map((item) => (
-          <button
-            key={item.label}
-            data-menu-row
-            type="button"
-            onClick={onClose}
-            className="relative z-10 flex h-9 w-full items-center gap-1.5 rounded-[8px] px-2 text-left"
-          >
-            <span className="flex size-5 shrink-0 items-center justify-center text-ink-2">{item.icon}</span>
-            <span className="min-w-0 flex-1 truncate text-[13.5px] text-ink">{item.label}</span>
-          </button>
-        ))}
-        <div className="my-1 h-px bg-line" />
-        <button
-          data-menu-row
-          type="button"
-          onClick={onClose}
-          className="relative z-10 flex h-9 w-full items-center gap-1.5 rounded-[8px] px-2 text-left"
-        >
-          <span className="flex size-5 shrink-0 items-center justify-center text-ink-2"><IconArrowBoxLeft size={16} /></span>
-          <span className="min-w-0 flex-1 truncate text-[13.5px] text-ink">Sign out</span>
-        </button>
+
       </GlideMenu>
     </div>,
     document.body,
@@ -187,7 +166,7 @@ export default function SidebarNav({
   onPick,
   activeNav,
   onNavigate,
-  footerLabel = "Upgrade",
+  footerLabel,
   footerIcon,
   onFooterClick,
   recents = DEFAULT_RECENTS,
@@ -404,6 +383,27 @@ export default function SidebarNav({
                   <span className={`sidebar-copy min-w-0 flex-1 truncate text-[14px] font-medium ${active ? "text-ink" : "text-ink-2"}`}>
                     {item.label}
                   </span>
+                  {item.status ? (
+                    <span className={`sidebar-copy inline-flex shrink-0 items-center gap-1 text-[12px] font-medium ${
+                      item.status.icon === "approval"
+                        ? "text-orange"
+                        : item.status.icon === "done"
+                          ? "text-green"
+                          : "text-accent-ink"
+                    }`}>
+                      {item.status.icon === "approval" ? (
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r="0.5" fill="currentColor"/></svg>
+                      ) : item.status.icon === "done" ? (
+                        <IconCheckmark1Small size={13} />
+                      ) : (
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="animate-spin"><path d="M21 12a9 9 0 1 1-6.2-8.56"/></svg>
+                      )}
+                      {item.status.label}
+                      {item.status.dur && <span className="tabular-nums opacity-70">{item.status.dur}</span>}
+                    </span>
+                  ) : item.time ? (
+                    <span className="sidebar-copy shrink-0 text-[12px] tabular-nums text-ink-3">{item.time}</span>
+                  ) : null}
                 </button>
               );
             })}
@@ -413,16 +413,18 @@ export default function SidebarNav({
           </GlideGroup>
         </div>
 
-        <div className="sidebar-copy mx-2 mt-3 w-[208px] border-t border-line pt-3">
-          <button
-            type="button"
-            onClick={onFooterClick ?? onNewChat}
-            className="flex h-8 w-full items-center justify-center gap-1.5 rounded-control bg-hover-2 text-[12.5px] font-medium text-ink transition-[background-color,transform] duration-150 hover:bg-line-strong active:scale-[0.98]"
-          >
-            {footerIcon}
-            {footerLabel}
-          </button>
-        </div>
+        {footerLabel && (
+          <div className="sidebar-copy mx-2 mt-3 w-[208px] border-t border-line pt-3">
+            <button
+              type="button"
+              onClick={onFooterClick ?? onNewChat}
+              className="flex h-8 w-full items-center justify-center gap-1.5 rounded-control bg-hover-2 text-[12.5px] font-medium text-ink transition-[background-color,transform] duration-150 hover:bg-line-strong active:scale-[0.98]"
+            >
+              {footerIcon}
+              {footerLabel}
+            </button>
+          </div>
+        )}
       </div>
     </aside>
   );

@@ -8,23 +8,53 @@
  * opts into Beautiful UI's dark tokens with a scoped .dark class. */
 
 :root {
-  --page: oklch(0.972 0.008 85);
-  --canvas: oklch(0.95 0.01 85);
-  --surface: oklch(0.995 0.003 85);
-  --inset: oklch(0.958 0.008 85);
-  --hover: oklch(0.95 0.009 85);
-  --hover-2: oklch(0.92 0.011 85);
-  --field: oklch(0.95 0.009 85);
-  --ink: oklch(0.21 0.012 62);
-  --ink-2: oklch(0.43 0.012 62);
-  --ink-3: oklch(0.435 0.015 62);
-  --line: oklch(0.905 0.01 85);
-  --line-strong: oklch(0.86 0.012 85);
-  --line-soft: oklch(0.94 0.008 85);
+  /* Devin light-mode neutrals (measured from devin.ai's :root tokens):
+     page #fcfcfc, wash #f8f8f8, elevated #fff, ink #191919, hairlines
+     black at 6-8%. */
+  --page: rgb(252 252 252);
+  --canvas: rgb(248 248 248);
+  --surface: rgb(255 255 255);
+  --inset: rgb(248 248 248);
+  --hover: rgb(0 0 0 / 0.04);
+  --hover-2: rgb(0 0 0 / 0.06);
+  --field: rgb(0 0 0 / 0.025);
+  --ink: rgb(25 25 25);
+  --ink-2: rgb(25 25 25 / 0.64);
+  --ink-3: rgb(25 25 25 / 0.52);
+  --line: rgb(0 0 0 / 0.08);
+  --line-strong: rgb(0 0 0 / 0.14);
+  --line-soft: rgb(0 0 0 / 0.05);
   --accent: oklch(0.535 0.187 255.6);
   --accent-ink: oklch(0.48 0.18 256);
-  --accent-tint: oklch(0.94 0.03 253);
+  --accent-tint: color-mix(in oklab, var(--accent) 8%, transparent);
+
+  /* t3code workspace tokens, neutral-mapped to the Devin palette. */
+  --control-radius: 0.5rem;
+  --sidebar: rgb(248 248 248);
+  --sidebar-foreground: var(--ink);
+  --sidebar-muted-foreground: var(--ink-3);
+  --sidebar-border: var(--line);
+  --sidebar-row-hover: var(--hover);
+  --sidebar-row-active: var(--surface);
+  --sidebar-row-selected: var(--surface);
+  --secondary-label: var(--ink-3);
+  --icon-muted: var(--ink-3);
+  --shadow-composer: 0 1px 2px rgb(0 0 0 / 5%);
+  --message-surface: rgb(0 0 0 / 0.04);
 }
+
+.bg-sidebar { background-color: var(--sidebar); }
+.text-sidebar-foreground { color: var(--sidebar-foreground); }
+.border-sidebar-border { border-color: var(--sidebar-border); }
+.bg-sidebar-border\/50 { background-color: color-mix(in srgb, var(--sidebar-border) 50%, transparent); }
+.ring-sidebar-border\/70 { --tw-ring-color: color-mix(in srgb, var(--sidebar-border) 70%, transparent); }
+.bg-sidebar-row-hover { background-color: var(--sidebar-row-hover); }
+.hover\:bg-sidebar-row-hover:hover { background-color: var(--sidebar-row-hover); }
+.bg-sidebar-row-active { background-color: var(--sidebar-row-active); }
+.text-secondary-label { color: var(--secondary-label); }
+.text-icon-muted { color: var(--icon-muted); }
+.shadow-composer { box-shadow: var(--shadow-composer); }
+.bg-message-surface { background-color: var(--message-surface); }
 
 html {
   scroll-behavior: smooth;
@@ -38,11 +68,15 @@ body {
   letter-spacing: 0;
   line-height: 1.55;
   font-feature-settings: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 :focus-visible {
@@ -61,7 +95,7 @@ kbd,
 
 .wrap {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1200px;
   margin-inline: auto;
   padding-inline: 20px;
 }
@@ -77,8 +111,8 @@ kbd,
   inset: -72px -40px 0 -40px;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, oklch(0.21 0.012 62 / 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.21 0.012 62 / 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgb(0 0 0 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 80% 62% at 50% 34%, black 30%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 62% at 50% 34%, black 30%, transparent 100%);
@@ -91,6 +125,7 @@ kbd,
   font-size: clamp(46px, 7.4vw, 104px);
   line-height: 0.94;
   letter-spacing: -0.022em;
+  text-wrap: balance;
 }
 
 @media (max-width: 767px) {
@@ -128,7 +163,7 @@ kbd,
 }
 
 .btn-ghost {
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   color: var(--ink);
 }
 
@@ -204,9 +239,9 @@ kbd,
 /* the product window: Beautiful UI's harness, framed */
 .window {
   overflow: hidden;
-  border-radius: 2px;
-  background: oklch(0.231 0.006 62);
-  box-shadow: 0 0 0 1px oklch(0.2 0.01 62 / 0.9);
+  border-radius: 12px;
+  background: rgb(51 51 51);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.9);
 }
 
 .window-hero {
@@ -215,18 +250,18 @@ kbd,
 
 @media (max-width: 1023px) {
   .window-hero {
-    height: min(840px, 84vh);
+    height: auto;
   }
 }
 
 .window-light {
   background: var(--surface);
-  box-shadow: 0 0 0 1px var(--line-strong);
+  box-shadow: 0 0 0 1px var(--line), 0 8px 28px -12px rgb(0 0 0 / 0.08);
 }
 
 .exhibit {
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 12px;
   border: 1px solid var(--line);
   background: var(--surface);
 }
@@ -251,10 +286,13 @@ kbd,
   html {
     scroll-behavior: auto;
   }
-  .enter {
-    animation: none;
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  .dot {
+  .enter, .dot {
+    animation: none;
     transition: none;
   }
 }
@@ -268,4 +306,102 @@ kbd,
 .dark * {
   scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;
+}
+
+/* typography shotgun — verbatim metrics lifted from reference sites */
+.ty-linear .display,
+.ty-linear .title {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 510;
+  letter-spacing: -0.022em;
+  line-height: 1;
+}
+.ty-linear .display { font-size: clamp(40px, 4.9vw, 64px); }
+.ty-linear .title { font-size: clamp(32px, 3.4vw, 48px); text-wrap: balance; }
+.ty-linear .display em,
+.ty-linear .title em { font-style: normal; }
+.ty-linear .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+}
+.ty-linear .btn { font-size: 13px; height: 40px; }
+
+.ty-notion .display,
+.ty-notion .title {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.048em;
+  line-height: 1.04;
+}
+.ty-notion .display { font-size: clamp(52px, 6.7vw, 96px); }
+.ty-notion .title { font-size: clamp(36px, 3.8vw, 54px); letter-spacing: -0.035em; text-wrap: balance; }
+.ty-notion .display em,
+.ty-notion .title em { font-style: normal; }
+.ty-notion .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.ty-notion .btn { font-size: 16px; height: 48px; }
+
+.ty-cursor .display,
+.ty-cursor .title {
+  font-family: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  line-height: 1.15;
+}
+.ty-cursor .display { font-size: clamp(36px, 4.4vw, 60px); }
+.ty-cursor .title { font-size: clamp(30px, 3.2vw, 44px); text-wrap: balance; }
+.ty-cursor .display em,
+.ty-cursor .title em { font-style: normal; }
+.ty-cursor .lede {
+  font-family: var(--font-garamond), ui-serif, Georgia, serif;
+  font-size: 21px;
+  line-height: 1.45;
+  letter-spacing: normal;
+}
+
+.ty-harvey .display,
+.ty-harvey .title {
+  font-family: var(--font-news), ui-serif, Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.0125em;
+  line-height: 1.05;
+}
+.ty-harvey .display { font-size: clamp(46px, 5vw, 72px); }
+.ty-harvey .title { font-size: clamp(32px, 3.6vw, 44px); text-wrap: balance; }
+.ty-harvey .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: normal;
+}
+
+/* S1 — original design language + metrics copied from dub.co / supabase / cal.com */
+.ty-s1 .display {
+  font-size: clamp(44px, 5.6vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+.ty-s1 .title {
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+.ty-s1 .lede {
+  font-size: 20px;
+  line-height: 1.4;
+}
+.ty-s1 .btn {
+  font-size: 14px;
+  font-weight: 500;
+  height: 42px;
+}
+.ty-s1 .section-pad { padding-block: 96px; }
+@media (min-width: 768px) {
+  .ty-s1 .section-pad { padding-block: 128px; }
 }
