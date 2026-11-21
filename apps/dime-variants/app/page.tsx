@@ -2,7 +2,8 @@ import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
 import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
-import { ChatWindow, ArtifactPanel } from "@/components/stage/chat-window";
+import { ArtifactPanel } from "@/components/stage/chat-window";
+import DimeAsk from "@/components/stage/demos/DimeAsk";
 import { PANES } from "@/components/stage/stills";
 import { COVERAGE, README, REPO } from "@/lib/site";
 
@@ -55,17 +56,15 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="window window-hero window-light enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
-            <div className="light h-[500px] min-w-0 overflow-hidden md:h-[620px]">
-              <ChatWindow state="split" artifact="board" />
-            </div>
+          <div className="enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
+            <DimeAsk />
           </div>
         </section>
 
         <hr className="rule" />
 
         <section id="platform" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head title="Show the work" />
+          <Head title="Every answer shows its work">Boards, trade checks and notebooks. Every claim cites the rows it ran on.</Head>
           <div className="mt-8 grid gap-4 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="h-[460px] min-w-0">
               <ArtifactPanel kind="board" framed />
@@ -96,7 +95,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="warehouse" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head title="Warehouse" />
+          <Head title="17 seasons in one file">58 tables, 14.9 million rows, on your disk. Shots, play-by-play, lineups, salaries and trades.</Head>
           <div className="window window-light mt-8 md:mt-14">
             <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
               <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-3"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M9 9v11" /></svg>

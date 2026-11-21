@@ -1,0 +1,117 @@
+/* Dime-look for the stageshow stage: Devin-light surfaces, cobalt accent,
+   Inter body. Adapted from the ai-chat gold's chat.css. */
+
+.da .ss-stage {
+  overflow: hidden;
+  --ss-surface: rgb(255 255 255);
+  --ss-well: rgb(248 248 248);
+  --ss-line: rgb(0 0 0 / 0.08);
+  --ss-ink-1: rgb(0 0 0 / 0.04);
+  --ss-ink-2: rgb(0 0 0 / 0.07);
+  --ss-text: rgb(25 25 25 / 0.55);
+  --ss-text-strong: rgb(25 25 25);
+  --ss-font: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+.da-win {
+  position: absolute;
+  top: 20px;
+  left: 64px;
+  width: 912px;
+  height: 424px;
+  border-radius: 12px;
+}
+
+.da-body {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+  padding: 16px 22px 60px;
+  background: var(--ss-surface);
+}
+
+.da-thread {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 14px;
+  min-height: 0;
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+
+.da-turn--past {
+  display: grid;
+  gap: 8px;
+}
+
+.da-past-q {
+  justify-self: end;
+}
+
+.da-q {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.da-q .ss-text {
+  max-width: 76%;
+  white-space: normal;
+  text-wrap: pretty;
+  padding: 9px 15px;
+  border-radius: 16px;
+  background: var(--ss-ink-1);
+  color: var(--ss-text-strong);
+  font-size: 14px;
+}
+
+.da-a {
+  display: grid;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.da-a[data-on] {
+  opacity: 1;
+}
+
+.da-thinking {
+  color: var(--ss-text);
+  font-size: 14px;
+}
+
+.da-stream {
+  color: var(--ss-text-strong);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.da-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  opacity: 0;
+  translate: 0 4px;
+  transition: opacity 0.35s ease, translate 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.da-sources[data-on] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.da-source {
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--ss-line);
+  color: var(--ss-text);
+  font-family: var(--font-martian), ui-monospace, monospace;
+  font-size: 10.5px;
+}
+
+.da .ss-stage[data-layout="compact"] .da-win {
+  left: 16px;
+  width: 326px;
+  height: 520px;
+}
