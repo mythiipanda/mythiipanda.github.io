@@ -117,35 +117,34 @@ export default function Home() {
               <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
               <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
             </div>
-            <div className="light m-1.5 mt-0 flex h-[440px] min-w-0 flex-col overflow-hidden rounded-[2px] md:m-2 md:mt-0">
-              <RecordsTable fill />
+            <div className="light m-1.5 mt-0 grid min-w-0 overflow-hidden rounded-[2px] md:m-2 md:mt-0 md:grid-cols-[minmax(0,1fr)_300px]">
+              <div className="h-[460px] min-w-0"><RecordsTable fill /></div>
+              <div className="flex h-[460px] min-w-0 flex-col gap-6 overflow-y-auto border-t border-line p-5 md:border-l md:border-t-0">
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-[13px] font-medium text-ink">Coverage</span>
+                  <span className="text-[12.5px] leading-relaxed text-ink-3">Where each kind of data starts and stops.</span>
+                </div>
+                <ul className="m-0 flex list-none flex-col gap-5 p-0">
+                  {COVERAGE.map((c) => (
+                    <li key={c.name} className="flex flex-col gap-2">
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                        <span className="text-[13px] font-medium text-ink">{c.name}</span>
+                        <span className="num whitespace-nowrap text-[11.5px] text-ink-3">{c.label}</span>
+                      </div>
+                      <PillMeter
+                        value={c.to - c.from + 1}
+                        max={51}
+                        pills={51}
+                        offset={c.from - 1976}
+                        color="#2b5ce6"
+                        label={c.name}
+                        hideHeader
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-
-          <div className="mt-8 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] md:gap-16">
-            <div className="flex flex-col gap-5">
-              <p className="eyebrow">Coverage</p>
-              <p className="lede max-w-none">Where each kind of data starts and stops.</p>
-            </div>
-            <ul className="m-0 flex list-none flex-col gap-7 p-0">
-              {COVERAGE.map((c) => (
-                <li key={c.name} className="flex flex-col gap-2">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <span className="text-[14.5px] font-medium text-ink">{c.name}</span>
-                    <span className="num whitespace-nowrap text-[12.5px] text-ink-3">{c.label}</span>
-                  </div>
-                  <PillMeter
-                    value={c.to - c.from + 1}
-                    max={51}
-                    pills={51}
-                    offset={c.from - 1976}
-                    color="#2b5ce6"
-                    label={c.name}
-                    hideHeader
-                  />
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
