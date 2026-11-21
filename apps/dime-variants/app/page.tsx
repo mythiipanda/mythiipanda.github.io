@@ -128,7 +128,8 @@ export default function Home() {
       <footer className="border-t border-line">
         <div className="wrap grid gap-10 py-14 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-20">
           <div className="flex flex-col gap-4">
-            <span className="font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+            <span className="flex items-center gap-2.5 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+              <DimeMark size={22} />
               dime<span className="text-accent">.</span>
             </span>
             <p className="m-0 max-w-[40ch] text-[14.5px] leading-relaxed text-ink-2">
