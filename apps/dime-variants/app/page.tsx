@@ -2,7 +2,7 @@ import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
 import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
-import { PlatformWindow } from "@/components/stage/platform-window";
+import { ChatWindow } from "@/components/stage/chat-window";
 import { COUNTS, COVERAGE, README, REPO } from "@/lib/site";
 
 const QUICKSTART = ["git clone https://github.com/mythiipanda/dime", "cd dime", "./scripts/fetch-data.sh"];
@@ -70,7 +70,7 @@ export default function Home() {
 
           <div className="window window-hero window-light enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
             <div className="light m-1.5 mt-0 h-[500px] min-w-0 overflow-hidden rounded-[2px] md:m-2 md:mt-0 md:h-[620px]">
-              <PlatformWindow />
+              <ChatWindow state="split" artifact="board" />
             </div>
           </div>
           <dl className="enter mt-10 grid grid-cols-2 border border-line md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
