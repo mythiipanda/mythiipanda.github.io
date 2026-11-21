@@ -80,9 +80,9 @@ export default function DiffTable({
 
         <table className="w-full table-fixed border-collapse text-left">
           <colgroup>
-            <col className="w-[38%]" />
-            <col className="w-[24%]" />
-            <col className="w-[38%]" />
+            <col className="w-[36%]" />
+            <col className="w-[17%]" />
+            <col className="w-[47%]" />
           </colgroup>
           <thead>
             <tr className="border-b border-line">
@@ -169,7 +169,7 @@ export default function DiffTable({
                           toggleEdit(row.key);
                         }
                       }}
-                      className={`grid grid-cols-[38%_24%_38%] items-center border-t border-line transition-[background-color,filter,opacity] duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent ${
+                      className={`grid grid-cols-[36%_17%_47%] items-center border-t border-line transition-[background-color,filter,opacity] duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent ${
                         accepted ? "" : "cursor-pointer hover:brightness-[0.985]"
                       }`}
                       style={{ background: edits[row.key] ? "var(--green-tint)" : undefined }}

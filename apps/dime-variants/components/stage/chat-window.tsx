@@ -112,12 +112,12 @@ function TradeArtifact() {
       <DiffTable
         title="WAS receives"
         rows={[
-          { key: "ad", id: "Anthony Davis", dept: "Player", email: "$58.5M · to MIA", removed: true },
+          { key: "ad", id: "Anthony Davis", dept: "Player", email: "$58.5M · MIA", removed: true },
         ]}
         added={[
-          { key: "giannis", id: "Giannis Antetokounmpo", dept: "Player", email: "$58.5M · from MIL" },
-          { key: "p1", id: "2028 1st (top-4 prot.)", dept: "Pick", email: "from MIA" },
-          { key: "p2", id: "2030 pick swap", dept: "Pick", email: "from MIA" },
+          { key: "giannis", id: "Giannis Antetokounmpo", dept: "Player", email: "$58.5M · MIL" },
+          { key: "p1", id: "2028 1st (top-4)", dept: "Pick", email: "MIA" },
+          { key: "p2", id: "2030 pick swap", dept: "Pick", email: "MIA" },
         ]}
       />
       <div className="flex items-center gap-2 rounded-lg bg-canvas px-3 py-2.5 ring-1 ring-inset ring-line">
