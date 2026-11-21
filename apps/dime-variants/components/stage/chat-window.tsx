@@ -182,7 +182,7 @@ function HomeCanvas() {
           {PROMPT_CHIPS.map((c) => (
             <span
               key={c.label}
-              className="inline-flex h-7 items-center gap-1.5 rounded-full bg-surface px-3 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line"
+              className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-full bg-surface px-3 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line transition-colors hover:bg-hover hover:text-ink"
             >
               <c.icon className="size-3 text-icon-muted" />
               {c.label}
@@ -200,7 +200,7 @@ function HomeCanvas() {
   );
 }
 
-function ToolRow({ label, trail, pending = false }: { label: string; trail: string; pending?: boolean }) {
+function ToolRow({ label, pending = false }: { label: string; pending?: boolean }) {
   return (
     <span className="flex h-7 w-full items-center gap-2 rounded-md px-1 text-left">
       {pending ? (
@@ -208,8 +208,7 @@ function ToolRow({ label, trail, pending = false }: { label: string; trail: stri
       ) : (
         <CheckIcon className="size-3.5 shrink-0 text-icon-muted" />
       )}
-      <span className="min-w-0 flex-1 truncate font-mono text-[12px] text-ink-2">{label}</span>
-      <span className="shrink-0 text-[11px] tabular-nums text-secondary-label">{trail}</span>
+      <span className="min-w-0 flex-1 truncate text-[12.5px] text-ink-2">{label}</span>
       <ChevronRightIcon className="size-3 shrink-0 text-icon-muted" />
     </span>
   );
@@ -332,7 +331,7 @@ function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide 
         <PinIcon className="size-3.5 shrink-0 text-icon-muted" />
         <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{meta.title}</span>
         <span className="shrink-0 text-[11px] text-secondary-label">{meta.kind}</span>
-        <span className="ml-1 inline-flex h-6 items-center gap-1 rounded-md px-1.5 text-[11px] font-medium text-ink-2 ring-1 ring-inset ring-line">
+        <span className="ml-1 inline-flex h-6 cursor-pointer items-center gap-1 rounded-md px-1.5 text-[11px] font-medium text-ink-2 ring-1 ring-inset ring-line transition-colors hover:bg-hover hover:text-ink">
           <DownloadIcon className="size-3 text-icon-muted" />
           export
         </span>
@@ -407,7 +406,7 @@ function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide 
 const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNode; link: string }> = {
   board: {
     q: "Who leads the league in true shooting among rotation players?",
-    tools: [["query · silver_advanced", "41 ms"], ["resolve · player names", "12 ms"]],
+    tools: [["Queried player stats", "Querying player stats"], ["Resolved player names", "Resolving player names"]],
     a: (
       <>
         Among <span className="font-medium text-ink">164 rotation players</span>, <span className="font-medium text-ink">Luke Kennard</span> leads at{" "}
@@ -419,7 +418,7 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNo
   },
   trade: {
     q: "Giannis for Anthony Davis straight up — does it clear the cap?",
-    tools: [["resolve · salaries", "18 ms"], ["check · apron rules", "63 ms"]],
+    tools: [["Resolved salaries", "Resolving salaries"], ["Checked apron rules", "Checking apron rules"]],
     a: (
       <>
         It clears. <span className="font-mono text-[13px] text-ink">$58.5M ↔ $58.5M</span> is an even swap<CiteChip>1</CiteChip> —
@@ -430,7 +429,7 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNo
   },
   report: {
     q: "Write up the midseason efficiency leaders for the morning meeting.",
-    tools: [["query · silver_advanced", "41 ms"], ["draft · midseason review", "2.1 s"]],
+    tools: [["Queried player stats", "Querying player stats"], ["Drafted midseason review", "Drafting midseason review"]],
     a: (
       <>
         Drafted a one-page review — <span className="font-medium text-ink">Kennard, Duren, Ayton</span> headline it,
@@ -451,12 +450,8 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
         </span>
       </div>
       <div className="mt-1 flex flex-col gap-0.5">
-        <ToolRow label={t.tools[0][0]} trail={t.tools[0][1]} />
-        {pending ? (
-          <ToolRow label={`running · ${t.tools[1][0].split("· ")[1]}`} trail="…" pending />
-        ) : (
-          <ToolRow label={t.tools[1][0]} trail={t.tools[1][1]} />
-        )}
+        <ToolRow label={t.tools[0][0]} />
+        <ToolRow label={pending ? t.tools[1][1] : t.tools[1][0]} pending={pending} />
       </div>
       {!pending && (
         <div className="mt-1 text-sm leading-7 text-ink-2">
@@ -467,7 +462,7 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
             </div>
           ) : (
             <div className="mt-3">
-              <span className="inline-flex h-8 items-center gap-2 rounded-md bg-surface px-2.5 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line">
+              <span className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-md bg-surface px-2.5 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line transition-colors hover:bg-hover hover:text-ink">
                 <PinIcon className="size-3 text-accent-ink" />
                 {t.link}
                 <ArrowRightIcon className="size-3 text-icon-muted" />
