@@ -342,3 +342,28 @@ kbd,
   line-height: 1.6;
   letter-spacing: normal;
 }
+
+/* S1 — original design language + metrics copied from dub.co / supabase / cal.com */
+.ty-s1 .display {
+  font-size: clamp(44px, 5.6vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+.ty-s1 .title {
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+.ty-s1 .lede {
+  font-size: 20px;
+  line-height: 1.4;
+}
+.ty-s1 .btn {
+  font-size: 14px;
+  font-weight: 500;
+  height: 42px;
+}
+.ty-s1 .section-pad { padding-block: 96px; }
+@media (min-width: 768px) {
+  .ty-s1 .section-pad { padding-block: 128px; }
+}

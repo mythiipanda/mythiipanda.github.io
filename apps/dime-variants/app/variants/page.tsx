@@ -459,6 +459,105 @@ export default function Variants() {
           </div>
         </div>
       </Variant>
+
+      {/* S1 — converged: original serif+cobalt, metrics lifted from dub/supabase/cal */}
+      <Variant id="S1">
+        <div className="ty-s1">
+          <div className="wrap section-pad">
+            <div className="mx-auto flex max-w-[720px] flex-col items-center gap-7 text-center">
+              <h1 className="display enter max-w-[15ch]">The open-source <em>NBA analyst.</em></h1>
+              <p className="lede mx-auto max-w-[46ch]">{LEAD}</p>
+              <CTAs />
+            </div>
+            <div className="mx-auto mt-14 max-w-[1120px] rounded-[16px] bg-canvas shadow-[0_1px_2px_rgba(20,20,25,0.05),0_16px_48px_-16px_rgba(20,20,25,0.2),0_0_0_1px_var(--line)]">
+              <Shell><PlatformWindow /></Shell>
+            </div>
+          </div>
+          <div className="wrap section-pad border-t border-line">
+            <div className="flex flex-col gap-12">
+              <LayoutHead kicker="the workspace" title="Every question leaves an artifact" />
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-6">
+                <Tile className="col-span-2 md:col-span-3" title="Scouting">
+                  <MiniTable
+                    head={["player", "team", "ts%", "usg%"]}
+                    rows={[
+                      ["L. Kennard", "LAL", "68.9", "13.1"],
+                      ["J. Duren", "DET", "68.8", "23.1"],
+                      ["N. Jokić", "DEN", "67.0", "28.9"],
+                    ]}
+                  />
+                </Tile>
+                <Tile className="md:col-span-3" title="Lineups">
+                  <Bars max={28} rows={[["Bridges +4 · CHA", 26.4], ["McCollum +4 · ATL", 20.3], ["Brown +4 · BOS", 17.9]]} />
+                </Tile>
+                <Tile className="md:col-span-2">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="num text-[30px] font-medium tabular-nums text-ink">14.9M</div>
+                      <div className="mt-1 text-[12.5px] text-ink-2">rows in one DuckDB file</div>
+                    </div>
+                    <Ring pct={82} size={52} />
+                  </div>
+                </Tile>
+                <Tile className="md:col-span-2">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="num text-[30px] font-medium tabular-nums text-ink">+26.4</div>
+                      <div className="mt-1 text-[12.5px] text-ink-2">best five-man net rating</div>
+                    </div>
+                    <Spark points={[9.2, 12.4, 15.8, 14.1, 19.6, 22.3, 26.4]} w={90} h={40} />
+                  </div>
+                </Tile>
+                <Tile className="md:col-span-2">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="num text-[30px] font-medium tabular-nums text-ink">58</div>
+                      <div className="mt-1 text-[12.5px] text-ink-2">warehouse tables</div>
+                    </div>
+                    <Ring pct={58} size={52} />
+                  </div>
+                </Tile>
+                <div className="col-span-2 overflow-hidden rounded-[14px] shadow-[0_0_0_1px_var(--line)] md:col-span-3">
+                  <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows"]} code={QUICKSTART.join("\n")} filename="quickstart" />
+                </div>
+                <Tile className="col-span-2 md:col-span-3" title="Coverage">
+                  <ul className="flex list-none flex-col gap-4 p-0">
+                    {COVERAGE.slice(0, 2).map((c) => (
+                      <li key={c.name} className="flex flex-col gap-2">
+                        <div className="flex items-baseline justify-between">
+                          <span className="text-[12.5px] font-medium text-ink">{c.name}</span>
+                          <span className="num text-[11.5px] text-ink-3">{c.label}</span>
+                        </div>
+                        <PillMeter value={c.to - c.from + 1} max={51} pills={51} offset={c.from - 1976} color="#2b5ce6" label={c.name} hideHeader />
+                      </li>
+                    ))}
+                  </ul>
+                </Tile>
+              </div>
+            </div>
+          </div>
+          <div className="wrap section-pad border-t border-line">
+            <dl className="grid grid-cols-2 border border-line md:grid-cols-4">
+              {COUNTS.map((c) => (
+                <div key={c.n} className="flex flex-col border-r border-line p-6 text-center last:border-r-0">
+                  <dd className="font-serif text-[clamp(1.8rem,3vw,2.6rem)] leading-none text-ink">{c.n}</dd>
+                  <dt className="label mt-3">{c.label}</dt>
+                </div>
+              ))}
+            </dl>
+            <div className="mx-auto mt-14 flex max-w-[680px] flex-col items-center gap-6">
+              <p className="lede text-center">Clone the repo, fetch the data pack, add a model key.</p>
+              <div className="w-full overflow-hidden rounded-[14px] shadow-[0_0_0_1px_var(--line)]">
+                <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows · duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
+              </div>
+              <a href={REPO} className="btn btn-primary">
+                <GithubMark size={17} />
+                Get Dime on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </Variant>
     </main>
   );
 }
