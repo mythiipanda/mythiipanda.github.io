@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import type { ReactNode } from "react";
 import {
   ArrowRightIcon,
@@ -21,7 +24,7 @@ import ThinkingState from "../beautiful/primitives/ThinkingState";
 import ApprovalCard from "../beautiful/primitives/ApprovalCard";
 import SidebarNav, { type SidebarRecent } from "../beautiful/primitives/SidebarNav";
 import PromptBar from "../beautiful/primitives/PromptBar";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../beautiful/primitives/Table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableSortHead, type TableSort } from "../beautiful/primitives/Table";
 import StreamingText, { type StreamingSource, type StreamingToken } from "../beautiful/primitives/StreamingText";
 import { Kbd } from "../beautiful/primitives/Kbd";
 import { IconSettingsGear1 } from "../beautiful/icons";
@@ -173,6 +176,16 @@ const ARTIFACT_META: Record<string, { title: string; kind: string }> = {
 
 export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean }) {
   const meta = ARTIFACT_META[kind] ?? ARTIFACT_META.board;
+  const [sort, setSort] = useState<TableSort>({ id: "ts", desc: true });
+  const toggleSort = (id: string) =>
+    setSort((cur) => (cur?.id === id ? (cur.desc ? { id, desc: false } : undefined) : { id, desc: true }));
+  const boardRows = [...SCOUT_ROWS].sort((a, b) => {
+    if (!sort) return 0;
+    const key = sort.id as "ts" | "usg" | "player";
+    const va: string | number = key === "player" ? a.name : Number(a[key]);
+    const vb: string | number = key === "player" ? b.name : Number(b[key]);
+    return (typeof va === "string" ? va.localeCompare(vb as string) : (va as number) - (vb as number)) * (sort.desc ? -1 : 1);
+  });
   const outer = framed
     ? "flex h-full w-full flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line"
     : wide
@@ -196,15 +209,15 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         <Table variant="default" size="sm" scrollFade={false} stickyHeader containerClassName="h-full">
           <TableHeader>
             <TableRow>
-              <TableHead className="text-[11px]">player</TableHead>
-              <TableHead align="end" className="text-[11px]">ts%</TableHead>
-              <TableHead align="end" className="text-[11px]">usg%</TableHead>
+              <TableSortHead id="player" sort={sort} onSort={toggleSort} title="player" className="text-[11px]" />
+              <TableSortHead id="ts" sort={sort} onSort={toggleSort} title="ts%" align="end" className="text-[11px]" />
+              <TableSortHead id="usg" sort={sort} onSort={toggleSort} title="usg%" align="end" className="text-[11px]" />
               <TableHead className="text-[11px]">trend</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {skeleton
-              ? SCOUT_ROWS.slice(0, 3).map((p) => (
+              ? boardRows.slice(0, 3).map((p) => (
                   <TableRow key={p.name}>
                     <TableCell>
                       <span className="flex items-center gap-2.5">
@@ -226,7 +239,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
                     </TableCell>
                   </TableRow>
                 ))
-              : SCOUT_ROWS.map((p, i) => (
+              : boardRows.map((p, i) => (
                   <TableRow key={p.name} className={i === 0 ? "bg-accent-tint/50" : ""}>
                     <TableCell>
                       <span className="flex items-center gap-2.5">

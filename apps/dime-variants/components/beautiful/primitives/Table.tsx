@@ -149,6 +149,50 @@ export function TableHead({
   );
 }
 
+export type TableSort = { id: string; desc: boolean } | undefined;
+
+export function TableSortHead({
+  id,
+  sort,
+  onSort,
+  title,
+  className,
+  align,
+  ...props
+}: Omit<React.ComponentProps<"th">, "align"> & {
+  id: string;
+  sort?: TableSort;
+  onSort?: (id: string) => void;
+  title: string;
+  align?: "start" | "center" | "end";
+}) {
+  const desc = sort?.id === id ? sort.desc : undefined;
+  return (
+    <TableHead align={align} {...props} className={cn("p-0", className)}>
+      <div data-slot="data-table-column-header" className={cn("flex", align === "end" && "justify-end", align === "center" && "justify-center")}>
+        <button
+          type="button"
+          onClick={() => onSort?.(id)}
+          data-sorted={desc === undefined ? undefined : ""}
+          className={cn(
+            "-mx-1 inline-flex h-7 items-center gap-1.5 rounded-md px-1.5 text-[11px] font-medium text-secondary-label transition-colors hover:bg-hover hover:text-ink data-sorted:text-ink",
+            align === "end" && "flex-row-reverse"
+          )}
+        >
+          {title}
+          {desc === undefined ? (
+            <svg aria-hidden className="size-3.5 opacity-60" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m7 15 5 5 5-5" /><path d="m7 9 5-5 5 5" /></svg>
+          ) : desc ? (
+            <svg aria-hidden className="size-3.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m19 9-7 7-7-7" /></svg>
+          ) : (
+            <svg aria-hidden className="size-3.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m5 15 7-7 7 7" /></svg>
+          )}
+        </button>
+      </div>
+    </TableHead>
+  );
+}
+
 export function TableCell({
   className,
   align,
