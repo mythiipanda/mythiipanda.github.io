@@ -39,6 +39,9 @@ const CHATS: SidebarRecent[] = [
   { id: "c2", label: "giannis-ad trade check", status: { label: "Approval", icon: "approval" } },
   { id: "c3", label: "midseason review", status: { label: "Done", icon: "done" } },
   { id: "c4", label: "season: mid points", status: { label: "Working", icon: "working", dur: "4m" } },
+  { id: "c5", label: "cap space by team", time: "Yesterday" },
+  { id: "c6", label: "rotation minutes trend", time: "Yesterday" },
+  { id: "c7", label: "draft night board", time: "Nov 18" },
 ];
 
 const CHAT_VIEWS: Record<string, { view: string; q?: string }> = {
@@ -46,6 +49,9 @@ const CHAT_VIEWS: Record<string, { view: string; q?: string }> = {
   c2: { view: "trade" },
   c3: { view: "report" },
   c4: { view: "pending", q: "Who gained the most mid-range points since November?" },
+  c5: { view: "board" },
+  c6: { view: "board" },
+  c7: { view: "report" },
 };
 
 function Composer({ focused = false, onSend }: { focused?: boolean; onSend?: (text: string) => void }) {
