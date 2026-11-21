@@ -53,11 +53,11 @@ export default function Home() {
             <div className="enter flex flex-col items-center gap-6" style={{ "--i": 1 } as React.CSSProperties}>
               <p className="lede mx-auto">A front-office workspace on your machine. Ask in plain English; Dime writes the SQL, runs it on 17 seasons of data, and keeps the work.</p>
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-                <a href={REPO} className="btn btn-primary">
+                <a href={REPO} className="inline-flex h-11 select-none items-center justify-center gap-2 rounded-full bg-ink px-5 text-[15px] font-medium leading-none text-canvas shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] transition-[transform,background-color,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.96]">
                   <GithubMark size={17} />
                   Get Dime on GitHub
                 </a>
-                <a href="#quickstart" className="btn btn-ghost">Quickstart</a>
+                <a href="#quickstart" className="inline-flex h-11 select-none items-center justify-center rounded-full bg-surface px-5 text-[15px] font-medium leading-none text-ink shadow-btn transition-[transform,background-color,opacity] duration-150 ease-out hover:bg-inset active:scale-[0.96]">Quickstart</a>
               </div>
             </div>
           </div>
@@ -95,7 +95,6 @@ export default function Home() {
                 <div key={id} className="h-[320px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line">
                   <div className="flex h-11 items-center gap-2 border-b border-line px-4">
                     <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{pane.crumb.split(" / ")[1]}</span>
-                    <span className="shrink-0 text-[11px] text-secondary-label">{pane.label.toLowerCase()}</span>
                   </div>
                   <div className="h-[calc(100%-45px)] overflow-hidden">{pane.body}</div>
                 </div>
@@ -153,7 +152,7 @@ export default function Home() {
             <p className="eyebrow">03</p>
             <h2 className="title">Run it locally</h2>
             <p className="lede">Clone the repo, fetch the data pack and add your own model key.</p>
-            <a href={README} className="btn btn-primary">
+            <a href={README} className="inline-flex h-11 select-none items-center justify-center gap-2 rounded-full bg-ink px-5 text-[15px] font-medium leading-none text-canvas shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] transition-[transform,background-color,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.96]">
               <GithubMark size={17} />
               Read the quickstart
             </a>
