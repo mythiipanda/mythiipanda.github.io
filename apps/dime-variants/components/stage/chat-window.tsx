@@ -14,6 +14,7 @@ import {
   SearchIcon,
 } from "lucide-react";
 import { Headshot } from "./app-shell";
+import DiffTable from "../beautiful/primitives/DiffTable";
 import { Spark } from "./stills";
 import ToolChips, { type ToolStep } from "../beautiful/primitives/ToolChips";
 import ThinkingState from "../beautiful/primitives/ThinkingState";
@@ -93,40 +94,17 @@ function CiteChip({ children }: { children: ReactNode }) {
 function TradeArtifact() {
   return (
     <div className="flex flex-col gap-3 p-4">
-      {[
-        { team: "MIA", label: "receives", rows: [["Anthony Davis", "davis", "58.5"]], sends: "Giannis Antetokounmpo" },
-        { team: "WAS", label: "receives", rows: [["Giannis Antetokounmpo", "giannis", "58.5"]], picks: ["2028 1st (top-4 prot.)", "2030 pick swap"], sends: "Anthony Davis" },
-      ].map((side) => (
-        <div key={side.team} className="overflow-hidden rounded-lg bg-canvas ring-1 ring-inset ring-line">
-          <div className="flex h-9 items-center justify-between border-b border-line px-3">
-            <span className="font-mono text-[12px] font-medium text-ink">{side.team}</span>
-            <span className="text-[11px] font-medium text-secondary-label">{side.label}</span>
-          </div>
-          <div className="p-2">
-            {side.rows.map(([name, img, sal]) => (
-              <div key={name as string} className="flex items-center gap-2.5 rounded-md px-1.5 py-1.5">
-                <Headshot src={`/dime-site/headshots/${img}.png`} alt={name as string} size={26} />
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-[13px] font-medium text-ink">{name}</div>
-                  <div className="font-mono text-[11px] text-ink-3">${sal}M</div>
-                </div>
-                <span className="text-[11px] font-medium text-secondary-label">in</span>
-              </div>
-            ))}
-            {(side.picks ?? []).map((pk) => (
-              <div key={pk} className="flex items-center gap-2.5 px-1.5 py-1.5">
-                <span className="flex size-[26px] items-center justify-center rounded-full bg-field text-[9.5px] font-medium text-secondary-label ring-1 ring-inset ring-line">pk</span>
-                <span className="flex-1 text-[12px] text-ink-2">{pk}</span>
-                <span className="text-[11px] font-medium text-secondary-label">in</span>
-              </div>
-            ))}
-            <div className="mt-0.5 flex items-center gap-2.5 border-t border-line px-1.5 py-1.5">
-              <span className="w-[26px] text-center text-[11px] font-medium text-secondary-label">out</span>
-              <span className="flex-1 truncate text-[12px] text-ink-2">{side.sends} · $58.5M</span>
-            </div>
-          </div>
-        </div>
-      ))}
+      <DiffTable
+        title="WAS receives"
+        rows={[
+          { key: "ad", id: "Anthony Davis", dept: "Player", email: "$58.5M · to MIA", removed: true },
+        ]}
+        added={[
+          { key: "giannis", id: "Giannis Antetokounmpo", dept: "Player", email: "$58.5M · from MIL" },
+          { key: "p1", id: "2028 1st (top-4 prot.)", dept: "Pick", email: "from MIA" },
+          { key: "p2", id: "2030 pick swap", dept: "Pick", email: "from MIA" },
+        ]}
+      />
       <div className="flex items-center gap-2 rounded-lg bg-canvas px-3 py-2.5 ring-1 ring-inset ring-line">
         <span className="w-14 text-[11px] font-medium text-secondary-label">cap hit</span>
         <div className="h-[5px] flex-1 rounded-full bg-field">
