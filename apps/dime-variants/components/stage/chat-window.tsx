@@ -21,6 +21,7 @@ import ToolChips, { type ToolStep } from "../beautiful/primitives/ToolChips";
 import ThinkingState from "../beautiful/primitives/ThinkingState";
 import ApprovalCard from "../beautiful/primitives/ApprovalCard";
 import SidebarNav, { type SidebarRecent } from "../beautiful/primitives/SidebarNav";
+import PromptBar from "../beautiful/primitives/PromptBar";
 import { IconSettingsGear1 } from "../beautiful/icons";
 
 const CHATS: SidebarRecent[] = [
@@ -32,30 +33,12 @@ const CHATS: SidebarRecent[] = [
 
 function Composer({ focused = false }: { focused?: boolean }) {
   return (
-    <div className={`rounded-2xl bg-surface p-2 ring-1 ring-inset shadow-composer ${focused ? "ring-accent/40" : "ring-line"}`}>
-      <div className="flex items-center gap-2 px-2 pt-1">
-        {focused && <span aria-hidden className="h-4 w-px shrink-0 animate-pulse bg-ink/70" />}
-        <span className="min-w-0 flex-1 truncate text-sm text-secondary-label">
-          Ask anything. @ players, / boards, $ trades
-        </span>
-      </div>
-      <div className="mt-2 flex items-center gap-2 px-1 pb-1">
-        <span className="flex size-6 items-center justify-center rounded-md text-icon-muted">
-          <PlusIcon className="size-3.5" />
-        </span>
-        <span className="inline-flex h-6 items-center gap-1 rounded-md bg-field px-1.5 text-[11px] font-medium text-ink-2 ring-1 ring-inset ring-line">
-          <DatabaseIcon className="size-3 text-icon-muted" />
-          warehouse
-        </span>
-        <span className="ml-auto inline-flex h-6 cursor-pointer items-center gap-0.5 rounded-md bg-field px-1.5 text-[11px] font-medium text-ink-2 ring-1 ring-inset ring-line transition-colors hover:bg-hover hover:text-ink">
-          auto
-          <ChevronDownIcon className="size-3 text-icon-muted" />
-        </span>
-        <span aria-hidden className="flex size-8 items-center justify-center rounded-full bg-accent text-surface">
-          <ArrowUpIcon className="size-3.5" />
-        </span>
-      </div>
-    </div>
+    <PromptBar
+      variant="Rounded"
+      demo={false}
+      tall={focused}
+      placeholder="Ask anything. @ players, / boards, $ trades"
+    />
   );
 }
 
