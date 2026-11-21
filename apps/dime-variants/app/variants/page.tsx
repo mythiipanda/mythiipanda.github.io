@@ -1,7 +1,43 @@
 import type { ReactNode } from "react";
+import { BarChart3, Database, FileText, MessageSquare, MoveRight, SquareTerminal } from "lucide-react";
+import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
+import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
+import { PillMeter } from "@/components/ingot/pill-meter";
 import { PlatformWindow } from "@/components/stage/platform-window";
-import { REPO } from "@/lib/site";
+import { Bars, MiniTable, PANES, Ring, Spark } from "@/components/stage/stills";
+import { COUNTS, COVERAGE, README, REPO } from "@/lib/site";
+
+const QUICKSTART = ["git clone https://github.com/mythiipanda/dime", "cd dime", "./scripts/fetch-data.sh"];
+
+function MiniStill({ pane, h = 260, scale = 0.5 }: { pane: number; h?: number; scale?: number }) {
+  return (
+    <div className="pointer-events-none relative overflow-hidden bg-canvas" style={{ height: h }}>
+      <div className="absolute left-0 top-0 origin-top-left" style={{ width: 1180, transform: `scale(${scale})` }}>
+        <div className="flex h-[560px] flex-col p-5">{PANES[pane].body}</div>
+      </div>
+    </div>
+  );
+}
+
+function Tile({ className = "", title, children }: { className?: string; title?: string; children: ReactNode }) {
+  return (
+    <div className={`overflow-hidden rounded-[14px] bg-surface shadow-[0_0_0_1px_var(--line)] ${className}`}>
+      {title && <div className="flex h-10 items-center border-b border-line px-4 text-[13px] font-medium text-ink">{title}</div>}
+      <div className="p-4">{children}</div>
+    </div>
+  );
+}
+
+function LayoutHead({ kicker, title, lede }: { kicker: string; title: string; lede?: string }) {
+  return (
+    <div className="flex max-w-[620px] flex-col gap-4">
+      <p className="eyebrow">{kicker}</p>
+      <h2 className="title">{title}</h2>
+      {lede && <p className="lede">{lede}</p>}
+    </div>
+  );
+}
 
 const LEAD = "A front-office workspace on your machine. Ask in plain English; Dime writes the SQL, runs it on 17 seasons of data, and keeps the work.";
 
@@ -124,6 +160,238 @@ export default function Variants() {
           </div>
           <div className="overflow-hidden rounded-[14px] shadow-[0_0_0_1px_var(--line),0_20px_60px_-24px_rgba(20,20,25,0.3)]">
             <Shell><PlatformWindow /></Shell>
+          </div>
+        </div>
+      </Variant>
+
+      {/* ============ below-hero layout shotgun L1-L6 ============ */}
+
+      {/* L1 — bento: asymmetric tile board, stills + stats + terminal, minimal copy */}
+      <Variant id="L1">
+        <div className="wrap py-16 md:py-24">
+          <LayoutHead kicker="the workspace" title="Every question leaves an artifact" />
+          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-6">
+            <Tile className="col-span-2 md:col-span-3" title="Scouting">
+              <MiniTable
+                head={["player", "team", "ts%", "usg%"]}
+                rows={[
+                  ["L. Kennard", "LAL", "68.9", "13.1"],
+                  ["J. Duren", "DET", "68.8", "23.1"],
+                  ["N. Jokić", "DEN", "67.0", "28.9"],
+                ]}
+              />
+            </Tile>
+            <Tile className="md:col-span-3" title="Lineups">
+              <Bars max={28} rows={[["Bridges +4 · CHA", 26.4], ["McCollum +4 · ATL", 20.3], ["Brown +4 · BOS", 17.9]]} />
+            </Tile>
+            <Tile className="md:col-span-2">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="num text-[30px] font-medium tabular-nums text-ink">14.9M</div>
+                  <div className="mt-1 text-[12.5px] text-ink-2">rows in one DuckDB file</div>
+                </div>
+                <Ring pct={82} size={52} />
+              </div>
+            </Tile>
+            <Tile className="md:col-span-2">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="num text-[30px] font-medium tabular-nums text-ink">+26.4</div>
+                  <div className="mt-1 text-[12.5px] text-ink-2">best five-man net rating</div>
+                </div>
+                <Spark points={[9.2, 12.4, 15.8, 14.1, 19.6, 22.3, 26.4]} w={90} h={40} />
+              </div>
+            </Tile>
+            <Tile className="md:col-span-2">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="num text-[30px] font-medium tabular-nums text-ink">58</div>
+                  <div className="mt-1 text-[12.5px] text-ink-2">warehouse tables</div>
+                </div>
+                <Ring pct={58} size={52} />
+              </div>
+            </Tile>
+            <div className="col-span-2 overflow-hidden rounded-[14px] shadow-[0_0_0_1px_var(--line)] md:col-span-3">
+              <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows"]} code={QUICKSTART.join("\n")} filename="quickstart" />
+            </div>
+            <Tile className="col-span-2 md:col-span-3" title="Coverage">
+              <ul className="flex list-none flex-col gap-4 p-0">
+                {COVERAGE.slice(0, 2).map((c) => (
+                  <li key={c.name} className="flex flex-col gap-2">
+                    <div className="flex items-baseline justify-between">
+                      <span className="text-[12.5px] font-medium text-ink">{c.name}</span>
+                      <span className="num text-[11.5px] text-ink-3">{c.label}</span>
+                    </div>
+                    <PillMeter value={c.to - c.from + 1} max={51} pills={51} offset={c.from - 1976} color="#2b5ce6" label={c.name} hideHeader />
+                  </li>
+                ))}
+              </ul>
+            </Tile>
+          </div>
+        </div>
+      </Variant>
+
+      {/* L2 — flow: pipeline diagram ask→sql→warehouse→artifacts→report, then two cards */}
+      <Variant id="L2">
+        <div className="wrap py-16 md:py-24">
+          <LayoutHead kicker="how it works" title="A question becomes a memo" />
+          <div className="mt-12 flex flex-wrap items-stretch justify-center gap-3">
+            {[
+              [MessageSquare, "ask", "plain English"],
+              [SquareTerminal, "sql", "Dime writes it"],
+              [Database, "warehouse", "58 tables"],
+              [BarChart3, "artifacts", "charts + tables"],
+              [FileText, "report", "cited memo"],
+            ].map(([Icon, name, hint], i, arr) => (
+              <div key={name as string} className="flex items-center gap-3">
+                <div className="flex w-[150px] flex-col items-center gap-1.5 rounded-[14px] bg-surface px-4 py-5 text-center shadow-[0_0_0_1px_var(--line)]">
+                  <Icon size={20} className="text-accent-ink" />
+                  <span className="font-mono text-[12.5px] font-medium text-ink">{name as string}</span>
+                  <span className="text-[11.5px] text-ink-3">{hint as string}</span>
+                </div>
+                {i < arr.length - 1 && <MoveRight size={16} className="shrink-0 text-ink-3" />}
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 grid gap-3 md:grid-cols-2">
+            <div className="window window-light">
+              <div className="flex h-10 items-center px-4 font-mono text-[12px] text-ink-2">warehouse.duckdb</div>
+              <div className="light m-1.5 mt-0 h-[300px] overflow-hidden rounded-[2px]">
+                <RecordsTable fill />
+              </div>
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="rounded-[14px] shadow-[0_0_0_1px_var(--line)]">
+                <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# runs on your machine"]} code={QUICKSTART.join("\n")} filename="quickstart" />
+              </div>
+              <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-[14px] bg-line">
+                {COUNTS.slice(0, 2).map((c) => (
+                  <div key={c.n} className="bg-canvas p-5">
+                    <dd className="font-serif text-[26px] text-ink">{c.n}</dd>
+                    <dt className="label mt-1">{c.label}</dt>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </div>
+      </Variant>
+
+      {/* L3 — gallery: three still crops with mono captions, stats hairline, terminal */}
+      <Variant id="L3">
+        <div className="wrap py-16 md:py-24">
+          <LayoutHead kicker="the platform" title="One workspace, five surfaces" />
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {[
+              { pane: 0, cap: "notebooks — ask, sql, chart, note" },
+              { pane: 2, cap: "scouting — ranked boards with faces" },
+              { pane: 3, cap: "trades — live cap math" },
+            ].map((s) => (
+              <figure key={s.cap} className="m-0">
+                <div className="overflow-hidden rounded-[12px] shadow-[0_0_0_1px_var(--line),0_14px_40px_-16px_rgba(20,20,25,0.2)]">
+                  <MiniStill pane={s.pane} h={250} scale={0.44} />
+                </div>
+                <figcaption className="mt-3 font-mono text-[11.5px] text-ink-3">{s.cap}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <dl className="mt-14 grid grid-cols-2 border border-line md:grid-cols-4">
+            {COUNTS.map((c) => (
+              <div key={c.n} className="flex flex-col border-r border-line p-5 last:border-r-0">
+                <dd className="font-serif text-[24px] text-ink">{c.n}</dd>
+                <dt className="label mt-1.5">{c.label}</dt>
+              </div>
+            ))}
+          </dl>
+          <div className="mx-auto mt-14 max-w-[640px] overflow-hidden rounded-[14px] shadow-[0_0_0_1px_var(--line)]">
+            <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows"]} code={QUICKSTART.join("\n")} filename="quickstart" />
+          </div>
+        </div>
+      </Variant>
+
+      {/* L4 — data band: warehouse is the visual hero, coverage meters, slim quickstart */}
+      <Variant id="L4">
+        <div className="wrap py-16 md:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <LayoutHead kicker="the warehouse" title="58 tables. 14.9 million rows." lede="One DuckDB file on your machine — 17 seasons of shots, salaries, lineups and play-by-play." />
+            <a href={README} className="btn btn-ghost">Schema docs</a>
+          </div>
+          <div className="window window-light mt-12">
+            <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
+              <Database size={14} className="shrink-0 text-ink-3" />
+              <span className="truncate font-mono leading-none text-ink">warehouse.duckdb</span>
+              <span className="ml-auto shrink-0 font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables · 14.9M rows</span>
+            </div>
+            <div className="light m-1.5 mt-0 h-[360px] overflow-hidden rounded-[2px]">
+              <RecordsTable fill />
+            </div>
+          </div>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {COVERAGE.map((c) => (
+              <div key={c.name} className="flex flex-col gap-2">
+                <div className="flex items-baseline justify-between">
+                  <span className="text-[13.5px] font-medium text-ink">{c.name}</span>
+                  <span className="num text-[12px] text-ink-3">{c.label}</span>
+                </div>
+                <PillMeter value={c.to - c.from + 1} max={51} pills={51} offset={c.from - 1976} color="#2b5ce6" label={c.name} hideHeader />
+              </div>
+            ))}
+          </div>
+          <div className="mt-14 flex flex-col items-center gap-5">
+            <p className="lede">Clone, fetch, ask.</p>
+            <div className="w-full max-w-[640px] overflow-hidden rounded-[14px] shadow-[0_0_0_1px_var(--line)]">
+              <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# runs on your machine"]} code={QUICKSTART.join("\n")} filename="terminal" />
+            </div>
+          </div>
+        </div>
+      </Variant>
+
+      {/* L5 — showcase: sticky headline rail left, stacked stills right */}
+      <Variant id="L5">
+        <div className="wrap grid gap-12 py-16 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:py-24">
+          <div className="flex flex-col items-start gap-5 self-start md:sticky md:top-10">
+            <p className="eyebrow">the platform</p>
+            <h2 className="title">Work that stays on disk</h2>
+            <p className="lede max-w-[38ch]">Notebooks hold the question and the SQL. Boards pin the charts. Reports cite every number back to its table.</p>
+            <CTAs />
+          </div>
+          <div className="flex flex-col gap-6">
+            {[
+              { pane: 1, cap: "boards — pinned artifacts" },
+              { pane: 3, cap: "trades — live cap math" },
+              { pane: 4, cap: "reports — cited memos" },
+            ].map((s) => (
+              <figure key={s.cap} className="m-0">
+                <div className="overflow-hidden rounded-[14px] shadow-[0_0_0_1px_var(--line),0_18px_50px_-20px_rgba(20,20,25,0.25)]">
+                  <MiniStill pane={s.pane} h={280} scale={0.52} />
+                </div>
+                <figcaption className="mt-3 font-mono text-[11.5px] text-ink-3">{s.cap}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </Variant>
+
+      {/* L6 — stealth: stats hairline + one centered terminal, almost no text */}
+      <Variant id="L6">
+        <div className="wrap py-16 md:py-24">
+          <dl className="grid grid-cols-2 border border-line md:grid-cols-4">
+            {COUNTS.map((c) => (
+              <div key={c.n} className="flex flex-col border-r border-line p-6 text-center last:border-r-0">
+                <dd className="font-serif text-[clamp(1.8rem,3vw,2.6rem)] leading-none text-ink">{c.n}</dd>
+                <dt className="label mt-3">{c.label}</dt>
+              </div>
+            ))}
+          </dl>
+          <div className="mx-auto mt-16 flex max-w-[680px] flex-col items-center gap-6">
+            <p className="lede text-center">Clone the repo, fetch the data pack, add a model key.</p>
+            <div className="w-full overflow-hidden rounded-[14px] shadow-[0_0_0_1px_var(--line)]">
+              <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows · duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
+            </div>
+            <a href={REPO} className="btn btn-primary">
+              <GithubMark size={17} />
+              Get Dime on GitHub
+            </a>
           </div>
         </div>
       </Variant>

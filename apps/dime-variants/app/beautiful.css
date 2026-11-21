@@ -1604,8 +1604,70 @@ th.is-colsel .records-header-icon {
   animation: pane-in 0.28s ease-out both;
 }
 
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.45s var(--ease-out-strong) both;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.bar-grow {
+  transform-origin: left center;
+  animation: bar-grow 0.7s var(--ease-out-strong) both;
+}
+
+@keyframes bar-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.bar-grow-y {
+  transform-origin: center bottom;
+  animation: bar-grow-y 0.7s var(--ease-out-strong) both;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pop-in {
+  animation: pop-in 0.3s var(--ease-out-strong) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .pane-in {
+  .pane-in,
+  .rise-in,
+  .bar-grow,
+  .bar-grow-y,
+  .pop-in {
     animation: none;
   }
 }
