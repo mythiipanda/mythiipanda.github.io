@@ -461,22 +461,32 @@ function ThreadLane({ pending = false, kind = "board" }: { pending?: boolean; ki
   );
 }
 
-export function ChatWindow({ state = "split", artifact = "board" }: { state?: "home" | "split" | "pending"; artifact?: string }) {
+export function ChatWindow({ state = "split", artifact = "board", rail = true }: { state?: "home" | "split" | "pending"; artifact?: string; rail?: boolean }) {
   const isHome = state === "home";
   return (
     <div className="flex h-full min-h-0 w-full bg-canvas text-ink">
-      <Rail active={isHome ? "home" : "c1"} />
+      {rail && <Rail active={isHome ? "home" : "c1"} />}
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-[52px] shrink-0 items-center gap-3 border-b border-line pl-3 pr-3 md:pl-5 md:pr-5">
+          {!rail && (
+            <>
+              <span className="font-serif text-[16px] text-ink">dime.</span>
+              <span className="inline-flex h-7 max-w-[320px] flex-1 items-center gap-2 rounded-md bg-field px-2.5 text-[12.5px] text-secondary-label ring-1 ring-inset ring-line">
+                <SearchIcon className="size-3.5 text-icon-muted" />
+                Search or ask
+                <kbd className="ml-auto rounded bg-surface px-1 font-mono text-[9.5px] text-ink-3 ring-1 ring-inset ring-line">⌘K</kbd>
+              </span>
+            </>
+          )}
           <nav className="min-w-0">
             <ol className="m-0 flex min-w-0 list-none items-center gap-2 p-0 text-sm">
               {isHome ? (
-                <li className="font-medium text-ink">Home</li>
+                <li className="font-medium text-ink">{rail ? "Home" : ""}</li>
               ) : (
                 <>
                   <li className="text-secondary-label">Chats</li>
                   <li className="text-icon-muted">/</li>
-                  <li className="min-w-0 truncate font-medium text-ink">true shooting leaders</li>
+                  <li className="min-w-0 truncate font-medium text-ink">{(THREADS[artifact] ?? THREADS.board).link}</li>
                 </>
               )}
             </ol>
