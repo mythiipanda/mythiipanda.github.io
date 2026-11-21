@@ -210,7 +210,7 @@ function ToolRow({ label, pending = false }: { label: string; pending?: boolean 
       ) : (
         <CheckIcon className="size-3.5 shrink-0 text-icon-muted" />
       )}
-      <span className="min-w-0 flex-1 truncate text-[12.5px] text-ink-2">{label}</span>
+      <span className="min-w-0 flex-1 truncate text-[13px] text-ink-2">{label}</span>
       <ChevronRightIcon className="size-3 shrink-0 text-icon-muted" />
     </span>
   );
@@ -241,33 +241,33 @@ function TradeArtifact() {
               <div key={name as string} className="flex items-center gap-2.5 rounded-md px-1.5 py-1.5">
                 <Headshot src={`/dime-site/headshots/${img}.png`} alt={name as string} size={26} />
                 <div className="min-w-0 flex-1">
-                  <div className="truncate text-[12.5px] font-medium text-ink">{name}</div>
-                  <div className="font-mono text-[10.5px] text-ink-3">${sal}M</div>
+                  <div className="truncate text-[13px] font-medium text-ink">{name}</div>
+                  <div className="font-mono text-[11px] text-ink-3">${sal}M</div>
                 </div>
-                <span className="text-[10.5px] font-medium text-secondary-label">in</span>
+                <span className="text-[11px] font-medium text-secondary-label">in</span>
               </div>
             ))}
             {(side.picks ?? []).map((pk) => (
               <div key={pk} className="flex items-center gap-2.5 px-1.5 py-1.5">
-                <span className="flex size-[26px] items-center justify-center rounded-full bg-field text-[9px] font-medium text-secondary-label ring-1 ring-inset ring-line">pk</span>
+                <span className="flex size-[26px] items-center justify-center rounded-full bg-field text-[9.5px] font-medium text-secondary-label ring-1 ring-inset ring-line">pk</span>
                 <span className="flex-1 text-[12px] text-ink-2">{pk}</span>
-                <span className="text-[10.5px] font-medium text-secondary-label">in</span>
+                <span className="text-[11px] font-medium text-secondary-label">in</span>
               </div>
             ))}
             <div className="mt-0.5 flex items-center gap-2.5 border-t border-line px-1.5 py-1.5">
-              <span className="w-[26px] text-center text-[10.5px] font-medium text-secondary-label">out</span>
+              <span className="w-[26px] text-center text-[11px] font-medium text-secondary-label">out</span>
               <span className="flex-1 truncate text-[12px] text-ink-2">{side.sends} · $58.5M</span>
             </div>
           </div>
         </div>
       ))}
       <div className="flex items-center gap-2 rounded-lg bg-canvas px-3 py-2.5 ring-1 ring-inset ring-line">
-        <span className="w-14 text-[10.5px] font-medium text-secondary-label">cap hit</span>
+        <span className="w-14 text-[11px] font-medium text-secondary-label">cap hit</span>
         <div className="h-[5px] flex-1 rounded-full bg-field">
           <div className="h-full rounded-full bg-accent/70" style={{ width: "35.3%" }} />
         </div>
         <span className="font-mono text-[11px] tabular-nums text-ink-2">35.3%</span>
-        <span className="ml-auto inline-flex items-center gap-1 text-[10.5px] font-medium text-ink-2">
+        <span className="ml-auto inline-flex items-center gap-1 text-[11px] font-medium text-ink-2">
           <CheckIcon className="size-3 text-accent-ink" />legal
         </span>
       </div>
@@ -279,17 +279,17 @@ function ReportArtifact() {
   return (
     <div className="min-h-0 flex-1 overflow-hidden px-4 py-4">
       <h3 className="text-[14px] font-semibold text-ink">Midseason efficiency review</h3>
-      <p className="mt-3 text-[12.5px] leading-6 text-ink-2">
+      <p className="mt-3 text-[13px] leading-6 text-ink-2">
         Among <span className="font-medium text-ink">164 rotation players</span>, Luke Kennard leads at{" "}
         <span className="font-mono text-[12px] text-ink">68.9%</span> true shooting<CiteChip>1</CiteChip>, edging Jalen Duren
         on nearly twice the usage.
       </p>
-      <p className="mt-2.5 text-[12.5px] leading-6 text-ink-2">
+      <p className="mt-2.5 text-[13px] leading-6 text-ink-2">
         Nikola Jokić remains the workload outlier — top-five efficiency at{" "}
         <span className="font-mono text-[12px] text-ink">28.9%</span> usage.<CiteChip>2</CiteChip>
       </p>
       <div className="mt-3 rounded-lg bg-field p-3">
-        <div className="mb-2 text-[10.5px] font-medium text-secondary-label">exhibit 1</div>
+        <div className="mb-2 text-[11px] font-medium text-secondary-label">exhibit 1</div>
         {SCOUT_ROWS.slice(0, 3).map((p) => (
           <div key={p.name} className="flex h-7 items-center gap-2 border-b border-line/60 text-[12px] last:border-b-0">
             <span className="min-w-0 flex-1 truncate font-medium text-ink">{p.name}</span>
@@ -298,7 +298,7 @@ function ReportArtifact() {
           </div>
         ))}
       </div>
-      <div className="mt-3 flex items-center gap-1.5 text-[10.5px] text-secondary-label">
+      <div className="mt-3 flex items-center gap-1.5 text-[11px] text-secondary-label">
         <CheckIcon className="size-3 text-icon-muted" />
         every number cites its table
       </div>
@@ -389,12 +389,12 @@ function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide 
                         <Headshot src={p.img} alt={p.name} size={24} />
                         <span className="min-w-0 flex-1">
                           <span className="block truncate text-[13px] font-medium leading-4 text-ink">{p.name}</span>
-                          <span className="block text-[10.5px] leading-4 text-secondary-label">{p.team}</span>
+                          <span className="block text-[11px] leading-4 text-secondary-label">{p.team}</span>
                         </span>
                       </span>
                     </td>
-                    <td className="h-10 border-b border-line px-4 text-right font-mono text-[12.5px] font-medium tabular-nums text-ink">{p.ts}</td>
-                    <td className="h-10 border-b border-line px-4 text-right font-mono text-[12.5px] tabular-nums text-ink-2">{p.usg}</td>
+                    <td className="h-10 border-b border-line px-4 text-right font-mono text-[13px] font-medium tabular-nums text-ink">{p.ts}</td>
+                    <td className="h-10 border-b border-line px-4 text-right font-mono text-[13px] tabular-nums text-ink-2">{p.usg}</td>
                     <td className="h-10 border-b border-line px-4">
                       <Spark points={p.trend} w={56} h={18} />
                     </td>
@@ -491,7 +491,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
           {!rail && (
             <>
               <span className="font-serif text-[16px] text-ink">dime.</span>
-              <span className="inline-flex h-7 max-w-[320px] flex-1 items-center gap-2 rounded-md bg-field px-2.5 text-[12.5px] text-secondary-label ring-1 ring-inset ring-line">
+              <span className="inline-flex h-7 max-w-[320px] flex-1 items-center gap-2 rounded-md bg-field px-2.5 text-[13px] text-secondary-label ring-1 ring-inset ring-line">
                 <SearchIcon className="size-3.5 text-icon-muted" />
                 Search or ask
                 <kbd className="ml-auto rounded bg-surface px-1 font-mono text-[9.5px] text-ink-3 ring-1 ring-inset ring-line">⌘K</kbd>
@@ -518,7 +518,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
                 3 pinned
               </span>
             )}
-            <span className="flex size-7 items-center justify-center rounded-full bg-accent-tint font-mono text-[10px] font-medium text-accent-ink">
+            <span className="flex size-7 items-center justify-center rounded-full bg-accent-tint font-mono text-[11px] font-medium text-accent-ink">
               TL
             </span>
           </div>
