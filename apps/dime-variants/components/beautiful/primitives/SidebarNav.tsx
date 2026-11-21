@@ -112,7 +112,7 @@ function RailButton({
         {label}
       </span>
       {count && (
-        <span className="sidebar-copy mr-2 shrink-0 text-[12px] font-medium tabular-nums text-ink-3">
+        <span className="sidebar-copy shrink-0 text-[12px] font-medium tabular-nums text-ink-3">
           {count}
         </span>
       )}
@@ -308,7 +308,9 @@ export default function SidebarNav({
               className={`absolute inset-0 flex items-center gap-1.5 px-2 text-[12.5px] font-medium text-ink-3 transition-[opacity,transform] ${searchOpen ? "pointer-events-none -translate-x-1 opacity-0" : "translate-x-0 opacity-100"}`}
               style={{ transitionDuration: `${CHAT_SEARCH_MOTION.duration}ms`, transitionTimingFunction: CHAT_SEARCH_MOTION.easing }}
             >
-              <IconChevronDownSmall size={16} />
+              <span className="flex size-5 shrink-0 items-center justify-center">
+                <IconChevronDownSmall size={16} />
+              </span>
               <span>Chats</span>
             </div>
 
