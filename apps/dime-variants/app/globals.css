@@ -18,9 +18,9 @@
   --ink: oklch(0.21 0.012 62);
   --ink-2: oklch(0.43 0.012 62);
   --ink-3: oklch(0.435 0.015 62);
-  --line: oklch(0.905 0.01 85);
-  --line-strong: oklch(0.86 0.012 85);
-  --line-soft: oklch(0.94 0.008 85);
+  --line: oklch(0.21 0.012 62 / 0.1);
+  --line-strong: oklch(0.21 0.012 62 / 0.18);
+  --line-soft: oklch(0.21 0.012 62 / 0.06);
   --accent: oklch(0.535 0.187 255.6);
   --accent-ink: oklch(0.48 0.18 256);
   --accent-tint: oklch(0.94 0.03 253);
