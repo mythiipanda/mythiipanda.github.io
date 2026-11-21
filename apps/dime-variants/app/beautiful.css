@@ -192,7 +192,7 @@
   --shadow-overlay: var(--shadow-overlay);
 
   /* type */
-  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif-face), ui-serif, Georgia, serif;
   --font-mono: var(--font-code), ui-monospace, "SF Mono", monospace;
 

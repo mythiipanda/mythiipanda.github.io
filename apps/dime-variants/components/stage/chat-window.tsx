@@ -24,6 +24,7 @@ import { Headshot } from "./app-shell";
 import { Spark } from "./stills";
 import ToolChips, { type ToolStep } from "../beautiful/primitives/ToolChips";
 import ThinkingState from "../beautiful/primitives/ThinkingState";
+import ApprovalCard from "../beautiful/primitives/ApprovalCard";
 
 const CHATS: { id: string; label: string; trail?: string; status?: { label: string; icon: string; dur?: string } }[] = [
   { id: "c1", label: "true shooting leaders", trail: "11:42" },
@@ -422,7 +423,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
 
 const THREADS: Record<string, { q: string; tools: [string, string][]; steps: ToolStep[]; a: ReactNode; link: string }> = {
   board: {
-    q: "Who leads the league in true shooting among rotation players?",
+    q: "Who leads the league in true shooting?",
     tools: [["Queried player stats", "Querying player stats"], ["Resolved player names", "Resolving player names"]],
     steps: [
       { icon: "run", label: "Query player stats", chip: "164 rotation players", mono: false, detailMono: false, detail: [{ text: "✓ minutes cutoff applied" }, { text: "✓ ordered by ts% desc" }] },
@@ -472,9 +473,9 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; steps: Too
 function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }: { pending?: boolean; kind?: string; inlineArtifact?: boolean }) {
   const t = THREADS[kind] ?? THREADS.board;
   return (
-    <div className="mx-auto flex w-full max-w-[46rem] flex-col gap-3 px-5 py-5">
+    <div className="mx-auto flex h-full w-full max-w-[46rem] flex-col justify-end gap-2.5 px-5 py-4">
       <div className="flex justify-end">
-        <span className="max-w-[85%] rounded-xl bg-message-surface px-3.5 py-2 text-sm leading-6 text-ink">
+        <span className="max-w-[85%] rounded-xl bg-message-surface px-3.5 py-2 text-[15px] leading-6 text-ink">
           {t.q}
         </span>
       </div>
@@ -494,11 +495,21 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
         />
       )}
       {!pending && (
-        <div className="mt-1 text-sm leading-7 text-ink-2">
+        <div className="mt-1 text-[15px] leading-6 text-ink-2">
           {t.a}
           {inlineArtifact ? (
             <div className="mt-3 max-w-[560px]">
               <ArtifactPanel kind={kind} framed />
+            </div>
+          ) : kind === "trade" ? (
+            <div className="mt-3 max-w-[380px]">
+              <ApprovalCard
+                questions={[
+                  { q: "Where does this trade check land?", type: "radio", options: ["deadline deals board", "cap room board"] },
+                  { q: "Flag anything else for review?", type: "check", options: ["notify the beat writer", "add to morning packet"] },
+                ]}
+                labels={{ send: "Pin", sentMessage: "Pinned to board" }}
+              />
             </div>
           ) : (
             <div className="mt-3">
@@ -546,12 +557,6 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
             </ol>
           </nav>
           <div className="ml-auto flex shrink-0 items-center gap-2">
-            {!isHome && (
-              <span className="inline-flex h-7 items-center gap-1.5 rounded-md bg-surface px-2 text-xs font-medium text-ink-2 ring-1 ring-inset ring-line">
-                <PinIcon className="size-3 text-icon-muted" />
-                3 pinned
-              </span>
-            )}
             <span className="flex size-7 items-center justify-center rounded-full bg-accent-tint font-mono text-[11px] font-medium text-accent-ink">
               TL
             </span>
