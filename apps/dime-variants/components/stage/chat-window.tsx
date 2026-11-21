@@ -280,7 +280,7 @@ function ReportArtifact() {
       <p className="mt-3 text-[12.5px] leading-6 text-ink-2">
         Among <span className="font-medium text-ink">164 rotation players</span>, Luke Kennard leads at{" "}
         <span className="font-mono text-[12px] text-ink">68.9%</span> true shooting<CiteChip>1</CiteChip>, edging Jalen Duren
-        on a third of the usage.
+        on nearly twice the usage.
       </p>
       <p className="mt-2.5 text-[12.5px] leading-6 text-ink-2">
         Nikola Jokić remains the workload outlier — top-five efficiency at{" "}
@@ -313,7 +313,7 @@ const SCOUT_ROWS = [
 ];
 
 const ARTIFACT_META: Record<string, { title: string; kind: string }> = {
-  board: { title: "efficiency leaders", kind: "board" },
+  board: { title: "true shooting leaders", kind: "board" },
   trade: { title: "giannis ↔ davis", kind: "trade check" },
   report: { title: "midseason review", kind: "report" },
 };
@@ -411,10 +411,10 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNo
       <>
         Among <span className="font-medium text-ink">164 rotation players</span>, <span className="font-medium text-ink">Luke Kennard</span> leads at{" "}
         <span className="font-mono text-[13px] text-ink">68.9%</span> true shooting<CiteChip>1</CiteChip> — Jalen Duren is second at{" "}
-        <span className="font-mono text-[13px] text-ink">68.8</span> on a third of the usage.<CiteChip>2</CiteChip>
+        <span className="font-mono text-[13px] text-ink">68.8</span> on nearly twice the usage.<CiteChip>2</CiteChip>
       </>
     ),
-    link: "efficiency leaders",
+    link: "true shooting leaders",
   },
   trade: {
     q: "Giannis for Anthony Davis straight up — does it clear the cap?",
