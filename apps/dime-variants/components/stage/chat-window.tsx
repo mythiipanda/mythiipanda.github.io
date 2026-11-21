@@ -287,10 +287,18 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         {panelState === "error" && !retried && !retrying && (
           <PanelStateView icon={TriangleAlertIcon} title="Couldn't load this artifact" hint="The query failed to run" action="Retry" onAction={retry} />
         )}
-        {!pending && showContent && known && open === "trade" && <TradeArtifact />}
-        {!pending && showContent && known && open === "report" && <ReportArtifact />}
+        {!pending && showContent && known && open === "trade" && (
+          <div key={`${open}-${retrying}`} className="h-full" style={{ animation: "fade-in 240ms ease-out both" }}>
+            <TradeArtifact />
+          </div>
+        )}
+        {!pending && showContent && known && open === "report" && (
+          <div key={`${open}-${retrying}`} className="h-full" style={{ animation: "fade-in 240ms ease-out both" }}>
+            <ReportArtifact />
+          </div>
+        )}
         {(pending || (showContent && known && open === "board")) && (
-        <Table variant="default" size="xs" scrollFade stickyHeader containerClassName="h-full" className="[--table-hover:var(--hover-2)]">
+        <Table key={`board-${pending}-${retrying}`} variant="default" size="xs" scrollFade stickyHeader containerClassName="h-full [&_table]:animate-[fade-in_240ms_ease-out_both]" className="[--table-hover:var(--hover-2)]">
           <TableHeader>
             <TableRow>
               <TableSortHead id="player" sort={sort} onSort={toggleSort} title="player" className="text-[11px]" />
