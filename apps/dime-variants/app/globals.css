@@ -239,7 +239,7 @@ kbd,
 /* the product window: Beautiful UI's harness, framed */
 .window {
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 10px;
   background: rgb(51 51 51);
   box-shadow: 0 0 0 1px rgb(0 0 0 / 0.9);
 }
@@ -261,7 +261,7 @@ kbd,
 
 .exhibit {
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 10px;
   border: 1px solid var(--line);
   background: var(--surface);
 }
