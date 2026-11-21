@@ -53,11 +53,20 @@ function Composer({ focused = false }: { focused?: boolean }) {
   );
 }
 
+function fillComposer(text: string) {
+  const ta = document.querySelector<HTMLTextAreaElement>("textarea");
+  if (!ta) return;
+  const set = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, "value")!.set!;
+  set.call(ta, text);
+  ta.dispatchEvent(new Event("input", { bubbles: true }));
+  ta.focus();
+}
+
 const PROMPT_CHIPS = [
-  { label: "game prep", icon: FileTextIcon },
-  { label: "trade check", icon: PinIcon },
-  { label: "scout a lineup", icon: SearchIcon },
-  { label: "morning report", icon: HouseIcon },
+  { label: "game prep", prompt: "Game prep for tonight's matchup", icon: FileTextIcon },
+  { label: "trade check", prompt: "Check this trade for apron issues: ", icon: PinIcon },
+  { label: "scout a lineup", prompt: "Scout this lineup: ", icon: SearchIcon },
+  { label: "morning report", prompt: "Build this morning's league report", icon: HouseIcon },
 ];
 
 function HomeCanvas() {
@@ -75,7 +84,7 @@ function HomeCanvas() {
         <Composer focused />
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
           {PROMPT_CHIPS.map((c) => (
-            <Button key={c.label} variant="secondary" size="xs">
+            <Button key={c.label} variant="secondary" size="xs" onClick={() => fillComposer(c.prompt)}>
               <c.icon className="size-3 text-icon-muted" />
               {c.label}
             </Button>
@@ -441,14 +450,7 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
             content={STREAMS[kind]?.content ?? STREAMS.board.content}
             sources={STREAM_SOURCES[kind] ?? STREAM_SOURCES.board}
             followUps={STREAMS[kind]?.followUps ?? []}
-            onFollowUp={(text) => {
-              const ta = document.querySelector<HTMLTextAreaElement>("textarea");
-              if (!ta) return;
-              const set = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, "value")!.set!;
-              set.call(ta, text);
-              ta.dispatchEvent(new Event("input", { bubbles: true }));
-              ta.focus();
-            }}
+            onFollowUp={fillComposer}
             labels={{ sources: "2 sources" }}
           />
           {inlineArtifact ? (

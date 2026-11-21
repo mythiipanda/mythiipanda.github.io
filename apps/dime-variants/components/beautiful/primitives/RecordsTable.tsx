@@ -682,9 +682,7 @@ export default function RecordsTable({ rows = INITIAL_ROWS, fill = false }: { ro
               <td className="records-cell records-sticky-cell">
                 <span className="records-footer-value records-calculation-label"><span className="records-calculation-number">{rows.length}</span> count</span>
               </td>
-              <td className="records-cell">
-                <button type="button" className="records-add-calculation"><Icon size={15}><path d="M12 5v14M5 12h14" /></Icon>Add calculation</button>
-              </td>
+              <td className="records-cell records-muted"><span className="records-footer-value">—</span></td>
               <td className="records-cell records-muted"><span className="records-footer-value">—</span></td>
               <td className="records-cell">
                 <span className="records-footer-value records-average"><span className="records-strength-dot" style={{ background: "var(--green)" }} />{rows.filter((row) => row.strength === "strong").length} current</span>
