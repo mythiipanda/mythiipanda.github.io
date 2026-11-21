@@ -22,6 +22,7 @@ import SidebarNav, { type SidebarRecent } from "../beautiful/primitives/SidebarN
 import PromptBar from "../beautiful/primitives/PromptBar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../beautiful/primitives/Table";
 import StreamingText, { type StreamingSource, type StreamingToken } from "../beautiful/primitives/StreamingText";
+import { Kbd } from "../beautiful/primitives/Kbd";
 import { IconSettingsGear1 } from "../beautiful/icons";
 
 const CHATS: SidebarRecent[] = [
@@ -155,13 +156,17 @@ function ReportArtifact() {
       </p>
       <div className="mt-3 rounded-lg bg-field p-3">
         <div className="mb-2 text-[11px] font-medium text-secondary-label">exhibit 1</div>
-        {SCOUT_ROWS.slice(0, 3).map((p) => (
-          <div key={p.name} className="flex h-7 items-center gap-2 border-b border-line/60 text-[12px] last:border-b-0">
-            <span className="min-w-0 flex-1 truncate font-medium text-ink">{p.name}</span>
-            <span className="font-mono text-[11px] tabular-nums text-ink-2">{p.ts}</span>
-            <span className="w-8 text-right font-mono text-[11px] tabular-nums text-ink-3">{p.usg}</span>
-          </div>
-        ))}
+        <Table variant="default" size="sm" scrollFade={false} containerClassName="overflow-visible">
+          <TableBody>
+            {SCOUT_ROWS.slice(0, 3).map((p) => (
+              <TableRow key={p.name} className="bg-transparent hover:bg-transparent">
+                <TableCell className="border-line/60 py-1 text-[12px] font-medium text-ink">{p.name}</TableCell>
+                <TableCell align="end" className="border-line/60 py-1 font-mono text-[11px] text-ink-2">{p.ts}</TableCell>
+                <TableCell align="end" className="w-8 border-line/60 py-1 font-mono text-[11px] text-ink-3">{p.usg}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
       <div className="mt-3 flex items-center gap-1.5 text-[11px] text-secondary-label">
         <CheckIcon className="size-3 text-icon-muted" />
@@ -433,7 +438,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
               <span className="inline-flex h-7 max-w-[320px] flex-1 items-center gap-2 rounded-md bg-field px-2.5 text-[13px] text-secondary-label ring-1 ring-inset ring-line">
                 <SearchIcon className="size-3.5 text-icon-muted" />
                 Search or ask
-                <kbd className="ml-auto rounded bg-surface px-1 font-mono text-[9.5px] text-ink-3 ring-1 ring-inset ring-line">⌘K</kbd>
+                <Kbd variant="outline" className="ml-auto">⌘K</Kbd>
               </span>
             </>
           )}
