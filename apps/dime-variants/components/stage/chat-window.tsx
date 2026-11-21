@@ -4,12 +4,10 @@ import {
   ArrowUpIcon,
   CheckIcon,
   ChevronDownIcon,
-  ChevronRightIcon,
   DatabaseIcon,
   DownloadIcon,
   FileTextIcon,
   HouseIcon,
-  Loader2Icon,
   MessageSquareIcon,
   PinIcon,
   PlusIcon,
@@ -23,6 +21,7 @@ import ApprovalCard from "../beautiful/primitives/ApprovalCard";
 import SidebarNav, { type SidebarRecent } from "../beautiful/primitives/SidebarNav";
 import PromptBar from "../beautiful/primitives/PromptBar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../beautiful/primitives/Table";
+import StreamingText, { type StreamingSource, type StreamingToken } from "../beautiful/primitives/StreamingText";
 import { IconSettingsGear1 } from "../beautiful/icons";
 
 const CHATS: SidebarRecent[] = [
@@ -79,20 +78,6 @@ function HomeCanvas() {
         <span className="tabular-nums">58 tables · 14.9M rows on disk</span>
       </div>
     </div>
-  );
-}
-
-function ToolRow({ label, pending = false }: { label: string; pending?: boolean }) {
-  return (
-    <span className="flex h-7 w-full items-center gap-2 rounded-md px-1 text-left">
-      {pending ? (
-        <Loader2Icon className="size-3.5 shrink-0 animate-spin text-accent-ink" />
-      ) : (
-        <CheckIcon className="size-3.5 shrink-0 text-icon-muted" />
-      )}
-      <span className="min-w-0 flex-1 truncate text-[13px] text-ink-2">{label}</span>
-      <ChevronRightIcon className="size-3 shrink-0 text-icon-muted" />
-    </span>
   );
 }
 
@@ -285,51 +270,79 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
   );
 }
 
-const THREADS: Record<string, { q: string; tools: [string, string][]; steps: ToolStep[]; a: ReactNode; link: string }> = {
+const tblImg = (rows: string) =>
+  `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#2f6fec"/><g stroke="#fff" stroke-width="6" stroke-linecap="round">${rows}</g></svg>`
+  )}`;
+
+const STREAM_SOURCES: Record<string, StreamingSource[]> = {
+  board: [
+    { name: "Player seasons", domain: "silver_hist_player_seasons", href: "#", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
+    { name: "Shot zones", domain: "silver_hist_shots", href: "#", image: tblImg('<path d="M16 44l10-12 8 6 14-16"/>') },
+  ],
+  trade: [
+    { name: "Contracts", domain: "silver_contracts", href: "#", image: tblImg('<path d="M20 44V28M32 44V20M44 44V32"/>') },
+    { name: "Apron rules", domain: "cba_2023", href: "#", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
+  ],
+  report: [
+    { name: "Player seasons", domain: "silver_hist_player_seasons", href: "#", image: tblImg('<path d="M16 24h32M16 34h32M16 44h24"/>') },
+    { name: "Game logs", domain: "silver_hist_gamelogs", href: "#", image: tblImg('<path d="M16 44l10-12 8 6 14-16"/>') },
+  ],
+};
+
+const STREAMS: Record<string, { content: StreamingToken[]; followUps: string[] }> = {
+  board: {
+    content: [
+      ..."Among 164 rotation players, Luke Kennard leads at 68.9% true shooting".split(" ").map((text) => ({ text })),
+      { text: "", cite: true },
+      ..."Jalen Duren is second at 68.8 on nearly twice the usage.".split(" ").map((text) => ({ text })),
+      { text: "", cite: true },
+    ],
+    followUps: ["Who leads among centers only", "Compare to last season's leaders"],
+  },
+  trade: {
+    content: [
+      ..."It clears. $58.5M for $58.5M is an even swap".split(" ").map((text) => ({ text })),
+      { text: "", cite: true },
+      ..."Miami lands at 35.3% cap hit, inside the apron.".split(" ").map((text) => ({ text })),
+      { text: "", cite: true },
+    ],
+    followUps: ["What if Miami adds a pick", "Salary breakdown by year"],
+  },
+  report: {
+    content: [
+      ..."Drafted a one-page review. Kennard, Duren, Ayton headline it".split(" ").map((text) => ({ text })),
+      { text: "", cite: true },
+      ..."every number cites its table. Ready to export.".split(" ").map((text) => ({ text })),
+      { text: "", cite: true },
+    ],
+    followUps: ["Add the defensive leaders", "Export as PDF"],
+  },
+};
+
+const THREADS: Record<string, { q: string; steps: ToolStep[]; link: string }> = {
   board: {
     q: "Who leads the league in true shooting?",
-    tools: [["Queried player stats", "Querying player stats"], ["Resolved player names", "Resolving player names"]],
     steps: [
       { icon: "run", label: "Query player stats", chip: "164 rotation players", mono: false, detailMono: false, detail: [{ text: "✓ minutes cutoff applied" }, { text: "✓ ordered by ts% desc" }] },
       { icon: "think", label: "Resolve player names", chip: "8 headshots", mono: false, detailMono: false, detail: [{ text: "matched players to headshots" }] },
     ],
-    a: (
-      <>
-        Among <span className="font-medium text-ink">164 rotation players</span>, <span className="font-medium text-ink">Luke Kennard</span> leads at{" "}
-        <span className="font-mono text-[13px] text-ink">68.9%</span> true shooting<CiteChip>1</CiteChip>. Jalen Duren is second at{" "}
-        <span className="font-mono text-[13px] text-ink">68.8</span> on nearly twice the usage.<CiteChip>2</CiteChip>
-      </>
-    ),
     link: "true shooting leaders",
   },
   trade: {
     q: "Giannis for Anthony Davis straight up. Does it clear the cap?",
-    tools: [["Resolved salaries", "Resolving salaries"], ["Checked apron rules", "Checking apron rules"]],
     steps: [
       { icon: "run", label: "Resolve salaries", chip: "$58.5M each", mono: false, detailMono: false, detail: [{ text: "✓ both on max contracts" }] },
       { icon: "think", label: "Check apron rules", chip: "35.3% cap hit", mono: false, detailMono: false, detail: [{ text: "✓ inside the apron" }] },
     ],
-    a: (
-      <>
-        It clears. <span className="font-mono text-[13px] text-ink">$58.5M ↔ $58.5M</span> is an even swap<CiteChip>1</CiteChip>.
-        Miami lands at <span className="font-mono text-[13px] text-ink">35.3%</span> cap hit, inside the apron.<CiteChip>2</CiteChip>
-      </>
-    ),
     link: "giannis ↔ davis",
   },
   report: {
     q: "Write up the midseason efficiency leaders for the morning meeting.",
-    tools: [["Queried player stats", "Querying player stats"], ["Drafted midseason review", "Drafting midseason review"]],
     steps: [
       { icon: "run", label: "Query player stats", chip: "164 rotation players", mono: false, detailMono: false, detail: [{ text: "✓ minutes cutoff applied" }] },
       { icon: "write", label: "Draft midseason review", chip: "1 page · 2 citations", mono: false, detailMono: false, detail: [{ text: "✓ every number cites its table" }] },
     ],
-    a: (
-      <>
-        Drafted a one-page review. <span className="font-medium text-ink">Kennard, Duren, Ayton</span> headline it,
-        every number cites its table<CiteChip>1</CiteChip>. Ready to export.<CiteChip>2</CiteChip>
-      </>
-    ),
     link: "midseason review",
   },
 };
@@ -359,8 +372,15 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
         />
       )}
       {!pending && (
-        <div className="mt-1 text-[15px] leading-6 text-ink-2">
-          {t.a}
+        <div className="mt-1">
+          <StreamingText
+            fill
+            loop={false}
+            content={STREAMS[kind]?.content ?? STREAMS.board.content}
+            sources={STREAM_SOURCES[kind] ?? STREAM_SOURCES.board}
+            followUps={STREAMS[kind]?.followUps ?? []}
+            labels={{ sources: "2 sources" }}
+          />
           {inlineArtifact ? (
             <div className="mt-3 max-w-[560px]">
               <ArtifactPanel kind={kind} framed />
