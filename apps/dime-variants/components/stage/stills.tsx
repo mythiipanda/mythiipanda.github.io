@@ -57,7 +57,7 @@ function Bars({ rows, max, unit }: { rows: [string, number][]; max: number; unit
 
 function NotebookPane() {
   return (
-      <div className="mx-auto flex h-full max-w-[640px] flex-col gap-3 overflow-hidden">
+      <div className="mx-auto flex h-full max-w-[640px] flex-col gap-3 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, black 78%, transparent)", WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent)" }}>
         <Rise delay={0}>
         <Cell n={1} kind="ask" meta={<span className="tabular-nums">11:42</span>}>
           <p className="text-[13.5px] leading-6 text-ink">
@@ -136,7 +136,7 @@ function StatCard({ value, label, delay, children }: { value: ReactNode; label: 
 
 function BoardsPane() {
   return (
-      <div className="grid h-full grid-cols-1 gap-3 overflow-hidden md:grid-cols-2">
+      <div className="grid h-full grid-cols-1 gap-3 overflow-hidden md:grid-cols-2" style={{ maskImage: "linear-gradient(to bottom, black 78%, transparent)", WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent)" }}>
         <Rise delay={0} className="md:col-span-2">
         <Card title="Five-man net rating" wide>
           <Bars
@@ -185,7 +185,7 @@ function BoardsPane() {
 function TradesPane() {
   return (
     <>
-      <div className="relative grid min-h-0 flex-1 content-start grid-cols-1 gap-3 overflow-hidden md:grid-cols-2">
+      <div className="relative grid min-h-0 flex-1 content-start grid-cols-1 gap-3 overflow-hidden md:grid-cols-2" style={{ maskImage: "linear-gradient(to bottom, black 82%, transparent)", WebkitMaskImage: "linear-gradient(to bottom, black 82%, transparent)" }}>
         <span className="pop-in absolute left-1/2 top-[46%] z-10 hidden size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-surface shadow-[0_0_0_1px_var(--line)] md:flex" style={{ animationDelay: "420ms" }}>
           <ArrowLeftRightIcon className="size-3.5 text-accent-ink" />
         </span>
