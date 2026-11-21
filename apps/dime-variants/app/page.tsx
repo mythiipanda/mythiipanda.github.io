@@ -4,15 +4,9 @@ import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
 import { ChatWindow, ArtifactPanel } from "@/components/stage/chat-window";
 import { PANES } from "@/components/stage/stills";
-import { COUNTS, COVERAGE, README, REPO } from "@/lib/site";
+import { COVERAGE, README, REPO } from "@/lib/site";
 
 const QUICKSTART = ["git clone https://github.com/mythiipanda/dime", "cd dime", "./scripts/fetch-data.sh"];
-
-const LIMITS = [
-  ["Coverage", "Shots run 2009-10 to 2025-26. Play-by-play stops at 2024-25."],
-  ["Data pack", "Built Nov 19, 2026. It is a file, so it does not update during games."],
-  ["Keys", "Chat runs on your own model provider keys."],
-];
 
 
 function Head({ title, children }: { title: string; children?: React.ReactNode }) {
@@ -66,14 +60,6 @@ export default function Home() {
               <ChatWindow state="split" artifact="board" />
             </div>
           </div>
-          <dl className="enter mt-10 grid grid-cols-2 md:mt-20 md:grid-cols-4" style={{ "--i": 3 } as React.CSSProperties}>
-            {COUNTS.map((c, i) => (
-              <div key={c.n} className={`flex flex-col border-line p-6 text-center md:p-8 ${["border-b border-r md:border-b-0", "border-b md:border-b-0 md:border-r", "border-r", ""][i]}`}>
-                <dd className="order-1 font-serif text-[clamp(1.8rem,3vw,2.6rem)] leading-none tracking-[-0.02em] text-ink">{c.n}</dd>
-                <dt className="label order-2 mt-3">{c.label}</dt>
-              </div>
-            ))}
-          </dl>
         </section>
 
         <hr className="rule" />
@@ -110,7 +96,7 @@ export default function Home() {
         <hr className="rule" />
 
         <section id="warehouse" className="wrap scroll-mt-8 py-12 md:py-20">
-          <Head title="Warehouse">Query 58 tables and 14.9 million rows from one DuckDB file.</Head>
+          <Head title="Warehouse" />
           <div className="window window-light mt-8 md:mt-14">
             <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
               <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-3"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M9 9v11" /></svg>
@@ -163,14 +149,6 @@ export default function Home() {
             <div className="dark rounded-md">
               <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows · duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
             </div>
-            <dl className="m-0">
-              {LIMITS.map(([term, detail]) => (
-                <div key={term} className="grid grid-cols-[92px_1fr] gap-4 border-t border-line py-3.5 text-[14.5px]">
-                  <dt className="label pt-[3px]">{term}</dt>
-                  <dd className="m-0 text-ink-2">{detail}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </section>
       </main>
