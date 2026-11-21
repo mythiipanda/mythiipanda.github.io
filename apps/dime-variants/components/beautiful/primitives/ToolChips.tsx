@@ -149,7 +149,7 @@ export default function ToolChips({
   };
   const closePreview = (file: string) => () =>
     setPreview((current) => (current?.file === file ? null : current));
-  const total = steps.length + 1; // rows, then diff chips
+  const total = steps.length + (diffs.length > 0 ? 1 : 0); // rows, then diff chips
 
   useEffect(() => {
     if (step >= total) return;
@@ -250,7 +250,7 @@ export default function ToolChips({
         </div>
 
       {/* file-diff chips */}
-      {step >= total && (
+      {step >= total && diffs.length > 0 && (
         <div className="mt-2.5 flex max-w-full flex-wrap gap-1.5 border-t border-line pt-2.5">
           {diffs.map((d, i) => (
             <span

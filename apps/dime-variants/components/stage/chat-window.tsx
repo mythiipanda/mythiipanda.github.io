@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { Headshot } from "./app-shell";
 import { Spark } from "./stills";
+import ToolChips, { type ToolStep } from "../beautiful/primitives/ToolChips";
+import ThinkingState from "../beautiful/primitives/ThinkingState";
 
 const CHATS = [
   { id: "c1", label: "true shooting leaders", trail: "11:42" },
@@ -401,10 +403,14 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
   );
 }
 
-const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNode; link: string }> = {
+const THREADS: Record<string, { q: string; tools: [string, string][]; steps: ToolStep[]; a: ReactNode; link: string }> = {
   board: {
     q: "Who leads the league in true shooting among rotation players?",
     tools: [["Queried player stats", "Querying player stats"], ["Resolved player names", "Resolving player names"]],
+    steps: [
+      { icon: "run", label: "Query player stats", chip: "164 rotation players", mono: false, detailMono: false, detail: [{ text: "✓ minutes cutoff applied" }, { text: "✓ ordered by ts% desc" }] },
+      { icon: "think", label: "Resolve player names", chip: "8 headshots", mono: false, detailMono: false, detail: [{ text: "matched players to headshots" }] },
+    ],
     a: (
       <>
         Among <span className="font-medium text-ink">164 rotation players</span>, <span className="font-medium text-ink">Luke Kennard</span> leads at{" "}
@@ -417,6 +423,10 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNo
   trade: {
     q: "Giannis for Anthony Davis straight up. Does it clear the cap?",
     tools: [["Resolved salaries", "Resolving salaries"], ["Checked apron rules", "Checking apron rules"]],
+    steps: [
+      { icon: "run", label: "Resolve salaries", chip: "$58.5M each", mono: false, detailMono: false, detail: [{ text: "✓ both on max contracts" }] },
+      { icon: "think", label: "Check apron rules", chip: "35.3% cap hit", mono: false, detailMono: false, detail: [{ text: "✓ inside the apron" }] },
+    ],
     a: (
       <>
         It clears. <span className="font-mono text-[13px] text-ink">$58.5M ↔ $58.5M</span> is an even swap<CiteChip>1</CiteChip>.
@@ -428,6 +438,10 @@ const THREADS: Record<string, { q: string; tools: [string, string][]; a: ReactNo
   report: {
     q: "Write up the midseason efficiency leaders for the morning meeting.",
     tools: [["Queried player stats", "Querying player stats"], ["Drafted midseason review", "Drafting midseason review"]],
+    steps: [
+      { icon: "run", label: "Query player stats", chip: "164 rotation players", mono: false, detailMono: false, detail: [{ text: "✓ minutes cutoff applied" }] },
+      { icon: "write", label: "Draft midseason review", chip: "1 page · 2 citations", mono: false, detailMono: false, detail: [{ text: "✓ every number cites its table" }] },
+    ],
     a: (
       <>
         Drafted a one-page review. <span className="font-medium text-ink">Kennard, Duren, Ayton</span> headline it,
@@ -447,10 +461,21 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false }:
           {t.q}
         </span>
       </div>
-      <div className="mt-1 flex flex-col gap-0.5">
-        <ToolRow label={t.tools[0][0]} />
-        <ToolRow label={pending ? t.tools[1][1] : t.tools[1][0]} pending={pending} />
-      </div>
+      {pending ? (
+        <ThinkingState
+          variant="Steps"
+          active="Working"
+          done="Working"
+          rows={t.steps.map((s) => ({ primary: s.label.replace(/^(Query|Resolve|Check|Draft)/, "$1ing"), secondary: s.chip }))}
+        />
+      ) : (
+        <ToolChips
+          className="min-h-0 max-w-none"
+          steps={t.steps}
+          diffs={[]}
+          labels={{ header: `${t.steps.length} tool calls` }}
+        />
+      )}
       {!pending && (
         <div className="mt-1 text-sm leading-7 text-ink-2">
           {t.a}
