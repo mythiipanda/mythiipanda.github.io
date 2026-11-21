@@ -64,7 +64,8 @@ function Row({
 }) {
   return (
     <span
-      className={`group/sidebar-row relative flex ${tall ? "h-9" : "h-8"} w-full cursor-pointer items-center gap-2.5 rounded-md px-2.5 text-left text-sm select-none ${
+      tabIndex={0}
+      className={`group/sidebar-row relative flex ${tall ? "h-9" : "h-8"} w-full cursor-pointer items-center gap-2.5 rounded-md px-2.5 text-left text-sm select-none outline-none focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-accent ${
         active
           ? "bg-sidebar-row-active text-ink ring-1 ring-inset ring-sidebar-border/70"
           : "text-sidebar-foreground hover:bg-sidebar-row-hover"
