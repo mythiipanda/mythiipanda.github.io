@@ -152,34 +152,30 @@ function ReportArtifact() {
           </TableBody>
         </Table>
       </div>
-      <div className="mt-3 flex items-center gap-1.5 text-[11px] text-secondary-label">
-        <CheckIcon className="size-3 text-icon-muted" />
-        every number cites its table
-      </div>
     </div>
   );
 }
 
 const SCOUT_ROWS = [
-  { img: "/dime-site/headshots/kennard.png", name: "Luke Kennard", team: "LAL", ts: "68.9", usg: "13.1", trend: [61.2, 62.8, 64.5, 63.9, 66.1, 68.9] },
-  { img: "/dime-site/headshots/duren.png", name: "Jalen Duren", team: "DET", ts: "68.8", usg: "23.1", trend: [63.4, 65.1, 64.2, 66.8, 67.5, 68.8] },
-  { img: "/dime-site/headshots/ayton.png", name: "Deandre Ayton", team: "LAL", ts: "67.6", usg: "16.4", trend: [64.0, 65.5, 66.9, 66.2, 67.1, 67.6] },
-  { img: "/dime-site/headshots/queta.png", name: "Neemias Queta", team: "BOS", ts: "67.4", usg: "14.5", trend: [62.6, 64.9, 65.8, 66.0, 66.8, 67.4] },
-  { img: "/dime-site/headshots/jokic.png", name: "Nikola Jokić", team: "DEN", ts: "67.0", usg: "28.9", trend: [65.8, 66.4, 66.1, 67.2, 66.6, 67.0] },
-  { img: "/dime-site/headshots/sga.png", name: "Shai Gilgeous-Alexander", team: "OKC", ts: "63.7", usg: "31.4", trend: [60.1, 61.9, 62.4, 63.0, 63.2, 63.7] },
-  { img: "/dime-site/headshots/giannis.png", name: "Giannis Antetokounmpo", team: "MIL", ts: "62.5", usg: "30.6", trend: [61.8, 62.2, 61.5, 62.8, 62.0, 62.5] },
-  { img: "/dime-site/headshots/curry.png", name: "Stephen Curry", team: "GSW", ts: "61.8", usg: "29.4", trend: [60.5, 62.0, 61.2, 62.6, 61.4, 61.8] },
+  { img: "/dime-site/headshots/kennard.png", name: "Luke Kennard", team: "LAL", ts: "68.9", usg: "13.1" },
+  { img: "/dime-site/headshots/duren.png", name: "Jalen Duren", team: "DET", ts: "68.8", usg: "23.1" },
+  { img: "/dime-site/headshots/ayton.png", name: "Deandre Ayton", team: "LAL", ts: "67.6", usg: "16.4" },
+  { img: "/dime-site/headshots/queta.png", name: "Neemias Queta", team: "BOS", ts: "67.4", usg: "14.5" },
+  { img: "/dime-site/headshots/jokic.png", name: "Nikola Jokić", team: "DEN", ts: "67.0", usg: "28.9" },
+  { img: "/dime-site/headshots/sga.png", name: "Shai Gilgeous-Alexander", team: "OKC", ts: "63.7", usg: "31.4" },
+  { img: "/dime-site/headshots/giannis.png", name: "Giannis Antetokounmpo", team: "MIL", ts: "62.5", usg: "30.6" },
+  { img: "/dime-site/headshots/curry.png", name: "Stephen Curry", team: "GSW", ts: "61.8", usg: "29.4" },
 ];
 
-const ARTIFACT_META: Record<string, { title: string; kind: string; icon: PanelTab["icon"] }> = {
-  board: { title: "true shooting leaders", kind: "board", icon: TableIcon },
-  trade: { title: "giannis ↔ davis", kind: "trade check", icon: ArrowLeftRightIcon },
-  report: { title: "midseason review", kind: "report", icon: FileTextIcon },
+const ARTIFACT_META: Record<string, { title: string; tab: string; icon: PanelTab["icon"] }> = {
+  board: { title: "true shooting leaders", tab: "leaders", icon: TableIcon },
+  trade: { title: "giannis ↔ davis", tab: "trade", icon: ArrowLeftRightIcon },
+  report: { title: "midseason review", tab: "review", icon: FileTextIcon },
 };
 
 const ARTIFACT_TABS: PanelTab[] = ["board", "trade", "report"].map((id) => ({
   id,
-  title: ARTIFACT_META[id].title,
+  title: ARTIFACT_META[id].tab,
   icon: ARTIFACT_META[id].icon,
 }));
 
@@ -187,7 +183,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
   const [open, setOpen] = useState(kind);
   const meta = ARTIFACT_META[open] ?? ARTIFACT_META.board;
   const [sort, setSort] = useState<TableSort>({ id: "ts", desc: true });
-  const [sel, setSel] = useState<string | null>("Luke Kennard");
+  const [sel, setSel] = useState<string | null>(null);
   const toggleSort = (id: string) =>
     setSort((cur) => (cur?.id === id ? (cur.desc ? { id, desc: false } : undefined) : { id, desc: true }));
   const boardRows = [...SCOUT_ROWS].sort((a, b) => {
@@ -265,14 +261,14 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
                     className={`cursor-pointer ${sel === p.name ? "bg-accent-tint/60 hover:bg-accent-tint/60" : ""}`}
                   >
                     <TableCell>
-                      <span className="flex h-9 items-center gap-2.5">
+                      <span className="flex h-10 items-center gap-2.5">
                         <Headshot src={p.img} alt={p.name} size={22} />
-                        <span className="truncate text-[13px] font-medium text-ink">{p.name}</span>
-                        <span className="shrink-0 font-mono text-[11px] text-ink-3">{p.team}</span>
+                        <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{p.name}</span>
+                        <span className="w-8 shrink-0 text-right font-mono text-[11px] text-ink-3">{p.team}</span>
                       </span>
                     </TableCell>
-                    <TableCell align="end" className="font-mono text-[13px] font-medium tabular-nums text-ink">{p.ts}</TableCell>
-                    <TableCell align="end" className="font-mono text-[13px] tabular-nums text-ink-2">{p.usg}</TableCell>
+                    <TableCell align="end" className="text-[13px] tabular-nums text-ink">{p.ts}</TableCell>
+                    <TableCell align="end" className="text-[13px] tabular-nums text-ink-3">{p.usg}</TableCell>
 
                   </TableRow>
                 ))}
@@ -328,7 +324,7 @@ const STREAMS: Record<string, { content: StreamingToken[]; followUps: string[] }
     content: [
       ..."Drafted a one-page review. Kennard, Duren, Ayton headline it".split(" ").map((text) => ({ text })),
       { text: "", cite: true },
-      ..."every number cites its table. Ready to export.".split(" ").map((text) => ({ text })),
+      ..."Ready to export.".split(" ").map((text) => ({ text })),
       { text: "", cite: true },
     ],
     followUps: ["Add the defensive leaders", "Export as PDF"],
@@ -356,7 +352,7 @@ const THREADS: Record<string, { q: string; steps: ToolStep[]; link: string }> = 
     q: "Write up the midseason efficiency leaders for the morning meeting.",
     steps: [
       { icon: "run", label: "Query player stats", chip: "164 rotation players", mono: false, detailMono: false, detail: [{ text: "✓ minutes cutoff applied" }] },
-      { icon: "write", label: "Draft midseason review", chip: "1 page · 2 citations", mono: false, detailMono: false, detail: [{ text: "✓ every number cites its table" }] },
+      { icon: "write", label: "Draft midseason review", chip: "1 page · 2 citations", mono: false, detailMono: false, detail: [] },
     ],
     link: "midseason review",
   },

@@ -353,7 +353,7 @@ export default function Variants() {
           <div className="flex flex-col items-start gap-5 self-start md:sticky md:top-10">
             <p className="eyebrow">the platform</p>
             <h2 className="title">Work that stays on disk</h2>
-            <p className="lede max-w-[38ch]">Notebooks hold the question and the SQL. Boards pin the charts. Reports cite every number back to its table.</p>
+            <p className="lede max-w-[38ch]">Notebooks hold the question and the SQL. Boards pin the charts. Reports pull it together.</p>
             <CTAs />
           </div>
           <div className="flex flex-col gap-6">

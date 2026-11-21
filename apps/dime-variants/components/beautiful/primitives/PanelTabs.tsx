@@ -25,7 +25,7 @@ function Tab({
       data-active-tab={active || undefined}
       onClick={() => onSelect?.(tab.id)}
       className={cn(
-        "group/tab flex h-6 max-w-28 shrink-0 cursor-pointer items-center gap-0.5 rounded-md pr-2 pl-1.5 text-xs",
+        "group/tab flex h-6 max-w-36 shrink-0 cursor-pointer items-center gap-0.5 rounded-md pr-2 pl-1.5 text-xs",
         active ? "bg-hover text-ink" : "text-secondary-label hover:bg-hover-2 hover:text-ink",
       )}
     >
