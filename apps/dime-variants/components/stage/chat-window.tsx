@@ -22,6 +22,7 @@ import {
   TriangleAlertIcon,
 } from "lucide-react";
 import { Headshot } from "./app-shell";
+import { DimeMark } from "../mark";
 import DiffTable from "../beautiful/primitives/DiffTable";
 import ToolChips, { type ToolStep } from "../beautiful/primitives/ToolChips";
 import ThinkingState from "../beautiful/primitives/ThinkingState";
@@ -190,11 +191,12 @@ const ARTIFACT_META: Record<string, { title: string; tab: string; icon: PanelTab
   report: { title: "midseason review", tab: "review", icon: FileTextIcon },
 };
 
-const ARTIFACT_TABS: PanelTab[] = ["board", "trade", "report"].map((id) => ({
-  id,
-  title: ARTIFACT_META[id].tab,
-  icon: ARTIFACT_META[id].icon,
-}));
+const VIEW_ARTIFACTS: Record<string, string[]> = {
+  board: ["board", "report"],
+  trade: ["trade"],
+  report: ["report", "board"],
+  pending: ["board", "report"],
+};
 
 function PanelStateView({ icon: Icon, title, hint, action, onAction }: { icon: PanelTab["icon"]; title: string; hint: string; action?: string; onAction?: () => void }) {
   return (
@@ -213,7 +215,7 @@ function PanelStateView({ icon: Icon, title, hint, action, onAction }: { icon: P
   );
 }
 
-export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false, panelState, extraTabs, pending = false }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean; panelState?: "empty" | "error"; extraTabs?: PanelTab[]; pending?: boolean }) {
+export function ArtifactPanel({ skeleton = false, kind = "board", framed = false, wide = false, panelState, extraTabs, pending = false, kinds }: { skeleton?: boolean; kind?: string; framed?: boolean; wide?: boolean; panelState?: "empty" | "error"; extraTabs?: PanelTab[]; pending?: boolean; kinds?: string[] }) {
   const [open, setOpen] = useState(kind);
   const [retried, setRetried] = useState(false);
   const [retrying, setRetrying] = useState(false);
@@ -240,7 +242,11 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
   });
   const [added, setAdded] = useState<PanelTab[]>([]);
   const [expanded, setExpanded] = useState(false);
-  const tabs = [...ARTIFACT_TABS, ...added, ...(extraTabs ?? [])];
+  const tabs = [
+    ...(kinds ?? ["board", "trade", "report"]).map((id) => ({ id, title: ARTIFACT_META[id].tab, icon: ARTIFACT_META[id].icon })),
+    ...added,
+    ...(extraTabs ?? []),
+  ];
   const addTab = () => {
     const id = `draft-${added.length + 1}`;
     setAdded((a) => [...a, { id, title: `untitled-${added.length + 1}.md`, icon: FileTextIcon }]);
@@ -482,7 +488,7 @@ function ThreadLane({ pending = false, kind = "board", inlineArtifact = false, s
           />
           {inlineArtifact ? (
             <div className="mx-auto mt-3 w-full max-w-[600px]">
-              <ArtifactPanel kind={kind} framed />
+              <ArtifactPanel kind={kind} framed kinds={VIEW_ARTIFACTS[kind]} />
             </div>
           ) : kind === "trade" ? (
             <div className="mt-3 max-w-[380px]">
@@ -571,7 +577,10 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
         <div className="flex h-[52px] shrink-0 items-center gap-3 border-b border-line pl-3 pr-3 md:pl-5 md:pr-5">
           {!rail && (
             <>
-              <span className="font-serif text-[16px] text-ink">dime.</span>
+              <span className="flex items-center gap-1.5 font-serif text-[16px] text-ink">
+                <DimeMark size={15} />
+                ime
+              </span>
               <button
                 type="button"
                 onClick={() => document.querySelector<HTMLTextAreaElement>("textarea")?.focus()}
@@ -617,7 +626,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
                   </div>
                 </div>
               </div>
-              {layout !== "inline" && <ArtifactPanel key={view} pending={pending} kind={view} wide={layout === "focus"} />}
+              {layout !== "inline" && <ArtifactPanel key={view} pending={pending} kind={view} wide={layout === "focus"} kinds={VIEW_ARTIFACTS[view]} />}
             </>
           )}
         </div>

@@ -25,7 +25,7 @@ export default function Home() {
       <header className="wrap flex h-[72px] items-center justify-between">
         <a href="#top" className="flex items-center gap-2.5 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
           <DimeMark size={22} />
-          dime<span className="text-accent">.</span>
+          ime
         </a>
         <nav className="flex items-center gap-7 text-[14.5px] font-medium text-ink-2">
           <a href="#platform" className="hidden transition-colors hover:text-ink sm:block">Artifacts</a>
@@ -75,7 +75,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-4 grid gap-4 md:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-            <UiClip cover src="/dime-site/clips/tabs.mp4" poster="/dime-site/clips/tabs-poster.jpg" label="Dime's artifact panel: switching between leaders, trade and review tabs, then sorting a column" />
+            <UiClip cover src="/dime-site/clips/tabs.mp4" poster="/dime-site/clips/tabs-poster.jpg" label="Dime's artifact panel: switching between the leaders board and the review doc, then sorting a column" />
             <UiClip anchor="45%" src="/dime-site/clips/report.mp4" poster="/dime-site/clips/report-poster.jpg" label="Dime's report artifact: the midseason efficiency review document with cited numbers and an exhibit table" />
           </div>
         </section>
@@ -120,7 +120,7 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <span className="flex items-center gap-2.5 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
               <DimeMark size={22} />
-              dime<span className="text-accent">.</span>
+              ime
             </span>
             <p className="m-0 max-w-[40ch] text-[14.5px] leading-relaxed text-ink-2">
               An open-source NBA analyst that runs on your machine and shows every row it used.

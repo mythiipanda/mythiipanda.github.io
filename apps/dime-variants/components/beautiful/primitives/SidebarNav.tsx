@@ -12,7 +12,7 @@ import GlideMenu from "@/components/beautiful/primitives/GlideMenu";
  * chat history, and a collapse that preserves icon alignment.
  * ───────────────────────────────────────────────────────── */
 
-const WORKSPACE = { key: "dime", name: "Dime", monogram: "D" };
+const WORKSPACE = { key: "dime", name: "ime", monogram: "D" };
 
 const NAV_ITEMS: { key: string; label: string; icon: ReactNode; count?: string }[] = [
   { key: "home", label: "Home", icon: <IconHome size={18} /> },
