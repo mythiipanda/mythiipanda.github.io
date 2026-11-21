@@ -109,7 +109,7 @@ export default function DimeAsk() {
             <Field
               className="da-composer"
               value={s.draft}
-              placeholder="Ask anything. @ players, / boards, $ trades"
+              placeholder="Ask anything"
               focused={!s.sent}
             />
           </div>
