@@ -63,7 +63,7 @@ function HomeCanvas() {
         </span>
       </span>
       <h2 className="mt-5 text-center font-serif text-[26px] leading-tight tracking-[-0.01em] text-ink">
-        Ask the warehouse anything.
+        Ask Dime anything.
       </h2>
       <div className="mt-7 w-full max-w-[520px]">
         <Composer focused />
@@ -194,10 +194,8 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
       <div className="flex h-11 shrink-0 items-center gap-2 border-b border-line px-4">
         <PinIcon className="size-3.5 shrink-0 text-icon-muted" />
         <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{meta.title}</span>
-        <span className="shrink-0 text-[11px] text-secondary-label">{meta.kind}</span>
-        <Button variant="secondary" size="xs" className="ml-1 rounded-md">
-          <DownloadIcon className="size-3 text-icon-muted" />
-          export
+        <Button variant="quiet" size="xs" className="rounded-md" aria-label="export">
+          <DownloadIcon className="size-3.5 text-icon-muted" />
         </Button>
       </div>
       <div className="relative min-h-0 flex-1 overflow-hidden">

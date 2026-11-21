@@ -168,7 +168,7 @@ export function TableSortHead({
 }) {
   const desc = sort?.id === id ? sort.desc : undefined;
   return (
-    <TableHead align={align} {...props} className={cn("p-0", className)}>
+    <TableHead align={align} {...props} className={cn("group/th p-0", className)}>
       <div data-slot="data-table-column-header" className={cn("flex", align === "end" && "justify-end", align === "center" && "justify-center")}>
         <button
           type="button"
@@ -181,7 +181,7 @@ export function TableSortHead({
         >
           {title}
           {desc === undefined ? (
-            <svg aria-hidden className="size-3.5 opacity-60" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m7 15 5 5 5-5" /><path d="m7 9 5-5 5 5" /></svg>
+            <svg aria-hidden className="size-3.5 opacity-0 transition-opacity group-hover/th:opacity-60" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m7 15 5 5 5-5" /><path d="m7 9 5-5 5 5" /></svg>
           ) : desc ? (
             <svg aria-hidden className="size-3.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m19 9-7 7-7-7" /></svg>
           ) : (
