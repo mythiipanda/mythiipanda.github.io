@@ -353,19 +353,22 @@ function ArtifactPanel({ skeleton = false, kind = "board" }: { skeleton?: boolea
             {skeleton
               ? SCOUT_ROWS.slice(0, 3).map((p, i) => (
                   <tr key={p.name}>
-                    <td className="h-11 border-b border-line px-4">
+                    <td className="h-10 border-b border-line px-4">
                       <span className="flex items-center gap-2.5">
-                        <span className="size-[26px] animate-pulse rounded-full bg-field" />
-                        <span className="h-2.5 w-20 animate-pulse rounded bg-field" />
+                        <span className="size-6 animate-pulse rounded-full bg-field" />
+                        <span className="flex flex-col gap-1">
+                          <span className="h-2.5 w-20 animate-pulse rounded bg-field" />
+                          <span className="h-2 w-8 animate-pulse rounded bg-field" />
+                        </span>
                       </span>
                     </td>
-                    <td className="h-11 border-b border-line px-4 text-right">
+                    <td className="h-10 border-b border-line px-4 text-right">
                       <span className="inline-block h-2.5 w-8 animate-pulse rounded bg-field" />
                     </td>
-                    <td className="h-11 border-b border-line px-4 text-right">
+                    <td className="h-10 border-b border-line px-4 text-right">
                       <span className="inline-block h-2.5 w-8 animate-pulse rounded bg-field" />
                     </td>
-                    <td className="h-11 border-b border-line px-4">
+                    <td className="h-10 border-b border-line px-4">
                       <span className="inline-block h-4 w-14 animate-pulse rounded bg-field" />
                     </td>
                   </tr>
