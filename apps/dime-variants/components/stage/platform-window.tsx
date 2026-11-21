@@ -13,7 +13,7 @@ export function PlatformWindow({ variant = "tabs" }: { variant?: "tabs" | "rail"
   const [ind, setInd] = useState({ left: 8, width: 0 });
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(() => setIndex((v) => (v + 1) % PANES.length), CYCLE_MS);
     return () => clearInterval(t);
   }, [paused]);

@@ -121,6 +121,10 @@ export default function StreamingText({
   const done = count >= content.length;
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(content.length);
+      return;
+    }
     if (done && !loop) {
       onDone?.();
       return;
