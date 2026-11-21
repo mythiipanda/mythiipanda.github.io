@@ -22,6 +22,7 @@ import ThinkingState from "../beautiful/primitives/ThinkingState";
 import ApprovalCard from "../beautiful/primitives/ApprovalCard";
 import SidebarNav, { type SidebarRecent } from "../beautiful/primitives/SidebarNav";
 import PromptBar from "../beautiful/primitives/PromptBar";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../beautiful/primitives/Table";
 import { IconSettingsGear1 } from "../beautiful/icons";
 
 const CHATS: SidebarRecent[] = [
@@ -224,24 +225,20 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         {kind === "trade" && <TradeArtifact />}
         {kind === "report" && <ReportArtifact />}
         {kind === "board" && (
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              {["player", "ts%", "usg%", "trend"].map((h, i) => (
-                <th
-                  key={h}
-                  className={`h-8 border-b border-line px-4 text-[11px] font-medium text-secondary-label ${i === 1 || i === 2 ? "text-right" : "text-left"}`}
-                >
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
+        <Table variant="default" size="sm" scrollFade={false} containerClassName="h-full">
+          <TableHeader>
+            <TableRow>
+              <TableHead className="text-[11px]">player</TableHead>
+              <TableHead align="end" className="text-[11px]">ts%</TableHead>
+              <TableHead align="end" className="text-[11px]">usg%</TableHead>
+              <TableHead className="text-[11px]">trend</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {skeleton
-              ? SCOUT_ROWS.slice(0, 3).map((p, i) => (
-                  <tr key={p.name}>
-                    <td className="h-10 border-b border-line px-4">
+              ? SCOUT_ROWS.slice(0, 3).map((p) => (
+                  <TableRow key={p.name}>
+                    <TableCell>
                       <span className="flex items-center gap-2.5">
                         <span className="size-6 animate-pulse rounded-full bg-field" />
                         <span className="flex flex-col gap-1">
@@ -249,21 +246,21 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
                           <span className="h-2 w-8 animate-pulse rounded bg-field" />
                         </span>
                       </span>
-                    </td>
-                    <td className="h-10 border-b border-line px-4 text-right">
+                    </TableCell>
+                    <TableCell align="end">
                       <span className="inline-block h-2.5 w-8 animate-pulse rounded bg-field" />
-                    </td>
-                    <td className="h-10 border-b border-line px-4 text-right">
+                    </TableCell>
+                    <TableCell align="end">
                       <span className="inline-block h-2.5 w-8 animate-pulse rounded bg-field" />
-                    </td>
-                    <td className="h-10 border-b border-line px-4">
+                    </TableCell>
+                    <TableCell>
                       <span className="inline-block h-4 w-14 animate-pulse rounded bg-field" />
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))
               : SCOUT_ROWS.map((p, i) => (
-                  <tr key={p.name} className={i === 0 ? "bg-accent-tint/50" : ""}>
-                    <td className="h-10 border-b border-line px-4">
+                  <TableRow key={p.name} className={i === 0 ? "bg-accent-tint/50" : ""}>
+                    <TableCell>
                       <span className="flex items-center gap-2.5">
                         <Headshot src={p.img} alt={p.name} size={24} />
                         <span className="min-w-0 flex-1">
@@ -271,16 +268,16 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
                           <span className="block text-[11px] leading-4 text-secondary-label">{p.team}</span>
                         </span>
                       </span>
-                    </td>
-                    <td className="h-10 border-b border-line px-4 text-right font-mono text-[13px] font-medium tabular-nums text-ink">{p.ts}</td>
-                    <td className="h-10 border-b border-line px-4 text-right font-mono text-[13px] tabular-nums text-ink-2">{p.usg}</td>
-                    <td className="h-10 border-b border-line px-4">
+                    </TableCell>
+                    <TableCell align="end" className="font-mono text-[13px] font-medium text-ink">{p.ts}</TableCell>
+                    <TableCell align="end" className="font-mono text-[13px] text-ink-2">{p.usg}</TableCell>
+                    <TableCell>
                       <Spark points={p.trend} w={56} h={18} />
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
         )}
         <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-surface to-transparent" />
       </div>
