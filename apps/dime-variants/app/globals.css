@@ -8,38 +8,39 @@
  * opts into Beautiful UI's dark tokens with a scoped .dark class. */
 
 :root {
-  --page: oklch(0.972 0.008 85);
-  --canvas: oklch(0.95 0.01 85);
-  --surface: oklch(0.995 0.003 85);
-  --inset: oklch(0.958 0.008 85);
-  --hover: oklch(0.95 0.009 85);
-  --hover-2: oklch(0.92 0.011 85);
-  --field: oklch(0.95 0.009 85);
-  --ink: oklch(0.21 0.012 62);
-  --ink-2: oklch(0.43 0.012 62);
-  --ink-3: oklch(0.435 0.015 62);
-  --line: oklch(0.21 0.012 62 / 0.1);
-  --line-strong: oklch(0.21 0.012 62 / 0.18);
-  --line-soft: oklch(0.21 0.012 62 / 0.06);
+  /* Devin light-mode neutrals (measured from devin.ai's :root tokens):
+     page #fcfcfc, wash #f8f8f8, elevated #fff, ink #191919, hairlines
+     black at 6-8%. */
+  --page: rgb(252 252 252);
+  --canvas: rgb(248 248 248);
+  --surface: rgb(255 255 255);
+  --inset: rgb(248 248 248);
+  --hover: rgb(0 0 0 / 0.04);
+  --hover-2: rgb(0 0 0 / 0.06);
+  --field: rgb(0 0 0 / 0.025);
+  --ink: rgb(25 25 25);
+  --ink-2: rgb(25 25 25 / 0.56);
+  --ink-3: rgb(25 25 25 / 0.4);
+  --line: rgb(0 0 0 / 0.08);
+  --line-strong: rgb(0 0 0 / 0.14);
+  --line-soft: rgb(0 0 0 / 0.05);
   --accent: oklch(0.535 0.187 255.6);
   --accent-ink: oklch(0.48 0.18 256);
-  --accent-tint: oklch(0.94 0.03 253);
+  --accent-tint: color-mix(in oklab, var(--accent) 8%, transparent);
 
-  /* t3code workspace tokens, warm-mapped to the paper palette. */
+  /* t3code workspace tokens, neutral-mapped to the Devin palette. */
   --control-radius: 0.5rem;
-  --sidebar: oklch(0.946 0.009 85);
+  --sidebar: rgb(248 248 248);
   --sidebar-foreground: var(--ink);
   --sidebar-muted-foreground: var(--ink-3);
   --sidebar-border: var(--line);
-  --sidebar-row-hover: oklch(0.965 0.008 85);
+  --sidebar-row-hover: var(--hover);
   --sidebar-row-active: var(--surface);
   --sidebar-row-selected: var(--surface);
   --secondary-label: var(--ink-3);
   --icon-muted: var(--ink-3);
   --shadow-composer: 0 1px 2px rgb(0 0 0 / 5%);
-  /* t3code message-surface recipe: one step greyer than --field so a user
-     turn stands off the near-white canvas without a border. */
-  --message-surface: color-mix(in oklab, var(--hover-2) 55%, var(--field));
+  --message-surface: rgb(0 0 0 / 0.04);
 }
 
 .bg-sidebar { background-color: var(--sidebar); }
@@ -108,8 +109,8 @@ kbd,
   inset: -72px -40px 0 -40px;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, oklch(0.21 0.012 62 / 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.21 0.012 62 / 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgb(0 0 0 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 80% 62% at 50% 34%, black 30%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 62% at 50% 34%, black 30%, transparent 100%);
@@ -237,8 +238,8 @@ kbd,
 .window {
   overflow: hidden;
   border-radius: 2px;
-  background: oklch(0.231 0.006 62);
-  box-shadow: 0 0 0 1px oklch(0.2 0.01 62 / 0.9);
+  background: rgb(51 51 51);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.9);
 }
 
 .window-hero {
