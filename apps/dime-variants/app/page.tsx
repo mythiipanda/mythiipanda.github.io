@@ -1,14 +1,13 @@
-import CodeBlock from "@/components/beautiful/primitives/CodeBlock";
 import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
 import { ArtifactPanel } from "@/components/stage/chat-window";
 import DimeAsk from "@/components/stage/demos/DimeAsk";
 import DimeTrade from "@/components/stage/demos/DimeTrade";
+import DimeTerm from "@/components/stage/demos/DimeTerm";
 import { PANES } from "@/components/stage/stills";
 import { COVERAGE, README, REPO } from "@/lib/site";
 
-const QUICKSTART = ["git clone https://github.com/mythiipanda/dime", "cd dime", "./scripts/fetch-data.sh"];
 
 
 function Head({ title, children }: { title: string; children?: React.ReactNode }) {
@@ -146,8 +145,8 @@ export default function Home() {
             </a>
           </div>
           <div className="flex flex-col gap-10">
-            <div className="dark rounded-md">
-              <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables · 14.9M rows · duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
+            <div className="min-w-0">
+              <DimeTerm />
             </div>
           </div>
         </section>
