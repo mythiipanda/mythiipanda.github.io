@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ArrowLeftRightIcon, CheckIcon, DownloadIcon, PinIcon } from "lucide-react";
 import { ActionPill, Card, Cell, Headshot } from "./app-shell";
+import DiffTable from "../beautiful/primitives/DiffTable";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../beautiful/primitives/Table";
 import { CLUTCH, CLUTCH_COUNT, LINEUPS, LINEUP_COUNT } from "@/lib/exhibits";
 
@@ -303,49 +304,24 @@ function TradesPane() {
         <span className="pop-in absolute left-1/2 top-[46%] z-10 hidden size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-surface shadow-[0_0_0_1px_var(--line)] md:flex" style={{ animationDelay: "420ms" }}>
           <ArrowLeftRightIcon className="size-3.5 text-accent-ink" />
         </span>
-        {[
-          { team: "MIA", label: "receives", rows: [["Anthony Davis", "davis", "58.5", "35.3"]], picks: [] as string[], sends: "Giannis Antetokounmpo" },
-          { team: "WAS", label: "receives", rows: [["Giannis Antetokounmpo", "giannis", "58.5", "35.3"]], picks: ["2028 1st (top-4 prot.)", "2030 pick swap"], sends: "Anthony Davis" },
-        ].map((side, si) => (
-          <div key={side.team} className="rise-in overflow-hidden rounded-[12px] bg-surface shadow-[0_0_0_1px_var(--line)]" style={{ animationDelay: `${si * 90}ms` }}>
-            <div className="flex h-10 items-center justify-between border-b border-line px-4">
-              <span className="font-mono text-[13px] font-medium text-ink">{side.team}</span>
-              <span className="text-[11px] font-medium text-secondary-label">{side.label}</span>
-            </div>
-            <div className="p-3">
-              {side.rows.map(([name, img, sal, cap]) => (
-                <div key={name} className="flex items-center gap-3 rounded-[8px] px-2 py-2">
-                  <Headshot src={`/dime-site/headshots/${img}.png`} alt={name} size={34} />
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate text-[13px] font-medium text-ink">{name}</div>
-                    <div className="font-mono text-[11px] text-ink-3">${sal}M · {cap}% of cap</div>
-                  </div>
-                  <span className="text-[11px] font-medium text-secondary-label">in</span>
-                </div>
-              ))}
-              {side.picks.map((p) => (
-                <div key={p} className="flex items-center gap-3 px-2 py-2">
-                  <span className="flex size-[34px] items-center justify-center rounded-full bg-field text-[10px] font-medium text-secondary-label ring-1 ring-inset ring-line">pick</span>
-                  <span className="flex-1 text-[12.5px] text-ink-2">{p}</span>
-                  <span className="text-[11px] font-medium text-secondary-label">in</span>
-                </div>
-              ))}
-              <div className="mt-1 flex items-center gap-3 border-t border-line px-2 py-2">
-                <span className="w-[34px] text-center text-[11px] font-medium text-secondary-label">out</span>
-                <span className="flex-1 truncate text-[12.5px] text-ink-2">{side.sends} · $58.5M</span>
-              </div>
-            </div>
-            <div className="border-t border-line px-4 py-2.5">
-              <div className="flex items-center gap-2">
-                <span className="w-16 text-[11px] font-medium text-secondary-label">cap hit</span>
-                <div className="h-[6px] flex-1 rounded-full bg-field">
-                  <div className="bar-grow h-full rounded-full bg-accent/70" style={{ width: "35.3%", animationDelay: "500ms" }} />
-                </div>
-                <span className="font-mono text-[11px] tabular-nums text-ink-2">35.3%</span>
-              </div>
-            </div>
-          </div>
-        ))}
+        <Rise delay={0}>
+          <DiffTable
+            title="MIA receives"
+            rows={[{ key: "giannis", id: "Giannis Antetokounmpo", dept: "Player", email: "$58.5M · to WAS", removed: true }]}
+            added={[{ key: "ad", id: "Anthony Davis", dept: "Player", email: "$58.5M · from WAS" }]}
+          />
+        </Rise>
+        <Rise delay={90}>
+          <DiffTable
+            title="WAS receives"
+            rows={[{ key: "ad", id: "Anthony Davis", dept: "Player", email: "$58.5M · to MIA", removed: true }]}
+            added={[
+              { key: "giannis", id: "Giannis Antetokounmpo", dept: "Player", email: "$58.5M · from MIA" },
+              { key: "p1", id: "2028 1st (top-4 prot.)", dept: "Pick", email: "from MIA" },
+              { key: "p2", id: "2030 pick swap", dept: "Pick", email: "from MIA" },
+            ]}
+          />
+        </Rise>
       </div>
       <div className="mt-3 shrink-0 rounded-[12px] bg-surface px-4 py-3 shadow-[0_0_0_1px_var(--line)]">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[12px]">

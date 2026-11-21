@@ -193,7 +193,7 @@ export function ArtifactPanel({ skeleton = false, kind = "board", framed = false
         {kind === "trade" && <TradeArtifact />}
         {kind === "report" && <ReportArtifact />}
         {kind === "board" && (
-        <Table variant="default" size="sm" scrollFade={false} containerClassName="h-full">
+        <Table variant="default" size="sm" scrollFade={false} stickyHeader containerClassName="h-full">
           <TableHeader>
             <TableRow>
               <TableHead className="text-[11px]">player</TableHead>
