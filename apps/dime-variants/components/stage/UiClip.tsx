@@ -1,8 +1,8 @@
 export default function UiClip({ src, poster, className = "" }: { src: string; poster?: string; className?: string }) {
   return (
-    <div className={`overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line shadow-[0_20px_50px_-24px_rgb(0_0_0/0.18)] ${className}`}>
+    <div className={`h-[300px] overflow-hidden rounded-xl bg-surface ring-1 ring-inset ring-line shadow-[0_20px_50px_-24px_rgb(0_0_0/0.18)] md:h-auto ${className}`}>
       <video
-        className="block h-auto w-full"
+        className="block h-full w-full object-cover object-[28%_top] md:h-auto md:object-contain md:object-center"
         src={src}
         poster={poster}
         autoPlay
