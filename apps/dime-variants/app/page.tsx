@@ -2,8 +2,7 @@ import RecordsTable from "@/components/beautiful/primitives/RecordsTable";
 import { GithubMark } from "@/components/mark";
 import { PillMeter } from "@/components/ingot/pill-meter";
 import { ArtifactPanel } from "@/components/stage/chat-window";
-import DimeAsk from "@/components/stage/demos/DimeAsk";
-import DimeTrade from "@/components/stage/demos/DimeTrade";
+import UiClip from "@/components/stage/UiClip";
 import DimeTerm from "@/components/stage/demos/DimeTerm";
 import { PANES } from "@/components/stage/stills";
 import { COVERAGE, README, REPO } from "@/lib/site";
@@ -57,7 +56,7 @@ export default function Home() {
           </div>
 
           <div className="enter mt-10 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
-            <DimeAsk />
+            <UiClip src="/dime-site/clips/hero-full.mp4" poster="/dime-site/clips/hero-poster.jpg" />
           </div>
         </section>
 
@@ -67,7 +66,7 @@ export default function Home() {
           <Head title="Every answer shows its work">Boards, trade checks and notebooks. Every claim cites the rows it ran on.</Head>
           <div className="mt-8 grid gap-4 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="min-w-0">
-              <DimeTrade />
+              <UiClip src="/dime-site/clips/trade-full.mp4" poster="/dime-site/clips/trade-poster.jpg" />
             </div>
             <div className="grid min-w-0 gap-4 lg:translate-y-8">
               {(["trade", "report"] as const).map((k) => (
