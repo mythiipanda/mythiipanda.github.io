@@ -372,15 +372,18 @@ function ArtifactPanel({ skeleton = false, kind = "board" }: { skeleton?: boolea
                 ))
               : SCOUT_ROWS.map((p, i) => (
                   <tr key={p.name} className={i === 0 ? "bg-accent-tint/50" : ""}>
-                    <td className="h-11 border-b border-line px-4">
+                    <td className="h-10 border-b border-line px-4">
                       <span className="flex items-center gap-2.5">
-                        <Headshot src={p.img} alt={p.name} size={26} />
-                        <span className="truncate text-[13px] font-medium text-ink">{p.name}</span>
+                        <Headshot src={p.img} alt={p.name} size={24} />
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-[13px] font-medium leading-4 text-ink">{p.name}</span>
+                          <span className="block text-[10.5px] leading-4 text-secondary-label">{p.team}</span>
+                        </span>
                       </span>
                     </td>
-                    <td className="h-11 border-b border-line px-4 text-right font-mono text-[12.5px] font-medium tabular-nums text-ink">{p.ts}</td>
-                    <td className="h-11 border-b border-line px-4 text-right font-mono text-[12.5px] tabular-nums text-ink-2">{p.usg}</td>
-                    <td className="h-11 border-b border-line px-4">
+                    <td className="h-10 border-b border-line px-4 text-right font-mono text-[12.5px] font-medium tabular-nums text-ink">{p.ts}</td>
+                    <td className="h-10 border-b border-line px-4 text-right font-mono text-[12.5px] tabular-nums text-ink-2">{p.usg}</td>
+                    <td className="h-10 border-b border-line px-4">
                       <Spark points={p.trend} w={56} h={18} />
                     </td>
                   </tr>
