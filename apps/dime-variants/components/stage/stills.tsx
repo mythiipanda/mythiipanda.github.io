@@ -4,6 +4,7 @@ import { ActionPill, Card, Cell, Headshot } from "./app-shell";
 import DiffTable from "../beautiful/primitives/DiffTable";
 import ScoutPane from "./scout-pane";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../beautiful/primitives/Table";
+import CodeBlock from "../beautiful/primitives/CodeBlock";
 import { CLUTCH, CLUTCH_COUNT, LINEUPS, LINEUP_COUNT } from "@/lib/exhibits";
 
 function Spark({ points, w = 76, h = 22 }: { points: number[]; w?: number; h?: number }) {
@@ -49,10 +50,6 @@ function Rise({ delay, className = "", children }: { delay: number; className?: 
       {children}
     </div>
   );
-}
-
-function K({ children }: { children: ReactNode }) {
-  return <span className="text-accent-ink">{children}</span>;
 }
 
 function MiniTable({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
@@ -113,13 +110,18 @@ function NotebookPane() {
         </Rise>
         <Rise delay={70}>
         <Cell n={2} kind="sql">
-          <pre className="font-mono text-[12px] leading-6 text-ink-2">
-            <K>select</K> PLAYER_NAME, TEAM, {"\n"}
-            {"       "}TS_PCT, USG_PCT {"\n"}
-            <K>from</K> silver_advanced {"\n"}
-            <K>where</K> MIN {">"}= <K>1500</K> {"\n"}
-            <K>order by</K> TS_PCT <K>desc limit</K> <K>5</K>
-          </pre>
+          <CodeBlock
+            flat
+            wide
+            filename="cell.sql"
+            lines={[
+              "select PLAYER_NAME, TEAM,",
+              "       TS_PCT, USG_PCT",
+              "from silver_advanced",
+              "where MIN >= 1500",
+              "order by TS_PCT desc limit 5",
+            ]}
+          />
           <div className="mt-3">
             <MiniTable
               head={["player", "team", "ts%", "usg%"]}
