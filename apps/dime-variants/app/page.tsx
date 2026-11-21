@@ -56,7 +56,7 @@ export default function Home() {
           </div>
 
           <div className="enter mt-10 md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
-            <UiClip src="/dime-site/clips/hero-full.mp4" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
+            <UiClip anchor="58%" src="/dime-site/clips/hero-full.mp4" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
           </div>
         </section>
 
