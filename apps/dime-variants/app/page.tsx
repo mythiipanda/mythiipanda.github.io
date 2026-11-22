@@ -58,7 +58,7 @@ export default function Home() {
           </div>
 
           <div className="enter mt-10 md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
-            <UiClip anchor="58%" zoom src="/dime-site/clips/hero-full.mp4" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
+            <UiClip anchor="58%" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
           </div>
         </section>
 
@@ -68,15 +68,15 @@ export default function Home() {
           <Head title="Every answer shows its work">Boards, trade checks and notebooks. Every claim cites the rows it ran on.</Head>
           <div className="mt-8 grid gap-4 md:mt-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="min-w-0">
-              <UiClip anchor="45%" zoom src="/dime-site/clips/trade-full.mp4" poster="/dime-site/clips/trade-poster.jpg" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
+              <UiClip anchor="45%" poster="/dime-site/clips/trade-poster.jpg" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
             </div>
             <div className="grid min-w-0 gap-4 lg:translate-y-8">
-              <UiClip cover src="/dime-site/clips/pending.mp4" poster="/dime-site/clips/pending-poster.jpg" label="Dime answering in the background: a working thread shows skeletons, then resolves to the leaders board" />
+              <UiClip cover poster="/dime-site/clips/pending-poster.jpg" label="Dime answering in the background: a working thread shows skeletons, then resolves to the leaders board" />
             </div>
           </div>
           <div className="mt-4 grid gap-4 md:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-            <UiClip cover src="/dime-site/clips/tabs.mp4" poster="/dime-site/clips/tabs-poster.jpg" label="Dime's artifact panel: switching between the leaders board and the review doc, then sorting a column" />
-            <UiClip anchor="45%" src="/dime-site/clips/report.mp4" poster="/dime-site/clips/report-poster.jpg" label="Dime's report artifact: the midseason efficiency review document with cited numbers and an exhibit table" />
+            <UiClip cover poster="/dime-site/clips/tabs-poster.jpg" label="Dime's artifact panel: switching between the leaders board and the review doc, then sorting a column" />
+            <UiClip anchor="45%" poster="/dime-site/clips/report-poster.jpg" label="Dime's report artifact: the midseason efficiency review document with cited numbers and an exhibit table" />
           </div>
         </section>
 
@@ -91,7 +91,7 @@ export default function Home() {
               <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables<span className="hidden min-[420px]:inline"> · 14.9M rows</span></span>
             </div>
             <div className="light h-[300px] min-w-0 overflow-hidden md:h-[460px]">
-              <UiClip cover flat src="/dime-site/clips/warehouse.mp4" poster="/dime-site/clips/warehouse-poster.jpg" label="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" />
+              <UiClip cover flat poster="/dime-site/clips/warehouse-poster.jpg" label="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" />
             </div>
           </div>
         </section>
