@@ -101,7 +101,7 @@ kbd,
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
-  padding-inline: 20px;
+  padding-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right));
 }
 
 @media (min-width: 768px) {

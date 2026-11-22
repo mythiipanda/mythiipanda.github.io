@@ -27,11 +27,11 @@ export default function Home() {
           <DimeMark size={22} />
           ime
         </a>
-        <nav className="flex items-center gap-7 text-[14.5px] font-medium text-ink-2">
-          <a href="#platform" className="hidden transition-colors hover:text-ink sm:block">Artifacts</a>
-          <a href="#warehouse" className="hidden transition-colors hover:text-ink sm:block">Warehouse</a>
-          <a href="#quickstart" className="hidden transition-colors hover:text-ink sm:block">Quickstart</a>
-          <a href={REPO} className="flex items-center gap-2 text-ink transition-colors hover:text-accent">
+        <nav className="flex items-center gap-7 text-[14.5px] font-medium text-ink-2" aria-label="Primary">
+          <a href="#platform" className="hidden items-center transition-colors hover:text-ink sm:flex sm:h-11">Artifacts</a>
+          <a href="#warehouse" className="hidden items-center transition-colors hover:text-ink sm:flex sm:h-11">Warehouse</a>
+          <a href="#quickstart" className="hidden items-center transition-colors hover:text-ink sm:flex sm:h-11">Quickstart</a>
+          <a href={REPO} className="flex h-11 items-center gap-2 text-ink transition-colors hover:text-accent">
             <GithubMark size={17} />
             GitHub
           </a>
@@ -58,7 +58,7 @@ export default function Home() {
           </div>
 
           <div className="enter mt-10 md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
-            <UiClip anchor="58%" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
+            <UiClip eager anchor="58%" poster="/dime-site/clips/hero-poster.jpg" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
           </div>
         </section>
 
@@ -75,7 +75,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-4 grid gap-4 md:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-            <UiClip cover poster="/dime-site/clips/tabs-poster.jpg" label="Dime's artifact panel: switching between the leaders board and the review doc, then sorting a column" />
+            <UiClip cover w={880} h={660} poster="/dime-site/clips/tabs-poster.jpg" label="Dime's artifact panel: switching between the leaders board and the review doc, then sorting a column" />
             <UiClip anchor="45%" poster="/dime-site/clips/report-poster.jpg" label="Dime's report artifact: the midseason efficiency review document with cited numbers and an exhibit table" />
           </div>
         </section>
@@ -85,13 +85,13 @@ export default function Home() {
         <section id="warehouse" className="wrap scroll-mt-8 py-16 md:py-28">
           <Head title="17 seasons in one file">58 tables, 14.9 million rows, on your disk. Shots, play-by-play, lineups, salaries and trades.</Head>
           <div className="window window-light mt-8 md:mt-14">
-            <div className="flex h-11 items-center gap-2 px-4 text-[12.5px]">
+            <div className="flex h-11 items-center gap-2 border-b border-line px-4 text-[12.5px]">
               <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-3"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M9 9v11" /></svg>
               <span className="min-w-0 truncate font-mono leading-none text-ink">warehouse.duckdb</span>
               <span className="ml-auto shrink-0 whitespace-nowrap font-mono text-[12px] leading-none tabular-nums text-ink-3">58 tables<span className="hidden min-[420px]:inline"> · 14.9M rows</span></span>
             </div>
             <div className="light h-[300px] min-w-0 overflow-hidden md:h-[460px]">
-              <UiClip cover flat poster="/dime-site/clips/warehouse-poster.jpg" label="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" />
+              <UiClip cover flat w={2240} h={922} poster="/dime-site/clips/warehouse-poster.jpg" label="Dime's warehouse browser: scrolling the silver-layer tables with row counts and coverage" />
             </div>
           </div>
         </section>
@@ -107,10 +107,8 @@ export default function Home() {
               Read the quickstart
             </a>
           </div>
-          <div className="flex flex-col gap-10">
-            <div className="dark rounded-xl">
-              <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables \u00b7 14.9M rows \u00b7 duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
-            </div>
+          <div className="dark rounded-xl">
+            <CodeBlock wide flat lines={[...QUICKSTART.map((l) => `$ ${l}`), "# 58 tables \u00b7 14.9M rows \u00b7 duckdb"]} code={QUICKSTART.join("\n")} filename="terminal" />
           </div>
         </section>
       </main>
