@@ -49,6 +49,7 @@
 
 .hx-landing section.hero .lede {
   color: rgba(255, 255, 255, 0.78);
+  font-size: 21px;
 }
 
 .hx-landing section.hero a.bg-ink {
@@ -106,8 +107,17 @@
   color: #ffffff;
 }
 
+.hx-landing .fcard .title {
+  font-size: clamp(38px, 4.6vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+}
+
 .hx-landing .fcard .lede {
   color: rgba(255, 255, 255, 0.78);
+  font-size: 22px;
+  line-height: 1.55;
+  max-width: 34ch;
 }
 
 .hx-landing .fcard img {
