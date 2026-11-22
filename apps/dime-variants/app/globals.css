@@ -110,18 +110,6 @@ kbd,
   }
 }
 
-.hero-grid {
-  position: absolute;
-  inset: -72px -40px 0 -40px;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgb(0 0 0 / 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(0 0 0 / 0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 62% at 50% 34%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 62% at 50% 34%, black 30%, transparent 100%);
-}
-
 .display {
   margin: 0;
   font-family: var(--font-serif);
@@ -240,50 +228,9 @@ kbd,
   text-decoration-color: var(--ink);
 }
 
-/* the product window: Beautiful UI's harness, framed */
-.window {
-  overflow: hidden;
-  border-radius: 12px;
-  background: rgb(51 51 51);
-  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.9);
-}
-
-.window-hero {
-  height: min(640px, max(520px, 68vh));
-}
-
-@media (max-width: 1023px) {
-  .window-hero {
-    height: auto;
-  }
-}
-
-.window-light {
-  background: var(--surface);
-  box-shadow: 0 0 0 1px var(--line), 0 8px 28px -12px rgb(0 0 0 / 0.08);
-}
-
-.exhibit {
-  overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.rule {
-  border: 0;
-  height: 1px;
-  margin: 0;
-  background: linear-gradient(to right, transparent, var(--line) 15%, var(--line) 85%, transparent);
-}
-
 .enter {
   animation: fade-up 700ms var(--ease-out-strong) both;
   animation-delay: calc(var(--i, 0) * 90ms);
-}
-
-.dot {
-  transition: r 420ms var(--ease-out-strong);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -295,21 +242,10 @@ kbd,
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .enter, .dot {
+  .enter {
     animation: none;
     transition: none;
   }
-}
-
-.dark {
-  color-scheme: dark;
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) transparent;
-}
-
-.dark * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) transparent;
 }
 
 /* typography shotgun — verbatim metrics lifted from reference sites */

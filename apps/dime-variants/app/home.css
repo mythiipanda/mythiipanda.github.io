@@ -1,0 +1,177 @@
+.hx-landing > header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: -72px;
+  background: transparent;
+}
+
+.hx-landing > header a,
+.hx-landing > header nav a {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.hx-landing > header svg,
+.hx-landing > header svg * {
+  fill: #ffffff;
+}
+
+.hx-landing > header nav a:hover {
+  color: #ffffff !important;
+}
+
+.hx-landing section.hero {
+  isolation: isolate;
+  padding-top: 128px;
+}
+
+.hx-landing section.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background:
+    radial-gradient(ellipse 70% 55% at 82% 8%, rgb(84 132 255 / 0.55), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 10% 90%, rgb(16 48 168 / 0.6), transparent 70%),
+    linear-gradient(168deg, #2f63f7 0%, #2458f5 45%, #1642c8 100%);
+}
+
+.hx-landing section.hero .display,
+.hx-landing section.hero .lede {
+  color: #ffffff;
+}
+
+.hx-landing section.hero .display em {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.hx-landing section.hero .lede {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.hx-landing section.hero a.bg-ink {
+  background: #ffffff;
+  color: #1642c8;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 0.25);
+}
+
+.hx-landing section.hero a.bg-ink:hover {
+  background: #eef2ff;
+}
+
+.hx-landing section.hero a.bg-ink svg {
+  fill: #1642c8;
+}
+
+.hx-landing section.hero a.bg-surface {
+  background: transparent;
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+
+.hx-landing section.hero a.bg-surface:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hx-landing section.hero > div.hero-still {
+  position: relative;
+  z-index: 2;
+  margin-bottom: -25%;
+  transform: translateY(18%);
+}
+
+.hx-landing section.hero > div.hero-still img {
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.12),
+    0 30px 80px -20px rgb(8 24 90 / 0.65),
+    0 12px 32px -8px rgb(8 24 90 / 0.5);
+}
+
+.hx-landing .ambient {
+  position: relative;
+  isolation: isolate;
+}
+
+.hx-landing .ambient::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -12% -6%;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 42%, rgb(36 88 245 / 0.09), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 85% 80%, rgb(36 88 245 / 0.05), transparent 70%);
+  border-radius: 24px;
+}
+
+.hx-landing .ambient img {
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgb(25 25 25 / 0.06),
+    0 20px 55px -18px rgb(15 30 90 / 0.28),
+    0 6px 18px -6px rgb(15 30 90 / 0.18);
+}
+
+.hx-landing .ambient.window {
+  border-color: rgb(36 88 245 / 0.12);
+}
+
+.hx-landing section.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hx-landing section.cta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 15% 15%, rgb(84 132 255 / 0.45), transparent 70%),
+    radial-gradient(ellipse 55% 55% at 90% 90%, rgb(16 48 168 / 0.55), transparent 70%),
+    linear-gradient(160deg, #1c46d8 0%, #2458f5 55%, #2f63f7 100%);
+}
+
+.hx-landing section.cta .display {
+  color: #ffffff;
+  font-size: clamp(40px, 6vw, 84px);
+}
+
+.hx-landing section.cta .display em {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.hx-landing section.cta a svg,
+.hx-landing section.cta a svg * {
+  fill: #ffffff;
+}
+
+.hx-landing > footer {
+  border-top: 1px solid var(--line);
+}
+
+.hx-landing section.hero::after,
+.hx-landing section.cta::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+.hx-landing section.hero::after {
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+}
+
+.hx-landing section.cta::after {
+  z-index: -1;
+  inset: 0;
+}
