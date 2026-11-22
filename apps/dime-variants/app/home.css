@@ -21,7 +21,7 @@
 
 .hx-landing section.hero {
   isolation: isolate;
-  padding-top: 128px;
+  padding-top: 104px;
 }
 
 .hx-landing section.hero::before {
@@ -78,8 +78,8 @@
 .hx-landing section.hero > div.hero-still {
   position: relative;
   z-index: 2;
-  margin-bottom: -25%;
-  transform: translateY(18%);
+  margin-bottom: -28%;
+  transform: translateY(22%);
 }
 
 .hx-landing section.hero > div.hero-still img {
@@ -88,6 +88,26 @@
     0 0 0 1px rgb(255 255 255 / 0.12),
     0 30px 80px -20px rgb(8 24 90 / 0.65),
     0 12px 32px -8px rgb(8 24 90 / 0.5);
+}
+
+.hx-landing .fcard {
+  position: relative;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse 90% 70% at 100% 0%, rgb(36 88 245 / 0.05), transparent 65%),
+    linear-gradient(168deg, #f8faff 0%, #eef2fc 100%);
+  box-shadow:
+    0 0 0 1px rgb(36 88 245 / 0.09),
+    0 1px 3px rgb(15 30 90 / 0.05),
+    0 18px 45px -24px rgb(15 30 90 / 0.16);
+}
+
+.hx-landing .fcard img {
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgb(25 25 25 / 0.06),
+    0 20px 55px -18px rgb(15 30 90 / 0.30),
+    0 6px 18px -6px rgb(15 30 90 / 0.18);
 }
 
 .hx-landing .ambient {
