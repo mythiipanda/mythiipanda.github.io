@@ -92,6 +92,7 @@
 
 .hx-landing .fcard {
   position: relative;
+  overflow: hidden;
   border-radius: 22px;
   background: #2458f5;
   box-shadow:

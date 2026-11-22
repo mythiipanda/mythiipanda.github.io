@@ -1,0 +1,35 @@
+.tyr-seline .display,
+.tyr-seline .title {
+  font-family: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.tyr-seline .display {
+  font-size: clamp(36px, 4.6vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -0.021em;
+}
+
+.tyr-seline .title {
+  font-size: clamp(24px, 3.2vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.tyr-seline .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.69;
+  letter-spacing: 0.003em;
+}
+
+.tyr-seline .eyebrow {
+  font-size: 10px;
+}
+
+@media (max-width: 767px) {
+  .tyr-seline .display {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+}

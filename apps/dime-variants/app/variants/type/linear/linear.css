@@ -1,0 +1,36 @@
+.tyr-linear .display,
+.tyr-linear .title,
+.tyr-linear .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+.tyr-linear .display {
+  font-weight: 510;
+  font-size: clamp(46px, 6.4vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.022em;
+}
+
+.tyr-linear .title {
+  font-weight: 510;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.022em;
+}
+
+.tyr-linear .lede {
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+}
+
+.tyr-linear .eyebrow {
+  font-size: 12px;
+  letter-spacing: -0.013em;
+}
+
+@media (max-width: 767px) {
+  .tyr-linear .display {
+    font-size: clamp(36px, 10.5vw, 50px);
+  }
+}
