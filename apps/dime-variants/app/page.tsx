@@ -40,38 +40,38 @@ export default function Home() {
             </div>
           </div>
           <div className="enter hero-still mt-9 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
-            <UiClip eager anchor="58%" poster="/dime-site/clips/hero-poster.webp" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
+            <UiClip eager anchor="58%" poster="/dime-site/clips/hero-poster.webp" w={3600} h={2040} label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
           </div>
         </section>
 
-        <section id="work" className="wrap flex scroll-mt-8 flex-col gap-5 pb-14 pt-10 md:gap-6 md:pb-24 md:pt-14">
-          <div className="fcard grid items-center gap-8 p-7 md:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] md:gap-12 md:p-10">
-            <div className="flex flex-col gap-4">
+        <section id="work" className="mx-auto flex w-full max-w-[1560px] scroll-mt-8 flex-col gap-4 px-5 pb-10 pt-8 md:gap-5 md:px-8 md:pb-16 md:pt-10">
+          <div className="fcard grid md:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
+            <div className="flex flex-col justify-center gap-4 p-6 md:p-10">
               <h2 className="title">Grade the trade</h2>
               <p className="lede">Salaries resolve and the apron rules check out before the deal goes up for approval.</p>
             </div>
-            <UiClip anchor="45%" poster="/dime-site/clips/trade-poster.webp" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
+            <UiClip cover className="mx-5 mb-5 max-md:h-[240px] md:m-0 md:min-h-[400px]" w={3840} h={1680} poster="/dime-site/clips/trade-poster.webp" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
           </div>
 
-          <div className="fcard grid items-center gap-8 p-7 md:grid-cols-[minmax(0,8fr)_minmax(0,5fr)] md:gap-12 md:p-10">
-            <UiClip cover poster="/dime-site/clips/lineup-poster.webp" label="Dime's lineup study board: five-man net ratings, clutch scoring and the qualified-lineup pool" />
-            <div className="order-first flex flex-col gap-4 md:order-none">
+          <div className="fcard grid md:grid-cols-[minmax(0,5fr)_minmax(0,2fr)]">
+            <UiClip cover className="mx-5 mb-5 max-md:h-[240px] md:m-0 md:min-h-[400px]" w={3840} h={1680} poster="/dime-site/clips/lineup-poster.webp" label="Dime's lineup study board: five-man net ratings, clutch scoring and the qualified-lineup pool" />
+            <div className="order-first flex flex-col justify-center gap-4 p-6 pb-0 md:order-none md:p-10">
               <h2 className="title">Judge the lineups</h2>
               <p className="lede">Net rating for every qualified five-man unit, clutch scoring included.</p>
             </div>
           </div>
 
-          <div className="fcard grid items-center gap-8 p-7 md:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] md:gap-12 md:p-10">
-            <div className="flex flex-col gap-4">
+          <div className="fcard grid md:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
+            <div className="flex flex-col justify-center gap-4 p-6 md:p-10">
               <h2 className="title">Scout the class</h2>
               <p className="lede">The 2027 board with college production for every prospect and fit targets for one team's gaps.</p>
             </div>
-            <UiClip cover poster="/dime-site/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" />
+            <UiClip cover className="mx-5 mb-5 max-md:h-[240px] md:m-0 md:min-h-[400px]" w={3840} h={1680} poster="/dime-site/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" />
           </div>
         </section>
 
         <section className="cta">
-          <div className="wrap flex flex-col items-center gap-7 py-20 text-center md:py-28">
+          <div className="wrap flex flex-col items-center gap-7 py-14 text-center md:py-20">
             <h2 className="display max-w-[16ch]">Coming <em>soon.</em></h2>
             <a href={REPO} className="inline-flex h-11 select-none items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.45)] transition-[transform,background-color] duration-150 ease-out hover:bg-white/10 active:scale-[0.96]">
               <GithubMark size={17} />

@@ -1,0 +1,33 @@
+.tyr-ramp .display,
+.tyr-ramp .title,
+.tyr-ramp .lede {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.tyr-ramp .display {
+  font-size: clamp(42px, 5.8vw, 64px);
+  line-height: 1;
+}
+
+.tyr-ramp .title {
+  font-size: clamp(28px, 3.8vw, 40px);
+  line-height: 1.05;
+}
+
+.tyr-ramp .lede {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.tyr-ramp .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+@media (max-width: 767px) {
+  .tyr-ramp .display {
+    font-size: clamp(34px, 10vw, 46px);
+  }
+}
