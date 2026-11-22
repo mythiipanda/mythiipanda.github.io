@@ -247,7 +247,7 @@ export default function SidebarNav({
             <span className="sidebar-logo flex size-5 shrink-0 items-center justify-center text-ink">
               <IconPopsicle2 size={18} />
             </span>
-            <span className="sidebar-copy ml-1.5 min-w-0 flex-1 truncate text-[14px] font-medium text-ink-2">
+            <span className="sidebar-copy ml-1 min-w-0 flex-1 truncate text-[14px] font-medium text-ink-2">
               {WORKSPACE.name}
             </span>
             <span className="sidebar-copy ml-1 flex shrink-0 text-ink-3">
