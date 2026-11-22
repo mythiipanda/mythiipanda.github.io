@@ -93,21 +93,28 @@
 .hx-landing .fcard {
   position: relative;
   border-radius: 22px;
-  background:
-    radial-gradient(ellipse 90% 70% at 100% 0%, rgb(36 88 245 / 0.05), transparent 65%),
-    linear-gradient(168deg, #f8faff 0%, #eef2fc 100%);
+  background: #2458f5;
   box-shadow:
-    0 0 0 1px rgb(36 88 245 / 0.09),
-    0 1px 3px rgb(15 30 90 / 0.05),
-    0 18px 45px -24px rgb(15 30 90 / 0.16);
+    inset 0 1px 0 rgb(255 255 255 / 0.10),
+    0 0 0 1px rgb(18 54 165 / 0.5),
+    0 18px 45px -24px rgb(15 30 90 / 0.35);
+}
+
+.hx-landing .fcard .title,
+.hx-landing .fcard .lede {
+  color: #ffffff;
+}
+
+.hx-landing .fcard .lede {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .hx-landing .fcard img {
   border-radius: 14px;
   box-shadow:
-    0 0 0 1px rgb(25 25 25 / 0.06),
-    0 20px 55px -18px rgb(15 30 90 / 0.30),
-    0 6px 18px -6px rgb(15 30 90 / 0.18);
+    0 0 0 1px rgb(255 255 255 / 0.12),
+    0 24px 60px -20px rgb(8 24 90 / 0.55),
+    0 8px 22px -6px rgb(8 24 90 / 0.4);
 }
 
 .hx-landing .ambient {

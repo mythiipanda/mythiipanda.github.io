@@ -44,7 +44,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" className="wrap flex scroll-mt-8 flex-col gap-5 pb-14 pt-10 md:gap-6 md:pb-24 md:pt-14">
+        <section id="work" className="mx-auto flex w-full max-w-[1560px] scroll-mt-8 flex-col gap-5 px-5 pb-14 pt-10 md:gap-6 md:px-8 md:pb-24 md:pt-14">
           <div className="fcard grid items-center gap-8 p-7 md:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] md:gap-12 md:p-10">
             <div className="flex flex-col gap-4">
               <h2 className="title">Grade the trade</h2>
