@@ -577,7 +577,7 @@ export function ChatWindow({ state = "split", artifact = "board", rail = true, l
         <div className="flex h-[52px] shrink-0 items-center gap-3 border-b border-line pl-3 pr-3 md:pl-5 md:pr-5">
           {!rail && (
             <>
-              <span className="flex items-center gap-1 font-serif text-[16px] text-ink">
+              <span className="flex items-center gap-0 font-serif text-[16px] text-ink">
                 <DimeMark size={15} />
                 ime
               </span>

@@ -23,7 +23,7 @@ export default function Home() {
         Skip to content
       </a>
       <header className="wrap flex h-[72px] items-center justify-between">
-        <a href="#top" className="flex items-center gap-1 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+        <a href="#top" className="flex items-center gap-0 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
           <DimeMark size={22} />
           ime
         </a>
@@ -118,7 +118,7 @@ export default function Home() {
       <footer className="border-t border-line">
         <div className="wrap grid gap-10 py-14 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-20">
           <div className="flex flex-col gap-4">
-            <span className="flex items-center gap-1 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
+            <span className="flex items-center gap-0 font-serif text-[30px] leading-none tracking-[-0.02em] text-ink">
               <DimeMark size={22} />
               ime
             </span>

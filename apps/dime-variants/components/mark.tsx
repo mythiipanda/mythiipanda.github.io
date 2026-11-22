@@ -1,6 +1,6 @@
 export function DimeMark({ size = 20 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="230 195 570 570" fill="none" aria-hidden="true">
+    <svg width={size} height={size} viewBox="296 204 428 552" preserveAspectRatio="xMaxYMid meet" fill="none" aria-hidden="true">
       <defs>
         <clipPath id="dime-bowl">
           <circle cx="478" cy="573" r="176" />
