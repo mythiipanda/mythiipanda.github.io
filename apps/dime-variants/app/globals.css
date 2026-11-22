@@ -85,6 +85,10 @@ body {
   border-radius: 4px;
 }
 
+::selection {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
 code,
 pre,
 kbd,
