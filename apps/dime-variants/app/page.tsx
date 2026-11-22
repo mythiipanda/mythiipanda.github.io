@@ -67,10 +67,10 @@ export default function Home() {
         <section className="wrap pb-14 pt-7 md:pb-24 md:pt-10">
           <div className="feat grid items-center gap-8 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
             <div className="flex flex-col gap-4">
-              <h2 className="title">Scout the field</h2>
-              <p className="lede">Efficiency trends for every rotation player, with a two-player compare.</p>
+              <h2 className="title">Scout the class</h2>
+              <p className="lede">The 2027 board with college production for every prospect and fit targets for one team's gaps.</p>
             </div>
-            <div className="ambient"><UiClip cover poster="/dime-site/clips/scout-poster.webp" label="Dime's scouting board: efficiency leaders with season trends and a two-player compare strip" /></div>
+            <div className="ambient"><UiClip cover poster="/dime-site/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" /></div>
           </div>
         </section>
 
