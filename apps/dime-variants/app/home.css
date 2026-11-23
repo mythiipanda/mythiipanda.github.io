@@ -149,6 +149,32 @@
   }
 }
 
+.hx-landing #work.stackcards {
+  position: relative;
+}
+
+@media (min-height: 560px) and (prefers-reduced-motion: no-preference) {
+  .hx-landing #work.stackcards .fcard {
+    position: sticky;
+    transform-origin: 50% 0;
+    transform: scale(calc(1 - var(--k, 0) * 0.05));
+    will-change: transform;
+  }
+  .hx-landing #work.stackcards .fcard::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: #04091c;
+    opacity: var(--o, 0);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .hx-landing #work.stackcards .fcard:nth-child(1) { top: 24px; }
+  .hx-landing #work.stackcards .fcard:nth-child(2) { top: 40px; }
+  .hx-landing #work.stackcards .fcard:nth-child(3) { top: 56px; }
+}
+
 .hx-landing .fcard img {
   box-shadow:
     0 0 0 1px rgb(255 255 255 / 0.12),

@@ -1,5 +1,6 @@
 import { DimeMark, GithubMark } from "@/components/mark";
 import UiClip from "@/components/stage/UiClip";
+import StackCards from "@/components/StackCards";
 import { README, REPO } from "@/lib/site";
 import "./home.css";
 
@@ -44,7 +45,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" className="mx-auto flex w-full max-w-[1560px] scroll-mt-8 flex-col gap-8 px-5 pb-16 pt-12 md:gap-12 md:px-8 md:pb-28 md:pt-20">
+        <StackCards id="work" className="stackcards mx-auto flex w-full max-w-[1560px] scroll-mt-8 flex-col gap-8 px-5 pb-16 pt-12 md:gap-12 md:px-8 md:pb-[300px] md:pt-20">
           <div className="fcard grid md:grid-cols-[minmax(0,3fr)_minmax(0,5fr)]">
             <div className="flex flex-col justify-center gap-6 p-8 md:p-16 lg:p-20">
               <h2 className="title">Grade the trade</h2>
@@ -68,7 +69,7 @@ export default function Home() {
             </div>
             <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/dime-site/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" />
           </div>
-        </section>
+        </StackCards>
 
         <section className="cta">
           <div className="wrap flex flex-col items-center gap-7 py-14 text-center md:py-20">
