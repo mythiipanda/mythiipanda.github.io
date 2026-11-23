@@ -26,10 +26,10 @@ export default function Home() {
         <section className="hero wrap relative overflow-x-clip pb-16 pt-12 md:pb-28 md:pt-[72px]">
           <div className="relative mx-auto flex max-w-[780px] flex-col items-center gap-7 text-center">
             <h1 className="display enter max-w-[14ch]">
-              The open-source <em>NBA analyst.</em>
+              The open<span className="hyph">-</span>source <em>NBA analyst.</em>
             </h1>
             <div className="enter flex flex-col items-center gap-5" style={{ "--i": 1 } as React.CSSProperties}>
-              <p className="lede mx-auto">A front-office workspace on your machine. Ask in plain English; Dime writes the SQL, runs it on 17 seasons of data, and keeps the answers.</p>
+              <p className="lede mx-auto">A front-office workspace on your machine. Ask in plain English; Dime writes the SQL, runs it on decades of NBA data, and keeps the answers.</p>
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 <a href={REPO} className="inline-flex h-11 select-none items-center justify-center gap-2 rounded-full bg-ink px-5 text-[15px] font-medium leading-none text-canvas shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] transition-[transform,background-color,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.96]">
                   <GithubMark size={17} />
@@ -64,7 +64,7 @@ export default function Home() {
           <div className="fcard grid md:grid-cols-[minmax(0,3fr)_minmax(0,5fr)]">
             <div className="flex flex-col justify-center gap-6 p-8 md:p-16 lg:p-20">
               <h2 className="title">Scout the class</h2>
-              <p className="lede">The 2027 board with college production for every prospect and fit targets for one team's gaps.</p>
+              <p className="lede">The 2027 board with college production for every prospect and fit targets for Memphis's gaps.</p>
             </div>
             <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/dime-site/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" />
           </div>

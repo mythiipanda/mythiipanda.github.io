@@ -229,7 +229,7 @@ kbd,
 }
 
 .enter {
-  animation: fade-up 700ms var(--ease-out-strong) both;
+  animation: fade-up 500ms var(--ease-out-strong) both;
   animation-delay: calc(var(--i, 0) * 90ms);
 }
 
