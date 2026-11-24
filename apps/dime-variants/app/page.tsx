@@ -1,6 +1,5 @@
 import { DimeMark, GithubMark } from "@/components/mark";
 import UiClip from "@/components/stage/UiClip";
-import CopyCommand from "@/components/copy-command";
 import { README, REPO } from "@/lib/site";
 import "./home.css";
 
@@ -73,9 +72,11 @@ export default function Home() {
 
         <section className="cta">
           <div className="wrap flex flex-col items-center gap-7 py-14 text-center md:py-20">
-            <h2 className="display max-w-[16ch]">Run it <em>locally.</em></h2>
-            <p className="lede mx-auto max-w-[46ch] text-white/85">3.7M charted shots, 4.5M possessions, 3.2M play-by-play rows — the whole warehouse is one DuckDB file on your machine.</p>
-            <CopyCommand command="git clone https://github.com/mythiipanda/dime && cd dime && ./scripts/fetch-data.sh" />
+            <h2 className="display max-w-[16ch]">Coming <em>soon.</em></h2>
+            <a href={REPO} className="inline-flex h-11 select-none items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.45)] transition-[transform,background-color] duration-150 ease-out hover:bg-white/10 active:scale-[0.96]">
+              <GithubMark size={17} />
+              mythiipanda/dime
+            </a>
           </div>
         </section>
       </main>
