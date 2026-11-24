@@ -89,8 +89,8 @@
 .hx-landing section.hero > div.hero-still {
   position: relative;
   z-index: 2;
-  margin-bottom: -28%;
-  transform: translateY(22%);
+  margin-bottom: -8%;
+  transform: translateY(6%);
 }
 
 .hx-landing section.hero > div.hero-still img {
@@ -208,6 +208,10 @@
 
 .hx-landing section.cta .display em {
   color: rgba(255, 255, 255, 0.94);
+}
+
+.hx-landing section.cta .lede {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .hx-landing section.cta a svg,
