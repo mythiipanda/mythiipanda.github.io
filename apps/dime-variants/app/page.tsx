@@ -1,5 +1,6 @@
 import { DimeMark, GithubMark } from "@/components/mark";
 import UiClip from "@/components/stage/UiClip";
+import CopyCommand from "@/components/copy-command";
 import { README, REPO } from "@/lib/site";
 import "./home.css";
 
@@ -29,7 +30,7 @@ export default function Home() {
               The open<span className="hyph">-</span>source <em>NBA analyst.</em>
             </h1>
             <div className="enter flex flex-col items-center gap-5" style={{ "--i": 1 } as React.CSSProperties}>
-              <p className="lede mx-auto">A front-office workspace on your machine. Ask in plain English; Dime writes the SQL, runs it on decades of NBA data, and keeps the answers.</p>
+              <p className="lede mx-auto">A front-office workspace on your machine. Ask in plain English; Dime writes the SQL, runs it on decades of NBA data, and cites every table.</p>
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 <a href={REPO} className="inline-flex h-11 select-none items-center justify-center gap-2 rounded-full bg-ink px-5 text-[15px] font-medium leading-none text-canvas shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] transition-[transform,background-color,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.96]">
                   <GithubMark size={17} />
@@ -44,17 +45,17 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" className="mx-auto flex w-full max-w-[1560px] scroll-mt-8 flex-col gap-8 px-5 pb-16 pt-12 md:gap-12 md:px-8 md:pb-28 md:pt-20">
+        <section id="work" className="mx-auto flex w-full max-w-[1680px] scroll-mt-8 flex-col gap-8 px-3 pb-16 pt-12 md:gap-12 md:px-5 md:pb-28 md:pt-20">
           <div className="fcard grid md:grid-cols-[minmax(0,3fr)_minmax(0,5fr)]">
             <div className="flex flex-col justify-center gap-6 p-8 md:p-16 lg:p-20">
               <h2 className="title">Grade the trade</h2>
               <p className="lede">Salaries resolve and the apron rules check out before the deal goes up for approval.</p>
             </div>
-            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/clips/trade-poster.webp" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
+            <UiClip className="m-5 self-center max-md:h-auto md:m-10 lg:m-14" w={3207} h={1680} poster="/clips/trade-poster.webp" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
           </div>
 
           <div className="fcard grid md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)]">
-            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/clips/lineup-poster.webp" label="Dime's lineup study board: five-man net ratings, clutch scoring and the qualified-lineup pool" />
+            <UiClip className="m-5 self-center max-md:h-auto md:m-10 lg:m-14" w={3207} h={1680} poster="/clips/lineup-poster.webp" label="Dime's lineup study board: five-man net ratings, clutch scoring and the qualified-lineup pool" />
             <div className="order-first flex flex-col justify-center gap-6 p-8 pb-0 md:order-none md:p-16 lg:p-20">
               <h2 className="title">Judge the lineups</h2>
               <p className="lede">Net rating for every qualified five-man unit, clutch scoring included.</p>
@@ -66,17 +67,15 @@ export default function Home() {
               <h2 className="title">Scout the class</h2>
               <p className="lede">The 2027 board with college production for every prospect and fit targets for Memphis's gaps.</p>
             </div>
-            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" />
+            <UiClip className="m-5 self-center max-md:h-auto md:m-10 lg:m-14" w={3207} h={1680} poster="/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" />
           </div>
         </section>
 
         <section className="cta">
           <div className="wrap flex flex-col items-center gap-7 py-14 text-center md:py-20">
-            <h2 className="display max-w-[16ch]">Coming <em>soon.</em></h2>
-            <a href={REPO} className="inline-flex h-11 select-none items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.45)] transition-[transform,background-color] duration-150 ease-out hover:bg-white/10 active:scale-[0.96]">
-              <GithubMark size={17} />
-              mythiipanda/dime
-            </a>
+            <h2 className="display max-w-[16ch]">Run it <em>locally.</em></h2>
+            <p className="lede mx-auto max-w-[46ch] text-white/85">3.7M charted shots, 4.5M possessions, 3.2M play-by-play rows — the whole warehouse is one DuckDB file on your machine.</p>
+            <CopyCommand command="git clone https://github.com/mythiipanda/dime && cd dime && ./scripts/fetch-data.sh" />
           </div>
         </section>
       </main>

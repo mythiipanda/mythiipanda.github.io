@@ -144,6 +144,10 @@ kbd,
   color: var(--accent);
 }
 
+.display em {
+  letter-spacing: -0.035em;
+}
+
 .lede {
   margin: 0;
   max-width: 36ch;
