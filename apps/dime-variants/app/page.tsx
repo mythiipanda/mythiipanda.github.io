@@ -40,7 +40,7 @@ export default function Home() {
             </div>
           </div>
           <div className="enter hero-still mt-9 md:mt-12" style={{ "--i": 2 } as React.CSSProperties}>
-            <UiClip eager anchor="58%" poster="/dime-site/clips/hero-poster.webp" w={3600} h={2040} label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
+            <UiClip eager anchor="58%" className="max-md:h-auto" poster="/clips/hero-poster.webp" w={3600} h={2040} label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
           </div>
         </section>
 
@@ -50,11 +50,11 @@ export default function Home() {
               <h2 className="title">Grade the trade</h2>
               <p className="lede">Salaries resolve and the apron rules check out before the deal goes up for approval.</p>
             </div>
-            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/dime-site/clips/trade-poster.webp" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
+            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/clips/trade-poster.webp" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" />
           </div>
 
           <div className="fcard grid md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)]">
-            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/dime-site/clips/lineup-poster.webp" label="Dime's lineup study board: five-man net ratings, clutch scoring and the qualified-lineup pool" />
+            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/clips/lineup-poster.webp" label="Dime's lineup study board: five-man net ratings, clutch scoring and the qualified-lineup pool" />
             <div className="order-first flex flex-col justify-center gap-6 p-8 pb-0 md:order-none md:p-16 lg:p-20">
               <h2 className="title">Judge the lineups</h2>
               <p className="lede">Net rating for every qualified five-man unit, clutch scoring included.</p>
@@ -66,7 +66,7 @@ export default function Home() {
               <h2 className="title">Scout the class</h2>
               <p className="lede">The 2027 board with college production for every prospect and fit targets for Memphis's gaps.</p>
             </div>
-            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/dime-site/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" />
+            <UiClip className="mx-5 mb-5 self-center max-md:h-auto md:m-12 lg:m-16" w={3840} h={1680} poster="/clips/draft-poster.webp" label="Dime's draft workspace: the 2027 prospect board with college stats and Memphis fit targets" />
           </div>
         </section>
 

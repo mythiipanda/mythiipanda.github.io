@@ -37,7 +37,7 @@ export default function Page() {
             </div>
           </div>
           <div className="enter hero-still mt-10 md:mt-16" style={{ "--i": 2 } as React.CSSProperties}>
-            <UiClip eager anchor="58%" poster="/dime-site/clips/hero-poster.webp" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
+            <UiClip eager anchor="58%" poster="/clips/hero-poster.webp" label="Dime answering a true-shooting question: tool calls, streamed answer with sources, and the leaders board" />
           </div>
         </section>
 
@@ -47,7 +47,7 @@ export default function Page() {
               <h2 className="title">Grade the trade</h2>
               <p className="lede">Salaries resolve and the apron rules check out before the deal goes up for approval.</p>
             </div>
-            <div className="ambient"><UiClip anchor="45%" poster="/dime-site/clips/trade-poster.webp" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" /></div>
+            <div className="ambient"><UiClip anchor="45%" poster="/clips/trade-poster.webp" label="Dime running a trade check: salary resolution, apron rules, then pinning the approved check to a board" /></div>
           </div>
         </section>
 
@@ -57,7 +57,7 @@ export default function Page() {
               <h2 className="title">Judge the lineups</h2>
               <p className="lede">Net rating for every qualified five-man unit, clutch scoring included.</p>
             </div>
-            <div className="ambient"><UiClip cover poster="/dime-site/clips/lineup-poster.webp" label="Dime's lineup study board: five-man net ratings, clutch scoring and the qualified-lineup pool" /></div>
+            <div className="ambient"><UiClip cover poster="/clips/lineup-poster.webp" label="Dime's lineup study board: five-man net ratings, clutch scoring and the qualified-lineup pool" /></div>
           </div>
         </section>
 
@@ -67,7 +67,7 @@ export default function Page() {
               <h2 className="title">Scout the field</h2>
               <p className="lede">Efficiency trends for the whole league, with two players side by side.</p>
             </div>
-            <div className="ambient"><UiClip cover poster="/dime-site/clips/scout-poster.webp" label="Dime's scouting board: efficiency leaders with season trends and a two-player compare strip" /></div>
+            <div className="ambient"><UiClip cover poster="/clips/scout-poster.webp" label="Dime's scouting board: efficiency leaders with season trends and a two-player compare strip" /></div>
           </div>
         </section>
 

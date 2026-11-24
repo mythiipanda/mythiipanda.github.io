@@ -1,6 +1,9 @@
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function UiClip({ poster, label, className = "", cover = false, anchor = "28%", flat = false, w = 2400, h = 1360, eager = false }: { src?: string; poster: string; label?: string; className?: string; cover?: boolean; anchor?: string; flat?: boolean; zoom?: boolean; w?: number; h?: number; eager?: boolean }) {
   const anchorCls = anchor === "58%" ? "object-[58%_top]" : anchor === "45%" ? "object-[45%_top]" : "object-[28%_top]";
   const loading = eager ? { loading: "eager" as const, fetchPriority: "high" as const } : { loading: "lazy" as const };
+  poster = `${BASE}${poster}`;
   return (
     <div className={`${cover ? "h-full" : "h-[300px] md:h-auto"} overflow-hidden ${flat ? "" : "rounded-xl bg-surface ring-1 ring-inset ring-line shadow-[0_20px_50px_-24px_rgb(0_0_0/0.18)]"} ${className}`}>
       <img
