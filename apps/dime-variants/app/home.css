@@ -210,10 +210,6 @@
   color: rgba(255, 255, 255, 0.94);
 }
 
-.hx-landing section.cta .lede {
-  color: rgba(255, 255, 255, 0.85);
-}
-
 .hx-landing section.cta a svg,
 .hx-landing section.cta a svg * {
   fill: #ffffff;
