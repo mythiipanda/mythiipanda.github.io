@@ -80,6 +80,10 @@
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
 }
 
+.hx-landing section.hero .hero-proof {
+  color: rgba(255, 255, 255, 0.55);
+}
+
 @media (hover: hover) {
   .hx-landing section.hero a.bg-surface:hover {
     background: rgba(255, 255, 255, 0.1);
